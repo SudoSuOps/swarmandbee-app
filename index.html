@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Swarm &amp; Bee — The data refinery for serious verticals</title>
+<meta name="description" content="Honey by the pound. Organic signal, never recycled. Trust. Verified. Vetted. Defendable Class A. We scale. We weigh. We ship. AI assets with real-economy ROI." />
+<link rel="canonical" href="https://swarmandbee.ai/" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://swarmandbee.ai/" />
+<meta property="og:title" content="Swarm &amp; Bee — The data refinery for serious verticals" />
+<meta property="og:description" content="Honey by the pound. Organic signal, never recycled. Defendable Class A. AI assets with real-economy ROI." />
+<meta property="og:site_name" content="Swarm &amp; Bee" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@swarmandbee" />
+
+<!-- Allow major AI search crawlers — eat-your-own-dogfood per SwarmGeo Fix Pack -->
+<meta name="robots" content="index, follow" />
+<meta name="keywords" content="AI training data, commercial-grade AI, data refinery, Honey, Royal Jelly, Hedera-anchored deeds, sovereign compute, USDC settlement, real-economy AI, defendable AI, CRE AI, vertical datasets" />
+
+<!-- Theme bootstrap -->
+<script>
+  (function () {
+    try {
+      var stored = localStorage.getItem("swarm-theme");
+      var system = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+      var theme = stored === "dark" || stored === "light" ? stored : "light";
+      document.documentElement.setAttribute("data-theme", theme);
+    } catch (e) {
+      document.documentElement.setAttribute("data-theme", "light");
+    }
+  })();
+</script>
+
+<!-- Schema.org Organization JSON-LD — eat-your-own-dogfood from the SwarmGeo Fix Pack -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://swarmandbee.ai/#organization",
+      "name": "Swarm & Bee",
+      "url": "https://swarmandbee.ai",
+      "description": "Commercial Compute Intelligence Refinery. AI training data refined from organic signal, deeded to the buyer, anchored to Hedera. Honey by the pound.",
+      "email": "build@swarmandbee.ai",
+      "sameAs": [
+        "https://x.com/swarmandbee",
+        "https://swarmgeo.eth.limo",
+        "https://swarmgraph.eth.limo"
+      ],
+      "identifier": [
+        {"@type": "PropertyValue", "propertyID": "DUNS", "value": "138652395"}
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://swarmandbee.ai/#website",
+      "url": "https://swarmandbee.ai",
+      "name": "Swarm & Bee",
+      "publisher": { "@id": "https://swarmandbee.ai/#organization" }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<div id="root"></div>
+<script type="module" src="/src/main.tsx"></script>
+</body>
+</html>
