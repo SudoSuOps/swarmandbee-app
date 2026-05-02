@@ -300,8 +300,9 @@ function HoneyByThePound() {
           Honey by the pound.
         </h2>
         <p className="mt-4 text-lg text-neutral-700 max-w-3xl">
-          12 verticals. 99 sale-ready packages. Anchored to <span className="font-mono text-sm">.grand_root_v2</span>.
-          Inquire at build@ for a verified data room.
+          12 verticals. 99 sale-ready packages. Every pair rolls up to a single
+          Merkle root — anchored on Hedera mainnet for tamper-evident proof.
+          Inquire at <a href="mailto:build@swarmandbee.ai?subject=Honey%20warehouse%20data%20room" className="text-amber-700 underline hover:text-amber-900">build@swarmandbee.ai</a> for a verified data room.
         </p>
 
         <div className="mt-10 rounded-lg border-2 border-neutral-900 bg-white overflow-hidden">
@@ -342,14 +343,14 @@ function HoneyByThePound() {
 }
 
 const VERTICALS = [
-  { name: "Commercial Real Estate", pairs: "810,097",  grade: "Honey 87.4",  anchor: ".grand_root_v2 + Hedera", status: "Live" },
-  { name: "Medical",                 pairs: "418,783",  grade: "Honey",       anchor: "Hedera HCS · 5,021 deeded", status: "Live" },
-  { name: "Aviation",                pairs: "41,288",   grade: "Royal Jelly", anchor: "Cooking · OpenAlex",         status: "Cooking" },
-  { name: "Pharma",                  pairs: "25,600",   grade: "Honey",       anchor: ".grand_root_v2",             status: "Live" },
-  { name: "Grants (NSF + NIH)",      pairs: "31,940",   grade: "Honey",       anchor: ".grand_root_v2",             status: "Live" },
-  { name: "Failure Pairs",           pairs: "see catalog", grade: "Honey",    anchor: ".grand_root_v2",             status: "Live" },
-  { name: "Finance / CreditSniper", pairs: "18,066 (v1)", grade: "Royal Jelly 70%", anchor: ".grand_root_v2",       status: "Live" },
-  { name: "More verticals",          pairs: "build@",   grade: "—",           anchor: "—",                          status: "On request" },
+  { name: "Commercial Real Estate", pairs: "810,097",     grade: "Honey 87.4",      anchor: "Merkle root + Hedera", status: "Live" },
+  { name: "Medical",                pairs: "418,783",     grade: "Honey",           anchor: "Hedera HCS · 5,021 deeded", status: "Live" },
+  { name: "Aviation",               pairs: "41,288",      grade: "Royal Jelly",     anchor: "OpenAlex source",      status: "Cooking" },
+  { name: "Pharma",                 pairs: "25,600",      grade: "Honey",           anchor: "Merkle root",          status: "Live" },
+  { name: "Grants (NSF + NIH)",     pairs: "31,940",      grade: "Honey",           anchor: "Merkle root",          status: "Live" },
+  { name: "Failure Pairs",          pairs: "see catalog", grade: "Honey",           anchor: "Merkle root",          status: "Live" },
+  { name: "Finance / CreditSniper", pairs: "18,066 (v1)", grade: "Royal Jelly 70%", anchor: "Merkle root",          status: "Live" },
+  { name: "More verticals",         pairs: "Inquire",     grade: "—",               anchor: "—",                    status: "On request" },
 ];
 
 function gradeColor(g: string): string {
@@ -407,9 +408,9 @@ function Products() {
         />
         <ProductCard
           name="Honey Warehouse"
-          tag="API"
-          href="https://api.swarmandbee.ai/honey"
-          body="Direct dataset purchase. D1 + R2 fulfillment. USDC or Stripe at checkout. Per-pair receipts, per-package Merkle proofs."
+          tag="Inquire"
+          href="mailto:build@swarmandbee.ai?subject=Honey%20Warehouse%20data%20room"
+          body="Direct dataset purchase. USDC or Stripe at checkout. Per-pair receipts, per-package Merkle proofs. Verified data room shared on inquiry."
         />
       </div>
     </section>
