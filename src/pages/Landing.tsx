@@ -238,15 +238,15 @@ function SwarmOS() {
     <section id="swarmos" className="bg-ink text-neutral-100 py-20 border-t border-neutral-800">
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-xs font-semibold tracking-widest text-amber-400 uppercase mb-4">
-          The operating system
+          The protocol
         </div>
         <h2 className="text-5xl md:text-6xl font-bold tracking-tight">
-          SwarmOS — <span className="text-amber-400">HiveOS for AI</span>.
+          SwarmOS <span className="text-amber-400">Protocol</span>.
         </h2>
         <p className="mt-6 text-xl text-neutral-300 max-w-3xl leading-relaxed">
-          HiveOS standardized crypto mining. SwarmOS standardizes intelligence-asset development.
-          Same primitives — rigs, hashrate, watts, blocks, deeds. Same discipline. Same audit trail.
-          <strong className="text-white"> Different output: instead of coins, we mint title deeds.</strong>
+          The operating standard for intelligence-asset development. One protocol across every job —
+          rigs, hashrate, watts, blocks, deeds. Same primitives. Same discipline. Same audit trail.
+          <strong className="text-white"> The output is title deeds, defendable on-chain, owned in fee simple.</strong>
         </p>
 
         {/* The Doctrine — pull-quote */}
