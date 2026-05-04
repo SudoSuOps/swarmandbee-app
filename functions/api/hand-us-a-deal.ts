@@ -1,34 +1,12 @@
-// /api/hand-us-a-deal — Cloudflare Pages Function
-//
-// Receives a POST from the "Hand us a deal" form on swarmandbee.ai
-// Validates, sanitizes, sends via Resend → build@swarmandbee.ai
-//
-// Required env vars (Cloudflare Pages → Settings → Environment Variables):
-//   RESEND_API_KEY   — your re_... secret from resend.com/api-keys
-//
-// Optional env vars:
-//   FROM_ADDRESS     — defaults to "Swarm & Bee <onboarding@resend.dev>"
-//                      switch to "Swarm & Bee <build@swarmandbee.ai>" once
-//                      swarmandbee.ai is verified in Resend (DNS records added)
-//   TO_ADDRESS       — defaults to "build@swarmandbee.ai"
+// /api/hand-us-a-deal — DEBUG VERSION
+// Wraps ENTIRE handler in try/catch so no unhandled throw can ever produce
+// a CF 502. Once we've identified the root cause, the original cleaner
+// version can be restored.
 
 interface Env {
-  RESEND_API_KEY: string;
+  RESEND_API_KEY?: string;
   FROM_ADDRESS?: string;
   TO_ADDRESS?: string;
-}
-
-interface DealSubmission {
-  name?: string;
-  email?: string;
-  company?: string;
-  phone?: string;
-  property?: string;
-  assetClass?: string;
-  task?: string;
-  background?: string;
-  // honeypot — bots fill this; humans never see it
-  website?: string;
 }
 
 const CORS_HEADERS = {
@@ -44,175 +22,109 @@ function jsonResponse(body: unknown, status = 200): Response {
   });
 }
 
-function escapeText(s: string): string {
-  // Strip control characters (CRLF in headers etc.) — Resend escapes its own JSON,
-  // this just sanitizes user-submitted text for the email body.
-  return s.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, "").trim();
-}
-
 export const onRequestOptions: PagesFunction<Env> = async () => {
   return new Response(null, { headers: CORS_HEADERS });
 };
 
 export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
-  // Parse + basic validation
-  let body: DealSubmission;
+  // EVERYTHING wrapped in try/catch · no unhandled throw can produce a 502
   try {
-    body = (await request.json()) as DealSubmission;
-  } catch {
-    return jsonResponse({ ok: false, error: "Invalid JSON" }, 400);
-  }
+    let body: any = {};
+    try {
+      body = await request.json();
+    } catch (e) {
+      return jsonResponse({ ok: false, error: "Invalid JSON", phase: "parse" }, 400);
+    }
 
-  // Honeypot — bots fill the hidden 'website' field
-  if (body.website && body.website.length > 0) {
-    // Pretend success to avoid revealing the trap
-    return jsonResponse({ ok: true });
-  }
+    // Honeypot
+    if (body.website) return jsonResponse({ ok: true });
 
-  // Required fields
-  const name = body.name && escapeText(body.name);
-  const email = body.email && escapeText(body.email);
-  const property = body.property && escapeText(body.property);
-  const task = body.task && escapeText(body.task);
+    // Required fields
+    const name = typeof body.name === "string" ? body.name.trim() : "";
+    const email = typeof body.email === "string" ? body.email.trim() : "";
+    const property = typeof body.property === "string" ? body.property.trim() : "";
+    const task = typeof body.task === "string" ? body.task.trim() : "";
 
-  if (!name || !email || !property || !task) {
-    return jsonResponse(
-      { ok: false, error: "Missing required field (name, email, property, task)" },
-      400
-    );
-  }
+    if (!name || !email || !property || !task) {
+      return jsonResponse({ ok: false, error: "Missing required field", phase: "validate" }, 400);
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return jsonResponse({ ok: false, error: "Invalid email", phase: "validate" }, 400);
+    }
 
-  // Email format sanity
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    return jsonResponse({ ok: false, error: "Invalid email" }, 400);
-  }
-
-  // Length limits (defensive — keeps oversized payloads out)
-  if (
-    name.length > 200 ||
-    email.length > 200 ||
-    property.length > 500 ||
-    task.length > 200 ||
-    (body.background?.length ?? 0) > 5000
-  ) {
-    return jsonResponse({ ok: false, error: "Field length exceeded" }, 400);
-  }
-
-  // Whitespace-tolerant key lookup — CF Pages dashboard sometimes
-  // captures stray whitespace in env var names. Loop keys, find any
-  // that trims to "RESEND_API_KEY", verify value is a string.
-  let apiKey: string | undefined;
-  try {
-    const envObj = env as unknown as Record<string, unknown>;
+    // Whitespace-tolerant API key lookup
+    let apiKey: string | undefined;
+    const envObj = (env as unknown) as Record<string, unknown>;
     for (const k of Object.keys(envObj)) {
-      if (typeof k === "string" && k.trim() === "RESEND_API_KEY") {
+      if (k.trim() === "RESEND_API_KEY") {
         const v = envObj[k];
         if (typeof v === "string" && v.length > 0) {
-          apiKey = v;
+          apiKey = v.trim();
           break;
         }
       }
     }
-  } catch (e) {
-    // Fall through with apiKey undefined
-  }
 
-  if (!apiKey) {
-    return jsonResponse({ ok: false, error: "Email service not configured" }, 500);
-  }
+    if (!apiKey) {
+      return jsonResponse({ ok: false, error: "Email service not configured", phase: "env" }, 500);
+    }
 
-  // Optional fields (sanitized)
-  const company = body.company ? escapeText(body.company) : "";
-  const phone = body.phone ? escapeText(body.phone) : "";
-  const assetClass = body.assetClass ? escapeText(body.assetClass) : "";
-  const background = body.background ? escapeText(body.background) : "";
+    // Optional fields
+    const company = typeof body.company === "string" ? body.company.trim() : "";
+    const phone = typeof body.phone === "string" ? body.phone.trim() : "";
+    const assetClass = typeof body.assetClass === "string" ? body.assetClass.trim() : "";
+    const background = typeof body.background === "string" ? body.background.trim() : "";
 
-  const subject = `Hand us a deal · ${property.slice(0, 80)}`;
+    const fromAddress = (envObj.FROM_ADDRESS as string | undefined)?.trim() || "Swarm and Bee <onboarding@resend.dev>";
+    const toAddress = (envObj.TO_ADDRESS as string | undefined)?.trim() || "build@swarmandbee.ai";
 
-  const text = `New deal submission via swarmandbee.ai
+    const subject = `Hand us a deal - ${property.slice(0, 80)}`;
+    const text = [
+      "New deal submission via swarmandbee.ai",
+      "",
+      "PROPERTY: " + property,
+      "ASSET CLASS: " + (assetClass || "(not specified)"),
+      "TASK: " + task,
+      "",
+      "BACKGROUND:",
+      background || "(none provided)",
+      "",
+      "CONTACT:",
+      "Name: " + name,
+      "Company: " + (company || "-"),
+      "Email: " + email,
+      "Phone: " + (phone || "-"),
+      "",
+      "Submitted: " + new Date().toISOString(),
+    ].join("\n");
 
-────────────────────────────────────────
-PROPERTY / DEAL
-${property}
-
-ASSET CLASS
-${assetClass || "(not specified)"}
-
-TASK REQUESTED
-${task}
-
-BACKGROUND
-${background || "(none provided)"}
-
-────────────────────────────────────────
-CONTACT
-Name:    ${name}
-Company: ${company || "(not provided)"}
-Email:   ${email}
-Phone:   ${phone || "(not provided)"}
-
-────────────────────────────────────────
-Submitted: ${new Date().toISOString()}
-Source:    https://swarmandbee.ai (Hand us a deal form)
-`;
-
-  const html = `<!doctype html>
-<html><body style="font-family: -apple-system, system-ui, sans-serif; color: #1a1a1a; max-width: 640px;">
-<h2 style="border-bottom: 2px solid #d97706; padding-bottom: 8px;">New deal submission · swarmandbee.ai</h2>
-
-<table cellpadding="6" style="border-collapse: collapse; margin-top: 16px;">
-  <tr><td style="font-weight:600; vertical-align:top; min-width: 120px;">Property</td><td>${property}</td></tr>
-  <tr><td style="font-weight:600; vertical-align:top;">Asset class</td><td>${assetClass || "<em>not specified</em>"}</td></tr>
-  <tr><td style="font-weight:600; vertical-align:top;">Task</td><td>${task}</td></tr>
-  <tr><td style="font-weight:600; vertical-align:top;">Background</td><td>${(background || "<em>none provided</em>").replace(/\n/g, "<br>")}</td></tr>
-</table>
-
-<h3 style="margin-top: 24px;">Contact</h3>
-<table cellpadding="6" style="border-collapse: collapse;">
-  <tr><td style="font-weight:600; vertical-align:top; min-width: 120px;">Name</td><td>${name}</td></tr>
-  <tr><td style="font-weight:600; vertical-align:top;">Company</td><td>${company || "<em>—</em>"}</td></tr>
-  <tr><td style="font-weight:600; vertical-align:top;">Email</td><td><a href="mailto:${email}">${email}</a></td></tr>
-  <tr><td style="font-weight:600; vertical-align:top;">Phone</td><td>${phone || "<em>—</em>"}</td></tr>
-</table>
-
-<p style="margin-top: 24px; color: #666; font-size: 12px; border-top: 1px solid #e5e5e5; padding-top: 12px;">
-  Submitted: ${new Date().toISOString()}<br>
-  Source: <a href="https://swarmandbee.ai">swarmandbee.ai</a> · Hand us a deal form
-</p>
-</body></html>`;
-
-  const fromAddress = (env.FROM_ADDRESS || "Swarm & Bee <onboarding@resend.dev>").trim();
-  const toAddress = (env.TO_ADDRESS || "build@swarmandbee.ai").trim();
-
-  // Top-level try/catch so any throw becomes a proper JSON response (no CF 502)
-  try {
+    // Resend send
     const resendResp = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${apiKey.trim()}`,
+        Authorization: "Bearer " + apiKey,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         from: fromAddress,
         to: [toAddress],
         reply_to: email,
-        subject,
-        text,
-        html,
+        subject: subject,
+        text: text,
       }),
     });
 
+    const resendStatus = resendResp.status;
+    const resendBodyText = await resendResp.text().catch(() => "");
+
     if (!resendResp.ok) {
-      const errBody = await resendResp.text().catch(() => "");
-      console.error("Resend API error:", resendResp.status, errBody);
-      // VERBOSE for debugging — return the Resend error so we can see what's wrong.
-      // Tighten this down to a generic message once the form is verified working.
       return jsonResponse(
         {
           ok: false,
-          error: "Resend rejected the send",
-          resend_status: resendResp.status,
-          resend_body: errBody.slice(0, 500),
+          error: "Resend rejected",
+          phase: "resend",
+          resend_status: resendStatus,
+          resend_body: resendBodyText.slice(0, 800),
           from: fromAddress,
           to: toAddress,
         },
@@ -220,12 +132,12 @@ Source:    https://swarmandbee.ai (Hand us a deal form)
       );
     }
 
-    return jsonResponse({ ok: true });
+    return jsonResponse({ ok: true, resend_status: resendStatus });
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err);
-    console.error("Function exception:", msg);
+    const stack = err instanceof Error ? (err.stack || "").slice(0, 800) : "";
     return jsonResponse(
-      { ok: false, error: "Function exception", detail: msg.slice(0, 500) },
+      { ok: false, error: "Function exception", phase: "outer-catch", detail: msg, stack: stack },
       500
     );
   }
