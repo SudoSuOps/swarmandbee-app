@@ -23,6 +23,7 @@ function openHandDealModal() {
 export default function Landing() {
   return (
     <div className="min-h-screen flex flex-col">
+      <PainBanner />
       <Header />
       <Hero />
       <StatsStrip />
@@ -34,6 +35,7 @@ export default function Landing() {
       <AtlasOS />
       <TheMath />
       <RingRing />
+      <PainCallout />
       <ComputeMoat />
       <TruthProtocol />
       <AIEconomy />
@@ -45,6 +47,92 @@ export default function Landing() {
       <FinalCTA />
       <Footer />
       <HandUsDealModal />
+    </div>
+  );
+}
+
+// ─── Pain banner (top-of-page · highest-visibility) ───────────────────────────
+
+function PainBanner() {
+  return (
+    <a
+      href="/pain"
+      className="block bg-neutral-950 text-neutral-100 hover:bg-neutral-800 transition-colors border-b border-amber-500"
+    >
+      <div className="max-w-6xl mx-auto px-6 py-2.5 flex items-center gap-3 text-sm">
+        <span className="text-[10px] font-mono uppercase tracking-widest text-amber-400 shrink-0">
+          New · The Pain
+        </span>
+        <span className="hidden sm:inline text-neutral-300 truncate">
+          $5T outstanding · $1.5T rolling · 1,374 banks at the trigger. The CRE debt wall, mapped + sourced.
+        </span>
+        <span className="sm:hidden text-neutral-300 truncate">
+          The CRE debt wall · mapped + sourced.
+        </span>
+        <span className="ml-auto text-amber-400 font-semibold shrink-0">Walk it →</span>
+      </div>
+    </a>
+  );
+}
+
+// ─── Pain callout (mid-page · drop on top of Compute Moat) ────────────────────
+
+function PainCallout() {
+  return (
+    <section id="pain" className="bg-neutral-950 text-neutral-100 py-20 border-t border-amber-500">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="text-xs font-semibold tracking-widest text-amber-400 uppercase mb-4">
+          The market thesis · receipts on file
+        </div>
+        <h2 className="text-5xl md:text-7xl font-black tracking-tight leading-none">
+          The <span className="text-amber-400">Pain</span>.
+        </h2>
+        <p className="mt-6 text-2xl md:text-3xl text-white max-w-3xl font-bold leading-snug">
+          $5 trillion outstanding. $1.5 trillion rolling. 1,374 banks at the trigger.
+        </p>
+        <p className="mt-6 text-lg md:text-xl text-neutral-300 max-w-3xl leading-relaxed">
+          The CRE debt wall — mapped, ranked, and sourced. Where the maturity stack
+          actually sits. Which lender pocket is most stressed. Which asset class is
+          repriced vs. which is broken. The 9-option waterfall for a $2-5M sponsor
+          facing a 2026 balloon. <strong>Every figure cited. Every source linked.</strong>
+        </p>
+
+        <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4">
+          <PainStat n="$4.99T" label="Total CRE/MF debt" />
+          <PainStat n="$1.5T" label="Rolling 2026-2027" />
+          <PainStat n="1,374" label="Banks above 300% trigger" />
+          <PainStat n="14" label="Q1 NNN sales · 50+ bps above market" />
+        </div>
+
+        <div className="mt-10 flex flex-wrap gap-3">
+          <a
+            href="/pain"
+            className="px-7 py-4 rounded-lg bg-amber-500 text-neutral-900 font-bold hover:bg-amber-400 transition-colors"
+          >
+            Walk the wall →
+          </a>
+          <a
+            href="/pain#answer"
+            className="px-7 py-4 rounded-lg border-2 border-neutral-700 text-neutral-100 font-semibold hover:border-amber-400 transition-colors"
+          >
+            How Atlas closes
+          </a>
+        </div>
+
+        <p className="mt-8 text-sm text-neutral-500 font-mono max-w-2xl">
+          Mirrored at <span className="text-amber-400">pain.defendable.eth</span> · IPFS-pinned ·
+          updated as the wall moves.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+function PainStat({ n, label }: { n: string; label: string }) {
+  return (
+    <div className="rounded-lg border border-neutral-800 bg-neutral-900 p-5">
+      <div className="text-3xl md:text-4xl font-black text-amber-400 leading-none">{n}</div>
+      <div className="mt-2 text-[11px] font-mono uppercase tracking-widest text-neutral-400">{label}</div>
     </div>
   );
 }
@@ -67,6 +155,7 @@ function Header() {
           <a href="#atlasos" className="text-neutral-600 hover:text-neutral-900 hidden md:inline">AtlasOS</a>
           <a href="#math" className="text-neutral-600 hover:text-neutral-900 hidden md:inline">Math</a>
           <a href="#services" className="text-neutral-600 hover:text-neutral-900 hidden md:inline">Services</a>
+          <a href="/pain" className="text-amber-700 font-bold hover:text-amber-900 hidden md:inline">The&nbsp;Pain</a>
           <a href="#founder" className="text-neutral-600 hover:text-neutral-900 hidden md:inline">Founder</a>
           <a href="https://defendable.eth.limo" target="_blank" rel="noreferrer"
              className="text-neutral-600 hover:text-neutral-900 hidden md:inline">Defendable ↗</a>
