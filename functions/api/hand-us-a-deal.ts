@@ -105,6 +105,23 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
       "Source: swarmandbee.ai (Hand us a deal form)",
     ].join("\n");
 
+    // BISECT TEST · short-circuit before Resend fetch to see if pre-fetch logic is OK
+    return jsonResponse({
+      ok: true,
+      bisect: "pre-resend-skip",
+      checks: {
+        body_parsed: true,
+        validated: true,
+        api_key_present: apiKey.length > 0,
+        api_key_starts_with_re: apiKey.startsWith("re_"),
+        api_key_length: apiKey.length,
+        from: fromAddress,
+        to: toAddress,
+        subject: subject,
+        text_length: text.length,
+      },
+    });
+
     const resendResp = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
