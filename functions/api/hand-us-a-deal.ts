@@ -61,9 +61,34 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
     const assetClass = typeof body.assetClass === "string" ? body.assetClass.trim().slice(0, 200) : "";
     const background = typeof body.background === "string" ? body.background.trim().slice(0, 1024) : "";
 
-    const webhookUrl = (env.DISCORD_WEBHOOK_URL || "").trim();
+    // Whitespace-tolerant env var lookup (CF Pages dashboard sometimes
+    // captures stray whitespace in variable names — happened with RESEND_API_KEY)
+    let webhookUrl = (env.DISCORD_WEBHOOK_URL || "").trim();
     if (!webhookUrl) {
-      return jsonResponse({ ok: false, error: "Discord webhook not configured" }, 500);
+      try {
+        const envObj = env as unknown as Record<string, unknown>;
+        for (const k of Object.keys(envObj)) {
+          if (k.trim() === "DISCORD_WEBHOOK_URL") {
+            const v = envObj[k];
+            if (typeof v === "string" && v.length > 0) {
+              webhookUrl = v.trim();
+              break;
+            }
+          }
+        }
+      } catch {}
+    }
+    if (!webhookUrl) {
+      // Diagnostic: list env keys so we can see if var is missing or misnamed
+      let envKeys: string[] = [];
+      try {
+        envKeys = Object.keys(env as unknown as Record<string, unknown>).sort();
+      } catch {}
+      return jsonResponse({
+        ok: false,
+        error: "Discord webhook not configured",
+        diagnostic: { env_keys: envKeys, env_keys_count: envKeys.length },
+      }, 500);
     }
 
     const discordPayload = {
