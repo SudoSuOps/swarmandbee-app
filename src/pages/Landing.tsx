@@ -32,6 +32,7 @@ export default function Landing() {
       <TheHacks />
       <TheLane />
       <AtlasOS />
+      <TheMath />
       <ComputeMoat />
       <TruthProtocol />
       <AIEconomy />
@@ -63,6 +64,7 @@ function Header() {
           <a href="#hacks" className="text-neutral-600 hover:text-neutral-900 hidden md:inline">Hacks</a>
           <a href="#lane" className="text-neutral-600 hover:text-neutral-900 hidden md:inline">The&nbsp;Lane</a>
           <a href="#atlasos" className="text-neutral-600 hover:text-neutral-900 hidden md:inline">AtlasOS</a>
+          <a href="#math" className="text-neutral-600 hover:text-neutral-900 hidden md:inline">Math</a>
           <a href="#founder" className="text-neutral-600 hover:text-neutral-900 hidden md:inline">Founder</a>
           <a href="https://defendable.eth.limo" target="_blank" rel="noreferrer"
              className="text-neutral-600 hover:text-neutral-900 hidden md:inline">Defendable ↗</a>
@@ -775,6 +777,186 @@ const DOCS = [
   { name: "Hedera Anchor",      when: "After close",       cre: "Recorded deed at courthouse" },
 ];
 
+
+// ─── The Math · unit economics ────────────────────────────────────────────────
+
+function TheMath() {
+  return (
+    <section id="math" className="bg-neutral-950 text-neutral-100 py-20">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="text-xs font-semibold tracking-widest text-amber-400 uppercase mb-4">
+          Unit economics · the numbers don't lie
+        </div>
+        <h2 className="text-5xl md:text-7xl font-black tracking-tight leading-none">
+          The <span className="text-amber-400">Math</span>.
+        </h2>
+        <p className="mt-6 text-2xl md:text-3xl text-white max-w-3xl font-bold leading-snug">
+          One desk. One hundred deals. Electrons, not overhead.
+        </p>
+        <p className="mt-4 text-lg text-neutral-300 max-w-3xl leading-relaxed">
+          A $3M STNL deal pays a 3% commission — $90K gross. Here's where it goes
+          on a traditional desk, and here's what happens when a 186-GPU desk runs
+          the same play at 1%.
+        </p>
+
+        {/* Traditional desk math */}
+        <div className="mt-12">
+          <div className="text-[11px] font-mono uppercase tracking-widest text-neutral-400 mb-3">
+            Traditional brokerage · 1 deal · $3M · 3% fee
+          </div>
+          <div className="rounded-lg border-2 border-neutral-700 bg-neutral-900 p-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+              <SplitTile
+                label="Gross commission"
+                value="$90,000"
+                detail="3% of $3M deal"
+                color="white"
+              />
+              <SplitTile
+                label="After SR / Hack split"
+                value="$45K · $45K"
+                detail="Senior + Hack 50 / 50"
+                color="white"
+              />
+              <SplitTile
+                label="After house split"
+                value="$29.25K · $22.5K"
+                detail="SR 65/35 · Hack 50/50 with house"
+                color="amber"
+              />
+            </div>
+            <div className="mt-6 pt-6 border-t border-neutral-800">
+              <p className="text-sm text-neutral-300 leading-relaxed">
+                <strong className="text-white">Hack takes home $22,500.</strong> Five deals
+                a year and the Hack eats six figures. <strong className="text-white">Senior
+                takes home $29,250</strong> — but the Senior runs a team: bookmaker,
+                underwriter, closing coordinator, all salaried at ~$60K each plus bonus.
+                <strong className="text-amber-400"> Senior overhead: ~$180K base before
+                deal one.</strong> The Senior needs 20+ deals to print net.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* The pivot */}
+        <div className="mt-14 flex items-center gap-4">
+          <div className="h-px flex-1 bg-amber-400" />
+          <p className="text-[11px] md:text-sm font-mono uppercase tracking-widest text-amber-400 whitespace-nowrap">
+            Now run the same play at machine scale
+          </p>
+          <div className="h-px flex-1 bg-amber-400" />
+        </div>
+
+        {/* Atlas brokerage math */}
+        <div className="mt-14">
+          <div className="text-[11px] font-mono uppercase tracking-widest text-amber-400 mb-3">
+            Atlas brokerage · 100 deals/yr · $3M avg · 1% fee
+          </div>
+          <div className="rounded-lg border-2 border-amber-400 bg-gradient-to-br from-amber-950/40 to-neutral-900 p-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+              <SplitTile
+                label="Gross revenue"
+                value="$3,000,000"
+                detail="100 × $30K (1% of $3M)"
+                color="amber"
+              />
+              <SplitTile
+                label="Operating cost (est.)"
+                value="~$400,000"
+                detail="Energy + thin bench + cloud"
+                color="white"
+              />
+              <SplitTile
+                label="Net margin (est.)"
+                value="~$2.6M"
+                detail="~87% net at target volume"
+                color="amber"
+              />
+            </div>
+            <div className="mt-6 pt-6 border-t border-amber-800/50">
+              <p className="text-sm text-neutral-200 leading-relaxed">
+                No SR / Hack split. No house split. No team salaries. Atlas IS the team.
+                The marginal cost of the next deal is the electrons it takes to run the
+                pipeline — energy, compute on already-owned GPUs, Hedera anchoring at
+                fractions of a cent, and a thin human bench (designated broker, ops, QA).
+                <strong className="text-amber-400"> The model holds the line at 1% fee
+                because the cost stack is electrons, not headcount.</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* The unlock */}
+        <div className="mt-12">
+          <h3 className="text-2xl md:text-3xl font-bold text-white">The structural unlock.</h3>
+          <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-5">
+            <UnlockCard
+              num="01"
+              title="1% beats 3%"
+              body="Atlas charges 1/3 the fee and still prints ~87% margin. Traditional brokerages can't compete on price without going underwater on team overhead — the salaries are fixed, the splits aren't optional."
+            />
+            <UnlockCard
+              num="02"
+              title="Sub-$2M becomes profitable"
+              body="A $1M deal at 1% = $10K gross — Atlas still nets it. Traditional desks lose money on $1M deals: too much human labor per dollar of fee. Atlas opens a TAM that humans cannot service."
+            />
+            <UnlockCard
+              num="03"
+              title="The flywheel compounds"
+              body="Every closed deal feeds the Book. Every deed Hedera-anchors. Every audit pass extends the V/V/V record. The margin isn't the moat — the deed flywheel is. Margin funds the next sprint of compute and corpus build."
+            />
+          </div>
+        </div>
+
+        {/* Closing pull-quote */}
+        <div className="mt-14 border-l-4 border-amber-400 pl-6 max-w-3xl">
+          <p className="text-base md:text-lg italic text-white leading-relaxed">
+            "The traditional desk needs 20 deals to feed the Senior and 5 to feed the
+            Hack. The AI desk does 100 at 1% and the cost is electrons. The math is
+            the argument."
+          </p>
+          <p className="mt-3 text-sm text-neutral-400">
+            — Founder · Family Office · the operating thesis of the firm
+          </p>
+        </div>
+
+        {/* Honest disclosure */}
+        <div className="mt-10 max-w-3xl">
+          <p className="text-[11px] font-mono uppercase tracking-widest text-neutral-500 mb-2">
+            Honest disclosure
+          </p>
+          <p className="text-xs text-neutral-500 leading-relaxed">
+            Operating-cost figures are estimates at target run-rate volume — energy
+            assumes ~50% GPU utilization at Florida industrial rates; human bench
+            sized for one designated broker plus ops/QA. Voice stack and E&O insurance
+            not yet itemized. Forward-looking projection, not a current P&L.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function SplitTile({ label, value, detail, color }: { label: string; value: string; detail: string; color: "white" | "amber" }) {
+  const valueColor = color === "amber" ? "text-amber-400" : "text-white";
+  return (
+    <div>
+      <div className="text-[10px] font-mono uppercase tracking-widest text-neutral-400">{label}</div>
+      <div className={`mt-2 text-2xl md:text-3xl font-black ${valueColor}`}>{value}</div>
+      <div className="mt-1 text-xs text-neutral-400">{detail}</div>
+    </div>
+  );
+}
+
+function UnlockCard({ num, title, body }: { num: string; title: string; body: string }) {
+  return (
+    <div className="rounded-lg border-2 border-neutral-800 bg-neutral-900 p-5">
+      <div className="text-[11px] font-mono text-amber-400 font-bold tracking-widest">{num}</div>
+      <h4 className="mt-2 text-lg font-bold text-white">{title}</h4>
+      <p className="mt-3 text-sm text-neutral-300 leading-relaxed">{body}</p>
+    </div>
+  );
+}
 
 // ─── compute moat ──────────────────────────────────────────────────────────────
 
