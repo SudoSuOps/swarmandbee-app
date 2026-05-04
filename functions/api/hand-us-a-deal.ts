@@ -105,24 +105,13 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
       "Source: swarmandbee.ai (Hand us a deal form)",
     ].join("\n");
 
-    // BISECT TEST · short-circuit before Resend fetch to see if pre-fetch logic is OK
-    return jsonResponse({
-      ok: true,
-      bisect: "pre-resend-skip",
-      checks: {
-        body_parsed: true,
-        validated: true,
-        api_key_present: apiKey.length > 0,
-        api_key_starts_with_re: apiKey.startsWith("re_"),
-        api_key_length: apiKey.length,
-        from: fromAddress,
-        to: toAddress,
-        subject: subject,
-        text_length: text.length,
-      },
-    });
-
-    const resendResp = await fetch("https://api.resend.com/emails", {
+    // BISECT 2 · do the Resend fetch with timeout, return ONLY status (no body read)
+    let resendStatus = 0;
+    let resendError = "";
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 10000);
+      const resendResp = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
         Authorization: "Bearer " + apiKey,
@@ -135,26 +124,35 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
         subject: subject,
         text: text,
       }),
-    });
-
-    if (!resendResp.ok) {
-      const errBody = await resendResp.text().catch(() => "");
-      // Verbose error to help us diagnose the first time. Once verified, this
-      // can be tightened to a generic 502.
-      return jsonResponse(
-        {
-          ok: false,
-          error: "Resend rejected the send",
-          resend_status: resendResp.status,
-          resend_body: errBody.slice(0, 800),
-          from: fromAddress,
-          to: toAddress,
-        },
-        502
-      );
+      signal: controller.signal,
+      });
+      clearTimeout(timeoutId);
+      resendStatus = resendResp.status;
+      // Try to read body but don't fail if we can't
+      try {
+        const bodyText = await resendResp.text();
+        resendError = bodyText.slice(0, 500);
+      } catch (e) {
+        resendError = "body-read-failed: " + (e instanceof Error ? e.message : String(e));
+      }
+    } catch (fetchErr) {
+      const msg = fetchErr instanceof Error ? fetchErr.message : String(fetchErr);
+      return jsonResponse({
+        ok: false,
+        error: "Resend fetch threw",
+        detail: msg.slice(0, 500),
+        from: fromAddress,
+        to: toAddress,
+      }, 500);
     }
 
-    return jsonResponse({ ok: true });
+    return jsonResponse({
+      ok: resendStatus >= 200 && resendStatus < 300,
+      resend_status: resendStatus,
+      resend_body: resendError,
+      from: fromAddress,
+      to: toAddress,
+    });
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err);
     return jsonResponse({ ok: false, error: "Function exception", detail: msg.slice(0, 500) }, 500);
