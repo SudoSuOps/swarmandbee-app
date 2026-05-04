@@ -218,7 +218,7 @@ function Manifesto() {
         />
         <ManifestoTile
           title="A real gap"
-          body="The AI wave is here. CRE isn't. Phones, dog-shit spreadsheets, and the dial. Junior brokers panic at the LOI handoff. Senior brokers hoard books that walk when they leave. <strong>$800B in CRE distress maturing 2024–2027 — and no AI infrastructure exists to meet it.</strong> The industry was never going to build it. We did."
+          body="The AI wave is here. CRE isn't. Phones, obsolete spreadsheets, and the dial. Junior brokers panic at the LOI handoff. Senior brokers hoard books that walk when they leave. <strong>$800B in CRE distress maturing 2024–2027 — and no AI infrastructure exists to meet it.</strong> The industry was never going to build it. We did."
         />
       </div>
     </section>
