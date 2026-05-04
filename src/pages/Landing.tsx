@@ -30,6 +30,7 @@ export default function Landing() {
       <TheTeam />
       <Magic />
       <TheHacks />
+      <TheLane />
       <AtlasOS />
       <ComputeMoat />
       <TruthProtocol />
@@ -60,6 +61,7 @@ function Header() {
           <a href="#team" className="text-neutral-600 hover:text-neutral-900 hidden sm:inline">Team</a>
           <a href="#magic" className="text-neutral-600 hover:text-neutral-900 hidden md:inline">MAGIC</a>
           <a href="#hacks" className="text-neutral-600 hover:text-neutral-900 hidden md:inline">Hacks</a>
+          <a href="#lane" className="text-neutral-600 hover:text-neutral-900 hidden md:inline">The&nbsp;Lane</a>
           <a href="#atlasos" className="text-neutral-600 hover:text-neutral-900 hidden md:inline">AtlasOS</a>
           <a href="#founder" className="text-neutral-600 hover:text-neutral-900 hidden md:inline">Founder</a>
           <a href="https://defendable.eth.limo" target="_blank" rel="noreferrer"
@@ -566,6 +568,121 @@ function HackCard({ name, tag, tagline, body, heir }: {
       <p className="mt-2 text-base font-bold text-white">{tagline}</p>
       <p className="mt-3 text-sm text-neutral-300 leading-relaxed">{body}</p>
       <p className="mt-4 text-[11px] font-mono text-amber-400 uppercase tracking-widest">{heir}</p>
+    </div>
+  );
+}
+
+// ─── The Lane · STNL · Hack Heaven ────────────────────────────────────────────
+
+function TheLane() {
+  return (
+    <section id="lane" className="bg-gradient-to-br from-amber-50 to-white border-t border-amber-200 py-20">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="text-xs font-semibold tracking-widest text-amber-700 uppercase mb-4">
+          The lane · where AI wins · STNL · $1M – $5M
+        </div>
+        <h2 className="text-5xl md:text-7xl font-black tracking-tight leading-none">
+          Hack <span className="text-amber-600">Heaven</span>.
+        </h2>
+        <p className="mt-6 text-2xl md:text-3xl text-neutral-900 max-w-3xl font-bold leading-snug">
+          No tours. No drywall. No site visits.
+        </p>
+        <p className="mt-4 text-lg text-neutral-700 max-w-3xl leading-relaxed">
+          Single-Tenant Net Lease (STNL) is the asset class AI was built for. The deal
+          underwrites on three vectors — <strong>tenant. credit. terms.</strong> Everything
+          you need is in the document. The Hacks dial. The Senior MD underwrites. No one
+          ever drives to the property.
+        </p>
+
+        {/* The lane stats */}
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-5">
+          <LaneStat
+            number="80%"
+            label="of CRE deals"
+            body="$1M – $5M is where the volume lives. Not trophy assets — the deal-count belly of the market."
+          />
+          <LaneStat
+            number="70%"
+            label="of $2M – $5M buyers"
+            body="…are 1031 exchange buyers. 45-day ID clock · 180-day close. Motivated. On a deadline. Hunting replacement property."
+          />
+          <LaneStat
+            number="$2 – $5M"
+            label="the sweet spot"
+            body="Dial-friendly. Data-rich. Tour-free. The deal size where AI compresses a 90-day cycle to 30."
+          />
+        </div>
+
+        {/* Why STNL is the AI lane */}
+        <div className="mt-16">
+          <h3 className="text-3xl md:text-4xl font-black tracking-tight text-neutral-900">
+            Why STNL is where AI wins.
+          </h3>
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-5">
+            <ReasonCard
+              num="01"
+              title="No tours required"
+              body="The deal closes on the lease and the credit, not on a walk-through. Atlas underwrites from the OM, the lease abstract, and the credit profile alone. Brokers don't drive 200 miles to see a Dollar General."
+            />
+            <ReasonCard
+              num="02"
+              title="Pure-data underwriting"
+              body="Three vectors: tenant credit (BBB / IG / sub-IG), lease term remaining (10-yr+ NNN gold standard), cap rate vs. comps. Atlas reads all three faster and more consistently than any human pencil."
+            />
+            <ReasonCard
+              num="03"
+              title="Motivated counterparties"
+              body="1031 buyers don't browse — they hunt with a clock. The Hack who calls them with the right deal at the right cap rate at the right moment closes. Speed wins. Atlas runs at machine speed."
+            />
+          </div>
+        </div>
+
+        {/* Tie back to the Hacks · why DG ships first */}
+        <div className="mt-16 rounded-lg bg-neutral-900 text-neutral-100 p-8">
+          <div className="text-[10px] font-mono uppercase tracking-widest text-amber-400 mb-3">
+            Why Hack-STNL-DG ships first
+          </div>
+          <p className="text-lg md:text-xl text-white leading-relaxed">
+            Dollar General has <strong>~19,000 stores</strong>, ~80% leased to third-party
+            owners, mostly in the $1M-$3M deal lane. Most-traded credit-tenant net lease
+            asset class in CRE — standardized 15-year NNN, BBB credit, narrow cap-rate
+            band. <strong className="text-amber-400">Elon's playbook, Atlas's compute, the
+            lane where AI dominates.</strong> First Hack to ship. Everything that worked
+            for the original Hack-DG works at machine scale.
+          </p>
+        </div>
+
+        {/* Closing pull-quote */}
+        <div className="mt-12 border-l-4 border-amber-500 pl-6 max-w-3xl">
+          <p className="text-base md:text-lg italic text-neutral-800 leading-relaxed">
+            "STNL is tenant, credit, terms. No drywall. No tours. The Hacks dial. The
+            Senior MD underwrites. The 1031 buyer signs. Everyone home for dinner."
+          </p>
+          <p className="mt-3 text-sm text-neutral-600">
+            — Founder · Family Office · 30 years in the lane
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function LaneStat({ number, label, body }: { number: string; label: string; body: string }) {
+  return (
+    <div className="rounded-lg border-2 border-neutral-900 bg-white p-6">
+      <div className="text-5xl md:text-6xl font-black text-amber-600 leading-none">{number}</div>
+      <div className="mt-2 text-xs font-mono uppercase tracking-widest text-neutral-500">{label}</div>
+      <p className="mt-4 text-sm text-neutral-700 leading-relaxed">{body}</p>
+    </div>
+  );
+}
+
+function ReasonCard({ num, title, body }: { num: string; title: string; body: string }) {
+  return (
+    <div className="rounded-lg border-2 border-neutral-900 bg-white p-6">
+      <div className="text-xs font-mono text-amber-700 font-bold tracking-widest">{num}</div>
+      <h4 className="mt-2 text-xl font-bold text-neutral-900">{title}</h4>
+      <p className="mt-3 text-sm text-neutral-700 leading-relaxed">{body}</p>
     </div>
   );
 }
