@@ -142,15 +142,21 @@ function TierCard({ size, role, tag, body }: { size: string; role: string; tag: 
 
 function StatsStrip() {
   return (
-    <section className="bg-neutral-950 text-neutral-100 border-y border-neutral-800 py-12">
+    <section className="bg-neutral-950 text-neutral-100 border-y border-neutral-800 py-14">
       <div className="max-w-6xl mx-auto px-6">
+        <div className="text-xs font-semibold tracking-widest text-amber-400 uppercase mb-8">
+          The receipt — and the wave
+        </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-8 gap-x-6">
           <Stat n="$8B" label="Founder closed transactions · 30 yrs CRE" />
-          <Stat n="186" label="GPUs · ~14 TB VRAM · sovereign" />
-          <Stat n="80 kW" label="Dedicated power · brick-and-mortar AI" />
-          <Stat n="FL Lic." label="Real estate brokerage · multi-state expansion Q3" />
-          <Stat n="138652395" label="D-U-N-S · Caballerz Network LLC dba Swarm &amp; Bee" />
-          <Stat n="0.0.10291838" label="Hedera HCS anchor · the courthouse" />
+          <Stat n="$20T+" label="US Commercial Real Estate · total asset class" />
+          <Stat n="$1T/yr" label="US CRE transaction volume · 2024 baseline" />
+          <Stat n="$800B+" label="CRE debt maturing 2024–2027 · the wall" />
+          <Stat n="$1.3T" label="Gen-AI market · projected by 2032" />
+          <Stat n="32×" label="AI economy growth · $40B (2022) → $1.3T (2032)" />
+        </div>
+        <div className="mt-8 text-[10px] text-neutral-500 font-mono leading-relaxed">
+          Sources: NAIOP · MSCI Real Capital Analytics · Trepp · Mortgage Bankers Association · Bloomberg Intelligence (Jun 2023)
         </div>
       </div>
     </section>
