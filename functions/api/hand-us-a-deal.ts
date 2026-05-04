@@ -99,7 +99,22 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
   }
 
   if (!env.RESEND_API_KEY) {
-    return jsonResponse({ ok: false, error: "Email service not configured" }, 500);
+    // DIAGNOSTIC MODE — temporary, will be reverted once env var binding is verified
+    const envKeys = Object.keys(env || {}).sort();
+    const keyMasked = env.RESEND_API_KEY === undefined ? "UNDEFINED"
+                    : env.RESEND_API_KEY === null ? "NULL"
+                    : env.RESEND_API_KEY === "" ? "EMPTY_STRING"
+                    : `length=${(env.RESEND_API_KEY as string).length}`;
+    return jsonResponse({
+      ok: false,
+      error: "Email service not configured · diagnostic mode",
+      diagnostic: {
+        env_keys_visible: envKeys,
+        env_keys_count: envKeys.length,
+        resend_api_key_state: keyMasked,
+        runtime: typeof navigator !== "undefined" && (navigator as any).userAgent ? (navigator as any).userAgent : "unknown",
+      },
+    }, 500);
   }
 
   // Optional fields (sanitized)
