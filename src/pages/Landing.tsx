@@ -212,15 +212,15 @@ function Manifesto() {
       <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
         <ManifestoTile
           title="A real firm"
-          body="In the same sense Marcus &amp; Millichap is a firm. The name on the door. The brand that brokers and builders work under. The corporate entity that provides the platform, and the people on that platform earn their living by delivering real value to real clients."
+          body="National CRE has always been a firm business. The name on the door. The brand that brokers and builders work under. Corporate provides the platform, and the people on that platform earn their living delivering real value to real clients. <strong>Same hundred-year model — built for the AI wave.</strong>"
         />
         <ManifestoTile
           title="A real moat"
-          body="186 GPUs of sovereign compute, owned outright. Not rented from AWS. Not subscribed from Microsoft. Not borrowed from any vendor. The compute is the foundation; the brokerage is what we build on top. We built it first."
+          body="186 GPUs of sovereign compute, owned outright. Not rented from AWS. Not subscribed from Microsoft. Not borrowed from any vendor. The compute is the foundation; the brokerage is what we build on top. <strong>We built it first.</strong>"
         />
         <ManifestoTile
-          title="A real frame"
-          body="Caballerz Network LLC dba Swarm &amp; Bee. Florida Licensed Real Estate Brokerage. Broker of Record Donovan Mackey. AI agents act as licensed assistants under broker supervision. Same legal frame as a paralegal under an attorney."
+          title="A real gap"
+          body="The AI wave is here. CRE isn't. Phones, dog-shit spreadsheets, and the dial. Junior brokers panic at the LOI handoff. Senior brokers hoard books that walk when they leave. <strong>$800B in CRE distress maturing 2024–2027 — and no AI infrastructure exists to meet it.</strong> The industry was never going to build it. We did."
         />
       </div>
     </section>
