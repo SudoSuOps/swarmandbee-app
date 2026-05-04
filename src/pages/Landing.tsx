@@ -21,7 +21,7 @@ export default function Landing() {
       <AtlasOS />
       <ComputeMoat />
       <TruthProtocol />
-      <ClassAFrame />
+      <AIEconomy />
       <GlassWalls />
       <CodeOfEthics />
       <Founder />
@@ -576,85 +576,134 @@ function DefendableCard({ domain, tag, status, href, body }: {
   );
 }
 
-// ─── Class A frame · the 6 proofs ──────────────────────────────────────────────
+// ─── AI economy · the why ──────────────────────────────────────────────────────
 
-function ClassAFrame() {
+function AIEconomy() {
   return (
     <section className="bg-ink text-neutral-100 py-20">
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-xs font-semibold tracking-widest text-amber-400 uppercase mb-4">
-          Class A · the grading standard
+          The AI economy
         </div>
         <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
-          Three tiers. Six proofs. One algorithm.
+          The front door is changing.
         </h2>
-        <p className="mt-6 text-lg text-neutral-300 max-w-3xl leading-relaxed">
-          Every deed Atlas produces carries six proofs and lands in one of three tiers. The
-          tier is decided by the algorithm, not by Swarm &amp; Bee. We don't grade ourselves —
-          the open scoring engine does.
+        <p className="mt-6 text-lg md:text-xl text-neutral-300 max-w-3xl leading-relaxed">
+          Every workflow that runs on phone calls, spreadsheets, and relationships is being
+          rebuilt with AI. CRE — the most relationship-heavy, document-heavy, conversation-
+          heavy industry on earth — is in the path.{" "}
+          <strong className="text-white">The firm that owns the new front door wins the next decade.</strong>
         </p>
 
-        {/* 3 tiers */}
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-4">
-          <ClassCard tier="Class A" name="Royal Jelly" color="amber" rule="Score ≥ 0.85" notes="All required gates pass · institutional-grade · ready for fee-simple title transfer" />
-          <ClassCard tier="Class B" name="Honey" color="yellow" rule="Score 0.70–0.84" notes="Production-grade · minor secondary gaps · still defendable" />
-          <ClassCard tier="Class C" name="Propolis" color="red" rule="Score < 0.70" notes="Fails Defendable · composted feedstock for the next iteration" />
+        {/* growth projections */}
+        <h3 className="font-serif text-2xl md:text-3xl font-semibold mt-16 mb-6">
+          Growth projections — the wave size
+        </h3>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <EconTile n="$1.3T" label="Gen-AI market by 2032 · Bloomberg Intelligence" />
+          <EconTile n="$4.4T" label="Annual gen-AI productivity uplift · McKinsey" />
+          <EconTile n="$200B+" label="AI infra spending baseline · 2025+ industry estimates" />
+          <EconTile n="75%" label="Enterprise AI adoption target by 2026 · Gartner" />
+          <EconTile n="30×" label="AI compute scale-up since 2020 · Stanford AI Index" />
+          <EconTile n="0" label="AI-native CRE firms operating before us" highlight />
         </div>
 
-        {/* 6 proofs */}
+        {/* CRE before / after */}
         <h3 className="font-serif text-2xl md:text-3xl font-semibold mt-16 mb-6">
-          Six proofs per block
+          What's in the path · CRE before vs CRE on AI rails
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {PROOFS.map((p, i) => (
-            <ProofTile key={p.name} n={i + 1} name={p.name} body={p.body} />
+        <div className="rounded-lg border border-neutral-700 bg-neutral-900 overflow-hidden">
+          <table className="w-full text-sm">
+            <thead className="bg-neutral-800 text-neutral-300">
+              <tr>
+                <th className="text-left p-3 font-semibold w-1/2">CRE today · 2025-era workflow</th>
+                <th className="text-left p-3 font-semibold">CRE on AI rails · what Atlas does</th>
+              </tr>
+            </thead>
+            <tbody className="text-neutral-200">
+              {ECON_DELTAS.map((row, i) => (
+                <tr key={row.before} className={i % 2 ? "bg-neutral-900" : "bg-neutral-950"}>
+                  <td className="p-3 align-top text-neutral-400">{row.before}</td>
+                  <td className="p-3 align-top font-mono text-amber-300">{row.after}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        {/* market reality bullets */}
+        <h3 className="font-serif text-2xl md:text-3xl font-semibold mt-16 mb-6">
+          Market reality
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {MARKET_REALITY.map((item) => (
+            <div key={item.headline} className="rounded-lg border border-neutral-700 bg-neutral-900 p-5">
+              <div className="text-xl font-bold text-amber-300">{item.headline}</div>
+              <p className="mt-2 text-sm text-neutral-300 leading-relaxed">{item.body}</p>
+            </div>
           ))}
         </div>
 
-        <div className="mt-10 rounded border border-neutral-700 bg-neutral-900 p-6 text-sm text-neutral-300 leading-relaxed max-w-3xl">
-          <strong className="text-white">defendable.eth IS the algorithm.</strong> Open-source.
-          Reproducible. Falsifiable. Multiple implementations must agree on the same input. The
-          seal isn't Swarm &amp; Bee's signature — it's the cryptographic proof that the data
-          is what we say it is, anchored on Hedera, forever.{" "}
-          <strong className="text-amber-300">Validate the validator.</strong>
+        {/* closing — why us */}
+        <div className="mt-12 border-l-4 border-amber-400 pl-6 max-w-3xl">
+          <p className="text-base md:text-lg italic text-amber-100 leading-relaxed">
+            CRE has been waiting for someone to build the rails. The industry can't build them
+            itself — the capex, the talent, the technical depth aren't in a brokerage's cost
+            structure. <strong className="not-italic text-white">We built them first.</strong>
+          </p>
+          <p className="mt-3 text-sm text-neutral-400">
+            See the Compute Moat above for what it costs to replicate.
+          </p>
         </div>
       </div>
     </section>
   );
 }
 
-function ClassCard({ tier, name, color, rule, notes }: {
-  tier: string; name: string; color: string; rule: string; notes: string;
-}) {
-  const ring = color === "amber" ? "border-amber-500" : color === "yellow" ? "border-yellow-500" : "border-red-500";
-  const text = color === "amber" ? "text-amber-300" : color === "yellow" ? "text-yellow-300" : "text-red-300";
-  return (
-    <div className={`rounded-lg border-2 ${ring} bg-neutral-900 p-6`}>
-      <div className="text-xs font-mono uppercase tracking-wider text-neutral-400">{tier}</div>
-      <div className={`text-3xl font-bold mt-1 ${text}`}>{name}</div>
-      <div className="mt-3 font-mono text-xs text-neutral-300">{rule}</div>
-      <p className="mt-3 text-sm text-neutral-400 leading-relaxed">{notes}</p>
-    </div>
-  );
-}
-
-const PROOFS = [
-  { name: "Origin",    body: "Which model · which node · which hardware · which strategy produced this deed." },
-  { name: "Quality",   body: "Deterministic verifier score — not model opinion. Cross-family tribunal, drift ≤ 0.15." },
-  { name: "Process",   body: "Full lineage including failed attempts. Elimination signal preserved as evidence." },
-  { name: "Economics", body: "Energy cost per attempt · cost-per-honey trend · auditable from first principles." },
-  { name: "Trust",     body: "Hedera HCS anchor + Merkle root · independently verifiable by anyone." },
-  { name: "Location",  body: "Measurable, reproducible relocation from generic → specialist capability. Outcome proof." },
+const ECON_DELTAS = [
+  { before: "Underwrite a deal in 8 hours of analyst time", after: "30 seconds — sensitivity grids included" },
+  { before: "Draft an LOI in half a day with senior-broker handoff",  after: "60 seconds — derived from the qualified call" },
+  { before: "Pull a comp set in 2-3 days across teams",                after: "15 seconds — weighted, normalized, ranked" },
+  { before: "Dial coverage 9-5 by junior brokers, one asset class",    after: "24/7 across 10 asset-class specialists" },
+  { before: "Senior broker book walks at exit · the firm loses the moat", after: "Compounds in firm-owned graph · the senior never retires" },
+  { before: "Verbal handshake on terms · lawyer-disputable",           after: "Hedera-anchored binding LOI · cryptographically provable" },
+  { before: "$48M deal underwrite costs the firm $30K in labor",       after: "Same underwrite costs $0.0052 in compute" },
 ];
 
-function ProofTile({ n, name, body }: { n: number; name: string; body: string }) {
+const MARKET_REALITY = [
+  {
+    headline: "$20T US asset class",
+    body: "Commercial real estate is the largest privately-owned asset class on the planet. The volume is enormous. The workflow has barely changed in 30 years.",
+  },
+  {
+    headline: "$800B in distress, 2024-2027",
+    body: "The CRE debt wall is here. Office, multifamily, hospitality, retail — refinancing windows closing into a higher-rate environment with no AI infrastructure to triage at scale.",
+  },
+  {
+    headline: "50,000+ licensed brokers, no AI tooling",
+    body: "Most run on phones, spreadsheets, and the dial. The technology stack is the same it was in 2005. The labor model breaks long before AI arrives — burnout, attrition, knowledge walking with senior brokers at retirement.",
+  },
+  {
+    headline: "Senior brokers aging out",
+    body: "30-year veterans retiring. Their books — counterparty intel, deal patterns, market history — leave the firm with them. Industry-wide knowledge drain with no replacement pipeline.",
+  },
+  {
+    headline: "AI-to-AI deal flow is legal today",
+    body: "UETA + ESIGN authorize electronic agents to bind contracts on behalf of principals. The infrastructure to support AI-to-AI CRE transactions exists. Nobody's built the rails. Until us.",
+  },
+  {
+    headline: "Vendor lane is wide open",
+    body: "Every brokerage will need AI rails by 2027. None can build them in time. The firm that ships first becomes the standard the industry licenses — not a competitor, the foundation.",
+  },
+];
+
+function EconTile({ n, label, highlight }: { n: string; label: string; highlight?: boolean }) {
+  const ring = highlight ? "border-amber-400 bg-amber-900/30" : "border-neutral-700 bg-neutral-900";
+  const text = highlight ? "text-amber-300" : "text-amber-400";
   return (
-    <div className="rounded-lg border border-neutral-700 bg-neutral-900 p-5">
-      <div className="flex items-center gap-3">
-        <span className="w-8 h-8 rounded-full bg-amber-400 text-neutral-900 font-bold flex items-center justify-center text-sm">{n}</span>
-        <span className="font-bold text-lg text-white">Proof of {name}</span>
-      </div>
-      <p className="mt-3 text-sm text-neutral-300 leading-relaxed">{body}</p>
+    <div className={`rounded-lg border ${ring} p-5`}>
+      <div className={`text-3xl md:text-4xl font-bold leading-none ${text}`}>{n}</div>
+      <div className="mt-2 text-xs md:text-sm text-neutral-300 leading-snug">{label}</div>
     </div>
   );
 }
