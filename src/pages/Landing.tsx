@@ -804,20 +804,18 @@ const LAWS = [
 function Founder() {
   return (
     <section id="founder" className="bg-white py-20 border-t border-neutral-200">
-      <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-3 gap-12">
-        <div className="lg:col-span-1">
-          <div className="text-xs font-semibold tracking-widest text-amber-700 uppercase mb-4">
-            The founder
-          </div>
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight">
-            Donovan Mackey.
-          </h2>
-          <div className="mt-3 text-lg text-neutral-700 font-semibold">
-            Founder · Family Office · Pit-sitter
-          </div>
+      <div className="max-w-3xl mx-auto px-6">
+        <div className="text-xs font-semibold tracking-widest text-amber-700 uppercase mb-4">
+          The founder
+        </div>
+        <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight">
+          Donovan Mackey.
+        </h2>
+        <div className="mt-3 text-lg text-neutral-700 font-semibold">
+          Founder · Family Office · Pit-sitter
         </div>
 
-        <div className="lg:col-span-2 space-y-5 text-neutral-800 leading-relaxed">
+        <div className="mt-10 space-y-5 text-neutral-800 leading-relaxed">
           <p>
             <strong>30 years CRE. $8B in closed transactions.</strong> Top-producing
             industrial broker on a national platform. Day one I got a desk, some tools,
