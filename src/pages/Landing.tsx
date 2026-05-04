@@ -349,16 +349,16 @@ function AtlasOS() {
         <div className="mt-12 border-l-4 border-amber-400 pl-6 max-w-3xl">
           <p className="font-mono text-base md:text-lg text-neutral-800 leading-loose">
             <span className="text-neutral-500">// The Doctrine</span><br />
-            The token is the <span className="text-amber-600 font-semibold">PAIR</span>.<br />
-            The hash is the <span className="text-amber-600 font-semibold">VERDICT</span>.<br />
-            The block reward is the <span className="text-amber-600 font-semibold">TITLE DEED</span>.<br />
-            The hashrate is <span className="text-amber-600 font-semibold">VERDICTS PER MINUTE</span>.<br />
-            The efficiency is <span className="text-amber-600 font-semibold">PAIRS PER WATT</span>.<br />
-            The profitability is <span className="text-amber-600 font-semibold">REVENUE MINUS COST TO MINT</span>.
+            The dial is the <span className="text-amber-600 font-semibold">SIGNAL</span>.<br />
+            The call is the <span className="text-amber-600 font-semibold">QUALIFICATION</span>.<br />
+            The LOI is the <span className="text-amber-600 font-semibold">BIND</span>.<br />
+            The close is the <span className="text-amber-600 font-semibold">RECEIPT</span>.<br />
+            The Book is the <span className="text-amber-600 font-semibold">MOAT</span>.<br />
+            The Hedera anchor is the <span className="text-amber-600 font-semibold">COURTHOUSE</span>.
           </p>
           <p className="mt-6 text-lg text-neutral-700 italic">
-            We don't mine coins. We mint defendable intelligence assets.<br />
-            Same math. Same discipline. Same efficiency obsession.
+            We don't sell tools to brokers. We are the brokerage.<br />
+            Same discipline. Same audit trail. Same compounding moat.
           </p>
         </div>
 
