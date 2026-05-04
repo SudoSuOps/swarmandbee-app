@@ -1,7 +1,7 @@
 // swarmandbee.ai — the public view of the firm.
 //
-// Caballerz Network LLC dba Swarm & Bee
-// Florida Licensed Real Estate Brokerage · D-U-N-S 138652395
+// Swarm & Bee LLC
+// Florida Licensed Real Estate Brokerage · D-U-N-S 138652395 (footer only)
 // Operated by designated licensed brokers · Founder: Donovan Mackey
 // Family Office posture · 30 years CRE · $8B closed
 //
@@ -42,9 +42,6 @@ function Header() {
         <a href="/" className="font-bold text-lg tracking-tight">
           Swarm &amp; Bee
         </a>
-        <span className="hidden md:inline-flex text-[10px] font-mono text-neutral-500 tracking-wider">
-          D-U-N-S 138652395 · FL Licensed
-        </span>
         <nav className="ml-auto flex items-center gap-4 md:gap-5 text-sm">
           <a href="#manifesto" className="text-neutral-600 hover:text-neutral-900 hidden sm:inline">Manifesto</a>
           <a href="#team" className="text-neutral-600 hover:text-neutral-900 hidden sm:inline">Team</a>
@@ -547,7 +544,7 @@ function TruthProtocol() {
           tag="The flagship · the firm"
           status="In flight · ETA Wed May 6"
           href="https://defendable.eth.limo/#/atlas"
-          body="Atlas-70B + the agent pod · the AI-native CRE Capital Markets firm. Senior MD, Underwriter, Book Maker, Closing, Hack-fleet — all working under Caballerz Network LLC dba Swarm & Bee."
+          body="Atlas-70B + the agent pod · the AI-native CRE Capital Markets firm. Senior MD, Underwriter, Book Maker, Closing, Hack-fleet — all working under Swarm & Bee LLC."
         />
         <DefendableCard
           domain="cookbook.defendable.eth"
@@ -555,13 +552,6 @@ function TruthProtocol() {
           status="Live · Recipe #1 locked"
           href="https://defendable.eth.limo/#/cookbook"
           body="Reproducible recipes for cooking Defendable-graded models. Recipe #1 (FSDP-QLoRA 70B) locked from Atlas-70B v1. Five dead ends documented so nobody repeats them."
-        />
-        <DefendableCard
-          domain="data.defendable.eth"
-          tag="The catalog"
-          status="Live · catalog open"
-          href="https://data.defendable.eth.limo"
-          body="Honey packages by vertical. Browse OMs, see Class composition, request the data room. CRE, medical, legal, finance, aviation — all anchored, all defendable."
         />
       </div>
     </section>
@@ -882,7 +872,7 @@ function TheArc() {
           <ArcCard
             cap="12-cap"
             label="Today · May 2026"
-            body="Atlas-70B v1 cooking on swarmrails. One closed proof point (Memphis 312-unit pass). 186 GPUs deployed. Caballerz license active. Construction documented; standing earned by working."
+            body="Atlas-70B v1 cooking on swarmrails. One closed proof point (Memphis 312-unit pass). 186 GPUs deployed. Brokerage license active. Construction documented; standing earned by working."
             color="amber"
           />
           <ArcCard
@@ -1025,7 +1015,7 @@ function Footer() {
         <div>
           <div className="text-white font-bold text-lg">Swarm &amp; Bee</div>
           <p className="mt-3 text-xs leading-relaxed">
-            <strong className="text-neutral-200">Caballerz Network LLC dba Swarm &amp; Bee</strong><br />
+            <strong className="text-neutral-200">Swarm &amp; Bee LLC</strong><br />
             Florida Licensed Real Estate Brokerage<br />
             Operated by designated licensed brokers<br />
             Founder: Donovan Mackey · Family Office<br />
@@ -1038,7 +1028,6 @@ function Footer() {
             <li><a href="https://defendable.eth.limo" target="_blank" rel="noreferrer" className="hover:text-white">defendable.eth — standard</a></li>
             <li><a href="https://defendable.eth.limo/#/atlas" target="_blank" rel="noreferrer" className="hover:text-white">atlas.defendable.eth</a></li>
             <li><a href="https://defendable.eth.limo/#/cookbook" target="_blank" rel="noreferrer" className="hover:text-white">cookbook.defendable.eth</a></li>
-            <li><a href="https://data.defendable.eth.limo" target="_blank" rel="noreferrer" className="hover:text-white">data.defendable.eth</a></li>
           </ul>
         </div>
         <div>
@@ -1062,7 +1051,7 @@ function Footer() {
         </div>
       </div>
       <div className="max-w-6xl mx-auto px-6 mt-8 pt-6 border-t border-neutral-800 flex flex-wrap justify-between gap-4 text-xs">
-        <span>© 2026 Caballerz Network LLC dba Swarm &amp; Bee. All rights reserved.</span>
+        <span>© 2026 Swarm &amp; Bee LLC. All rights reserved.</span>
         <span className="font-mono">Verified. Vetted. Virtu.</span>
       </div>
     </footer>
