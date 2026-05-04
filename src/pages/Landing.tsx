@@ -2,7 +2,8 @@
 //
 // Caballerz Network LLC dba Swarm & Bee
 // Florida Licensed Real Estate Brokerage · D-U-N-S 138652395
-// Broker of Record: Donovan Mackey · 30 years CRE · $8B closed
+// Operated by designated licensed brokers · Founder: Donovan Mackey
+// Family Office posture · 30 years CRE · $8B closed
 //
 // This is the firm. AtlasOS runs the work. The compute is the receipt.
 // Verified. Vetted. Virtu.
@@ -257,10 +258,10 @@ function TheTeam() {
 
         <div className="mt-12 space-y-3">
           <TeamRow
-            tier="Founder · Broker of Record"
+            tier="Founder · Family Office"
             role="Donovan Mackey"
             badge="Pit posture"
-            body="30 years CRE. $8B closed transactions. Florida licensed broker, supervises Atlas's binding-moment activity. Closes the firm's first proof-point deals. Trains the agents with every call. Sits in the pit, not the corner office."
+            body="30 years CRE. $8B closed transactions. Founder of Swarm & Bee. Sits in the pit on the moments that matter — closes the firm's first proof-point deals, trains the agents with every call. The brokerage operates under designated licensed brokers; the firm operates under his vision."
             color="amber"
           />
           <SectionLabel label="Win-seniors · the agent pod" />
@@ -790,7 +791,7 @@ function Founder() {
             Donovan Mackey.
           </h2>
           <div className="mt-3 text-lg text-neutral-700 font-semibold">
-            Founder · Broker of Record · Pit-sitter
+            Founder · Family Office · Pit-sitter
           </div>
         </div>
 
@@ -808,7 +809,8 @@ function Founder() {
             3am until Atlas-70B started cooking on swarmrails. I'm not an engineer. I'm a
             retired CRE broker who positioned himself to participate in the AI economy from
             the only seat that makes sense for someone with my receipts: <strong>compute and
-            CRE</strong>.
+            CRE</strong>. The firm operates as a family office — designated licensed brokers
+            handle binding regulated activity; I sit at the strategy + capital + culture seat.
           </p>
 
           {/* Pit-sitting story callout */}
@@ -1025,7 +1027,8 @@ function Footer() {
           <p className="mt-3 text-xs leading-relaxed">
             <strong className="text-neutral-200">Caballerz Network LLC dba Swarm &amp; Bee</strong><br />
             Florida Licensed Real Estate Brokerage<br />
-            Broker of Record: Donovan Mackey<br />
+            Operated by designated licensed brokers<br />
+            Founder: Donovan Mackey · Family Office<br />
             <span className="font-mono">D-U-N-S 138652395</span>
           </p>
         </div>
