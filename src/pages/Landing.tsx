@@ -394,17 +394,10 @@ function AtlasOS() {
           </table>
         </div>
 
-        {/* Cost to mint */}
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-          <CostStat label="Cost to mint per deed" value="$0.0052" sub="fully loaded · electricity + hardware + chain fees" />
-          <CostStat label="Optimum hashrate" value="90 v/min" sub="2× RTX PRO 6000 · validate-failure algo · 0.300 pair/W" />
-          <CostStat label="Gross margin range" value="95–99%" sub="at $0.10–$1.00/deed market price" />
-        </div>
-
         <p className="mt-8 text-sm text-neutral-600 max-w-3xl leading-relaxed">
-          The math is auditable. Every customer can run their own miners and verify the
-          cost-to-mint benchmark from first principles.{" "}
-          <strong className="text-neutral-800">No vendor lock, no opaque pricing.</strong>
+          Auditable economics. Every output carries a Hedera receipt. Every conversation
+          feeds the Book. The firm scales without a human in the loop until the moments
+          that matter — and those moments are signed by a designated licensed broker.
         </p>
       </div>
     </section>
@@ -421,15 +414,6 @@ const DOCS = [
   { name: "Hedera Anchor",      when: "After close",       cre: "Recorded deed at courthouse" },
 ];
 
-function CostStat({ label, value, sub }: { label: string; value: string; sub: string }) {
-  return (
-    <div className="rounded-lg border-2 border-amber-200 bg-amber-50 p-5">
-      <div className="text-xs font-semibold uppercase tracking-wider text-amber-700">{label}</div>
-      <div className="text-3xl font-bold text-neutral-900 mt-2">{value}</div>
-      <div className="mt-1 text-xs text-neutral-600">{sub}</div>
-    </div>
-  );
-}
 
 // ─── compute moat ──────────────────────────────────────────────────────────────
 
@@ -731,7 +715,6 @@ function GlassWalls() {
         <WallCard name="The Refinery" tag="Live · 14/14 fleet checks · 5-min watchdog" href="/status" body="Cluster health, queue depth, current cooks, kill-switch state. The shop floor." />
         <WallCard name="The Graph" tag="Live · 512+ nodes · trace any deed" href="/graph" body="Provenance viewer — deed → batch → anchor → model → revenue. Visual lineage." />
         <WallCard name="Hedera Anchors" tag="Independent verification" href="https://hashscan.io/mainnet/topic/0.0.10291838" external body="HCS topic 0.0.10291838. Every deed seal anchored. Verify on-chain by any party." />
-        <WallCard name="The Shop" tag="Live · USDC checkout" href="/shop" body="Free 100-pair sample. Stripe + USDC. Honey by the pound, fee simple." />
       </div>
     </section>
   );
@@ -881,16 +864,16 @@ function Founder() {
             to have to do myself. <strong>Sovereign compute means sovereign founder time.</strong>
           </p>
 
-          {/* Genesis quote */}
+          {/* Founder closing quote */}
           <div className="rounded-lg border-2 border-neutral-900 bg-white p-5">
             <div className="text-xs font-mono uppercase tracking-wider text-amber-700 mb-2">
-              Genesis Block 8f42666ef87c
+              Operating posture
             </div>
             <p className="text-base text-neutral-800 italic leading-relaxed">
-              "This is like a title company. The pair is a deed."
+              "AI is brick-and-mortar. We don't sell tools to brokers — we are the brokerage. Same hundred-year model, built for the AI wave."
             </p>
             <p className="mt-2 text-xs text-neutral-500">
-              — sealed 2026-03-28 23:15:20 UTC · score 85 · classified Honey · 30-hour origin session
+              — Donovan Mackey · Founder · Family Office · Pit-sitter
             </p>
           </div>
         </div>
@@ -1094,7 +1077,6 @@ function Footer() {
           <ul className="space-y-1">
             <li><a href="mailto:build@swarmandbee.ai" className="hover:text-white">build@swarmandbee.ai</a></li>
             <li><a href="https://github.com/SudoSuOps/atlas" target="_blank" rel="noreferrer" className="hover:text-white">github.com/SudoSuOps/atlas</a></li>
-            <li><a href="/om/cre" className="hover:text-white">/om/cre · sample OM</a></li>
             <li><a href="https://swarmandbee.eth.limo" target="_blank" rel="noreferrer" className="hover:text-white">swarmandbee.eth ↗</a></li>
           </ul>
         </div>
