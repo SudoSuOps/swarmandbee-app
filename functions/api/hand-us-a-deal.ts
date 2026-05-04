@@ -172,30 +172,52 @@ Source:    https://swarmandbee.ai (Hand us a deal form)
 </p>
 </body></html>`;
 
-  const fromAddress = env.FROM_ADDRESS || "Swarm & Bee <onboarding@resend.dev>";
-  const toAddress = env.TO_ADDRESS || "build@swarmandbee.ai";
+  const fromAddress = (env.FROM_ADDRESS || "Swarm & Bee <onboarding@resend.dev>").trim();
+  const toAddress = (env.TO_ADDRESS || "build@swarmandbee.ai").trim();
 
-  const resendResp = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey.trim()}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from: fromAddress,
-      to: [toAddress],
-      reply_to: email,
-      subject,
-      text,
-      html,
-    }),
-  });
+  // Top-level try/catch so any throw becomes a proper JSON response (no CF 502)
+  try {
+    const resendResp = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey.trim()}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: fromAddress,
+        to: [toAddress],
+        reply_to: email,
+        subject,
+        text,
+        html,
+      }),
+    });
 
-  if (!resendResp.ok) {
-    const errBody = await resendResp.text().catch(() => "");
-    console.error("Resend API error:", resendResp.status, errBody);
-    return jsonResponse({ ok: false, error: "Email send failed" }, 502);
+    if (!resendResp.ok) {
+      const errBody = await resendResp.text().catch(() => "");
+      console.error("Resend API error:", resendResp.status, errBody);
+      // VERBOSE for debugging — return the Resend error so we can see what's wrong.
+      // Tighten this down to a generic message once the form is verified working.
+      return jsonResponse(
+        {
+          ok: false,
+          error: "Resend rejected the send",
+          resend_status: resendResp.status,
+          resend_body: errBody.slice(0, 500),
+          from: fromAddress,
+          to: toAddress,
+        },
+        502
+      );
+    }
+
+    return jsonResponse({ ok: true });
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err);
+    console.error("Function exception:", msg);
+    return jsonResponse(
+      { ok: false, error: "Function exception", detail: msg.slice(0, 500) },
+      500
+    );
   }
-
-  return jsonResponse({ ok: true });
 };
