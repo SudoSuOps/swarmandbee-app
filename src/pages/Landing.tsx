@@ -29,6 +29,7 @@ export default function Landing() {
       <Manifesto />
       <TheTeam />
       <Magic />
+      <TheHacks />
       <AtlasOS />
       <ComputeMoat />
       <TruthProtocol />
@@ -58,6 +59,7 @@ function Header() {
           <a href="#manifesto" className="text-neutral-600 hover:text-neutral-900 hidden sm:inline">Manifesto</a>
           <a href="#team" className="text-neutral-600 hover:text-neutral-900 hidden sm:inline">Team</a>
           <a href="#magic" className="text-neutral-600 hover:text-neutral-900 hidden md:inline">MAGIC</a>
+          <a href="#hacks" className="text-neutral-600 hover:text-neutral-900 hidden md:inline">Hacks</a>
           <a href="#atlasos" className="text-neutral-600 hover:text-neutral-900 hidden md:inline">AtlasOS</a>
           <a href="#founder" className="text-neutral-600 hover:text-neutral-900 hidden md:inline">Founder</a>
           <a href="https://defendable.eth.limo" target="_blank" rel="noreferrer"
@@ -466,6 +468,104 @@ function MagicCard({ letter, word, body }: { letter: string; word: string; body:
       <div className="text-6xl font-black text-amber-600 leading-none">{letter}</div>
       <div className="mt-3 text-[11px] font-mono uppercase tracking-widest text-neutral-500">{word}</div>
       <p className="mt-3 text-sm text-neutral-700 leading-relaxed">{body}</p>
+    </div>
+  );
+}
+
+// ─── The Hacks · the human lineage ────────────────────────────────────────────
+
+function TheHacks() {
+  return (
+    <section id="hacks" className="bg-neutral-900 text-neutral-100 py-20">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="text-xs font-semibold tracking-widest text-amber-400 uppercase mb-4">
+          The human lineage · the desk before the agents
+        </div>
+        <h2 className="text-5xl md:text-6xl font-black tracking-tight">
+          The <span className="text-amber-400">Hacks</span>.
+        </h2>
+        <p className="mt-6 text-xl text-neutral-300 max-w-3xl leading-relaxed">
+          Every Hack got a name. Every Hack got a vertical. The Atlas Hack-fleet
+          inherits the playbook from the original brokers who ran MAGIC on this
+          desk before there were agents.
+        </p>
+        <p className="mt-4 text-base font-mono text-amber-400 max-w-3xl">
+          // A Hack owns one asset class. A Hack dials. A Hack feeds the book.
+        </p>
+
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-5">
+          <HackCard
+            name="Elon"
+            tag="Hack-DG · Dollar General · STNL"
+            tagline="The DG King."
+            body="Owned the Dollar General universe end-to-end — comps, owners, brokers, developers. The original Hack the Atlas-DG specialist now models. Hack-STNL-DG ships first because Elon's playbook is the playbook."
+            heir="→ Atlas-Hack-STNL-DG · first to ship"
+          />
+          <HackCard
+            name="Alec"
+            tag="Hack-Auto-Stores · auto retail"
+            tagline="Brought us bitcoin at $600."
+            body="Walked onto the desk with two things — an auto-stores comp set, and the conviction that Bitcoin at $600 was worth a check. We wrote it. The firm's sovereign-settlement DNA traces directly to that conversation."
+            heir="→ Atlas-Hack-Auto-Retail · queued"
+          />
+          <HackCard
+            name="AJ"
+            tag="Hack-QSR · quick-service restaurants"
+            tagline="The QSR specialist."
+            body="QSR comps, ground-lease structures, brand pipelines, drive-thru cap rates. Could read a fast-food site lease line by line and price a 5-mile co-tenancy clause."
+            heir="→ Atlas-Hack-QSR · queued"
+          />
+          <HackCard
+            name="Harvey"
+            tag="Hack-Entertainment · movie centers · Regal"
+            tagline="300 dials a day."
+            body="The best dialer ever made. Couldn't close — but could dial. And in MAGIC, that's a green jacket of its own: the funnel builder. The prototype for the Atlas Hack-fleet thesis — agents that don't close, agents that feed the book."
+            heir="→ The Hack-fleet thesis · pure dialers, 24/7"
+          />
+        </div>
+
+        {/* The Harvey doctrine pull-quote */}
+        <div className="mt-12 rounded-lg border-2 border-amber-400 bg-neutral-800 p-6">
+          <div className="text-[10px] font-mono uppercase tracking-widest text-amber-400 mb-2">
+            The Harvey doctrine
+          </div>
+          <p className="text-lg text-white leading-relaxed">
+            <strong>Closing isn't the only way to earn.</strong> Pure dial volume builds
+            the book that everyone else closes against. The Atlas Hack-fleet was designed
+            to this thesis: ten specialists, one asset class each, all dialing — feeding
+            the SMD with qualified deals around the clock. Harvey could not close, but he
+            built the book that did. Atlas Hacks dial 24/7.
+          </p>
+        </div>
+
+        {/* Closing pull-quote */}
+        <div className="mt-12 border-l-4 border-amber-400 pl-6 max-w-3xl">
+          <p className="text-base md:text-lg italic text-neutral-200 leading-relaxed">
+            "Every Hack got a name and a vertical. Atlas Hack-fleet works the same way —
+            ten specialists, one asset class each, one dial-list each. The script doesn't
+            change. The compute does."
+          </p>
+          <p className="mt-3 text-sm text-neutral-400">
+            — Founder · Family Office
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function HackCard({ name, tag, tagline, body, heir }: {
+  name: string; tag: string; tagline: string; body: string; heir: string;
+}) {
+  return (
+    <div className="rounded-lg border-2 border-neutral-700 bg-neutral-800/50 p-6 hover:border-amber-400 transition-colors">
+      <div className="flex items-baseline gap-3 flex-wrap">
+        <h3 className="text-3xl font-black text-amber-400">{name}</h3>
+        <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-400">{tag}</span>
+      </div>
+      <p className="mt-2 text-base font-bold text-white">{tagline}</p>
+      <p className="mt-3 text-sm text-neutral-300 leading-relaxed">{body}</p>
+      <p className="mt-4 text-[11px] font-mono text-amber-400 uppercase tracking-widest">{heir}</p>
     </div>
   );
 }
