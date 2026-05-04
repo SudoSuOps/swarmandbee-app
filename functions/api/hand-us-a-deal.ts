@@ -98,23 +98,18 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
     return jsonResponse({ ok: false, error: "Field length exceeded" }, 400);
   }
 
-  if (!env.RESEND_API_KEY) {
-    // DIAGNOSTIC MODE — temporary, will be reverted once env var binding is verified
-    const envKeys = Object.keys(env || {}).sort();
-    const keyMasked = env.RESEND_API_KEY === undefined ? "UNDEFINED"
-                    : env.RESEND_API_KEY === null ? "NULL"
-                    : env.RESEND_API_KEY === "" ? "EMPTY_STRING"
-                    : `length=${(env.RESEND_API_KEY as string).length}`;
-    return jsonResponse({
-      ok: false,
-      error: "Email service not configured · diagnostic mode",
-      diagnostic: {
-        env_keys_visible: envKeys,
-        env_keys_count: envKeys.length,
-        resend_api_key_state: keyMasked,
-        runtime: typeof navigator !== "undefined" && (navigator as any).userAgent ? (navigator as any).userAgent : "unknown",
-      },
-    }, 500);
+  // Whitespace-tolerant key lookup — CF Pages dashboard sometimes
+  // captures stray whitespace in env var names. Find any key that
+  // trims to "RESEND_API_KEY".
+  const apiKey: string | undefined =
+    (env.RESEND_API_KEY as string | undefined) ||
+    ((env as Record<string, unknown>)["RESEND_API_KEY "] as string | undefined) ||
+    (Object.entries(env as Record<string, unknown>).find(
+      ([k]) => k.trim() === "RESEND_API_KEY"
+    )?.[1] as string | undefined);
+
+  if (!apiKey) {
+    return jsonResponse({ ok: false, error: "Email service not configured" }, 500);
   }
 
   // Optional fields (sanitized)
@@ -183,7 +178,7 @@ Source:    https://swarmandbee.ai (Hand us a deal form)
   const resendResp = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${env.RESEND_API_KEY}`,
+      Authorization: `Bearer ${apiKey.trim()}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
