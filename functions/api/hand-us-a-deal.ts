@@ -99,14 +99,23 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
   }
 
   // Whitespace-tolerant key lookup — CF Pages dashboard sometimes
-  // captures stray whitespace in env var names. Find any key that
-  // trims to "RESEND_API_KEY".
-  const apiKey: string | undefined =
-    (env.RESEND_API_KEY as string | undefined) ||
-    ((env as Record<string, unknown>)["RESEND_API_KEY "] as string | undefined) ||
-    (Object.entries(env as Record<string, unknown>).find(
-      ([k]) => k.trim() === "RESEND_API_KEY"
-    )?.[1] as string | undefined);
+  // captures stray whitespace in env var names. Loop keys, find any
+  // that trims to "RESEND_API_KEY", verify value is a string.
+  let apiKey: string | undefined;
+  try {
+    const envObj = env as unknown as Record<string, unknown>;
+    for (const k of Object.keys(envObj)) {
+      if (typeof k === "string" && k.trim() === "RESEND_API_KEY") {
+        const v = envObj[k];
+        if (typeof v === "string" && v.length > 0) {
+          apiKey = v;
+          break;
+        }
+      }
+    }
+  } catch (e) {
+    // Fall through with apiKey undefined
+  }
 
   if (!apiKey) {
     return jsonResponse({ ok: false, error: "Email service not configured" }, 500);
