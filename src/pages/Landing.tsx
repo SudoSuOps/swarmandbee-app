@@ -960,26 +960,26 @@ function UnlockCard({ num, title, body }: { num: string; title: string; body: st
   );
 }
 
-// ─── Ring Ring · Atlas-as-a-Service menu ──────────────────────────────────────
+// ─── Ring Ring · Atlas-as-a-Closer menu ───────────────────────────────────────
 
 function RingRing() {
   return (
     <section id="services" className="bg-white border-t border-neutral-200 py-20">
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-xs font-semibold tracking-widest text-amber-700 uppercase mb-4">
-          Atlas-as-a-Service · the menu
+          Atlas-as-a-Closer · the menu
         </div>
         <h2 className="text-5xl md:text-7xl font-black tracking-tight leading-none">
           Ring <span className="text-amber-600">Ring</span>.
         </h2>
         <p className="mt-6 text-2xl md:text-3xl text-neutral-900 max-w-3xl font-bold leading-snug">
-          REITs call. Operators call. Brokerages call. Atlas ships.
+          REITs call. Operators call. Brokerages call. Atlas closes.
         </p>
         <p className="mt-4 text-lg text-neutral-700 max-w-3xl leading-relaxed">
-          Atlas runs our brokerage. Atlas also runs your deal flow on demand. The
-          same agent fleet that closes our pipeline rents out à la carte —
-          underwriting, OMs, email blasts, dialer Hacks. <strong>You buy the
-          minutes. We bill the deed.</strong>
+          Forget Atlas-as-a-Service — that's tech-vendor language. <strong>Atlas-as-a-Closer.</strong>
+          {" "}A closer you hire, not a tool you license. The same agent fleet that
+          closes our brokerage pipeline rents out à la carte — underwriting, OMs,
+          email blasts, dialer Hacks. <strong>You buy the minutes. We bill the deed.</strong>
         </p>
 
         {/* The menu · 4 service cards */}
