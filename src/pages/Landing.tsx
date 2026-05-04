@@ -28,6 +28,7 @@ export default function Landing() {
       <StatsStrip />
       <Manifesto />
       <TheTeam />
+      <Magic />
       <AtlasOS />
       <ComputeMoat />
       <TruthProtocol />
@@ -56,6 +57,7 @@ function Header() {
         <nav className="ml-auto flex items-center gap-4 md:gap-5 text-sm">
           <a href="#manifesto" className="text-neutral-600 hover:text-neutral-900 hidden sm:inline">Manifesto</a>
           <a href="#team" className="text-neutral-600 hover:text-neutral-900 hidden sm:inline">Team</a>
+          <a href="#magic" className="text-neutral-600 hover:text-neutral-900 hidden md:inline">MAGIC</a>
           <a href="#atlasos" className="text-neutral-600 hover:text-neutral-900 hidden md:inline">AtlasOS</a>
           <a href="#founder" className="text-neutral-600 hover:text-neutral-900 hidden md:inline">Founder</a>
           <a href="https://defendable.eth.limo" target="_blank" rel="noreferrer"
@@ -341,6 +343,129 @@ function SectionLabel({ label }: { label: string }) {
   return (
     <div className="pt-4 pb-1 text-xs font-mono uppercase tracking-widest text-neutral-500 border-b border-neutral-800">
       {label}
+    </div>
+  );
+}
+
+// ─── MAGIC ────────────────────────────────────────────────────────────────────
+
+function Magic() {
+  return (
+    <section id="magic" className="bg-amber-50 border-t border-amber-200 py-20">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="text-xs font-semibold tracking-widest text-amber-700 uppercase mb-4">
+          The framework · 30-year operating doctrine
+        </div>
+        <h2 className="text-5xl md:text-7xl font-black tracking-tight leading-none">
+          <span className="text-amber-600">M</span>
+          <span className="text-amber-600">A</span>
+          <span className="text-amber-600">G</span>
+          <span className="text-amber-600">I</span>
+          <span className="text-amber-600">C</span>
+          <span className="text-neutral-900">.</span>
+        </h2>
+        <p className="mt-6 text-2xl md:text-3xl text-neutral-900 max-w-3xl font-bold leading-snug">
+          Six-week event. Eat or shine.
+        </p>
+        <p className="mt-4 text-lg text-neutral-700 max-w-3xl leading-relaxed">
+          Thirty years on the desk, this was how the floor ran. The framework that compressed
+          deal-making into five letters every Hack memorized before they took their first
+          dial. <strong>No ideas. Just MAGIC.</strong> Now Atlas runs the same cadence — 24/7,
+          across every active deal.
+        </p>
+
+        {/* The 5 letters */}
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-5 gap-3">
+          <MagicCard letter="M" word="MEETINGS" body="Atlas queries the Book → owners scored 'likely seller.' The dial list builds itself overnight." />
+          <MagicCard letter="A" word="APPRAISALS" body="Auto-BOV from the comp set → 1-sheet OM. Underwrite in 30 seconds, not 8 hours." />
+          <MagicCard letter="G" word="GRIND" body="Personalized outreach to every contact → blast the book. The dialer never sleeps." />
+          <MagicCard letter="I" word="INK" body="LOI / PSA generated from pipeline templates → bound digitally, anchored on chain." />
+          <MagicCard letter="C" word="CLOSE" body="Closing statement filed → deed anchored to Hedera. The receipt." />
+        </div>
+
+        {/* Event time + Green Jacket */}
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div className="rounded-lg border-2 border-neutral-900 bg-white p-7">
+            <div className="text-[10px] font-mono uppercase tracking-widest text-amber-700 mb-3">
+              Event time · 6-week sprint
+            </div>
+            <h3 className="text-3xl font-black text-neutral-900 leading-tight">
+              You couldn't hide from it.
+            </h3>
+            <p className="mt-4 text-base text-neutral-700 leading-relaxed">
+              Six weeks, top to bottom. Every dial, every package, every pass-or-proceed
+              call, every close — visible on the leaderboard, every morning, no exceptions.
+              Winner takes the bucket. Last place shines shoes for a week, off the desk.
+            </p>
+            <p className="mt-4 text-xl font-bold text-amber-700">
+              Eat or go shine.
+            </p>
+          </div>
+
+          <div className="rounded-lg border-2 border-amber-500 bg-gradient-to-br from-emerald-50 to-amber-50 p-7">
+            <div className="text-[10px] font-mono uppercase tracking-widest text-emerald-800 mb-3">
+              The trophy · six-figure fees
+            </div>
+            <h3 className="text-3xl font-black text-neutral-900 leading-tight">
+              The Green Jacket.
+            </h3>
+            <p className="mt-4 text-base text-neutral-700 leading-relaxed">
+              Six-figure-fee deals earned the green. The broker who closed the most fees
+              over six weeks took the jacket and the $10K bucket-list feeder for the next
+              cycle. The Masters of the dial floor — every sprint, a champion.
+            </p>
+            <p className="mt-4 text-xl font-bold text-emerald-800">
+              First place gets the jacket.
+            </p>
+          </div>
+        </div>
+
+        {/* The four rules block */}
+        <div className="mt-12 rounded-lg bg-neutral-900 text-neutral-100 p-8">
+          <div className="text-[10px] font-mono uppercase tracking-widest text-amber-400 mb-4">
+            The MAGIC sprint · house rules
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-4 font-mono text-sm md:text-base">
+            <div className="flex gap-3">
+              <span className="text-amber-400 font-bold">01</span>
+              <span>Six-week sprints · the cadence of the floor</span>
+            </div>
+            <div className="flex gap-3">
+              <span className="text-amber-400 font-bold">02</span>
+              <span>Winner takes the $10K bucket-list feeder</span>
+            </div>
+            <div className="flex gap-3">
+              <span className="text-amber-400 font-bold">03</span>
+              <span>Last place shines shoes for the next week off the desk</span>
+            </div>
+            <div className="flex gap-3">
+              <span className="text-amber-400 font-bold">04</span>
+              <span>No ideas — just MAGIC</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Closing pull-quote */}
+        <div className="mt-12 border-l-4 border-amber-500 pl-6 max-w-3xl">
+          <p className="text-base md:text-lg italic text-neutral-800 leading-relaxed">
+            "It was the EVENT. The framework that built $8B in closes is the framework
+            Atlas runs now — six weeks, eat or shine, green jacket on the wall."
+          </p>
+          <p className="mt-3 text-sm text-neutral-600">
+            — Founder, Family Office · the operating doctrine of the firm
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function MagicCard({ letter, word, body }: { letter: string; word: string; body: string }) {
+  return (
+    <div className="rounded-lg bg-white border-2 border-neutral-900 p-5 shadow-sm">
+      <div className="text-6xl font-black text-amber-600 leading-none">{letter}</div>
+      <div className="mt-3 text-[11px] font-mono uppercase tracking-widest text-neutral-500">{word}</div>
+      <p className="mt-3 text-sm text-neutral-700 leading-relaxed">{body}</p>
     </div>
   );
 }
