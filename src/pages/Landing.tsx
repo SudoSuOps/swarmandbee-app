@@ -77,17 +77,35 @@ function Hero() {
         <p className="mt-8 text-2xl md:text-3xl text-neutral-800 max-w-3xl font-medium leading-snug">
           A real firm. Real compute. Real brokers, real agents, real deals.
         </p>
-        <p className="mt-6 text-xl md:text-2xl text-neutral-700 max-w-3xl leading-relaxed">
-          Built on <strong>186 GPUs of sovereign compute</strong>. Operated under
-          Caballerz Network LLC dba Swarm &amp; Bee — Florida Licensed Real Estate
-          Brokerage, Broker of Record Donovan Mackey · <strong>30 years CRE · $8B closed</strong>.
-        </p>
         <p className="mt-6 text-lg md:text-xl text-neutral-700 max-w-3xl leading-relaxed">
-          Verified. Vetted. <em className="text-amber-700">Virtu</em>. The Truth Protocol
-          for AI-native commercial real estate.
+          AtlasOS — the firm's operating system — runs the brokerage on a tiered
+          AI workforce. <strong>Voice-native. Vision-aware. Hedera-anchored. 24/7.</strong>
+          {" "}Every conversation trains the next deal.
         </p>
 
-        <div className="mt-10 flex flex-wrap gap-3">
+        {/* AI architecture stack — the tiered workforce */}
+        <div className="mt-10 grid grid-cols-2 lg:grid-cols-4 gap-3">
+          <TierCard size="70B" role="Senior MD" tag="Atlas-SMD" body="Underwrite · qualify · negotiate · close · IC memos" />
+          <TierCard size="27B" role="Senior Broker" tag="Atlas-UW + Senior" body="Sourcing · cash flow · capital stack · sensitivity" />
+          <TierCard size="9-13B" role="Junior Broker" tag="Atlas-Marketing + Closing" body="OMs · LOIs · comps · lease abstract · escrow ops" />
+          <TierCard size="4-9B" role="Edge / Hacks" tag="Hack-fleet ×10" body="Cold dials · listings · flyers · one asset class each" />
+        </div>
+
+        {/* Capability ribbon */}
+        <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-xs font-mono text-neutral-700">
+          <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-amber-500"></span> Voice · Whisper + F5-TTS</span>
+          <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-amber-500"></span> Vision · OMs + plans + photos</span>
+          <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-amber-500"></span> Memory · Book of Business graph</span>
+          <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-amber-500"></span> Volume · 2,000+ dials/day</span>
+          <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-amber-500"></span> Receipts · every deed Hedera-anchored</span>
+        </div>
+
+        <p className="mt-8 text-base md:text-lg text-neutral-700 max-w-2xl leading-relaxed border-l-4 border-amber-500 pl-4">
+          Verified. Vetted. <em className="text-amber-700 font-semibold">Virtu</em>.
+          {" "}The Truth Protocol for AI-native commercial real estate.
+        </p>
+
+        <div className="mt-8 flex flex-wrap gap-3">
           <a href="#team" className="px-6 py-3 rounded-lg bg-neutral-900 text-white font-semibold hover:bg-neutral-700 transition-colors">
             Meet the team →
           </a>
@@ -104,6 +122,19 @@ function Hero() {
         </div>
       </div>
     </section>
+  );
+}
+
+function TierCard({ size, role, tag, body }: { size: string; role: string; tag: string; body: string }) {
+  return (
+    <div className="rounded-lg border-2 border-neutral-200 bg-white p-4 hover:border-amber-500 transition-colors">
+      <div className="flex items-baseline justify-between">
+        <span className="text-2xl md:text-3xl font-bold text-amber-600">{size}</span>
+        <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-500">{tag}</span>
+      </div>
+      <div className="mt-1 font-bold text-base text-neutral-900">{role}</div>
+      <p className="mt-2 text-xs text-neutral-700 leading-snug">{body}</p>
+    </div>
   );
 }
 
