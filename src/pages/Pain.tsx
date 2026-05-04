@@ -1,10 +1,13 @@
-import { Link } from "react-router-dom";
-
 // pain.defendable.eth · the CRE debt wall mapped · May 4, 2026
 //
 // Source-cited long-form market thesis. Every figure has a citation in the
 // Sources section. Updated as the wall moves. Mirror at pain.defendable.eth
 // (ENS subdomain · IPFS-pinned) once configured.
+
+// Canonical home for Swarm & Bee landing — Pain may be served from the apex
+// (swarmandbee.ai/pain) OR from the alias host (pain.swarmandbee.ai). Back-links
+// always go to the apex so the user lands on the brand site, not back on Pain.
+const APEX = "https://swarmandbee.ai";
 
 export default function Pain() {
   return (
@@ -32,9 +35,9 @@ function PainHeader() {
   return (
     <header className="border-b border-neutral-800 bg-neutral-950/95 backdrop-blur sticky top-0 z-30">
       <div className="max-w-5xl mx-auto px-6 py-4 flex items-center gap-4">
-        <Link to="/" className="text-sm font-semibold text-neutral-300 hover:text-amber-400 transition-colors">
+        <a href={APEX} className="text-sm font-semibold text-neutral-300 hover:text-amber-400 transition-colors">
           ← Swarm &amp; Bee
-        </Link>
+        </a>
         <div className="ml-auto flex items-center gap-4 text-xs">
           <span className="font-mono text-amber-400 hidden sm:inline">pain.defendable.eth</span>
           <span className="font-mono text-neutral-500">v1 · May 4, 2026</span>
@@ -497,18 +500,18 @@ function CTA() {
           The 9-option waterfall priced to your specific deal.
         </p>
         <div className="mt-10 flex flex-wrap justify-center gap-3">
-          <Link
-            to="/#services"
+          <a
+            href={`${APEX}/#services`}
             className="px-7 py-4 rounded-lg bg-amber-500 text-neutral-900 font-bold hover:bg-amber-400 transition-colors"
           >
             See the menu →
-          </Link>
-          <Link
-            to="/"
+          </a>
+          <a
+            href={APEX}
             className="px-7 py-4 rounded-lg border-2 border-neutral-700 text-neutral-100 font-semibold hover:border-amber-400 transition-colors"
           >
             Hand us a deal
-          </Link>
+          </a>
         </div>
       </div>
     </section>
@@ -624,7 +627,7 @@ function PainFooter() {
               Updates as the wall moves. Version stamped at top.
             </p>
             <p className="mt-3 text-[11px] text-neutral-500">
-              <Link to="/" className="hover:text-amber-400 transition-colors">← Back to Swarm &amp; Bee</Link>
+              <a href={APEX} className="hover:text-amber-400 transition-colors">← Back to Swarm &amp; Bee</a>
             </p>
           </div>
         </div>
