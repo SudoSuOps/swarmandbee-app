@@ -60,6 +60,14 @@ function Header() {
           <a href="#founder" className="text-neutral-600 hover:text-neutral-900 hidden md:inline">Founder</a>
           <a href="https://defendable.eth.limo" target="_blank" rel="noreferrer"
              className="text-neutral-600 hover:text-neutral-900 hidden md:inline">Defendable ↗</a>
+          <a href="https://x.com/swarmandbee" target="_blank" rel="noreferrer"
+             aria-label="Swarm & Bee on X"
+             className="text-neutral-600 hover:text-neutral-900 inline-flex items-center"
+             title="@swarmandbee on X">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
           <button onClick={openHandDealModal}
              className="px-3 py-1.5 rounded bg-neutral-900 text-white text-sm font-semibold hover:bg-neutral-700 transition-colors">
             Hand us a deal →
