@@ -9,6 +9,16 @@
 // Verified. Vetted. Virtu.
 
 import { Link } from "react-router-dom";
+import { useState, useCallback, useEffect, type FormEvent } from "react";
+
+// ─── modal singleton state ─────────────────────────────────────────────────────
+// Lightweight global event bus so any CTA on the page can pop the modal
+// without prop-drilling through 16 sections.
+
+const MODAL_EVENT = "open-hand-us-deal-modal";
+function openHandDealModal() {
+  window.dispatchEvent(new CustomEvent(MODAL_EVENT));
+}
 
 export default function Landing() {
   return (
@@ -29,6 +39,7 @@ export default function Landing() {
       <AtlasProof />
       <FinalCTA />
       <Footer />
+      <HandUsDealModal />
     </div>
   );
 }
@@ -49,10 +60,10 @@ function Header() {
           <a href="#founder" className="text-neutral-600 hover:text-neutral-900 hidden md:inline">Founder</a>
           <a href="https://defendable.eth.limo" target="_blank" rel="noreferrer"
              className="text-neutral-600 hover:text-neutral-900 hidden md:inline">Defendable ↗</a>
-          <a href="mailto:build@swarmandbee.ai?subject=Hand%20us%20a%20deal"
+          <button onClick={openHandDealModal}
              className="px-3 py-1.5 rounded bg-neutral-900 text-white text-sm font-semibold hover:bg-neutral-700 transition-colors">
             Hand us a deal →
-          </a>
+          </button>
         </nav>
       </div>
     </header>
@@ -114,9 +125,9 @@ function Hero() {
              className="px-6 py-3 rounded-lg border-2 border-neutral-900 text-neutral-900 font-semibold hover:bg-neutral-50 transition-colors">
             Defendable standard ↗
           </a>
-          <a href="mailto:build@swarmandbee.ai?subject=Hand%20us%20a%20deal" className="px-6 py-3 rounded-lg text-neutral-700 hover:text-neutral-900 transition-colors font-medium">
+          <button onClick={openHandDealModal} className="px-6 py-3 rounded-lg text-neutral-700 hover:text-neutral-900 transition-colors font-medium">
             Hand us a deal
-          </a>
+          </button>
         </div>
       </div>
     </section>
@@ -1018,10 +1029,10 @@ function FinalCTA() {
           firm work.</strong>
         </p>
         <div className="mt-12 flex flex-wrap gap-3 justify-center">
-          <a href="mailto:build@swarmandbee.ai?subject=Hand%20us%20a%20deal&body=Property%3A%20%0AAsset%20class%3A%20%0ATask%20requested%3A%20(underwrite%20%2F%20pass-or-proceed%20%2F%20comp%20pull%20%2F%20OM%20draft%20%2F%20sensitivity)%20%0ABackground%3A%20"
+          <button onClick={openHandDealModal}
              className="px-8 py-4 rounded-lg bg-amber-500 text-neutral-900 font-bold hover:bg-amber-400 transition-colors text-lg">
             Hand us a deal →
-          </a>
+          </button>
           <a href="https://defendable.eth.limo/#/atlas" target="_blank" rel="noreferrer"
              className="px-8 py-4 rounded-lg border-2 border-white text-white font-bold hover:bg-white hover:text-neutral-900 transition-colors text-lg">
             Meet AtlasOS
@@ -1084,5 +1095,311 @@ function Footer() {
         <span className="font-mono">Verified. Vetted. Virtu.</span>
       </div>
     </footer>
+  );
+}
+
+// ─── Hand us a deal · modal form ──────────────────────────────────────────────
+
+const ASSET_CLASSES = [
+  "Multifamily",
+  "NNN Retail (Wawa, CVS, dollar stores, QSR)",
+  "Industrial / Light Industrial",
+  "Industrial Outdoor Storage (IOS)",
+  "Self-Storage",
+  "Medical Office",
+  "Office",
+  "Hospitality",
+  "Net Lease (other)",
+  "Mixed-use / Other",
+];
+
+const TASKS = [
+  "Underwrite — full IC-grade memo",
+  "Pass / proceed call",
+  "Comp pull (sales + lease)",
+  "OM draft (we rep the seller)",
+  "Sensitivity sweep",
+  "Capital stack analysis",
+  "Other (describe in background)",
+];
+
+type ModalState =
+  | { kind: "closed" }
+  | { kind: "open" }
+  | { kind: "submitting" }
+  | { kind: "success" }
+  | { kind: "error"; message: string };
+
+function HandUsDealModal() {
+  const [state, setState] = useState<ModalState>({ kind: "closed" });
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    company: "",
+    phone: "",
+    property: "",
+    assetClass: "",
+    task: "",
+    background: "",
+    website: "", // honeypot
+  });
+
+  // Listen for the global open event
+  useEffect(() => {
+    const handler = () => setState({ kind: "open" });
+    window.addEventListener(MODAL_EVENT, handler);
+    return () => window.removeEventListener(MODAL_EVENT, handler);
+  }, []);
+
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    const isOpen = state.kind === "open" || state.kind === "submitting" || state.kind === "success" || state.kind === "error";
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [state.kind]);
+
+  // ESC to close
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && state.kind !== "closed") setState({ kind: "closed" });
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [state.kind]);
+
+  const close = useCallback(() => {
+    setState({ kind: "closed" });
+    // Reset form on close after success
+    if (state.kind === "success") {
+      setForm({ name: "", email: "", company: "", phone: "", property: "", assetClass: "", task: "", background: "", website: "" });
+    }
+  }, [state.kind]);
+
+  const submit = useCallback(async (e: FormEvent) => {
+    e.preventDefault();
+    setState({ kind: "submitting" });
+
+    try {
+      const resp = await fetch("/api/hand-us-a-deal", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const data = await resp.json().catch(() => ({ ok: false, error: "Bad response" }));
+
+      if (!resp.ok || !data.ok) {
+        setState({ kind: "error", message: data.error || `Server returned ${resp.status}` });
+        return;
+      }
+
+      setState({ kind: "success" });
+    } catch (err) {
+      setState({ kind: "error", message: "Network error — please try again or email build@swarmandbee.ai directly." });
+    }
+  }, [form]);
+
+  if (state.kind === "closed") return null;
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-start justify-center bg-neutral-900/70 backdrop-blur-sm overflow-y-auto"
+      onClick={close}
+    >
+      <div
+        className="relative w-full max-w-2xl my-8 mx-4 bg-white rounded-xl shadow-2xl"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Close button */}
+        <button
+          type="button"
+          onClick={close}
+          className="absolute top-4 right-4 w-8 h-8 rounded-full text-neutral-400 hover:text-neutral-900 hover:bg-neutral-100 flex items-center justify-center text-xl leading-none"
+          aria-label="Close"
+        >
+          ×
+        </button>
+
+        {state.kind === "success" ? (
+          // SUCCESS STATE
+          <div className="p-10 text-center">
+            <div className="w-16 h-16 mx-auto rounded-full bg-amber-100 text-amber-700 flex items-center justify-center text-3xl font-bold">
+              ✓
+            </div>
+            <h3 className="mt-6 text-2xl font-bold tracking-tight">Deal received.</h3>
+            <p className="mt-3 text-neutral-700 max-w-md mx-auto leading-relaxed">
+              Thank you. We'll be in touch within 24 hours. Atlas reviews every submission;
+              the seat that calls back depends on the work requested.
+            </p>
+            <p className="mt-2 text-sm text-neutral-500">
+              <em>Verified. Vetted. Virtu.</em>
+            </p>
+            <button
+              onClick={close}
+              className="mt-8 px-6 py-3 rounded-lg bg-neutral-900 text-white font-semibold hover:bg-neutral-700 transition-colors"
+            >
+              Close
+            </button>
+          </div>
+        ) : (
+          // FORM STATE
+          <form onSubmit={submit} className="p-6 md:p-10">
+            <div className="text-xs font-semibold tracking-widest text-amber-700 uppercase mb-2">
+              Hand us a deal
+            </div>
+            <h3 className="text-3xl font-bold tracking-tight">Atlas takes the work.</h3>
+            <p className="mt-2 text-sm text-neutral-700 leading-relaxed">
+              Underwrite. Pass-or-proceed. Comp pull. OM draft. Sensitivity sweep.
+              We respond within 24 hours. <strong>Hand us a real deal — we publish the result.</strong>
+            </p>
+
+            <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Field label="Name" required>
+                <input
+                  type="text"
+                  required
+                  maxLength={200}
+                  value={form.name}
+                  onChange={(e) => setForm({ ...form, name: e.target.value })}
+                  className={inputCls}
+                />
+              </Field>
+              <Field label="Email" required>
+                <input
+                  type="email"
+                  required
+                  maxLength={200}
+                  value={form.email}
+                  onChange={(e) => setForm({ ...form, email: e.target.value })}
+                  className={inputCls}
+                />
+              </Field>
+              <Field label="Company">
+                <input
+                  type="text"
+                  maxLength={200}
+                  value={form.company}
+                  onChange={(e) => setForm({ ...form, company: e.target.value })}
+                  className={inputCls}
+                />
+              </Field>
+              <Field label="Phone">
+                <input
+                  type="tel"
+                  maxLength={50}
+                  value={form.phone}
+                  onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                  className={inputCls}
+                />
+              </Field>
+            </div>
+
+            <div className="mt-4">
+              <Field label="Property / Deal" required help="Address or one-line descriptor">
+                <input
+                  type="text"
+                  required
+                  maxLength={500}
+                  placeholder="e.g. 312-unit MF · Memphis MSA · $48M asking"
+                  value={form.property}
+                  onChange={(e) => setForm({ ...form, property: e.target.value })}
+                  className={inputCls}
+                />
+              </Field>
+            </div>
+
+            <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Field label="Asset class">
+                <select
+                  value={form.assetClass}
+                  onChange={(e) => setForm({ ...form, assetClass: e.target.value })}
+                  className={inputCls}
+                >
+                  <option value="">Select...</option>
+                  {ASSET_CLASSES.map((a) => (<option key={a} value={a}>{a}</option>))}
+                </select>
+              </Field>
+              <Field label="Task" required>
+                <select
+                  required
+                  value={form.task}
+                  onChange={(e) => setForm({ ...form, task: e.target.value })}
+                  className={inputCls}
+                >
+                  <option value="">Select...</option>
+                  {TASKS.map((t) => (<option key={t} value={t}>{t}</option>))}
+                </select>
+              </Field>
+            </div>
+
+            <div className="mt-4">
+              <Field label="Background / context" help="What's the deal? Timing? Mandate? Anything Atlas should know.">
+                <textarea
+                  rows={4}
+                  maxLength={5000}
+                  value={form.background}
+                  onChange={(e) => setForm({ ...form, background: e.target.value })}
+                  className={inputCls + " resize-y"}
+                />
+              </Field>
+            </div>
+
+            {/* Honeypot — hidden from users, bots fill it */}
+            <input
+              type="text"
+              tabIndex={-1}
+              autoComplete="off"
+              value={form.website}
+              onChange={(e) => setForm({ ...form, website: e.target.value })}
+              className="absolute left-[-9999px] w-px h-px opacity-0"
+              aria-hidden="true"
+            />
+
+            {state.kind === "error" && (
+              <div className="mt-4 rounded-lg border-2 border-red-300 bg-red-50 p-3 text-sm text-red-900">
+                {state.message}
+              </div>
+            )}
+
+            <div className="mt-6 flex flex-wrap items-center gap-3">
+              <button
+                type="submit"
+                disabled={state.kind === "submitting"}
+                className="px-6 py-3 rounded-lg bg-amber-500 text-neutral-900 font-bold hover:bg-amber-400 transition-colors disabled:opacity-50 disabled:cursor-wait"
+              >
+                {state.kind === "submitting" ? "Sending..." : "Submit deal →"}
+              </button>
+              <button
+                type="button"
+                onClick={close}
+                className="px-6 py-3 rounded-lg text-neutral-600 hover:text-neutral-900 transition-colors"
+              >
+                Cancel
+              </button>
+              <span className="text-xs text-neutral-500 ml-auto">
+                Submissions go to <span className="font-mono">build@swarmandbee.ai</span>
+              </span>
+            </div>
+          </form>
+        )}
+      </div>
+    </div>
+  );
+}
+
+const inputCls = "w-full px-3 py-2 border border-neutral-300 rounded-lg text-sm focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-200 transition-colors bg-white";
+
+function Field({ label, required, help, children }: { label: string; required?: boolean; help?: string; children: React.ReactNode }) {
+  return (
+    <label className="block">
+      <div className="text-xs font-semibold uppercase tracking-wider text-neutral-700">
+        {label}{required && <span className="text-amber-700 ml-1">*</span>}
+      </div>
+      {help && <div className="text-xs text-neutral-500 mt-0.5">{help}</div>}
+      <div className="mt-1.5">{children}</div>
+    </label>
   );
 }
