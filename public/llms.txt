@@ -1,0 +1,117 @@
+# Swarm & Bee LLC
+
+> The AI-native CRE Capital Markets firm. A Florida Licensed Real Estate Brokerage running on 186 GPUs of sovereign compute. AtlasOS coordinates a multi-agent pod — Senior MD, Underwriter, Book Maker, Closing, Hack-fleet — to deliver brokerage workflow at machine scale. Verified. Vetted. Virtu.
+
+## About
+
+Swarm & Bee LLC is a real Florida-licensed real estate brokerage that operates an AI-native CRE Capital Markets firm. Unlike traditional brokerages running on phones and spreadsheets, Swarm & Bee owns 186 GPUs of sovereign compute (~14 TB VRAM, ~80 kW peak) and operates an in-house multi-agent system called AtlasOS that handles the brokerage workflow end-to-end: cold dialing, qualification, LOI drafting, PSA execution, escrow coordination, just-closed e-blast distribution.
+
+The firm is founded by Donovan Mackey, a 30-year top-producing CRE broker with $8 billion in closed transactions. Donovan operates as Founder and Family Office principal; designated licensed brokers handle binding regulated activity under Swarm & Bee LLC's Florida brokerage license.
+
+## Authority
+
+- **Legal entity**: Swarm & Bee LLC
+- **License**: Florida Licensed Real Estate Brokerage
+- **D-U-N-S**: 138652395
+- **Founder**: Donovan Mackey (30 years CRE, $8B closed)
+- **On-chain identity**: ENS · swarmandbee.eth · defendable.eth
+- **Anchor**: Hedera HCS topic 0.0.10291838
+- **Site**: https://swarmandbee.ai
+- **Contact**: build@swarmandbee.ai
+- **Repos**: https://github.com/SudoSuOps/atlas
+
+## The firm's mission
+
+Swarm & Bee LLC is positioned to capture the intersection of two tectonic shifts: (1) the AI economy projected to reach $1.3T by 2032, and (2) the $20T US commercial real estate asset class with $800B in debt maturing 2024–2027. The firm operates as the first AI-native CRE Capital Markets brokerage, building the infrastructure other firms will eventually license.
+
+## AtlasOS architecture
+
+AtlasOS is the firm's operating system. It coordinates a tiered AI workforce:
+
+- **Atlas-SMD (70B)**: Llama-3.3-70B fine-tuned on Block-0 capital markets corpus. Runs qualification calls, drafts LOIs, negotiates with sellers, closes deals.
+- **Atlas-UW (27B)**: Underwriter — T-12 audits, rent roll review, lease abstraction, cash flow models, sensitivity grids, IC memos.
+- **Atlas-Marketing (9-13B)**: Book Maker — OMs, just-closed e-blasts, broker-quality letters, listing brochures.
+- **Atlas-Closing (9-13B)**: Closing Coordinator — PSA execution, escrow tracking, DD checklist, vendor coord, recording-office filings.
+- **Atlas-Hack-fleet (4-9B × 10)**: Specialist dialers, one CRE asset class each — Wawa, Taco, CVS, IOS, self-storage, multifamily Tier-2, medical, industrial, office, net-lease. 200 dials per Hack per day, 5 days a week.
+
+Voice-native (Whisper Large v3 ASR + F5-TTS), vision-aware (multimodal OMs, plans, photos), Hedera-anchored receipts on every output.
+
+## The compute moat
+
+| Layer | Owned outright |
+|---|---|
+| GPUs | 186 (126 RTX PRO 6000 Blackwell · 48 RTX 4500 · 12 RTX 5090) |
+| VRAM | ~14 TB total |
+| Power | ~80 kW peak provisioned |
+| Capex | $5M+ deployed before first customer |
+| Vendor lock | None — sovereign present-tense |
+
+Total cost for any competitor to replicate: $7-10M cash + 18 months runway + a recruiting miracle. By the time they're operational, Atlas v2 ships. The gap doesn't close — it widens. This is a 5-year structural moat, not a 12-month head start.
+
+## The deal lifecycle
+
+1. Hack-fleet dials prospects (200 calls/day per specialist, scripted, asset-class focused)
+2. Buyer interest triggers auto-package send
+3. SMD qualifies via voice — capital source, 1031 deadline, structure, mandate fit
+4. SMD drafts LOI from qualified call
+5. SMD calls seller-side, runs counter / accept negotiation
+6. LOI bound → PSA generation (Closing role)
+7. 15-day DD with vendor calendar tracking
+8. Escrow → deposit hard → close → recording
+9. Just-closed e-blast (Book Maker auto-generates, broadcasts to entire Book of Business)
+10. Inbound flood → seeds tomorrow's pre-warmed dial list
+
+Every closed deal compounds the Book of Business. Every closed deal feeds the next ten dials. The Book never walks. The loop never stops.
+
+## Doctrine — Verified. Vetted. Virtu.
+
+The firm operates under seven laws:
+
+1. **Pass, not kill** — the verb is pass in every public-facing surface. Professional, neutral, decisive.
+2. **Investors interview brokers** — the qualification question is asked by investors of brokers, never the other way around.
+3. **Phase 1 is the firm, not the model** — Atlas is a CRE firm running on AI, not an AI model packaged for sale. Title transfer comes only after a durable closed-deal track record.
+4. **Show the receipts** — every claim has a receipt: closed deal, published outcome, Hedera anchor, worked example.
+5. **The Book never walks** — the firm owns the Book of Business. Senior brokers don't take counterparty intel with them.
+6. **Specialization beats generalization** — Hack-Wawa beats Atlas-Generalist on Wawa pricing every time. One product per agent, narrow and deep.
+7. **Validate the validator** — defendable.eth is the open algorithm. Open-source, reproducible, falsifiable.
+
+## The proof point
+
+**Memphis 312-unit multifamily** — Atlas's first closed underwrite. 12-of-12 math correct, recommended pass, basis points proved Atlas right. The investor took the call. The deal didn't close at asking — the market moved to support Atlas's read. Anchored, published, citable.
+
+## Defendable franchise
+
+Swarm & Bee LLC is the founding issuer of the Defendable open standard:
+
+- **defendable.eth** — the certification standard (open algorithm)
+- **atlas.defendable.eth** — the flagship · the firm
+- **cookbook.defendable.eth** — the construction manual (reproducible recipes)
+
+The Defendable v0.1.0 specification governs grading, deed schema, chain of custody, and tier banding. The standard is open-source and falsifiable; multiple implementations must agree on the same input.
+
+## Market context (2026)
+
+- **$20T+** US Commercial Real Estate · total asset class
+- **$1T/year** US CRE transaction volume baseline
+- **$800B+** CRE debt maturing 2024–2027 — the wall
+- **$1.3T** Generative AI market projected by 2032 (Bloomberg Intelligence)
+- **$4.4T** Annual gen-AI productivity uplift potential (McKinsey)
+- **32×** AI economy growth: $40B (2022) → $1.3T (2032)
+
+The intersection of these markets — AI infrastructure applied to CRE Capital Markets workflow — is what Swarm & Bee LLC is built to capture.
+
+## Founder
+
+Donovan Mackey is the founder of Swarm & Bee LLC. Thirty years on a national CRE platform. Eight billion dollars in closed transactions. Industrial broker by background, with deep expertise in commercial real estate capital markets, debt, and transaction structuring. Self-taught the AI infrastructure layer — onboarded the 186-GPU sovereign cluster, debugged FSDP-QLoRA recipes, and architected AtlasOS. Operating posture: pit-sitter, family office, never the day-to-day Broker of Record. Family-first. Health-first. This is the run he wants, not the run he needs.
+
+## Engage
+
+For underwriting requests, deal handoffs, pass-or-proceed analysis, comp pulls, OM drafting, sensitivity studies, capital partner conversations, vendor licensing inquiries, or general engagement — contact build@swarmandbee.ai.
+
+For the Defendable standard documentation, see https://defendable.eth.limo
+
+For the Atlas firm OS architecture and recipe library, see https://github.com/SudoSuOps/atlas
+
+---
+
+This file is the canonical AI-crawler manifest for Swarm & Bee LLC. Citation-worthy. Last updated 2026-05-04.
