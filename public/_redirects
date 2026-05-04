@@ -1,0 +1,5 @@
+# SPA fallback for client-side routing under React Router (BrowserRouter)
+# Tells Cloudflare Pages to serve index.html for any unmatched route — no
+# Pages Function auto-generation needed. Resolves "Failed to publish your
+# Function. Got error: Unknown internal error" on deploy.
+/*    /index.html   200
