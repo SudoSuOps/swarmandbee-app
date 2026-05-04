@@ -33,6 +33,7 @@ export default function Landing() {
       <TheLane />
       <AtlasOS />
       <TheMath />
+      <RingRing />
       <ComputeMoat />
       <TruthProtocol />
       <AIEconomy />
@@ -65,6 +66,7 @@ function Header() {
           <a href="#lane" className="text-neutral-600 hover:text-neutral-900 hidden md:inline">The&nbsp;Lane</a>
           <a href="#atlasos" className="text-neutral-600 hover:text-neutral-900 hidden md:inline">AtlasOS</a>
           <a href="#math" className="text-neutral-600 hover:text-neutral-900 hidden md:inline">Math</a>
+          <a href="#services" className="text-neutral-600 hover:text-neutral-900 hidden md:inline">Services</a>
           <a href="#founder" className="text-neutral-600 hover:text-neutral-900 hidden md:inline">Founder</a>
           <a href="https://defendable.eth.limo" target="_blank" rel="noreferrer"
              className="text-neutral-600 hover:text-neutral-900 hidden md:inline">Defendable ↗</a>
@@ -954,6 +956,144 @@ function UnlockCard({ num, title, body }: { num: string; title: string; body: st
       <div className="text-[11px] font-mono text-amber-400 font-bold tracking-widest">{num}</div>
       <h4 className="mt-2 text-lg font-bold text-white">{title}</h4>
       <p className="mt-3 text-sm text-neutral-300 leading-relaxed">{body}</p>
+    </div>
+  );
+}
+
+// ─── Ring Ring · Atlas-as-a-Service menu ──────────────────────────────────────
+
+function RingRing() {
+  return (
+    <section id="services" className="bg-white border-t border-neutral-200 py-20">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="text-xs font-semibold tracking-widest text-amber-700 uppercase mb-4">
+          Atlas-as-a-Service · the menu
+        </div>
+        <h2 className="text-5xl md:text-7xl font-black tracking-tight leading-none">
+          Ring <span className="text-amber-600">Ring</span>.
+        </h2>
+        <p className="mt-6 text-2xl md:text-3xl text-neutral-900 max-w-3xl font-bold leading-snug">
+          REITs call. Operators call. Brokerages call. Atlas ships.
+        </p>
+        <p className="mt-4 text-lg text-neutral-700 max-w-3xl leading-relaxed">
+          Atlas runs our brokerage. Atlas also runs your deal flow on demand. The
+          same agent fleet that closes our pipeline rents out à la carte —
+          underwriting, OMs, email blasts, dialer Hacks. <strong>You buy the
+          minutes. We bill the deed.</strong>
+        </p>
+
+        {/* The menu · 4 service cards */}
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-5">
+          <ServiceCard
+            num="01"
+            tag="Atlas-Underwrite"
+            title="Underwriting service"
+            price="$5,000"
+            unit="per deal"
+            scenario={`"REIT needs a 391-unit MF underwrite by Friday."`}
+            body="Atlas-SMD reads the OM, models the rent roll, cash flow, debt service, IRR sensitivity. Returns an IC-grade deck in hours — not weeks. 12-of-12 underwriting math, with the Memphis 312-unit precedent on the receipt."
+            cycle="Same-day → 48h"
+          />
+          <ServiceCard
+            num="02"
+            tag="Atlas-Marketing"
+            title="OM + project landing page"
+            price="$1,500"
+            unit="per package"
+            scenario={`"Listing needs a polished OM and a public-facing project page — fast."`}
+            body="Atlas-Marketing generates the OM (institutional grade), the project landing page, and the deal-card exports. All branded to your firm. Live URL ships with the package."
+            cycle="24 – 48h"
+          />
+          <ServiceCard
+            num="03"
+            tag="Atlas-Blast"
+            title="Email blast to The Book"
+            price="$2,000"
+            unit="per blast"
+            scenario={`"REIT wants visibility on Just-Listed STNL XYZ — eyes on the deal."`}
+            body="Atlas blasts to the targeted segment of The Book — verified buyers · 1031 exchange queue · vertical-specific principals. Personalized at scale. Reply-routing handled. Tell them Harvey sent you."
+            cycle="Same-day"
+          />
+          <ServiceCard
+            num="04"
+            tag="Atlas-Hack-fleet"
+            title="Dialer Hacks · on rent"
+            price="Quote on call"
+            unit="per Hack · per day"
+            scenario={`"You need bodies on the phone? Done. How many you need?"`}
+            body="Atlas-Hacks dial your list under your script · your branding · your CRM. One Hack per asset class — STNL · QSR · auto-retail · industrial · MF. Voice-native. Trained on the lane. 24/7 availability."
+            cycle="48h spin-up"
+          />
+        </div>
+
+        {/* Dual revenue thesis callout */}
+        <div className="mt-16 rounded-lg border-2 border-neutral-900 bg-amber-50 p-8">
+          <div className="text-[11px] font-mono uppercase tracking-widest text-amber-700 mb-3">
+            The dual revenue thesis
+          </div>
+          <h3 className="text-2xl md:text-3xl font-bold text-neutral-900 leading-tight">
+            Atlas runs our deals. Atlas runs your deals.
+          </h3>
+          <p className="mt-4 text-base text-neutral-700 leading-relaxed">
+            Two compounding revenue lines. The brokerage line at 1% × 100 deals/yr ≈ $3M
+            gross. The services line at ~$8.5K average ticket × 40 deals/yr per active
+            REIT account ≈ ~$340K/yr per account. Both lines run on the
+            <strong> same agent fleet · same compute · same Book.</strong> Each invoice
+            is a service rendered, not a commission earned. Clean revenue.
+          </p>
+        </div>
+
+        {/* Donovan's pitch line */}
+        <div className="mt-12 border-l-4 border-amber-500 pl-6 max-w-3xl">
+          <p className="text-base md:text-lg italic text-neutral-800 leading-relaxed">
+            "Ring ring — it's a REIT. They need a 391-unit MF underwrite by Friday.
+            Atlas cooks. Ships. Invoices $5,000. They need marketing — boom, OM done,
+            $1,500. They need eyes — email blast, $2,000. They need dialers — we've got
+            Hacks. How many you need?"
+          </p>
+          <p className="mt-3 text-sm text-neutral-600">
+            — Founder · Family Office
+          </p>
+        </div>
+
+        {/* Honest disclosure */}
+        <div className="mt-10 max-w-3xl">
+          <p className="text-[11px] font-mono uppercase tracking-widest text-neutral-500 mb-2">
+            Honest disclosure
+          </p>
+          <p className="text-xs text-neutral-500 leading-relaxed">
+            Service prices above are starting indications for typical deal complexity.
+            Ground-up developments, exotic structures, and large-portfolio assignments
+            quote separately. Hack-fleet dialer rates depend on script complexity, list
+            size, and exclusivity terms. Volume + retainer pricing available for active
+            REIT accounts. All work white-labels under client brand on request.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ServiceCard({ num, tag, title, price, unit, scenario, body, cycle }: {
+  num: string; tag: string; title: string; price: string; unit: string;
+  scenario: string; body: string; cycle: string;
+}) {
+  return (
+    <div className="rounded-lg border-2 border-neutral-900 bg-white p-6 hover:border-amber-500 transition-colors">
+      <div className="flex items-baseline justify-between gap-3 flex-wrap">
+        <div className="flex items-baseline gap-3">
+          <span className="text-xs font-mono text-amber-700 font-bold tracking-widest">{num}</span>
+          <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-500">{tag}</span>
+        </div>
+        <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-500">{cycle}</span>
+      </div>
+      <h4 className="mt-3 text-xl font-bold text-neutral-900">{title}</h4>
+      <div className="mt-3 flex items-baseline gap-2">
+        <span className="text-3xl md:text-4xl font-black text-amber-600">{price}</span>
+        <span className="text-xs font-mono uppercase tracking-widest text-neutral-500">{unit}</span>
+      </div>
+      <p className="mt-4 text-sm italic text-neutral-600 leading-relaxed">{scenario}</p>
+      <p className="mt-3 text-sm text-neutral-700 leading-relaxed">{body}</p>
     </div>
   );
 }
