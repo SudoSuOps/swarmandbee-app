@@ -78,6 +78,23 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
         }
       } catch {}
     }
+
+    // Debug shortcut: GET-style probe via body.debug=true returns sanitized
+    // info about the webhook URL without leaking the token. Use this to
+    // verify the env var is wired correctly post-deploy.
+    if (body && body.debug === true) {
+      const safe = webhookUrl
+        ? webhookUrl.slice(0, 50) + "…(len=" + webhookUrl.length + ")"
+        : "(empty)";
+      return jsonResponse({
+        ok: true,
+        debug: true,
+        webhook_prefix: safe,
+        webhook_starts_with_https: webhookUrl.startsWith("https://"),
+        webhook_contains_discord: webhookUrl.includes("discord.com/api/webhooks/"),
+        webhook_has_whitespace: /\s/.test(webhookUrl),
+      });
+    }
     if (!webhookUrl) {
       // Diagnostic: list env keys so we can see if var is missing or misnamed
       let envKeys: string[] = [];
