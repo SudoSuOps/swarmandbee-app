@@ -157,7 +157,7 @@ function Header() {
           <a href="#services" className="text-neutral-600 hover:text-neutral-900 hidden md:inline">Services</a>
           <a href="/pain" className="text-amber-700 font-bold hover:text-amber-900 hidden md:inline">The&nbsp;Pain</a>
           <a href="#founder" className="text-neutral-600 hover:text-neutral-900 hidden md:inline">Founder</a>
-          <a href="https://defendable.eth.limo" target="_blank" rel="noreferrer"
+          <a href="https://defendable.swarmandbee.ai" target="_blank" rel="noreferrer"
              className="text-neutral-600 hover:text-neutral-900 hidden md:inline">Defendable ↗</a>
           <a href="https://x.com/swarmandbee" target="_blank" rel="noreferrer"
              aria-label="Swarm & Bee on X"
@@ -228,7 +228,7 @@ function Hero() {
           <a href="#atlasos" className="px-6 py-3 rounded-lg bg-amber-500 text-neutral-900 font-bold hover:bg-amber-400 transition-colors">
             How AtlasOS runs the firm
           </a>
-          <a href="https://defendable.eth.limo" target="_blank" rel="noreferrer"
+          <a href="https://defendable.swarmandbee.ai" target="_blank" rel="noreferrer"
              className="px-6 py-3 rounded-lg border-2 border-neutral-900 text-neutral-900 font-semibold hover:bg-neutral-50 transition-colors">
             Defendable standard ↗
           </a>
@@ -1292,21 +1292,21 @@ function TruthProtocol() {
           domain="defendable.eth"
           tag="The standard"
           status="Live · v0.1.0"
-          href="https://defendable.eth.limo"
+          href="https://defendable.swarmandbee.ai"
           body="The certification methodology · spec · deed schema · tier banding · chain of custody · falsifiable scoring algorithm. The building code every Defendable property builds to."
         />
         <DefendableCard
           domain="atlas.defendable.eth"
           tag="The flagship · the firm"
           status="In flight · ETA Wed May 6"
-          href="https://defendable.eth.limo/#/atlas"
+          href="https://defendable.swarmandbee.ai/#/atlas"
           body="Atlas-70B + the agent pod · the AI-native CRE Capital Markets firm. Senior MD, Underwriter, Book Maker, Closing, Hack-fleet — all working under Swarm & Bee LLC."
         />
         <DefendableCard
           domain="cookbook.defendable.eth"
           tag="The construction manual"
           status="Live · Recipe #1 locked"
-          href="https://defendable.eth.limo/#/cookbook"
+          href="https://defendable.swarmandbee.ai/#/cookbook"
           body="Reproducible recipes for cooking Defendable-graded models. Recipe #1 (FSDP-QLoRA 70B) locked from Atlas-70B v1. Five dead ends documented so nobody repeats them."
         />
       </div>
@@ -1794,7 +1794,7 @@ function FinalCTA() {
              className="px-8 py-4 rounded-lg bg-amber-500 text-neutral-900 font-bold hover:bg-amber-400 transition-colors text-lg">
             Hand us a deal →
           </button>
-          <a href="https://defendable.eth.limo/#/atlas" target="_blank" rel="noreferrer"
+          <a href="https://defendable.swarmandbee.ai/#/atlas" target="_blank" rel="noreferrer"
              className="px-8 py-4 rounded-lg border-2 border-white text-white font-bold hover:bg-white hover:text-neutral-900 transition-colors text-lg">
             Meet AtlasOS
           </a>
@@ -1827,9 +1827,9 @@ function Footer() {
         <div>
           <div className="text-white font-semibold mb-2">Defendable Franchise</div>
           <ul className="space-y-1">
-            <li><a href="https://defendable.eth.limo" target="_blank" rel="noreferrer" className="hover:text-white">defendable.eth — standard</a></li>
-            <li><a href="https://defendable.eth.limo/#/atlas" target="_blank" rel="noreferrer" className="hover:text-white">atlas.defendable.eth</a></li>
-            <li><a href="https://defendable.eth.limo/#/cookbook" target="_blank" rel="noreferrer" className="hover:text-white">cookbook.defendable.eth</a></li>
+            <li><a href="https://defendable.swarmandbee.ai" target="_blank" rel="noreferrer" className="hover:text-white">defendable.eth — standard</a></li>
+            <li><a href="https://defendable.swarmandbee.ai/#/atlas" target="_blank" rel="noreferrer" className="hover:text-white">atlas.defendable.eth</a></li>
+            <li><a href="https://defendable.swarmandbee.ai/#/cookbook" target="_blank" rel="noreferrer" className="hover:text-white">cookbook.defendable.eth</a></li>
           </ul>
         </div>
         <div>
@@ -1847,7 +1847,9 @@ function Footer() {
           <ul className="space-y-1">
             <li><a href="mailto:build@swarmandbee.ai" className="hover:text-white">build@swarmandbee.ai</a></li>
             <li><a href="https://github.com/SudoSuOps/atlas" target="_blank" rel="noreferrer" className="hover:text-white">github.com/SudoSuOps/atlas</a></li>
-            <li><a href="https://swarmandbee.eth.limo" target="_blank" rel="noreferrer" className="hover:text-white">swarmandbee.eth ↗</a></li>
+            <li><a href="https://discord.gg/buUjYgzP5m" target="_blank" rel="noreferrer" className="hover:text-white">discord · the Pit ↗</a></li>
+            <li><a href="https://defendable.swarmandbee.ai" target="_blank" rel="noreferrer" className="hover:text-white">defendable.eth ↗</a></li>
+            <li><a href="https://pain.defendable.eth.limo" target="_blank" rel="noreferrer" className="hover:text-white">pain.defendable.eth ↗</a></li>
           </ul>
         </div>
       </div>
