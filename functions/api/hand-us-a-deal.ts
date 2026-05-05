@@ -63,7 +63,9 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
 
     // Whitespace-tolerant env var lookup (CF Pages dashboard sometimes
     // captures stray whitespace in variable names — happened with RESEND_API_KEY)
-    let webhookUrl = (env.DISCORD_WEBHOOK_URL || "").trim();
+    // Strip ALL whitespace (including embedded newlines from CF dashboard paste).
+    // URLs cannot legally contain whitespace, so this is safe.
+    let webhookUrl = (env.DISCORD_WEBHOOK_URL || "").replace(/\s+/g, "");
     if (!webhookUrl) {
       try {
         const envObj = env as unknown as Record<string, unknown>;
@@ -71,7 +73,7 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
           if (k.trim() === "DISCORD_WEBHOOK_URL") {
             const v = envObj[k];
             if (typeof v === "string" && v.length > 0) {
-              webhookUrl = v.trim();
+              webhookUrl = v.replace(/\s+/g, "");
               break;
             }
           }
