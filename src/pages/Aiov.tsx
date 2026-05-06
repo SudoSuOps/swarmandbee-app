@@ -63,11 +63,11 @@ function AiovHero() {
         </p>
         <div className="mt-10 grid grid-cols-3 gap-6 max-w-2xl">
           <div>
-            <div className="text-3xl font-black text-amber-400">30 min</div>
+            <div className="text-3xl font-black text-amber-400">5 min+</div>
             <div className="text-[11px] font-mono uppercase tracking-widest text-neutral-500 mt-1">turnaround</div>
           </div>
           <div>
-            <div className="text-3xl font-black text-amber-400">$499</div>
+            <div className="text-3xl font-black text-amber-400">from $99</div>
             <div className="text-[11px] font-mono uppercase tracking-widest text-neutral-500 mt-1">per deal</div>
           </div>
           <div>
@@ -217,7 +217,7 @@ function Comparison() {
             </thead>
             <tbody className="text-neutral-300">
               <CompareRow label="Turnaround" bov="1 to 2 weeks" appr="2 to 4 weeks" aiov="30 to 60 min" kill />
-              <CompareRow label="Stated cost" bov={`"Free"`} appr="$5K to $15K" aiov="$499" />
+              <CompareRow label="Stated cost" bov={`"Free"`} appr="$5K to $15K" aiov="from $99" />
               <CompareRow label="Hidden cost" bov="Broker thinks they have your listing" appr="Comps may leak" aiov="None" kill />
               <CompareRow label="Market exposure" bov="Often leaks" appr="Possible" aiov="Zero" kill />
               <CompareRow label="Confidentiality" bov="Trust the broker" appr="Trust the firm" aiov="Cryptographic" kill />
@@ -285,44 +285,96 @@ function Pricing() {
     <section className="border-b border-neutral-800 py-16 bg-neutral-900/30">
       <div className="max-w-5xl mx-auto px-6">
         <div className="text-[11px] font-mono uppercase tracking-widest text-amber-400 mb-4">
-          Pricing · two ways to engage
+          Pricing · per asset class · pay for the work, not a subscription
         </div>
         <h2 className="text-3xl md:text-4xl font-black tracking-tight">
-          $499 per deal. $4,999 per year.
+          Different deals. Different work. Different prices.
         </h2>
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-5">
-          <div className="rounded-lg border-2 border-neutral-800 bg-neutral-900 p-7">
-            <div className="text-[11px] font-mono uppercase tracking-widest text-neutral-500 mb-3">
-              Per deal
-            </div>
-            <div className="text-5xl font-black text-white">
-              $499<span className="text-lg text-neutral-500 font-normal"> / AIOV</span>
-            </div>
-            <p className="mt-4 text-sm text-neutral-300 leading-relaxed">
-              Single deal. 30 to 60 minute turnaround. Sovereign architecture. Anchored receipt.
-              Settled in USDC from your HACKER-PRO wallet.
-            </p>
-          </div>
+        <p className="mt-6 text-lg text-neutral-300 max-w-3xl leading-relaxed">
+          A Starbucks STNL is one tenant, one lease, one cap. A 989-unit multifamily is a full
+          operational underwrite — rent roll, vacancy, comps, cap range, value-add scenarios.
+          AIOV pricing reflects the actual compute and reasoning each asset class requires.
+          <strong className="text-amber-400"> Pay for the work, not the wrapper.</strong>
+        </p>
+
+        <div className="mt-10 overflow-x-auto">
+          <table className="w-full text-sm border-collapse">
+            <thead>
+              <tr className="border-b border-neutral-700">
+                <th className="text-left py-3 pr-4 font-mono text-[11px] uppercase tracking-widest text-neutral-500">Asset class</th>
+                <th className="text-left py-3 px-4 font-mono text-[11px] uppercase tracking-widest text-amber-400">Starts at</th>
+                <th className="text-left py-3 px-4 font-mono text-[11px] uppercase tracking-widest text-neutral-500">Turnaround</th>
+                <th className="text-left py-3 px-4 font-mono text-[11px] uppercase tracking-widest text-neutral-500">Notes</th>
+              </tr>
+            </thead>
+            <tbody className="text-neutral-300">
+              <PricingRow asset="STNL · NNN" price="$99" turnaround="5–15 min" notes="Single-tenant net lease · Starbucks · BoA · TSC · DG · 7-Eleven · etc" />
+              <PricingRow asset="Industrial" price="$149" turnaround="15–30 min" notes="Warehouse · cold storage · distribution · flex · single or multi-tenant" />
+              <PricingRow asset="Retail · multi-tenant" price="$199" turnaround="20–40 min" notes="Strip centers · anchored centers · rent roll + co-tenancy + anchor analysis" />
+              <PricingRow asset="Office" price="$249" turnaround="30–60 min" notes="Multi-tenant office · sublease risk · rollover schedule · TI/LC reserves" />
+              <PricingRow asset="Multi-family" price="$499+" turnaround="45–90 min" notes="Apartments · unit-by-unit rent roll · OpEx normalization · scales with unit count" />
+            </tbody>
+          </table>
+        </div>
+
+        <p className="mt-6 text-sm text-neutral-400 max-w-3xl">
+          Each asset class includes the full AIOV report: subject summary · current value opinion ·
+          stabilized opinion (where applicable) · cap rate justification with anchored comps · tenant
+          credit · lease structure · financing scenario · risk register · marketability · suggested
+          ask/floor/timeline · Hedera receipt. The price differential is compute and reasoning depth,
+          not feature unlocks.
+        </p>
+
+        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-5">
           <div className="rounded-lg border-2 border-amber-400 bg-gradient-to-br from-amber-950/40 to-neutral-900 p-7">
             <div className="text-[11px] font-mono uppercase tracking-widest text-amber-400 mb-3">
-              Subscription · best value
+              Subscription · best for active buyers
             </div>
             <div className="text-5xl font-black text-white">
               $4,999<span className="text-lg text-neutral-500 font-normal"> / yr</span>
             </div>
-            <p className="mt-3 text-xs font-mono uppercase tracking-widest text-amber-400">12 AIOVs · effective $416 each</p>
+            <p className="mt-3 text-xs font-mono uppercase tracking-widest text-amber-400">
+              12 AIOVs · any asset class · roll-over wallet credit
+            </p>
             <p className="mt-3 text-sm text-neutral-200 leading-relaxed">
-              For active family offices managing 10+ properties. Priority Atlas-70B compute.
-              Quarterly portfolio refresh.
+              For active family offices managing multiple properties across asset classes.
+              Priority Atlas-70B compute. Quarterly portfolio refresh. Wallet credit applies
+              against any asset-class price.
+            </p>
+          </div>
+          <div className="rounded-lg border-2 border-neutral-800 bg-neutral-900 p-7">
+            <div className="text-[11px] font-mono uppercase tracking-widest text-neutral-500 mb-3">
+              Enterprise
+            </div>
+            <div className="text-3xl font-black text-white">
+              Custom
+            </div>
+            <p className="mt-4 text-sm text-neutral-300 leading-relaxed">
+              Multi-billion family offices · full-portfolio coverage · dedicated session capacity ·
+              custom underwriting templates per LP family. Contact{" "}
+              <a href="mailto:build@swarmandbee.ai" className="text-amber-400 hover:text-amber-300">build@swarmandbee.ai</a>.
             </p>
           </div>
         </div>
-        <p className="mt-6 text-sm text-neutral-400">
-          Enterprise pricing available for multi-billion family offices and full-portfolio coverage.
-          Contact <a href="mailto:build@swarmandbee.ai" className="text-amber-400 hover:text-amber-300">build@swarmandbee.ai</a>.
+
+        <p className="mt-8 text-sm text-neutral-400 max-w-3xl">
+          All AIOVs settled in USDC from your HACKER-PRO wallet via x402. No invoicing. No accounts
+          receivable. Each call shows up as a per-deal line item in your wallet ledger with the
+          asset class and the Hedera receipt link.
         </p>
       </div>
     </section>
+  );
+}
+
+function PricingRow({ asset, price, turnaround, notes }: { asset: string; price: string; turnaround: string; notes: string }) {
+  return (
+    <tr className="border-b border-neutral-800">
+      <td className="py-3 pr-4 align-top font-bold text-white">{asset}</td>
+      <td className="py-3 px-4 align-top text-amber-400 font-bold">{price}</td>
+      <td className="py-3 px-4 align-top text-neutral-400">{turnaround}</td>
+      <td className="py-3 px-4 align-top text-sm text-neutral-300">{notes}</td>
+    </tr>
   );
 }
 
