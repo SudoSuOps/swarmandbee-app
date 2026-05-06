@@ -18,6 +18,7 @@ export default function Aiov() {
       <Receipt />
       <Pricing />
       <TheBox />
+      <CookShop />
       <AiovCTA />
       <AiovFooter />
     </div>
@@ -352,6 +353,76 @@ function TheBox() {
         </div>
       </div>
     </section>
+  );
+}
+
+function CookShop() {
+  return (
+    <section className="border-b border-neutral-800 py-16 bg-neutral-900/30">
+      <div className="max-w-5xl mx-auto px-6">
+        <div className="text-[11px] font-mono uppercase tracking-widest text-amber-400 mb-4">
+          The cook shop · 186 GPUs · ~14 TB VRAM · 24/7 · bare metal · owned
+        </div>
+        <h2 className="text-3xl md:text-4xl font-black tracking-tight">
+          Why the brains are cracked.
+        </h2>
+        <p className="mt-6 text-lg text-neutral-300 max-w-3xl leading-relaxed">
+          AIOV runs on Atlas-70B — a 70-billion-parameter doctrine model fine-tuned on 125,000
+          broker-grade underwriting exchanges (the Royal Jelly CRE corpus). Cooking that model takes
+          real compute. Running it for an AIOV in 30 minutes takes more.
+        </p>
+        <p className="mt-4 text-lg text-neutral-300 max-w-3xl leading-relaxed">
+          We own the stack. <strong className="text-amber-400">126 NVIDIA RTX PRO 6000 Blackwell</strong>
+          {" · "}48 RTX 4500{" · "}12 RTX 5090 — <strong className="text-amber-400">186 GPUs · roughly 14 terabytes of VRAM</strong>{" "}
+          racked in our datacenter. <strong className="text-white">Bare metal.</strong> No AWS line item. No Azure margin. No "model API" middleman charging the customer for a thin wrapper.
+        </p>
+
+        <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4">
+          <CookStat num="186" label="NVIDIA GPUs" />
+          <CookStat num="~14 TB" label="VRAM total" />
+          <CookStat num="24/7" label="Cook shop" />
+          <CookStat num="$0" label="Cloud margin" />
+        </div>
+
+        <div className="mt-10 rounded-lg border-2 border-amber-400 bg-gradient-to-br from-amber-950/40 to-neutral-900 p-7">
+          <div className="text-[11px] font-mono uppercase tracking-widest text-amber-400 mb-3">
+            Any model. Any day. In-house.
+          </div>
+          <h3 className="text-2xl font-black text-white">
+            We are a cook shop. Not a cloud reseller.
+          </h3>
+          <p className="mt-3 text-base text-neutral-200 leading-relaxed">
+            We cook the Atlas-70B doctrine model on this rig. We cook the Bookmaker-8B and
+            Hack-Deed-Maker-3B brains that ship inside HACKER boxes. We cook every vertical Hack —
+            STNL · QSR · Auto · Cold Storage · Medical Office.
+            <strong className="text-amber-400"> New model drops on Tuesday? We're cooking on Wednesday.</strong>
+            No vendor lock-in. No third-party API throttling. No "your prompts may be used to improve our models" clause.
+            Just bare-metal capacity, owned and operated.
+          </p>
+          <p className="mt-4 text-sm text-neutral-400 italic">
+            Sovereign compute is what makes the AIOV "we can't see your deal" claim survive an audit.
+            It's also what makes the brains cracked enough to hold broker-grade output at 87% token
+            accuracy on a fingerprint-disjoint holdout — measured, not promised.
+          </p>
+        </div>
+
+        <p className="mt-8 text-sm text-neutral-400 max-w-3xl leading-relaxed">
+          Compute isn't the moat by itself · it's what makes every other claim — sovereign data,
+          structural confidentiality, per-call pricing that beats cloud margins, in-house cook
+          schedules — economically and architecturally real. <a href="https://github.com/SudoSuOps/atlasOS/blob/main/INFRA.md" target="_blank" rel="noreferrer" className="text-amber-400 hover:text-amber-300">
+          Audit the fleet inventory ↗</a>
+        </p>
+      </div>
+    </section>
+  );
+}
+
+function CookStat({ num, label }: { num: string; label: string }) {
+  return (
+    <div className="rounded-lg bg-neutral-900 border border-neutral-800 p-5">
+      <div className="text-3xl md:text-4xl font-black text-amber-400">{num}</div>
+      <div className="mt-2 text-[11px] font-mono uppercase tracking-widest text-neutral-500">{label}</div>
+    </div>
   );
 }
 
