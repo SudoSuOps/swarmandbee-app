@@ -7,6 +7,7 @@ import Cli from "./pages/Cli";
 import Docs from "./pages/Docs";
 import Inference from "./pages/Inference";
 import Customer from "./pages/Customer";
+import Aiov from "./pages/Aiov";
 
 // Hostname-aware routing · same CF Pages deployment serves multiple brand surfaces.
 // ─────────────────────────────────────────────────────────────────────────────
@@ -18,6 +19,7 @@ import Customer from "./pages/Customer";
 //   docs.swarmandbee.ai        → Docs          (API documentation)
 //   inference.swarmandbee.ai   → Inference     (OpenAI-compatible)
 //   app.swarmandbee.ai         → Customer      (portal placeholder)
+//   aiov.swarmandbee.ai        → Aiov          (AI Opinion of Value · pre-broker SKU)
 // ─────────────────────────────────────────────────────────────────────────────
 function hostMatches(prefix: string): boolean {
   if (typeof window === "undefined") return false;
@@ -34,6 +36,7 @@ export default function App() {
   else if (hostMatches("docs"))       rootElement = <Docs />;
   else if (hostMatches("inference"))  rootElement = <Inference />;
   else if (hostMatches("app"))        rootElement = <Customer />;
+  else if (hostMatches("aiov"))       rootElement = <Aiov />;
 
   return (
     <Routes>
@@ -45,6 +48,7 @@ export default function App() {
       <Route path="/docs" element={<Docs />} />
       <Route path="/inference" element={<Inference />} />
       <Route path="/app" element={<Customer />} />
+      <Route path="/aiov" element={<Aiov />} />
     </Routes>
   );
 }
