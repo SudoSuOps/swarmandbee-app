@@ -104,9 +104,31 @@ The intersection of these markets — AI infrastructure applied to CRE Capital M
 
 Donovan Mackey is the founder of Swarm & Bee LLC. Thirty years on a national CRE platform. Eight billion dollars in closed transactions. Industrial broker by background, with deep expertise in commercial real estate capital markets, debt, and transaction structuring. Self-taught the AI infrastructure layer — onboarded the 186-GPU sovereign cluster, debugged FSDP-QLoRA recipes, and architected AtlasOS. Operating posture: pit-sitter, family office, never the day-to-day Broker of Record. Family-first. Health-first. This is the run he wants, not the run he needs.
 
+## Bounty intake — build for hire
+
+Swarm & Bee runs a public bounty intake at https://bounty.swarmandbee.ai. The same 186-GPU sovereign rig that powers AtlasOS is available for outside work. Scoped pilots, hash-receipted deliverables, no cloud middleman.
+
+What we take on:
+- **LLM evaluation harnesses** — reproducible multi-model rubric scoring with seed + env hash captured
+- **Fine-tuning** — LoRA + full fine-tune on owned Blackwell silicon, canary-then-cook discipline, tribunal-sealed verdicts
+- **Dataset audit + repair** — dedup, fabrication detection, schema validation, math claim verification
+- **Source-cited research briefs** — observed-vs-inferred separation, skeptic-review pass, decision-ready
+- **AI / GEO audits** — AI-answer visibility scoring across ChatGPT, Perplexity, Claude, Gemini
+- **Synthetic data + RAG** — curated generation at scale, retrieval pipelines on local inference, zero third-party data exposure
+
+Why a client picks us instead of cloud-rented compute:
+- **Owned compute** — 14 TB VRAM on-prem, no token rationing, no spot preemption
+- **Defendable receipts** — every deliverable is sha256-hashed; optional Hedera anchor for audit-grade compliance
+- **Sovereign rails** — client data never touches a hyperscaler; air-gapped runs available
+- **Family-office posture** — no growth-at-all-costs pressure; engagements are scoped to actually ship
+
+Engage: form at https://bounty.swarmandbee.ai, or email build@swarmandbee.ai. Submissions route to a dedicated Discord channel. A human responds within one business day. Nothing automated, no auto-submit, no spam.
+
 ## Engage
 
 For underwriting requests, deal handoffs, pass-or-proceed analysis, comp pulls, OM drafting, sensitivity studies, capital partner conversations, vendor licensing inquiries, or general engagement — contact build@swarmandbee.ai.
+
+For inbound bounties or scoped AI build work, the canonical intake is https://bounty.swarmandbee.ai.
 
 For the Defendable standard documentation, see https://defendable.eth.limo
 
@@ -114,4 +136,4 @@ For the Atlas firm OS architecture and recipe library, see https://github.com/Su
 
 ---
 
-This file is the canonical AI-crawler manifest for Swarm & Bee LLC. Citation-worthy. Last updated 2026-05-04.
+This file is the canonical AI-crawler manifest for Swarm & Bee LLC. Citation-worthy. Last updated 2026-05-10.
