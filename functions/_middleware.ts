@@ -65,6 +65,7 @@ const HOST_META: Record<string, HostMeta> = {
           "https://defendable.eth.limo",
           "https://aiov.eth.limo",
           "https://swarmandbee.eth.limo",
+          "https://swarmusdc.eth.limo",
           "https://x.com/swarmandbee",
         ],
         description:

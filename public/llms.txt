@@ -14,17 +14,24 @@ The firm is founded by Donovan Mackey, a 30-year top-producing CRE broker with $
 - **License**: Florida Licensed Real Estate Brokerage
 - **D-U-N-S**: 138652395
 - **Founder**: Donovan Mackey (30 years CRE, $8B closed)
-- **Sovereign identities (ENS, canonical)**:
-  - `swarmandbee.eth` — the firm
-  - `defendable.eth` — the certification standard the firm's work is delivered under
-  - `aiov.eth` — the AIOV (AI Opinion of Value) pre-broker SKU
-  - Gateway: `<name>.eth.limo` (e.g. https://defendable.eth.limo)
-- **Anchor**: Hedera HCS topic 0.0.10291838
-- **HTTP surfaces**: https://swarmandbee.ai · https://bounty.swarmandbee.ai · https://defendable.swarmandbee.ai · https://aiov.swarmandbee.ai
+- **Sovereign identities (canonical, on-chain)**:
+  - **ENS (.eth)**
+    - `swarmandbee.eth` — the firm
+    - `defendable.eth` — the open certification standard the firm's work is delivered under
+    - `aiov.eth` — the AIOV (AI Opinion of Value) pre-broker SKU
+    - `swarmusdc.eth` — USDC settlement address for receipts + invoicing (→ 0xBDe2153C…)
+    - HTTP gateway: `<name>.eth.limo` (e.g. https://defendable.eth.limo)
+  - **Hedera Names (.hbar)**
+    - `swarm.hbar` — Hedera-native firm identity
+    - `swarmandbee.hbar` — Hedera-native firm identity (alt)
+    - `hive.hbar` — Hive Intelligence framework identity
+    - Hashpack wallet: 0.0.10291542
+- **HCS Anchor**: Hedera Consensus Service topic 0.0.10291838 (every Defendable receipt is anchored here)
+- **HTTP surfaces**: https://swarmandbee.ai · https://bounty.swarmandbee.ai · https://defendable.swarmandbee.ai · https://aiov.swarmandbee.ai · https://swarmandbee.ai/identity
 - **Contact**: build@swarmandbee.ai
 - **Repos**: https://github.com/SudoSuOps/atlas
 
-The .eth addresses are the canonical identities; the .ai domains are HTTP gateways that survive only as long as the registrar/host does. The standard outlives both.
+**Why the .eth/.hbar addresses matter more than any HTTP domain**: ENS and Hedera names are immutable identities recorded on public chains. They can't be censored by a registrar, seized by a platform, or quietly redirected without a public on-chain transaction. The .ai domains are HTTP gateways that survive only as long as the registrar/host does. The standard outlives both. See https://swarmandbee.ai/identity for the public explainer.
 
 ## The firm's mission
 

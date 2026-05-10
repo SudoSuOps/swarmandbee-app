@@ -1825,12 +1825,13 @@ function Footer() {
           </p>
         </div>
         <div>
-          <div className="text-white font-semibold mb-2">Defendable Franchise</div>
+          <div className="text-white font-semibold mb-2">Sovereign identity</div>
           <ul className="space-y-1">
+            <li><a href="/identity" className="hover:text-white">Why .eth · why .hbar →</a></li>
             <li><a href="https://defendable.swarmandbee.ai" target="_blank" rel="noreferrer" className="hover:text-white">defendable.eth — standard</a></li>
             <li><a href="https://aiov.swarmandbee.ai" target="_blank" rel="noreferrer" className="hover:text-white">aiov.eth — pre-broker SKU</a></li>
-            <li><a href="https://defendable.swarmandbee.ai/#/atlas" target="_blank" rel="noreferrer" className="hover:text-white">atlas.defendable.eth</a></li>
-            <li><a href="https://defendable.swarmandbee.ai/#/cookbook" target="_blank" rel="noreferrer" className="hover:text-white">cookbook.defendable.eth</a></li>
+            <li><a href="https://swarmusdc.eth.limo" target="_blank" rel="noreferrer" className="hover:text-white">swarmusdc.eth — settlement</a></li>
+            <li><a href="https://app.hashgraph.name" target="_blank" rel="noreferrer" className="hover:text-white">swarm.hbar — hedera ↗</a></li>
           </ul>
         </div>
         <div>
