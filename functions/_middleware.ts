@@ -154,6 +154,119 @@ const HOST_META: Record<string, HostMeta> = {
       },
     ],
   },
+  "identity.swarmandbee.ai": {
+    title: "Swarm & Bee · Sovereign Identity (ENS + Hedera Names)",
+    description:
+      "The ID is the sovereignty. Every Swarm & Bee asset has an on-chain address before it has a URL. ENS + Hedera Names · immutable, transparent, censorship-resistant.",
+    url: "https://identity.swarmandbee.ai/",
+    image: "https://identity.swarmandbee.ai/og-identity.png",
+    keywords: [
+      "ENS",
+      "Ethereum Name Service",
+      "Hedera Names",
+      "sovereign identity",
+      "on-chain identity",
+      "decentralized identity",
+      "censorship-resistant identity",
+      "defendable.eth",
+      "aiov.eth",
+      "swarmusdc.eth",
+      "swarmandbee.eth",
+      "swarm.hbar",
+      "hive.hbar",
+      "Hedera Consensus Service",
+      "HCS anchor",
+      "immutable receipts",
+      "web3 identity",
+    ].join(", "),
+    jsonLd: [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "@id": "https://identity.swarmandbee.ai/#page",
+        name: "Swarm & Bee · Sovereign Identity",
+        url: "https://identity.swarmandbee.ai/",
+        description:
+          "Public explainer for the ENS and Hedera Names sovereign identities owned by Swarm & Bee LLC.",
+        isPartOf: {
+          "@type": "WebSite",
+          "@id": "https://swarmandbee.ai/#website",
+          name: "Swarm & Bee",
+          url: "https://swarmandbee.ai/",
+        },
+        about: {
+          "@type": "Organization",
+          "@id": "https://swarmandbee.ai/#organization",
+          name: "Swarm & Bee LLC",
+          url: "https://swarmandbee.ai/",
+          sameAs: [
+            "https://swarmandbee.eth.limo",
+            "https://defendable.eth.limo",
+            "https://aiov.eth.limo",
+            "https://swarmusdc.eth.limo",
+            "https://x.com/swarmandbee",
+          ],
+          identifier: [
+            { "@type": "PropertyValue", propertyID: "ENS", value: "swarmandbee.eth" },
+            { "@type": "PropertyValue", propertyID: "ENS", value: "defendable.eth" },
+            { "@type": "PropertyValue", propertyID: "ENS", value: "aiov.eth" },
+            { "@type": "PropertyValue", propertyID: "ENS", value: "swarmusdc.eth" },
+            { "@type": "PropertyValue", propertyID: "HederaName", value: "swarm.hbar" },
+            { "@type": "PropertyValue", propertyID: "HederaName", value: "swarmandbee.hbar" },
+            { "@type": "PropertyValue", propertyID: "HederaName", value: "hive.hbar" },
+            { "@type": "PropertyValue", propertyID: "HCS-Topic", value: "0.0.10291838" },
+            { "@type": "PropertyValue", propertyID: "D-U-N-S",   value: "138652395" },
+          ],
+        },
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: [
+          {
+            "@type": "Question",
+            name: "Why does Swarm & Bee own .eth and .hbar names?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "ENS and Hedera Names are immutable on-chain identities. They can't be censored by a registrar, seized by a platform, or quietly redirected without a public on-chain transaction. The .ai domain is a gateway; the on-chain address is the asset.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "What is defendable.eth?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "defendable.eth is the open certification standard. Every deliverable Swarm & Bee ships is signed under this address. Future co-issuers can publish their own work under the same standard.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "What is swarmusdc.eth?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "swarmusdc.eth is the firm's USDC settlement address — invoicing and receipts settle to a stable USD-pegged on-chain address with no payment-rail intermediary.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "What is swarm.hbar?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "swarm.hbar is the Hedera-native firm identity. Every Defendable receipt is anchored to Hedera Consensus Service topic 0.0.10291838 under this name.",
+            },
+          },
+        ],
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Swarm & Bee", item: "https://swarmandbee.ai/" },
+          { "@type": "ListItem", position: 2, name: "Sovereign identity", item: "https://identity.swarmandbee.ai/" },
+        ],
+      },
+    ],
+  },
   // Future subdomains can be added here without touching this code path.
 };
 
