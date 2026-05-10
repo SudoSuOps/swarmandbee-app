@@ -5,11 +5,13 @@
 // debugging + whitespace-tolerance lessons learned there carry over.
 //
 // Required env var (CF Pages Production):
-//   DISCORD_BOUNTY_WEBHOOK_URL  — encrypted secret · bounty channel webhook
+//   DISCORD_BOUNTY_WEBHOOK_URL  — bounty channel webhook (plaintext or secret)
 //
 // Optional fallback: if DISCORD_BOUNTY_WEBHOOK_URL is unset, this function
 // will use DISCORD_WEBHOOK_URL (the existing CRE-deals channel) so submissions
 // aren't lost during initial setup. Production should set the dedicated var.
+//
+// Note: env var changes in CF Pages require a redeploy to take effect.
 
 interface Env {
   DISCORD_BOUNTY_WEBHOOK_URL?: string;
