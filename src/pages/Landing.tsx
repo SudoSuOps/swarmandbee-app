@@ -1845,6 +1845,7 @@ function Footer() {
         <div>
           <div className="text-white font-semibold mb-2">Engage</div>
           <ul className="space-y-1">
+            <li><a href="https://bounty.swarmandbee.ai" target="_blank" rel="noreferrer" className="hover:text-white">Send us a bounty ↗</a></li>
             <li><a href="mailto:build@swarmandbee.ai" className="hover:text-white">build@swarmandbee.ai</a></li>
             <li><a href="https://github.com/SudoSuOps/atlas" target="_blank" rel="noreferrer" className="hover:text-white">github.com/SudoSuOps/atlas</a></li>
             <li><a href="https://discord.gg/buUjYgzP5m" target="_blank" rel="noreferrer" className="hover:text-white">discord · the Pit ↗</a></li>
