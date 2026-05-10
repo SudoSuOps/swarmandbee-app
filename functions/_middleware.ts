@@ -57,13 +57,28 @@ const HOST_META: Record<string, HostMeta> = {
         name: "Swarm & Bee · Bounty Intake",
         url: "https://bounty.swarmandbee.ai/",
         image: "https://bounty.swarmandbee.ai/og-bounty.png",
+        // Sovereign identities — sameAs lets crawlers map the HTTP surface
+        // to the canonical on-chain addresses. defendable.eth is the cert
+        // standard the work is delivered under; aiov.eth is the sibling
+        // product surface (AI Opinion of Value).
+        sameAs: [
+          "https://defendable.eth.limo",
+          "https://aiov.eth.limo",
+          "https://swarmandbee.eth.limo",
+          "https://x.com/swarmandbee",
+        ],
         description:
-          "Inbound bounty + scoped AI build work, delivered on owned 186-GPU sovereign compute with sha256 receipts on every artifact.",
+          "Inbound bounty + scoped AI build work, delivered on owned 186-GPU sovereign compute with sha256 receipts on every artifact. Carries the defendable.eth certification standard.",
         provider: {
           "@type": "Organization",
           "@id": "https://swarmandbee.ai/#organization",
           name: "Swarm & Bee LLC",
           url: "https://swarmandbee.ai/",
+          sameAs: [
+            "https://defendable.eth.limo",
+            "https://aiov.eth.limo",
+            "https://swarmandbee.eth.limo",
+          ],
         },
         areaServed: "Global",
         serviceType: [

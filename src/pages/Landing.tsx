@@ -1828,6 +1828,7 @@ function Footer() {
           <div className="text-white font-semibold mb-2">Defendable Franchise</div>
           <ul className="space-y-1">
             <li><a href="https://defendable.swarmandbee.ai" target="_blank" rel="noreferrer" className="hover:text-white">defendable.eth — standard</a></li>
+            <li><a href="https://aiov.swarmandbee.ai" target="_blank" rel="noreferrer" className="hover:text-white">aiov.eth — pre-broker SKU</a></li>
             <li><a href="https://defendable.swarmandbee.ai/#/atlas" target="_blank" rel="noreferrer" className="hover:text-white">atlas.defendable.eth</a></li>
             <li><a href="https://defendable.swarmandbee.ai/#/cookbook" target="_blank" rel="noreferrer" className="hover:text-white">cookbook.defendable.eth</a></li>
           </ul>
