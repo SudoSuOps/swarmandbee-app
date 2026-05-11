@@ -178,7 +178,10 @@ function Oven() {
               </defs>
             </svg>
             <div className="oven-pulse mt-4 text-amber-400 font-mono text-xs tracking-widest">
-              BAKING · 350°
+              BAKING · 450W
+            </div>
+            <div className="mt-1 text-[10px] text-neutral-500 font-mono tracking-wide">
+              sustained · per GPU · 5090 + PRO 6000
             </div>
           </div>
 
