@@ -14,9 +14,11 @@ import Bakery from "./pages/Bakery";
 
 // Hostname-aware routing · same CF Pages deployment serves multiple brand surfaces.
 // ─────────────────────────────────────────────────────────────────────────────
-//   apex                       → Landing       (the firm)
+//   apex                       → Bakery        (THE CANONICAL · CCIR + doctrine + menu)
+//   cre.swarmandbee.ai         → Landing       (CRE vertical · brokerage firm · Atlas)
+//   bakery.swarmandbee.ai      → Bakery        (same content as apex · alias)
 //   pain.swarmandbee.ai        → Pain          (CRE debt thesis)
-//   defendable.swarmandbee.ai  → Defendable    (the standard)
+//   defendable.swarmandbee.ai  → Defendable    (the certification standard)
 //   api.swarmandbee.ai         → Api           (REST API landing · /v1/* via Functions)
 //   cli.swarmandbee.ai         → Cli           (CLI install + commands)
 //   docs.swarmandbee.ai        → Docs          (API documentation)
@@ -25,7 +27,8 @@ import Bakery from "./pages/Bakery";
 //   aiov.swarmandbee.ai        → Aiov          (AI Opinion of Value · pre-broker SKU)
 //   bounty.swarmandbee.ai      → Bounty        (inbound bounty/job intake · Discord webhook)
 //   identity.swarmandbee.ai    → Identity      (sovereign ENS + Hedera Names explainer)
-//   bakery.swarmandbee.ai      → Bakery        (CCIR operating doctrine · less is better)
+//
+// The bakery is the firm. CRE is the first vertical the bakery serves.
 // ─────────────────────────────────────────────────────────────────────────────
 function hostMatches(prefix: string): boolean {
   if (typeof window === "undefined") return false;
@@ -34,8 +37,11 @@ function hostMatches(prefix: string): boolean {
 }
 
 export default function App() {
-  let rootElement = <Landing />;
-  if (hostMatches("pain"))           rootElement = <Pain />;
+  // Apex (and bakery subdomain) default to <Bakery /> — the canonical surface.
+  // The CRE firm has moved to cre.swarmandbee.ai.
+  let rootElement = <Bakery />;
+  if (hostMatches("cre"))             rootElement = <Landing />;
+  else if (hostMatches("pain"))       rootElement = <Pain />;
   else if (hostMatches("defendable")) rootElement = <Defendable />;
   else if (hostMatches("api"))        rootElement = <Api />;
   else if (hostMatches("cli"))        rootElement = <Cli />;
@@ -50,6 +56,7 @@ export default function App() {
   return (
     <Routes>
       <Route path="/" element={rootElement} />
+      <Route path="/cre" element={<Landing />} />
       <Route path="/pain" element={<Pain />} />
       <Route path="/defendable" element={<Defendable />} />
       <Route path="/api" element={<Api />} />

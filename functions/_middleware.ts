@@ -268,11 +268,13 @@ const HOST_META: Record<string, HostMeta> = {
     ],
   },
   "bakery.swarmandbee.ai": {
+    // Bakery subdomain stays as an alias of the apex. The canonical URL points
+    // to apex (swarmandbee.ai) since the bakery is now the apex identity.
     title: "Swarm & Bee · The Organic Dataset Bakery",
     description:
       "Organic, fresh-baked AI training datasets. Sold by the pound in wholesale corpora, or as signature 500-Packs targeting one failure mode. Curated, tier-graded, sha256-receipted, Hedera-anchored. Less is better when the cut is targeted.",
-    url: "https://bakery.swarmandbee.ai/",
-    image: "https://bakery.swarmandbee.ai/og-bakery.png",
+    url: "https://swarmandbee.ai/",
+    image: "https://swarmandbee.ai/og-bakery.png",
     keywords: [
       "organic AI dataset",
       "fresh baked dataset",
@@ -401,6 +403,84 @@ const HOST_META: Record<string, HostMeta> = {
         itemListElement: [
           { "@type": "ListItem", position: 1, name: "Swarm & Bee", item: "https://swarmandbee.ai/" },
           { "@type": "ListItem", position: 2, name: "The dataset bakery", item: "https://bakery.swarmandbee.ai/" },
+        ],
+      },
+    ],
+  },
+  "cre.swarmandbee.ai": {
+    title: "Swarm & Bee · CRE Capital Markets — Florida Licensed Brokerage",
+    description:
+      "The AI-native CRE Capital Markets firm. Florida Licensed Real Estate Brokerage running on 186 GPUs of sovereign compute. AtlasOS coordinates the agent pod: Senior MD, Underwriter, Book Maker, Closing, 10-Hack fleet. Verified. Vetted. Virtu.",
+    url: "https://cre.swarmandbee.ai/",
+    image: "https://cre.swarmandbee.ai/og-cre.png",
+    keywords: [
+      "AI-native CRE",
+      "AI commercial real estate brokerage",
+      "AtlasOS",
+      "Atlas-70B",
+      "AI underwriting",
+      "AI capital markets",
+      "Florida Licensed Real Estate Brokerage",
+      "Donovan Mackey",
+      "Memphis 312-unit",
+      "12 cap maturation thesis",
+      "Verified Vetted Virtu",
+      "Defendable Franchise",
+      "Hedera anchored deals",
+      "sovereign compute brokerage",
+      "Swarm and Bee CRE",
+      "Family Office posture",
+      "D-U-N-S 138652395",
+    ].join(", "),
+    jsonLd: [
+      {
+        "@context": "https://schema.org",
+        "@type": ["ProfessionalService", "RealEstateAgent"],
+        "@id": "https://cre.swarmandbee.ai/#cre-firm",
+        name: "Swarm & Bee · CRE Capital Markets",
+        url: "https://cre.swarmandbee.ai/",
+        image: "https://cre.swarmandbee.ai/og-cre.png",
+        description:
+          "Florida Licensed Real Estate Brokerage operated by Swarm & Bee LLC. AI-native CRE Capital Markets firm running AtlasOS on 186 GPUs of sovereign compute.",
+        slogan: "Verified. Vetted. Virtu.",
+        email: "build@swarmandbee.ai",
+        areaServed: {"@type": "AdministrativeArea", name: "Florida"},
+        parentOrganization: {
+          "@type": "Organization",
+          "@id": "https://swarmandbee.ai/#organization",
+          name: "Swarm & Bee LLC",
+          url: "https://swarmandbee.ai/",
+        },
+        identifier: [
+          {"@type": "PropertyValue", propertyID: "DUNS", value: "138652395"},
+          {"@type": "PropertyValue", propertyID: "ENS", value: "swarmandbee.eth"},
+          {"@type": "PropertyValue", propertyID: "Hedera HCS Topic", value: "0.0.10291838"},
+        ],
+        knowsAbout: [
+          "Commercial Real Estate underwriting",
+          "CRE Capital Markets",
+          "Industrial STNL",
+          "Multifamily",
+          "Multi-agent AI brokerage",
+          "Hedera Consensus Service",
+          "AtlasOS",
+        ],
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "@id": "https://cre.swarmandbee.ai/#founder",
+        name: "Donovan Mackey",
+        jobTitle: "Founder · Family Office",
+        description: "30 years CRE. $8B in closed transactions. Top-producing industrial broker on a national platform. Founded Swarm & Bee LLC to operate the CCIR dataset bakery — CRE is the first vertical it serves.",
+        worksFor: {"@id": "https://cre.swarmandbee.ai/#cre-firm"},
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {"@type": "ListItem", position: 1, name: "Swarm & Bee", item: "https://swarmandbee.ai/"},
+          {"@type": "ListItem", position: 2, name: "CRE Capital Markets", item: "https://cre.swarmandbee.ai/"},
         ],
       },
     ],

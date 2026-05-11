@@ -1,12 +1,24 @@
-# Swarm & Bee LLC
+# Swarm & Bee LLC · The Commercial Compute Intelligence Refinery (CCIR)
 
-> The AI-native CRE Capital Markets firm. A Florida Licensed Real Estate Brokerage running on 186 GPUs of sovereign compute. AtlasOS coordinates a multi-agent pod — Senior MD, Underwriter, Book Maker, Closing, Hack-fleet — to deliver brokerage workflow at machine scale. Verified. Vetted. Virtu.
+> The organic dataset bakery for AI. Curated, fresh-baked, tribunal-sealed training corpora on 186 GPUs of owned sovereign compute. AI is a bakery first — signal is supply, curators are bakers, the Tribunal is the head baker who tastes before shipping. Fresh every day. **500 fresh Jelly Donuts crush 25,000 ingredients. Less is better.** CRE is the first vertical we serve.
 
 ## About
 
-Swarm & Bee LLC is a real Florida-licensed real estate brokerage that operates an AI-native CRE Capital Markets firm. Unlike traditional brokerages running on phones and spreadsheets, Swarm & Bee owns 186 GPUs of sovereign compute (~14 TB VRAM, ~80 kW peak) and operates an in-house multi-agent system called AtlasOS that handles the brokerage workflow end-to-end: cold dialing, qualification, LOI drafting, PSA execution, escrow coordination, just-closed e-blast distribution.
+Swarm & Bee LLC operates as a **Commercial Compute Intelligence Refinery (CCIR)** — the public-facing identity is the **organic dataset bakery** for AI training data. The bakery's operating doctrine:
 
-The firm is founded by Donovan Mackey, a 30-year top-producing CRE broker with $8 billion in closed transactions. Donovan operates as Founder and Family Office principal; designated licensed brokers handle binding regulated activity under Swarm & Bee LLC's Florida brokerage license.
+- **Signal is supply** — raw scraped corpora, OpenAlex pulls, source documents, deal packets
+- **Curators are bakers** — SwarmCurator-9B/27B grade pairs on a 1-10 rubric across 5 dimensions
+- **The oven is the cook** — fine-tune runs on owned Blackwell silicon
+- **The Tribunal is the head baker** — tastes every batch before it ships (Tribunal-Before-Training doctrine)
+- **Distribution is delivery** — APIs, bounty intake, signed receipts
+
+Every pair gets a tier grade — APEX (Royal Jelly Donut, master-baker reference) → HONEY (Honey Bun, shippable) → JELLY (Jelly Donut, needs repair) → POLLEN (Pollen Crumb, weak seed) → PROPOLIS (Propolis Glaze — the deceiving shine: looks shippable from outside, fabricated underneath; the Tribunal's job is to taste past the glaze).
+
+**Less is better.** Volume is not the bottleneck; targeting is. A 500-pair corpus that repairs a specific failure mode beats a 244,000-pair corpus that scatters signal — proven by the Atlas-Qwen-27B v1 → Curator-Mistral-3B v2 evidence trail.
+
+**The bakery serves multiple verticals.** Today: CRE (Commercial Real Estate Capital Markets — Swarm & Bee LLC's Florida Licensed Brokerage arm, live at https://cre.swarmandbee.ai), medical, healing (patient-facing communication), agents (AI workflow), legal. See `/menu.json` for the live inventory.
+
+The firm is founded by **Donovan Mackey** — 30-year top-producing CRE broker with $8B in closed transactions. Donovan operates as Founder and Family Office principal; designated licensed brokers handle binding regulated activity under Swarm & Bee LLC's Florida brokerage license (CRE vertical only).
 
 ## Authority
 
