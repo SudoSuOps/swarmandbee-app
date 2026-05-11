@@ -9,6 +9,7 @@ export default function Cli() {
       <CliHero />
       <Install />
       <Commands />
+      <BakeryCli />
       <CliFooter />
     </div>
   );
@@ -115,6 +116,60 @@ function Commands() {
             </div>
           ))}
         </div>
+      </div>
+    </section>
+  );
+}
+
+function BakeryCli() {
+  const cmds: Array<[string, string]> = [
+    ["swarmbee-bakery menu", "Browse the bakery inventory · in-stock corpora + 500-pack starter kits"],
+    ["swarmbee-bakery menu --domain finance", "Filter to one vertical (finance / medical / healing / agents / legal)"],
+    ["swarmbee-bakery sample finance --summary", "Taste the finance pack · 7 pairs · grades + APEX + PROPOLIS contrast"],
+    ["swarmbee-bakery sample <domain> --out path.json", "Save sample pack to file"],
+    ["swarmbee-bakery order --sku 500-pack --domain finance --failure-mode \"...\"", "Build an order payload + sha256 receipt · DRY RUN by default"],
+    ["swarmbee-bakery order ... --confirm", "Actually POST to /api/bakery-intake (human reads every submission)"],
+    ["swarmbee-bakery receipt --file payload.json", "Compute sha256 of any JSON payload · audit utility"],
+    ["swarmbee-bakery version", "Print version + endpoint"],
+  ];
+  return (
+    <section className="border-b border-neutral-800 py-16 bg-gradient-to-b from-amber-950/10 to-neutral-950">
+      <div className="max-w-4xl mx-auto px-6">
+        <div className="text-xs font-sans tracking-widest text-amber-400 uppercase mb-4">
+          Sibling CLI · already shipping
+        </div>
+        <h2 className="text-4xl font-black font-sans mb-4">
+          swarmbee-bakery<span className="text-amber-400 text-2xl"> · order curated AI training corpora</span>
+        </h2>
+        <p className="text-base text-neutral-300 font-sans mb-6 max-w-3xl">
+          Order from the dataset bakery without ever leaving the terminal. Same backend
+          as the form on{" "}
+          <a href="https://bakery.swarmandbee.ai" className="text-amber-400 hover:text-amber-300">
+            bakery.swarmandbee.ai
+          </a>
+          ; structured input via <code>--sku</code> / <code>--domain</code> /{" "}
+          <code>--failure-mode</code> flags. Dry-run by default. A human reads every order.
+        </p>
+        <div className="rounded-lg border-2 border-amber-500 bg-neutral-900 p-5 text-sm md:text-base mb-8">
+          <div className="text-amber-400 mb-2">$ pip install git+https://github.com/SudoSuOps/swarmbee-bakery</div>
+          <div className="text-amber-400 mb-2">$ swarmbee-bakery menu</div>
+          <div className="text-amber-400">$ swarmbee-bakery sample finance --summary</div>
+        </div>
+        <div className="text-xs uppercase tracking-widest text-neutral-400 mb-2 font-sans">Commands</div>
+        <div className="space-y-2 mb-6">
+          {cmds.map(([cmd, desc]) => (
+            <div key={cmd} className="rounded border border-neutral-800 bg-neutral-900 p-3 grid grid-cols-12 gap-3 text-sm">
+              <code className="col-span-12 md:col-span-6 text-amber-400 break-all">{cmd}</code>
+              <span className="col-span-12 md:col-span-6 text-neutral-300 font-sans">{desc}</span>
+            </div>
+          ))}
+        </div>
+        <p className="text-sm font-sans text-neutral-400">
+          Source · MIT ·{" "}
+          <a href="https://github.com/SudoSuOps/swarmbee-bakery" className="text-amber-400 hover:text-amber-300">
+            github.com/SudoSuOps/swarmbee-bakery
+          </a>
+        </p>
       </div>
     </section>
   );
