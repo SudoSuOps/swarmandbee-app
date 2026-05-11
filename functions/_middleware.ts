@@ -268,13 +268,17 @@ const HOST_META: Record<string, HostMeta> = {
     ],
   },
   "bakery.swarmandbee.ai": {
-    title: "Swarm & Bee · The Dataset Bakery",
+    title: "Swarm & Bee · The Organic Dataset Bakery",
     description:
-      "AI is a bakery first. Signal is supply, curators are bakers, distribution is delivery. Fresh every day. 500-1000 fantastic muffins crush 25K of ingredients. Less is better.",
+      "Organic, fresh-baked AI training datasets. Sold by the pound in wholesale corpora, or as signature 500-Packs targeting one failure mode. Curated, tier-graded, sha256-receipted, Hedera-anchored. Less is better when the cut is targeted.",
     url: "https://bakery.swarmandbee.ai/",
     image: "https://bakery.swarmandbee.ai/og-bakery.png",
     keywords: [
-      "AI dataset curation",
+      "organic AI dataset",
+      "fresh baked dataset",
+      "AI training data by the pound",
+      "500 pack dataset",
+      "targeted training corpus",
       "less is better dataset",
       "curated training data",
       "Royal Jelly tiers",
@@ -292,6 +296,8 @@ const HOST_META: Record<string, HostMeta> = {
       "Hedera anchored dataset",
       "AI bakery doctrine",
       "Swarm and Bee bakery",
+      "wholesale AI corpus",
+      "failure mode repair corpus",
     ].join(", "),
     jsonLd: [
       {
@@ -357,6 +363,35 @@ const HOST_META: Record<string, HostMeta> = {
               "@type": "Answer",
               text: "Every pair is re-graded as the world moves. A 2023 cap rate that was honey-grade then is reference-only by 2026. The Royal Jelly tier system has a re-classification loop; corpora re-bake on cadence; the model is only as fresh as the last bake.",
             },
+          },
+          {
+            "@type": "Question",
+            name: "What SKUs does the bakery sell?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Two: 'By the pound' wholesale corpora (priced per 1,000 pairs, for shops needing breadth) and 'The 500-Pack' signature blend (500-1000 hand-built pairs targeting one failure mode, Tribunal-sealed, 25-50× the leverage of equivalent wholesale).",
+            },
+          },
+        ],
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "OfferCatalog",
+        name: "Swarm & Bee Bakery Menu",
+        itemListElement: [
+          {
+            "@type": "Offer",
+            name: "By the pound — wholesale corpora",
+            description: "Bulk training corpora, graded, deduped, freshness-stamped. Sold per 1,000 pairs.",
+            category: "AI Training Data — Wholesale",
+            availability: "https://schema.org/InStock",
+          },
+          {
+            "@type": "Offer",
+            name: "The 500-Pack — signature blend",
+            description: "500-1,000 pairs hand-built around one failure mode. Tribunal-sealed. 25-50× the leverage of wholesale.",
+            category: "AI Training Data — Targeted Micro-Corpus",
+            availability: "https://schema.org/InStock",
           },
         ],
       },

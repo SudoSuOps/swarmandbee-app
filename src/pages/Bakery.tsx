@@ -17,6 +17,7 @@ export default function Bakery() {
       <LessIsBetter />
       <ShelfGrades />
       <Freshness />
+      <Menu />
       <CallToAction />
       <BakeryFooter />
     </div>
@@ -39,6 +40,7 @@ function BakeryHeader() {
           <a href="#less" className="text-neutral-400 hover:text-neutral-100">less is better</a>
           <a href="#grades" className="text-neutral-400 hover:text-neutral-100">shelf grades</a>
           <a href="#freshness" className="text-neutral-400 hover:text-neutral-100">freshness</a>
+          <a href="#menu" className="text-neutral-400 hover:text-neutral-100">the menu</a>
           <a href={X_URL} target="_blank" rel="noreferrer"
              className="text-amber-400 font-semibold hover:text-amber-300">x ↗</a>
         </div>
@@ -55,19 +57,20 @@ function Hero() {
       <div className="absolute inset-0 bg-gradient-to-br from-amber-950/30 via-neutral-950 to-emerald-950/10 pointer-events-none" />
       <div className="relative max-w-5xl mx-auto px-6 pt-20 pb-16">
         <div className="text-xs font-semibold tracking-widest text-amber-400 uppercase mb-4">
-          The dataset bakery · CCIR operating doctrine
+          The organic dataset bakery · CCIR operating doctrine
         </div>
         <h1 className="text-5xl md:text-7xl font-black tracking-tight leading-[0.95]">
           AI is a<br />
           <span className="text-amber-400">bakery first.</span>
         </h1>
         <p className="mt-8 text-lg md:text-xl text-neutral-300 max-w-3xl leading-relaxed">
-          Signal is supply. Curators are bakers. Cooks are the oven. The Tribunal is the
-          head baker who tastes before shipping. Distribution is delivery.
-          Fresh every day, with a shelf life.
+          Organic, fresh-baked datasets. Sold <strong className="text-amber-400">by the pound</strong> in
+          wholesale corpora — or as signature <strong className="text-amber-400">500-Packs</strong> built
+          to repair one failure mode at a time. Signal is supply, curators are bakers, the Tribunal is
+          the head baker who tastes before shipping. Fresh every day, with a shelf life.
         </p>
         <p className="mt-4 text-lg md:text-xl text-amber-400 max-w-3xl leading-relaxed font-semibold">
-          500-1000 fantastic muffins crush 25,000 ingredients. Less is better.
+          500 fantastic muffins crush 25,000 ingredients. Less is better.
         </p>
         <Stats />
         <div className="mt-10 flex flex-wrap gap-3">
@@ -301,6 +304,87 @@ function Freshness() {
         </p>
         <p className="text-neutral-300 leading-relaxed mt-6 text-lg">
           The model is only as fresh as the last bake.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------ menu ------------------------------ */
+
+function Menu() {
+  return (
+    <section id="menu" className="border-b border-neutral-800">
+      <div className="max-w-5xl mx-auto px-6 py-16">
+        <h2 className="text-xs font-semibold tracking-widest text-neutral-500 uppercase mb-3">
+          <span className="text-amber-400">▍</span> The menu
+        </h2>
+        <p className="text-neutral-400 leading-relaxed mb-8 max-w-3xl">
+          Two SKUs. Both organic, both fresh-baked, both anchored. Pick the one that
+          fits the brief.
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* ──── By the pound ──── */}
+          <div className="rounded-lg border border-amber-900/40 bg-gradient-to-br from-amber-950/20 to-neutral-900/30 p-7 flex flex-col">
+            <div className="flex items-baseline justify-between mb-3">
+              <h3 className="text-2xl font-black text-amber-400">By the pound</h3>
+              <span className="text-[10px] uppercase tracking-widest text-neutral-500 font-mono">
+                wholesale corpora
+              </span>
+            </div>
+            <p className="text-sm text-neutral-300 leading-relaxed mb-4">
+              Bulk training corpora, graded, deduped, schema-validated, freshness-stamped.
+              Sold per 1,000 pairs. For shops with a base model and a need for breadth.
+            </p>
+            <ul className="text-sm text-neutral-400 space-y-2 mb-6">
+              <li className="flex gap-2"><span className="text-amber-500">•</span>Honey-grade pairs only (jelly/propolis filtered)</li>
+              <li className="flex gap-2"><span className="text-amber-500">•</span>Provenance chain per pair (signal → batch → anchor)</li>
+              <li className="flex gap-2"><span className="text-amber-500">•</span>SHA256 manifest + optional Hedera anchor</li>
+              <li className="flex gap-2"><span className="text-amber-500">•</span>Re-bake guarantee: 90-day freshness refresh on request</li>
+              <li className="flex gap-2"><span className="text-amber-500">•</span>Domains in stock: CRE, medical, aviation</li>
+            </ul>
+            <div className="mt-auto pt-4 border-t border-neutral-800">
+              <div className="text-xs uppercase tracking-widest text-neutral-500 mb-1">price</div>
+              <div className="text-sm text-neutral-300">Quote on volume — typically <code className="text-amber-400">$/1k pairs</code></div>
+            </div>
+          </div>
+
+          {/* ──── 500-Pack ──── */}
+          <div className="rounded-lg border-2 border-amber-500/40 bg-gradient-to-br from-amber-900/30 to-neutral-900/30 p-7 flex flex-col relative">
+            <div className="absolute -top-3 left-7 px-2 py-1 text-[10px] uppercase tracking-widest bg-amber-500 text-neutral-950 rounded font-bold">
+              signature blend
+            </div>
+            <div className="flex items-baseline justify-between mb-3">
+              <h3 className="text-2xl font-black text-amber-300">The 500-Pack</h3>
+              <span className="text-[10px] uppercase tracking-widest text-neutral-500 font-mono">
+                targeted micro-corpus
+              </span>
+            </div>
+            <p className="text-sm text-neutral-300 leading-relaxed mb-4">
+              500-1,000 pairs hand-built around one failure mode. The bakery&apos;s
+              flagship SKU. This is what Curator-Mistral-3B v2 ships against —
+              and what put Atlas Block-2 on the path to recovery.
+            </p>
+            <ul className="text-sm text-neutral-400 space-y-2 mb-6">
+              <li className="flex gap-2"><span className="text-amber-400">•</span>Failure mode scoped + acceptance criteria locked before bake</li>
+              <li className="flex gap-2"><span className="text-amber-400">•</span>Each pair carries <code className="text-amber-400">failure_source</code> + <code className="text-amber-400">repair_goal</code> metadata</li>
+              <li className="flex gap-2"><span className="text-amber-400">•</span>Tribunal-sealed before delivery (head baker signs off)</li>
+              <li className="flex gap-2"><span className="text-amber-400">•</span>Optional: we cook the model for you on the corpus</li>
+              <li className="flex gap-2"><span className="text-amber-400">•</span>25-50× the leverage of an equivalent wholesale order</li>
+            </ul>
+            <div className="mt-auto pt-4 border-t border-neutral-800">
+              <div className="text-xs uppercase tracking-widest text-neutral-500 mb-1">price</div>
+              <div className="text-sm text-neutral-300">Fixed-price per pack — scoped on intake</div>
+            </div>
+          </div>
+        </div>
+
+        <p className="mt-8 text-sm text-neutral-500 leading-relaxed max-w-3xl">
+          Wholesale buyers training a generalist model? Take a pound (or ten).
+          Engineers with a specific failure mode to repair? A 500-Pack will out-perform
+          a wholesale ton at one-tenth the cost. <strong className="text-neutral-300">Less
+          is better when the cut is targeted.</strong>
         </p>
       </div>
     </section>
