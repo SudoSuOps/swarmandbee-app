@@ -417,6 +417,13 @@ function CallToAction() {
             {EMAIL}
           </a>
         </div>
+        <p className="text-sm text-neutral-500 mt-10">
+          Need GPUs to train on the corpus you order? We use vast.ai —{" "}
+          <a href="/gpu" className="text-amber-400 hover:text-amber-300">
+            swarmandbee.ai/gpu
+          </a>{" "}
+          <span className="text-neutral-600">(referral)</span>.
+        </p>
       </div>
     </section>
   );

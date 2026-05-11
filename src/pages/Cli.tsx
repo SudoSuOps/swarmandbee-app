@@ -10,6 +10,7 @@ export default function Cli() {
       <Install />
       <Commands />
       <BakeryCli />
+      <Compute />
       <CliFooter />
     </div>
   );
@@ -169,6 +170,42 @@ function BakeryCli() {
           <a href="https://github.com/SudoSuOps/swarmbee-bakery" className="text-amber-400 hover:text-amber-300">
             github.com/SudoSuOps/swarmbee-bakery
           </a>
+        </p>
+      </div>
+    </section>
+  );
+}
+
+function Compute() {
+  return (
+    <section className="border-b border-neutral-800 py-16">
+      <div className="max-w-4xl mx-auto px-6">
+        <div className="text-xs font-sans tracking-widest text-amber-400 uppercase mb-4">
+          Need compute? · the rail we use
+        </div>
+        <h2 className="text-3xl font-black font-sans mb-4">
+          GPUs from operators, not hyperscalers.
+        </h2>
+        <p className="text-base text-neutral-300 font-sans mb-6 max-w-3xl">
+          We list two of our 5090s on vast.ai — smash (machine 84859) and whale (68562).
+          Same platform we'd rent from when we need a node we don't own. If you've got a
+          training run, an eval sweep, or a one-off inference job, vast.ai is the rail
+          we trust because we're on both sides of it.
+        </p>
+        <div className="rounded-lg border-2 border-amber-500 bg-neutral-900 p-5 text-sm md:text-base mb-4">
+          <div className="text-amber-400 mb-2 font-sans text-xs uppercase tracking-widest">Sign up · referral</div>
+          <a href="/gpu"
+             className="text-amber-400 text-lg hover:text-amber-300 break-all">
+            swarmandbee.ai/gpu
+          </a>
+          <div className="text-neutral-400 mt-2 font-sans text-sm">
+            → redirects to <code>cloud.vast.ai/?ref_id=468981</code>
+          </div>
+        </div>
+        <p className="text-sm font-sans text-neutral-500 max-w-3xl">
+          Disclosure: this is a referral link. We get credit when you sign up through it,
+          which helps cover the bakery's compute costs. We'd recommend vast either way —
+          it's where the fleet lives.
         </p>
       </div>
     </section>

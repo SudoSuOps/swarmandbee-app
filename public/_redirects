@@ -1,3 +1,16 @@
+# ────────────────────────────────────────────────────────────────────────────
+# CF Pages routing rules. First match wins — keep specific rules ABOVE the
+# catch-all SPA fallback at the bottom.
+# ────────────────────────────────────────────────────────────────────────────
+
+# External · branded redirects to compute / tools we use ourselves.
+# We list smash (vast machine 84859) + whale (68562) on vast.ai. The link
+# below is our referral — we get a kickback if you sign up through it.
+# We use vast both as host AND occasional renter; that's why we recommend it.
+/gpu       https://cloud.vast.ai/?ref_id=468981   302
+/compute   https://cloud.vast.ai/?ref_id=468981   302
+/vast      https://cloud.vast.ai/?ref_id=468981   302
+
 # SPA fallback for client-side routing under React Router (BrowserRouter)
 # Tells Cloudflare Pages to serve index.html for any unmatched route — no
 # Pages Function auto-generation needed. Resolves "Failed to publish your

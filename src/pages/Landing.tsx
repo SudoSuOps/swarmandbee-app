@@ -1851,7 +1851,9 @@ function Footer() {
             <li><a href="https://bounty.swarmandbee.ai" target="_blank" rel="noreferrer" className="hover:text-white">Send us a bounty ↗</a></li>
             <li><a href="mailto:build@swarmandbee.ai" className="hover:text-white">build@swarmandbee.ai</a></li>
             <li><a href="https://github.com/SudoSuOps/atlas" target="_blank" rel="noreferrer" className="hover:text-white">github.com/SudoSuOps/atlas</a></li>
+            <li><a href="https://github.com/SudoSuOps/swarmbee-bakery" target="_blank" rel="noreferrer" className="hover:text-white">github · swarmbee-bakery ↗</a></li>
             <li><a href="https://discord.gg/buUjYgzP5m" target="_blank" rel="noreferrer" className="hover:text-white">discord · the Pit ↗</a></li>
+            <li><a href="/gpu" className="hover:text-white">Rent GPUs · vast.ai <span className="text-neutral-600 text-[10px]">(ref)</span></a></li>
             <li><a href="https://defendable.swarmandbee.ai" target="_blank" rel="noreferrer" className="hover:text-white">defendable.eth ↗</a></li>
             <li><a href="https://pain.defendable.eth.limo" target="_blank" rel="noreferrer" className="hover:text-white">pain.defendable.eth ↗</a></li>
           </ul>
