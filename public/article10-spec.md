@@ -1,6 +1,19 @@
+> **DEPRECATED · OUT OF JURISDICTION · 2026-05-11**
+>
+> Swarm and Bee LLC is registered in the USA. EU AI Act Article 10 enforcement applies to providers
+> operating in or placing AI systems on the EU market. We don't, so we're not subject to it as an
+> issuer. This spec is archived. If a US-applicable equivalent emerges (NIST AI RMF mapping, SEC AI
+> data governance, HIPAA evidence pack for medical corpora), it will be drafted as a separate
+> spec under our actual jurisdiction. The underlying pack format (evidence-pack.json, Merkle root,
+> Tribunal seal, sha256 receipts) is reusable; the Article 10 clause-mapping is not.
+>
+> Original draft preserved below for reference only.
+>
+> ---
+
 # Defendable Article 10 Compliance Evidence Pack · Spec v1.0
 
-**Status:** DRAFT v1.0 · 2026-05-11
+**Status:** ARCHIVED · DEPRECATED · 2026-05-11 · v1.0
 **Issuer:** Swarm and Bee LLC · `swarmandbee.eth`
 **Standard:** Carries the `defendable.eth` certification mark
 **Enforcement target:** [EU AI Act Article 10](https://artificialintelligenceact.eu/article/10/) · enforcement effective **2026-08-02**
