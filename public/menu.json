@@ -1,0 +1,152 @@
+{
+  "$comment": "Swarm & Bee · The organic dataset bakery · public menu manifest. Machine-readable inventory. See https://bakery.swarmandbee.ai for the human-readable surface.",
+  "bakery": {
+    "name": "Swarm & Bee · CCIR · Commercial Compute Intelligence Refinery",
+    "url": "https://bakery.swarmandbee.ai/",
+    "doctrine": "AI is a bakery first. Signal is supply. Curators are bakers. Distribution is delivery. Fresh every day, with a shelf life. 500 fantastic muffins crush 25,000 ingredients.",
+    "issuer_ens": "swarmandbee.eth",
+    "certification_standard": "defendable.eth",
+    "settlement_address_ens": "swarmusdc.eth",
+    "hcs_anchor_topic": "0.0.10291838",
+    "updated_at": "2026-05-11",
+    "menu_version": "1.0.0"
+  },
+  "skus": {
+    "by_the_pound": {
+      "type": "wholesale_corpus",
+      "description": "Bulk curated training corpora. Graded, deduped, freshness-stamped. Sold per 1,000 pairs. For shops with a base model and a need for breadth.",
+      "pricing_model": "quote on volume — typically $/1k pairs",
+      "delivery": "tarball + manifest.json + per-batch sha256 + optional Hedera anchor",
+      "stock": [
+        {
+          "name": "sb-cre-verified",
+          "domain": "finance/cre",
+          "status": "in_stock",
+          "pairs": 810097,
+          "honey_grade_pct": 87.4,
+          "freshness": {
+            "last_rebake": "2026-04-15",
+            "next_rebake_due": "2026-07-15",
+            "score": 0.92
+          },
+          "rubric_dimensions": ["math_accuracy", "grounding", "capital_markets_discipline", "risk_awareness", "ic_readiness"],
+          "sample_endpoint": "/samples/finance.json",
+          "tribunal_sealed": true,
+          "use_cases": ["CRE underwriting", "cap rate / DSCR / IRR derivation", "lease abstraction", "IC memo training", "Atlas-class base corpus"]
+        },
+        {
+          "name": "sb-medical-verified",
+          "domain": "medical",
+          "status": "in_stock",
+          "pairs": 418783,
+          "honey_grade_pct": null,
+          "freshness": {
+            "last_rebake": "2026-03-12",
+            "next_rebake_due": "2026-06-12",
+            "score": 0.86
+          },
+          "sample_endpoint": "/samples/medical.json",
+          "tribunal_sealed": true,
+          "use_cases": ["clinical decision support", "lab interpretation", "ICD coding", "triage prioritization"]
+        },
+        {
+          "name": "sb-aviation",
+          "domain": "aviation",
+          "status": "raw_not_audited",
+          "pairs": 197,
+          "size_mb": 173,
+          "note": "Raw, not yet audited. Prior cook had 8,497 ASRS think-tag leakage incidents (quarantined). Not currently for sale; available on request once audited.",
+          "sample_endpoint": null,
+          "tribunal_sealed": false
+        }
+      ],
+      "domains_in_development": ["legal", "agents", "healing"]
+    },
+    "the_500_pack": {
+      "type": "signature_blend",
+      "description": "500-1,000 pairs hand-built around one failure mode. Each pair carries failure_source + repair_goal metadata. Tribunal-sealed before delivery. 25-50× the leverage of equivalent wholesale.",
+      "pricing_model": "fixed-price per pack — scoped on intake",
+      "delivery": "JSONL corpus + scoping memo + Tribunal seal + sha256 manifest + optional cook-for-you on owned Blackwell silicon",
+      "domains_available": ["finance", "medical", "legal", "agents", "healing", "GEO_audit", "custom"],
+      "starter_kits": [
+        {
+          "name": "fabrication_detection_500",
+          "domain": "agents",
+          "description": "500 pairs targeting fabrication detection at honey-grade confidence (the Curator-v2 blind spot). Trains a model to flag confident hallucinations, not just hedge.",
+          "sample_endpoint": "/samples/agents.json"
+        },
+        {
+          "name": "math_verification_500",
+          "domain": "finance",
+          "description": "500 pairs targeting numeric claim verification — cap rate, DSCR, IRR derivation, sensitivity grids. Refusal patterns when inputs are insufficient.",
+          "sample_endpoint": "/samples/finance.json"
+        },
+        {
+          "name": "recommendation_alignment_500",
+          "domain": "any",
+          "description": "500 pairs targeting text/decision alignment. Does the IC memo's recommendation match the analysis? Curator-v3 audit shape.",
+          "sample_endpoint": "/samples/finance.json"
+        },
+        {
+          "name": "patient_comm_500",
+          "domain": "healing",
+          "description": "500 pairs targeting medical-jargon-to-plain-language rewrite, consent explanation, triage script generation.",
+          "sample_endpoint": "/samples/healing.json"
+        },
+        {
+          "name": "contract_risk_flag_500",
+          "domain": "legal",
+          "description": "500 pairs targeting unusual-term flagging, indemnification scope checks, termination-condition extraction.",
+          "sample_endpoint": "/samples/legal.json"
+        }
+      ]
+    }
+  },
+  "sample_packs": {
+    "description": "Free taste tests. Same provenance shape as a full delivery — see the quality bar before you order. Each pack includes at least one PROPOLIS-grade pair (labeled) so you see what we filter out, not just what we ship.",
+    "index": "/samples/index.json",
+    "packs": {
+      "finance":  "/samples/finance.json",
+      "medical":  "/samples/medical.json",
+      "healing":  "/samples/healing.json",
+      "agents":   "/samples/agents.json",
+      "legal":    "/samples/legal.json"
+    }
+  },
+  "ordering": {
+    "intake_endpoint": "https://bakery.swarmandbee.ai/api/bakery-intake",
+    "human_form": "https://bakery.swarmandbee.ai/#menu",
+    "email": "build@swarmandbee.ai",
+    "discord": "https://discord.gg/buUjYgzP5m",
+    "cli_install": "pip install swarmbee-bakery   # planned, post Atlas-70B v1",
+    "settlement": {
+      "usdc": "swarmusdc.eth (→ 0xBDe2153C…)",
+      "wire": "available on request"
+    }
+  },
+  "provenance": {
+    "every_pair_carries": [
+      "tier_grade (APEX | HONEY | JELLY | POLLEN | PROPOLIS)",
+      "5-dim rubric scores (1-10 each)",
+      "graded_at datestamp",
+      "freshness datestamp",
+      "source attribution",
+      "sha256 hash"
+    ],
+    "every_batch_carries": [
+      "manifest.json with per-pair sha256",
+      "Tribunal-seal signature (if sealed)",
+      "optional Hedera anchor (HCS topic 0.0.10291838)",
+      "issuer signature from swarmandbee.eth"
+    ],
+    "certification": "Outputs trained on Swarm & Bee corpora may carry the defendable.eth mark. See https://defendable.eth.limo"
+  },
+  "links": {
+    "bakery": "https://bakery.swarmandbee.ai/",
+    "bounty": "https://bounty.swarmandbee.ai/",
+    "identity": "https://identity.swarmandbee.ai/",
+    "defendable": "https://defendable.eth.limo",
+    "aiov": "https://aiov.eth.limo",
+    "schema_org": "https://schema.org/OfferCatalog"
+  }
+}

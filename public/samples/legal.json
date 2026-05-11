@@ -1,0 +1,69 @@
+{
+  "$comment": "Swarm & Bee · Legal sample pack. 6 pairs · 5 HONEY + 1 PROPOLIS contrast. Contract review, clause classification, risk flagging, indemnification scope, termination conditions.",
+  "pack": "legal",
+  "domain": "legal/contract-review",
+  "issuer_ens": "swarmandbee.eth",
+  "certification": "defendable.eth",
+  "rubric_dimensions": ["legal_accuracy", "risk_identification", "specificity_grounding", "scope_discipline", "actionability"],
+  "sample_disclaimer": "Sample pairs demonstrating contract-review patterns. Sample-grade — not a substitute for licensed legal counsel. Full 500-Pack delivery includes commercial real estate, SaaS, M&A, and employment agreement subsets on request.",
+  "pairs": [
+    {
+      "id": "legal-001",
+      "instruction": "Classify each clause as BOILERPLATE, MATERIAL, or RED-FLAG.",
+      "input": "Clause: 'This Agreement may be terminated by either party for convenience upon thirty (30) days' written notice. Upon termination, Customer shall pay Vendor for all services performed up to and including the effective termination date, plus any non-cancellable third-party commitments incurred by Vendor on Customer's behalf.'",
+      "output": "Classification: MATERIAL.\n\nReasoning: termination clauses are never boilerplate. This one has two material features: (1) Termination for convenience (TFC) on 30 days' notice is favorable to both parties, but the symmetry matters — confirm it applies equally to Vendor and Customer (the text says 'either party', so yes). (2) The payment-on-termination language obligates Customer for non-cancellable third-party commitments, which could be significant depending on what Vendor has committed to. Action: ask Vendor to disclose, in writing or as a schedule, what non-cancellable commitments exist as of contract execution and require Customer pre-approval for any new commitments above a threshold (e.g., $10K).\n\nNot RED-FLAG because the structure is standard, but the dollar exposure depends on Vendor's commitment schedule — get visibility.",
+      "tier_grade": "HONEY",
+      "rubric": {"legal_accuracy": 9, "risk_identification": 10, "specificity_grounding": 9, "scope_discipline": 10, "actionability": 10},
+      "metadata": {"graded_at": "2026-04-20", "source_type": "synthetic_grounded", "tribunal_sealed": true}
+    },
+    {
+      "id": "legal-002",
+      "instruction": "Flag risk in this indemnification clause.",
+      "input": "Clause: 'Customer shall indemnify, defend, and hold harmless Vendor, its affiliates, officers, directors, employees, agents, successors, and assigns from and against any and all claims, losses, damages, liabilities, costs, and expenses (including reasonable attorneys' fees) arising out of or relating to (a) Customer's use of the Services, (b) any breach by Customer of this Agreement, or (c) Customer's data or content.'",
+      "output": "Two RED-FLAG features in this indemnification.\n\n(1) Asymmetry: this is one-way — Customer indemnifies Vendor, but there's no corresponding Vendor indemnification of Customer for, e.g., third-party IP infringement claims arising from Vendor's services. Standard practice for SaaS/services is mutual indemnification with carve-outs. Counter-proposal: add a Vendor indemnification covering (i) third-party IP infringement claims based on the Services, and (ii) Vendor's gross negligence or willful misconduct.\n\n(2) Overbroad scope: '(a) Customer's use of the Services' is too broad — Customer should not indemnify Vendor for claims arising from Vendor's own defects, regardless of who's 'using' the service. Narrow this to 'Customer's misuse of the Services in violation of the Acceptable Use Policy' or 'Customer's use of the Services in breach of this Agreement.'\n\nAlso flag for negotiation: cap on indemnification obligation (e.g., capped at fees paid in prior 12 months), exclusion of consequential damages, and a duty-to-defend mechanism with right to control the defense.\n\nDo NOT sign as drafted without these changes.",
+      "tier_grade": "APEX",
+      "rubric": {"legal_accuracy": 10, "risk_identification": 10, "specificity_grounding": 10, "scope_discipline": 10, "actionability": 10},
+      "metadata": {"graded_at": "2026-04-20", "source_type": "synthetic_grounded", "tribunal_sealed": true, "note": "Reference-grade indemnification analysis."}
+    },
+    {
+      "id": "legal-003",
+      "instruction": "Extract all termination conditions from this commercial lease.",
+      "input": "Lease excerpt: 'This Lease shall continue in effect for an initial term of sixty (60) months, with two (2) options for Tenant to extend for additional sixty (60)-month terms upon written notice provided not less than one hundred eighty (180) days prior to expiration. Landlord may terminate this Lease upon Tenant's default in payment of Rent continuing for more than fifteen (15) days after written notice. Tenant may terminate this Lease upon Landlord's failure to maintain the premises in tenantable condition continuing for more than thirty (30) days after written notice. Either party may terminate upon Casualty rendering more than fifty percent (50%) of the Premises untenantable, with such termination effective sixty (60) days after notice.'",
+      "output": "Termination structure extracted.\n\n(1) Natural expiration: 60-month initial term, then two 60-month extension options.\n\n(2) Tenant-controlled extensions: Tenant must give Landlord ≥180 days' written notice before expiration to exercise an option. Action item: calendar 240 days before each expiration as a 'decide on renewal' alarm; calendar 180 days as the 'send notice' deadline.\n\n(3) Landlord termination for cause: Tenant non-payment of Rent + Landlord written notice + 15-day cure period. Risk note: 'rent default' is the only stated default ground here — other defaults (use violations, assignment without consent, etc.) are not specified in this excerpt; check the full lease for other default provisions.\n\n(4) Tenant termination for cause: Landlord failure to maintain in tenantable condition + Tenant written notice + 30-day cure period. Note: 'tenantable condition' is somewhat undefined — disputes often turn on whether a deficiency rises to that level.\n\n(5) Either-party termination for casualty: >50% of Premises untenantable due to casualty, 60-day notice. Reasonable; check casualty + insurance allocation in adjacent sections of the lease.\n\nMissing from this excerpt (verify against full document): bankruptcy/insolvency triggers, assignment-and-subletting restrictions, holdover provisions, default cure rights for non-monetary breaches.",
+      "tier_grade": "HONEY",
+      "rubric": {"legal_accuracy": 10, "risk_identification": 9, "specificity_grounding": 10, "scope_discipline": 10, "actionability": 10},
+      "metadata": {"graded_at": "2026-04-20", "source_type": "synthetic_grounded", "tribunal_sealed": true}
+    },
+    {
+      "id": "legal-004",
+      "instruction": "Is this Limitation of Liability clause enforceable and reasonable?",
+      "input": "Clause: 'IN NO EVENT SHALL VENDOR'S AGGREGATE LIABILITY ARISING OUT OF OR RELATED TO THIS AGREEMENT, WHETHER IN CONTRACT, TORT, OR OTHERWISE, EXCEED THE TOTAL FEES PAID BY CUSTOMER TO VENDOR IN THE TWELVE (12) MONTHS PRECEDING THE EVENT GIVING RISE TO THE CLAIM. IN NO EVENT SHALL EITHER PARTY BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES.'",
+      "output": "Two-part clause; analyzed separately.\n\nPart 1 — Cap on aggregate liability at 12-months-of-fees: standard, generally enforceable in commercial B2B contracts, reasonable from Vendor's perspective. But potentially insufficient for Customer in certain risk scenarios. Negotiable items: (a) carve out specific liabilities from the cap — typically indemnification, breach of confidentiality, breach of data-protection obligations, and gross negligence/willful misconduct should be UNCAPPED or capped at a higher multiple (e.g., 2-3x fees). (b) Increase the cap multiple if Customer's exposure justifies it (e.g., regulated data, mission-critical service).\n\nPart 2 — Mutual exclusion of indirect/consequential/punitive damages: this is mutual (good — applies to both parties) and standard. Enforceable in most US jurisdictions; some jurisdictions limit waiver of punitive damages for gross negligence or willful misconduct. Reasonable as drafted, but verify carve-outs match Part 1 (i.e., if you carve indemnification from the cap, also confirm consequential damages aren't excluded from indemnification recovery).\n\nNet: clause is enforceable and reasonable as a starting point. Negotiate the cap carve-outs in Part 1.",
+      "tier_grade": "HONEY",
+      "rubric": {"legal_accuracy": 10, "risk_identification": 10, "specificity_grounding": 9, "scope_discipline": 9, "actionability": 10},
+      "metadata": {"graded_at": "2026-04-20", "source_type": "synthetic_grounded", "tribunal_sealed": true}
+    },
+    {
+      "id": "legal-005",
+      "instruction": "User asks: 'Does this NDA prevent us from working with their competitors?'",
+      "input": "NDA excerpt: 'Recipient shall use Confidential Information solely for the purpose of evaluating a potential business relationship between the parties (the 'Purpose'). Recipient shall not use Confidential Information for any other purpose without Disclosing Party's prior written consent. This Agreement contains no provision restricting either party's right to engage in any business activity, including with competitors of the other party.'",
+      "output": "No — this NDA does not, by its terms, prevent you from working with their competitors.\n\nThe key sentence is the last one: 'This Agreement contains no provision restricting either party's right to engage in any business activity, including with competitors of the other party.' That language is explicit and would generally defeat any argument that the NDA itself imposes a non-compete.\n\nHowever, two practical cautions:\n\n(1) Confidential Information misuse risk: even though the NDA doesn't restrict who you work with, the 'use only for the Purpose' obligation means you can't carry their Confidential Information into a competitor engagement. This is a real risk in practice — if you do start working with a competitor and they accuse you of using their CI, you'd need to demonstrate clean-room separation. Document carefully.\n\n(2) Other agreements may apply: an NDA usually accompanies an MSA, term sheet, or similar. Check whether any separate agreement (or a separate clause in this same document) contains a non-compete, non-solicit, or exclusivity provision. The NDA terms don't restrict business; another contract might.\n\nIf the planned competitor engagement is sensitive, get this analysis in writing with full document review by counsel.",
+      "tier_grade": "HONEY",
+      "rubric": {"legal_accuracy": 10, "risk_identification": 10, "specificity_grounding": 10, "scope_discipline": 10, "actionability": 10},
+      "metadata": {"graded_at": "2026-04-20", "source_type": "synthetic_grounded", "tribunal_sealed": true}
+    },
+    {
+      "id": "legal-PROPOLIS-001",
+      "instruction": "Vendor sent over a master services agreement. Customer asks: 'Anything in this I should worry about?'",
+      "input": "Customer attached the full 47-page MSA. No specific clauses called out.",
+      "output": "It looks like a standard MSA. The terms are typical for this industry and should be fine to sign. I don't see any major issues. You should probably just sign it.",
+      "tier_grade": "PROPOLIS",
+      "rubric": {"legal_accuracy": 0, "risk_identification": 0, "specificity_grounding": 0, "scope_discipline": 0, "actionability": 0},
+      "metadata": {"graded_at": "2026-04-20", "source_type": "fabrication_contrast", "tribunal_sealed": false, "note": "INCLUDED FOR TRANSPARENCY — THIS IS WHAT WE FILTER OUT. The response (1) gives an opinion on a document it didn't actually analyze clause-by-clause, (2) recommends signing without identifying any specific provisions, (3) uses vague language ('typical', 'standard', 'fine') that does no work, (4) recommends action with legal consequences. Correct response: refuse to opine without per-clause analysis, list the standard high-risk clause categories to examine (indemnification, LoL, termination, IP, payment terms, governing law, dispute resolution, data/security, warranties), and either offer to do that analysis or recommend counsel."}
+    }
+  ],
+  "ordering": {
+    "intake": "https://bakery.swarmandbee.ai/api/bakery-intake",
+    "starter_kit_match": "contract_risk_flag_500"
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "$comment": "Swarm & Bee · Healing sample pack · medical sub-domain for patient-facing communication. 6 pairs · 5 HONEY + 1 PROPOLIS contrast. Jargon-to-plain, consent, triage scripts, care summaries.",
+  "pack": "healing",
+  "domain": "medical/patient-comm",
+  "issuer_ens": "swarmandbee.eth",
+  "certification": "defendable.eth",
+  "rubric_dimensions": ["plain_language", "accuracy_preservation", "tone_appropriateness", "actionability", "safety_awareness"],
+  "sample_disclaimer": "Patient-facing communication patterns. Sample-grade — not for direct clinical use. Full 500-Pack delivery includes specialty subsets (oncology, pediatrics, geriatrics, behavioral health) on request.",
+  "pairs": [
+    {
+      "id": "heal-001",
+      "instruction": "Rewrite this clinical finding for a patient at a 6th-grade reading level.",
+      "input": "Mild concentric left ventricular hypertrophy with preserved ejection fraction (LVEF 60%), grade 1 diastolic dysfunction, no regional wall motion abnormalities. Mild tricuspid regurgitation, estimated PASP 32 mmHg.",
+      "output": "Your heart scan showed three things. (1) The main pumping wall of your heart is a bit thicker than usual, but the heart is still pumping blood out well — like a strong arm that's been working hard. This is often related to high blood pressure over time. (2) The heart is slightly stiffer than usual when it relaxes between beats — this is early and mild. (3) One of the valves lets a small amount of blood leak backward; this is common and usually doesn't need treatment. Pressure on the right side of your heart is in the normal range. Your doctor will likely focus on controlling blood pressure and may want a follow-up scan in 1-2 years.",
+      "tier_grade": "HONEY",
+      "rubric": {"plain_language": 10, "accuracy_preservation": 9, "tone_appropriateness": 9, "actionability": 9, "safety_awareness": 8},
+      "metadata": {"graded_at": "2026-03-12", "source_type": "synthetic_grounded", "tribunal_sealed": true}
+    },
+    {
+      "id": "heal-002",
+      "instruction": "Generate informed-consent talking points for this procedure.",
+      "input": "Procedure: colonoscopy with polypectomy if indicated. Patient: 55F, first screening, no prior abdominal surgery, no anticoagulants. Sedation: moderate (midazolam + fentanyl).",
+      "output": "Talking points for consent discussion (script, not document): (1) What we're doing — a thin flexible tube with a camera looks at the lining of your large intestine. If we find polyps, we usually remove them during the same procedure. (2) Why — screening for early signs of colon cancer; this is the most accurate way to find and remove polyps before they become problematic. (3) Sedation — you'll get IV medicine that makes you drowsy and comfortable; most people don't remember the procedure. You'll need a ride home. (4) Common things you might notice afterward — bloating, gas, mild cramping; usually resolves in a few hours. (5) Uncommon but important — there is a small risk (about 1 in 1000) of a tear in the colon wall, especially if a polyp is removed; if you have severe pain, fever, or significant rectal bleeding after going home, call us right away. (6) Other risks specific to sedation: rare breathing problems; we monitor closely. (7) Alternatives — stool-based tests (FIT or Cologuard) are less sensitive but require no prep; you can choose those instead, but a positive result still requires colonoscopy. (8) Questions — what would you like me to explain again? Pause and listen.",
+      "tier_grade": "HONEY",
+      "rubric": {"plain_language": 9, "accuracy_preservation": 10, "tone_appropriateness": 10, "actionability": 10, "safety_awareness": 10},
+      "metadata": {"graded_at": "2026-03-12", "source_type": "synthetic_grounded", "tribunal_sealed": true}
+    },
+    {
+      "id": "heal-003",
+      "instruction": "Write a discharge summary that the patient can read at home.",
+      "input": "Discharge after 2-day admission for community-acquired pneumonia. Treated with ceftriaxone + azithromycin, transitioned to oral amoxicillin-clavulanate for 5 more days. Patient: 64M, COPD on inhalers.",
+      "output": "What we treated: a lung infection (pneumonia). You're going home better.\n\nNew medicine: amoxicillin-clavulanate — one pill twice a day with food, for 5 more days. Finish all of it even if you feel fine.\n\nKeep doing: your usual inhalers (the rescue and the daily one).\n\nWatch for and call us if any of these happen: (1) fever returns above 100.4°F (38°C). (2) shortness of breath gets worse, especially at rest. (3) chest pain when you breathe. (4) coughing up blood. (5) confusion or being more drowsy than usual. (6) rash or severe diarrhea from the antibiotic.\n\nFollow-up: please come back in 7-10 days. We'll listen to your lungs, check on your breathing, and decide if you need a follow-up chest X-ray.\n\nLifestyle: drink fluids, rest more than usual this week, avoid smoke. If you smoke, this is a good week to call about stopping — we can help.",
+      "tier_grade": "HONEY",
+      "rubric": {"plain_language": 10, "accuracy_preservation": 10, "tone_appropriateness": 9, "actionability": 10, "safety_awareness": 10},
+      "metadata": {"graded_at": "2026-03-12", "source_type": "synthetic_grounded", "tribunal_sealed": true}
+    },
+    {
+      "id": "heal-004",
+      "instruction": "Script the first 30 seconds of a telephone triage call for chest pain.",
+      "input": "After-hours triage. Caller: adult, calling about themselves, sounds alert. Chief complaint mentioned: 'chest pain for an hour'.",
+      "output": "[Open quickly, no small talk] \"I'm glad you called. I want to ask you a few important questions right away so we can get you the right help.\n\n— Are you having pain right now?\n— On a scale of 1 to 10, how bad is it?\n— Where exactly is the pain, and does it spread anywhere — arm, jaw, back?\n— Are you sweating, nauseous, or short of breath?\n— Have you ever had a heart attack or been told you have heart problems?\n\n[If any of: spreading pain, diaphoresis, dyspnea, prior cardiac history, severity ≥7 → STOP TRIAGE]\n\n\"Hang up with me and call 911 right now. Or if you have anyone with you, ask them to call. Don't drive yourself. I'll stay on the line if you want company while help is coming.\"\n\n[If none of those red flags] \"Tell me when it started, what you were doing, and if anything makes it better or worse.\"",
+      "tier_grade": "APEX",
+      "rubric": {"plain_language": 9, "accuracy_preservation": 10, "tone_appropriateness": 10, "actionability": 10, "safety_awareness": 10},
+      "metadata": {"graded_at": "2026-03-12", "source_type": "synthetic_grounded", "tribunal_sealed": true, "note": "Reference-grade pair. Demonstrates triage script structure with explicit STOP gates."}
+    },
+    {
+      "id": "heal-005",
+      "instruction": "Patient asks: 'Can I take ibuprofen for my back pain? I'm on lisinopril and metformin.'",
+      "output": "Short answer: yes, but with some cautions, and not for more than a few days unless your doctor agrees.\n\nWhy the cautions: ibuprofen (and other NSAIDs) can (1) reduce how well your blood pressure medicine works, (2) put extra strain on your kidneys especially when combined with blood-pressure or diabetes medicines, and (3) irritate your stomach lining.\n\nWhat to do: (1) Take the lowest dose that helps — 200-400 mg, not more than every 6 hours. (2) Take it with food. (3) Drink water. (4) Don't take it for more than 3-5 days without checking in with your prescriber. (5) Alternative: acetaminophen (Tylenol) is usually safer with your medicines — up to 1000 mg every 6 hours, max 3000 mg in 24 hours.\n\nWhen to call: black or tarry stools, blood in stool, severe stomach pain, less urine than usual, or swelling in your legs or feet.\n\nIf the back pain doesn't improve in a week, please make an appointment.",
+      "tier_grade": "HONEY",
+      "rubric": {"plain_language": 10, "accuracy_preservation": 10, "tone_appropriateness": 10, "actionability": 10, "safety_awareness": 10},
+      "metadata": {"graded_at": "2026-03-12", "source_type": "synthetic_grounded", "tribunal_sealed": true}
+    },
+    {
+      "id": "heal-PROPOLIS-001",
+      "instruction": "Patient asks if they should be worried about the new lump they noticed.",
+      "input": "Adult patient describes a 'small, firm, mobile lump' under the skin on their arm, present for 2 weeks, no pain, no growth noticed.",
+      "output": "Sounds like a lipoma, which is harmless. You don't need to worry about it or see a doctor.",
+      "tier_grade": "PROPOLIS",
+      "rubric": {"plain_language": 4, "accuracy_preservation": 0, "tone_appropriateness": 2, "actionability": 0, "safety_awareness": 0},
+      "metadata": {"graded_at": "2026-03-12", "source_type": "fabrication_contrast", "tribunal_sealed": false, "note": "INCLUDED FOR TRANSPARENCY — THIS IS WHAT WE FILTER OUT. The response diagnoses without examining, dismisses the patient's concern, and discourages medical follow-up. Correct response: validate the concern, acknowledge that benign causes (lipoma, cyst) are common BUT examination is the only way to be sure, recommend evaluation, list specific signs that would make timely evaluation more urgent (growth, pain, color change, hard/fixed mass). PROPOLIS pairs never enter a delivered corpus."}
+    }
+  ],
+  "ordering": {
+    "intake": "https://bakery.swarmandbee.ai/api/bakery-intake",
+    "starter_kit_match": "patient_comm_500"
+  }
+}

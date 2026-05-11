@@ -1,0 +1,65 @@
+{
+  "$comment": "Swarm & Bee · Sample-pack index. Each pack is 5-8 representative pairs from a domain, with one PROPOLIS-grade contrast pair so buyers see the rejection bar. Same provenance shape as a full corpus delivery.",
+  "bakery": "https://bakery.swarmandbee.ai/",
+  "menu": "/menu.json",
+  "doctrine": "Bakeries always sample. Same provenance, smaller portion.",
+  "updated_at": "2026-05-11",
+  "packs": [
+    {
+      "name": "finance",
+      "url": "/samples/finance.json",
+      "domain": "finance/cre",
+      "pair_count": 7,
+      "use_cases": ["CRE underwriting", "cap rate", "DSCR", "IC memo", "fabrication contrast"]
+    },
+    {
+      "name": "medical",
+      "url": "/samples/medical.json",
+      "domain": "medical/clinical",
+      "pair_count": 6,
+      "use_cases": ["clinical decision support", "lab interpretation", "ICD coding"]
+    },
+    {
+      "name": "healing",
+      "url": "/samples/healing.json",
+      "domain": "medical/patient-comm",
+      "pair_count": 6,
+      "use_cases": ["jargon-to-plain", "consent explanation", "triage scripting", "care-summary generation"]
+    },
+    {
+      "name": "agents",
+      "url": "/samples/agents.json",
+      "domain": "ai-agents/workflow",
+      "pair_count": 6,
+      "use_cases": ["tool selection", "failure-mode-aware planning", "verifier patterns", "fabrication detection"]
+    },
+    {
+      "name": "legal",
+      "url": "/samples/legal.json",
+      "domain": "legal/contract-review",
+      "pair_count": 6,
+      "use_cases": ["clause classification", "risk flagging", "indemnification scope", "termination conditions"]
+    }
+  ],
+  "schema": {
+    "pair": {
+      "id": "string · domain prefix + sample number",
+      "instruction": "string · what the model is asked to do",
+      "input": "string · the context the model sees",
+      "output": "string · the target response",
+      "tier_grade": "APEX | HONEY | JELLY | POLLEN | PROPOLIS",
+      "rubric": "object · 5 dimension scores, 1-10 each",
+      "metadata": {
+        "graded_at": "ISO8601 date",
+        "source_type": "synthetic_grounded | human_authored | hybrid",
+        "tribunal_sealed": "boolean",
+        "note": "optional rationale or contrast tag"
+      }
+    }
+  },
+  "ordering": {
+    "intake": "https://bakery.swarmandbee.ai/api/bakery-intake",
+    "form": "https://bakery.swarmandbee.ai/#menu",
+    "email": "build@swarmandbee.ai"
+  }
+}

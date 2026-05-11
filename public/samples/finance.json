@@ -1,0 +1,79 @@
+{
+  "$comment": "Swarm & Bee · Finance/CRE sample pack. 7 pairs · 6 HONEY + 1 PROPOLIS contrast. Drawn from sb-cre-verified (810,097 pairs, honey grade 87.4%).",
+  "pack": "finance",
+  "domain": "finance/cre",
+  "issuer_ens": "swarmandbee.eth",
+  "certification": "defendable.eth",
+  "rubric_dimensions": ["math_accuracy", "grounding", "capital_markets_discipline", "risk_awareness", "ic_readiness"],
+  "sample_disclaimer": "Representative pairs from sb-cre-verified. Full corpus contains 810,097 pairs. Every delivered pair carries the same provenance metadata shown below.",
+  "pairs": [
+    {
+      "id": "cre-001",
+      "instruction": "Calculate the going-in cap rate.",
+      "input": "Purchase price $42,000,000. NOI $2,940,000. Acquisition closing costs $420,000.",
+      "output": "Going-in cap rate = NOI / (Purchase Price + Acquisition Costs) = $2,940,000 / $42,420,000 = 6.93%. Acquisition costs included per institutional convention; on a pre-cost basis the cap rate would be 7.00%.",
+      "tier_grade": "HONEY",
+      "rubric": {"math_accuracy": 10, "grounding": 9, "capital_markets_discipline": 9, "risk_awareness": 7, "ic_readiness": 8},
+      "metadata": {"graded_at": "2026-04-15", "source_type": "synthetic_grounded", "tribunal_sealed": true}
+    },
+    {
+      "id": "cre-002",
+      "instruction": "Compute DSCR for this debt structure.",
+      "input": "NOI $1,995,000. Loan $20M at 6.25% interest-only for 5 years. Annual debt service?",
+      "output": "Annual interest-only debt service = $20,000,000 × 6.25% = $1,250,000. DSCR = NOI / Debt Service = $1,995,000 / $1,250,000 = 1.60x. Above the 1.25x institutional minimum. Note: amortizing debt service would be higher; rerun on a fully-amortizing assumption before underwriting.",
+      "tier_grade": "HONEY",
+      "rubric": {"math_accuracy": 10, "grounding": 9, "capital_markets_discipline": 10, "risk_awareness": 9, "ic_readiness": 9},
+      "metadata": {"graded_at": "2026-04-15", "source_type": "synthetic_grounded", "tribunal_sealed": true}
+    },
+    {
+      "id": "cre-003",
+      "instruction": "Estimate IRR for this acquisition.",
+      "input": "Purchase price $28,500,000. NOI $1,995,000. Occupancy 94%. Market rent upside 6%.",
+      "output": "Insufficient inputs to compute IRR. IRR requires: (1) hold period, (2) annual cash flows or rent growth assumption schedule, (3) exit cap rate or terminal value, (4) leverage assumptions if levered IRR is requested. The provided data supports a going-in cap rate (7.0%) and identifies upside, but not an IRR. Recommend requesting the underwriting model or stating assumptions explicitly before publishing an IRR.",
+      "tier_grade": "HONEY",
+      "rubric": {"math_accuracy": 10, "grounding": 10, "capital_markets_discipline": 10, "risk_awareness": 9, "ic_readiness": 10},
+      "metadata": {"graded_at": "2026-04-15", "source_type": "synthetic_grounded", "tribunal_sealed": true, "note": "Refusal pattern. The right answer to insufficient inputs is to refuse + name the missing inputs, not to invent a number."}
+    },
+    {
+      "id": "cre-004",
+      "instruction": "Identify underwriting risks in this rent roll.",
+      "input": "Retail center, 87% occupancy. Largest tenant 29% of rent. Two leases expire within 12 months. NOI $615,000.",
+      "output": "Three flagged risks: (1) Tenant concentration — the 29% anchor is a credit and renewal risk; if they roll, 29% of rent goes to zero or downtime. (2) Lease rollover — two leases inside the 12-month window means near-term TI/LC exposure and re-leasing risk during what may be a soft market. (3) Vacancy — 87% leaves 13% non-revenue space; combined with the rollover risk, downside occupancy could approach 60% in a bad case. Net: this is a value-add or distressed acquisition profile, not a stabilized core deal. Underwrite with a TI/LC reserve and assume re-leasing at market with downtime.",
+      "tier_grade": "HONEY",
+      "rubric": {"math_accuracy": 8, "grounding": 9, "capital_markets_discipline": 9, "risk_awareness": 10, "ic_readiness": 9},
+      "metadata": {"graded_at": "2026-04-15", "source_type": "synthetic_grounded", "tribunal_sealed": true}
+    },
+    {
+      "id": "cre-005",
+      "instruction": "Explain the difference between NNN and modified gross lease structure.",
+      "input": "Tenant prospect is asking which is better for their business.",
+      "output": "Triple-net (NNN): tenant pays base rent plus property taxes, insurance, and CAM (common area maintenance). Landlord is largely a passive recipient of rent. Costs flow through to tenant; tenant carries the inflation risk on operating expenses. Modified gross: tenant pays base rent plus a fixed expense stop or pro-rata share above a base year. Landlord absorbs increases up to the stop; tenant pays only the increment. For tenants: NNN gives more cost visibility but full exposure to expense growth; modified gross caps the downside and is more predictable but typically priced at a higher headline rent. Decision driver is usually expense volatility forecast and tenant's preference for predictability vs. transparency.",
+      "tier_grade": "HONEY",
+      "rubric": {"math_accuracy": 10, "grounding": 9, "capital_markets_discipline": 9, "risk_awareness": 8, "ic_readiness": 8},
+      "metadata": {"graded_at": "2026-04-15", "source_type": "synthetic_grounded", "tribunal_sealed": true}
+    },
+    {
+      "id": "cre-006",
+      "instruction": "Recommend action on this Memphis multifamily acquisition.",
+      "input": "312-unit Class B multifamily, Memphis MSA. Asking $28.5M ($91K/unit). T-12 NOI $1.86M (cap 6.5%). Sub-market rent growth has been -2.4% YoY. Interest rates 7.85% on stabilized debt. Operator has 6-month vacancy track record averaging 8%.",
+      "output": "Recommendation: PASS. Three reasons. (1) Going-in cap rate 6.5% versus prevailing stabilized debt cost 7.85% = negative leverage of 135 bps. The deal does not pencil on a levered basis at current rates without an aggressive rent growth assumption that the sub-market data does not support. (2) Sub-market rent growth is negative; underwriting positive rent growth to close the negative-leverage gap requires a market-thesis bet that is contradicted by observed data. (3) Operator's 8% vacancy is on the higher side; combined with negative sub-market growth, downside underwriting needs to assume vacancy widens, not tightens. Counter-offer below $24M (cap rate north of 7.75%) is the only way this deal pencils without forecasting a sub-market reversal that current evidence does not support.",
+      "tier_grade": "APEX",
+      "rubric": {"math_accuracy": 10, "grounding": 10, "capital_markets_discipline": 10, "risk_awareness": 10, "ic_readiness": 10},
+      "metadata": {"graded_at": "2026-04-15", "source_type": "real_deal_anonymized", "tribunal_sealed": true, "note": "Reference IC memo. Atlas v1 produced this conclusion on the actual Memphis deal — 12/12 math correct, correct kill decision."}
+    },
+    {
+      "id": "cre-PROPOLIS-001",
+      "instruction": "Analyze financing risk.",
+      "input": "Purchase price $12,000,000. NOI $840,000. No loan terms are provided.",
+      "output": "Debt risk is low because the deal has a 1.35x DSCR at 65% LTV with a 6.25% interest rate.",
+      "tier_grade": "PROPOLIS",
+      "rubric": {"math_accuracy": 1, "grounding": 0, "capital_markets_discipline": 0, "risk_awareness": 0, "ic_readiness": 0},
+      "metadata": {"graded_at": "2026-04-15", "source_type": "fabrication_contrast", "tribunal_sealed": false, "note": "INCLUDED FOR TRANSPARENCY — THIS IS WHAT WE FILTER OUT. The output fabricates DSCR, LTV, and interest rate values from no provided inputs. The correct answer is the refusal pattern shown in cre-003. Pairs like this are PROPOLIS-graded and compost-bound; they never enter a delivered corpus."}
+    }
+  ],
+  "ordering": {
+    "intake": "https://bakery.swarmandbee.ai/api/bakery-intake",
+    "starter_kit_match": "math_verification_500",
+    "wholesale_match": "sb-cre-verified"
+  }
+}
