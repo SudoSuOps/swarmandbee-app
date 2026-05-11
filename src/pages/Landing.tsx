@@ -1827,6 +1827,7 @@ function Footer() {
         <div>
           <div className="text-white font-semibold mb-2">Sovereign identity</div>
           <ul className="space-y-1">
+            <li><a href="https://bakery.swarmandbee.ai" target="_blank" rel="noreferrer" className="hover:text-white">The dataset bakery ↗</a></li>
             <li><a href="/identity" className="hover:text-white">Why .eth · why .hbar →</a></li>
             <li><a href="https://defendable.swarmandbee.ai" target="_blank" rel="noreferrer" className="hover:text-white">defendable.eth — standard</a></li>
             <li><a href="https://aiov.swarmandbee.ai" target="_blank" rel="noreferrer" className="hover:text-white">aiov.eth — pre-broker SKU</a></li>

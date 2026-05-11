@@ -117,6 +117,20 @@ The intersection of these markets — AI infrastructure applied to CRE Capital M
 
 Donovan Mackey is the founder of Swarm & Bee LLC. Thirty years on a national CRE platform. Eight billion dollars in closed transactions. Industrial broker by background, with deep expertise in commercial real estate capital markets, debt, and transaction structuring. Self-taught the AI infrastructure layer — onboarded the 186-GPU sovereign cluster, debugged FSDP-QLoRA recipes, and architected AtlasOS. Operating posture: pit-sitter, family office, never the day-to-day Broker of Record. Family-first. Health-first. This is the run he wants, not the run he needs.
 
+## The dataset bakery — how we work
+
+Swarm & Bee operates as a dataset bakery (CCIR doctrine, public explainer at https://bakery.swarmandbee.ai):
+
+- **Signal is supply** — raw scraped corpora, OpenAlex pulls, source documents
+- **Curators are bakers** — SwarmCurator-9B/27B audit + grade pairs on a 1-10 rubric across 5 dimensions
+- **The oven is the cook** — TRL/Unsloth fine-tune on owned Blackwell silicon
+- **The Tribunal is the head baker** — tastes every batch before it ships (Tribunal-Before-Training doctrine)
+- **Distribution is delivery** — APIs, bounty intake, signed receipts
+
+Five shelf grades from the curator rubric — APEX (master reference) → HONEY (shippable) → JELLY (needs repair) → POLLEN (weak seed only) → PROPOLIS (compost). Pairs get re-graded over time because freshness has a shelf life — a 2023 cap rate is reference-only by 2026.
+
+**Less is better.** Volume of pairs is not the bottleneck; targeting is. Atlas-Qwen-27B v1 with 244K pairs net-regressed against the base on 6 of 10 institutional CRE prompts. Curator-Mistral-3B v2 with **501 targeted pairs** ships next. 500-1000 fantastic muffins crush 25,000 ingredients. This is the operational doctrine for every cook.
+
 ## Bounty intake — build for hire
 
 Swarm & Bee runs a public bounty intake at https://bounty.swarmandbee.ai. The same 186-GPU sovereign rig that powers AtlasOS is available for outside work. Scoped pilots, hash-receipted deliverables, no cloud middleman.

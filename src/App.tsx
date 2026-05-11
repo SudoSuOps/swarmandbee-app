@@ -10,6 +10,7 @@ import Customer from "./pages/Customer";
 import Aiov from "./pages/Aiov";
 import Bounty from "./pages/Bounty";
 import Identity from "./pages/Identity";
+import Bakery from "./pages/Bakery";
 
 // Hostname-aware routing · same CF Pages deployment serves multiple brand surfaces.
 // ─────────────────────────────────────────────────────────────────────────────
@@ -24,6 +25,7 @@ import Identity from "./pages/Identity";
 //   aiov.swarmandbee.ai        → Aiov          (AI Opinion of Value · pre-broker SKU)
 //   bounty.swarmandbee.ai      → Bounty        (inbound bounty/job intake · Discord webhook)
 //   identity.swarmandbee.ai    → Identity      (sovereign ENS + Hedera Names explainer)
+//   bakery.swarmandbee.ai      → Bakery        (CCIR operating doctrine · less is better)
 // ─────────────────────────────────────────────────────────────────────────────
 function hostMatches(prefix: string): boolean {
   if (typeof window === "undefined") return false;
@@ -43,6 +45,7 @@ export default function App() {
   else if (hostMatches("aiov"))       rootElement = <Aiov />;
   else if (hostMatches("bounty"))     rootElement = <Bounty />;
   else if (hostMatches("identity"))   rootElement = <Identity />;
+  else if (hostMatches("bakery"))     rootElement = <Bakery />;
 
   return (
     <Routes>
@@ -57,6 +60,7 @@ export default function App() {
       <Route path="/aiov" element={<Aiov />} />
       <Route path="/bounty" element={<Bounty />} />
       <Route path="/identity" element={<Identity />} />
+      <Route path="/bakery" element={<Bakery />} />
     </Routes>
   );
 }

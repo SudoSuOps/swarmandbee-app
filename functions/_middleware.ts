@@ -267,6 +267,109 @@ const HOST_META: Record<string, HostMeta> = {
       },
     ],
   },
+  "bakery.swarmandbee.ai": {
+    title: "Swarm & Bee · The Dataset Bakery",
+    description:
+      "AI is a bakery first. Signal is supply, curators are bakers, distribution is delivery. Fresh every day. 500-1000 fantastic muffins crush 25K of ingredients. Less is better.",
+    url: "https://bakery.swarmandbee.ai/",
+    image: "https://bakery.swarmandbee.ai/og-bakery.png",
+    keywords: [
+      "AI dataset curation",
+      "less is better dataset",
+      "curated training data",
+      "Royal Jelly tiers",
+      "honey jelly pollen propolis",
+      "data refinery",
+      "Commercial Compute Intelligence Refinery",
+      "CCIR",
+      "Atlas-Qwen-27B",
+      "SwarmCurator",
+      "Tribunal-Before-Training",
+      "data freshness shelf life",
+      "fabrication detection",
+      "rubric grading dataset",
+      "sha256 receipts dataset",
+      "Hedera anchored dataset",
+      "AI bakery doctrine",
+      "Swarm and Bee bakery",
+    ].join(", "),
+    jsonLd: [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "@id": "https://bakery.swarmandbee.ai/#page",
+        name: "Swarm & Bee · The Dataset Bakery",
+        url: "https://bakery.swarmandbee.ai/",
+        description:
+          "Public explainer for the Swarm & Bee dataset operating doctrine. Curated, tiered, fresh — the bakery model for AI training data.",
+        isPartOf: {
+          "@type": "WebSite",
+          "@id": "https://swarmandbee.ai/#website",
+          name: "Swarm & Bee",
+          url: "https://swarmandbee.ai/",
+        },
+        about: {
+          "@type": "Organization",
+          "@id": "https://swarmandbee.ai/#organization",
+          name: "Swarm & Bee LLC",
+          url: "https://swarmandbee.ai/",
+          sameAs: [
+            "https://swarmandbee.eth.limo",
+            "https://defendable.eth.limo",
+            "https://aiov.eth.limo",
+            "https://swarmusdc.eth.limo",
+            "https://x.com/swarmandbee",
+          ],
+        },
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: [
+          {
+            "@type": "Question",
+            name: "Why is AI a bakery first?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Signal is raw supply, curators are the bakers who shape it into shippable product, the cook is the oven, the Tribunal is the head baker who tastes before shipping, and distribution is the delivery. Fresh every day with a shelf life — datasets decay like bread.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "What does 'less is better' mean in practice?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Volume of pairs is not the bottleneck — targeting is. A 500-pair corpus that fixes a specific failure mode beats a 244,000-pair corpus that scatters signal. Atlas-Qwen-27B v1 with 244K pairs net-regressed; Curator v2 with 501 pairs targets the exact blind spot.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "What are the Royal Jelly tier grades?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Five shelf grades from a 1–10 curator rubric: APEX (9.5+, master-baker reference), HONEY (7.5–9.4, shippable), JELLY (5.0–7.4, needs repair), POLLEN (2.5–4.9, weak seed only), PROPOLIS (0–2.4, compost).",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "How is freshness handled?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Every pair is re-graded as the world moves. A 2023 cap rate that was honey-grade then is reference-only by 2026. The Royal Jelly tier system has a re-classification loop; corpora re-bake on cadence; the model is only as fresh as the last bake.",
+            },
+          },
+        ],
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Swarm & Bee", item: "https://swarmandbee.ai/" },
+          { "@type": "ListItem", position: 2, name: "The dataset bakery", item: "https://bakery.swarmandbee.ai/" },
+        ],
+      },
+    ],
+  },
   // Future subdomains can be added here without touching this code path.
 };
 
