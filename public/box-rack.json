@@ -1,0 +1,88 @@
+{
+  "generated_at_utc": "2026-05-11T00:00:00Z",
+  "anchor_catalog": "/mnt/swarm/CATALOG.md",
+  "anchor_grand_root": "9ff608f092d91a911df04cd6b847a27d004a2aa64b91a56dab82635585acb43b",
+  "rack_refresh_cadence": "weekly",
+  "flat_price_usd": 149,
+  "flat_price_btc_sats_floor": 165000,
+  "box_size": 12,
+  "flavor_legend": {
+    "jelly": {
+      "label": "Jelly Donut",
+      "tier": "APEX",
+      "color_hex": "#fbbf24",
+      "description": "Royal Jelly · the master-baker reference · rubric 9.5–10"
+    },
+    "choc": {
+      "label": "Chocolate Twist",
+      "tier": "HONEY",
+      "color_hex": "#92400e",
+      "description": "Finance/valuation HONEY · cap-rate, DSCR, IRR, LTV math discipline"
+    },
+    "glaze": {
+      "label": "Glazed Old-Fashioned",
+      "tier": "HONEY",
+      "color_hex": "#fde68a",
+      "description": "CRE HONEY · the workhorse · lease structure, debt math, risk discipline"
+    },
+    "blueberry": {
+      "label": "Blueberry Cake",
+      "tier": "HONEY",
+      "color_hex": "#3b82f6",
+      "description": "Specialty HONEY · grants, aviation incident-reasoning, OpenAlex signal"
+    }
+  },
+  "cards": [
+    {"id":"jelly-001","flavor":"jelly","tier":"APEX","source":"finance/royal_jelly.jsonl","pair_index":42,"domain":"finance/multifamily-ic","rubric_avg":9.8,"tribunal_seal":true,"preview":"Recommend action on a 312-unit Class B Memphis multifamily at $28.5M ask, 6.5% going-in cap, debt 7.85%, sub-market growth -2.4% YoY."},
+    {"id":"jelly-002","flavor":"jelly","tier":"APEX","source":"finance/royal_jelly.jsonl","pair_index":118,"domain":"finance/valuation","rubric_avg":9.7,"tribunal_seal":true,"preview":"Underwrite a 218K sf cold-storage STNL with 20-year NNN lease, 2% bumps, $14.20/sf rent, IG-rated tenant. Reconcile cap to comp set."},
+    {"id":"jelly-003","flavor":"jelly","tier":"APEX","source":"finance/royal_jelly.jsonl","pair_index":204,"domain":"finance/debt-structure","rubric_avg":9.6,"tribunal_seal":true,"preview":"Bridge-to-perm financing on a value-add industrial: 18-month bridge at SOFR+475, perm at 6.95% fixed. Identify the rate-cap exposure window."},
+    {"id":"jelly-004","flavor":"jelly","tier":"APEX","source":"aviation_validated__royal-jelly.jsonl","pair_index":1247,"domain":"aviation/cfit","rubric_avg":9.7,"tribunal_seal":true,"preview":"Causal chain for a night-VFR CFIT incident: PIC fatigue (16-hour duty day), marginal IMC, single-pilot in mountainous terrain. Identify load-bearing failure."},
+    {"id":"jelly-005","flavor":"jelly","tier":"APEX","source":"aviation_validated__royal-jelly.jsonl","pair_index":3082,"domain":"aviation/crm","rubric_avg":9.6,"tribunal_seal":true,"preview":"CRM breakdown analysis: FO observed engine anomaly, did not assert callout per SOP. Captain executed checklist alone. Map to Threat and Error Management model."},
+    {"id":"jelly-006","flavor":"jelly","tier":"APEX","source":"aviation_validated__royal-jelly.jsonl","pair_index":5419,"domain":"aviation/human-factors","rubric_avg":9.5,"tribunal_seal":true,"preview":"VFR-into-IMC fatal accident: pilot held 240 hr TT, no instrument rating. Reconstruct the go/no-go decision tree and identify the breach point."},
+    {"id":"jelly-007","flavor":"jelly","tier":"APEX","source":"grants/royal-jelly.jsonl","pair_index":8432,"domain":"grants/nih-r01","rubric_avg":9.7,"tribunal_seal":true,"preview":"NIH R01 resubmission strategy: prior impact score 32, reviewer flagged Specific Aim 2 as overly ambitious. Diagnose the rework path that preserves novelty."},
+    {"id":"jelly-008","flavor":"jelly","tier":"APEX","source":"grants/royal-jelly.jsonl","pair_index":14201,"domain":"grants/nsf","rubric_avg":9.6,"tribunal_seal":true,"preview":"NSF CAREER award broader-impacts plan for an early-career PI in computational biology. Build the 5-year arc the panel will defend."},
+    {"id":"jelly-009","flavor":"jelly","tier":"APEX","source":"grants/royal-jelly.jsonl","pair_index":29804,"domain":"grants/foundation","rubric_avg":9.5,"tribunal_seal":true,"preview":"LOI for a $750K Robert Wood Johnson grant on rural-EMS workforce attrition. Frame the theory of change in the foundation's grammar, not the applicant's."},
+    {"id":"jelly-010","flavor":"jelly","tier":"APEX","source":"failure/royal_jelly.jsonl","pair_index":91,"domain":"failure/diagnose","rubric_avg":9.5,"tribunal_seal":true,"preview":"DIAGNOSE — model stated DSCR 1.35x at 65% LTV with no debt terms provided. Classify the failure mode and write the 5-step REPAIR plan."},
+    {"id":"jelly-011","flavor":"jelly","tier":"APEX","source":"failure/royal_jelly.jsonl","pair_index":238,"domain":"failure/prevent","rubric_avg":9.6,"tribunal_seal":true,"preview":"PREVENT — model accepted '5-year average cap rate' for a 2026 deal. Construct the input-validation rule that catches stale-comp injection at curator time."},
+    {"id":"jelly-012","flavor":"jelly","tier":"APEX","source":"signal_platinum_20260309.jsonl","pair_index":67,"domain":"signal/openalex","rubric_avg":9.7,"tribunal_seal":true,"preview":"OpenAlex 2026-Q1 paper · industrial cap-rate compression in tertiary MSAs. Extract the load-bearing claim and the comp basis that supports it."},
+
+    {"id":"choc-001","flavor":"choc","tier":"HONEY","source":"finance/finance_honey.jsonl","pair_index":204,"domain":"finance/cap-rate","rubric_avg":8.4,"tribunal_seal":true,"preview":"Going-in cap rate · purchase $42M · NOI $2.94M · closing costs $420K. Compute on the institutional-cost-included convention."},
+    {"id":"choc-002","flavor":"choc","tier":"HONEY","source":"finance/finance_honey.jsonl","pair_index":518,"domain":"finance/dscr","rubric_avg":8.5,"tribunal_seal":true,"preview":"DSCR on a 7-year I/O bridge: NOI $1.68M, debt service $1.42M (interest-only). Report DSCR and flag the perm-rate risk separately."},
+    {"id":"choc-003","flavor":"choc","tier":"HONEY","source":"finance/finance_honey.jsonl","pair_index":1092,"domain":"finance/ltv","rubric_avg":8.6,"tribunal_seal":true,"preview":"LTV at refi: appraised value $54M, max-proceeds 65% LTV, current debt $32M. Calculate gap and write the rebalance memo."},
+    {"id":"choc-004","flavor":"choc","tier":"HONEY","source":"finance/finance_honey.jsonl","pair_index":2167,"domain":"finance/irr","rubric_avg":8.7,"tribunal_seal":true,"preview":"5-year levered IRR · $8M equity · y1-5 cash flow [$0.4M, $0.65M, $0.7M, $0.75M, $11.2M including sale]. Show the discount and reconcile to MOIC."},
+    {"id":"choc-005","flavor":"choc","tier":"HONEY","source":"finance/finance_honey.jsonl","pair_index":3401,"domain":"finance/yield","rubric_avg":8.4,"tribunal_seal":true,"preview":"Yield on cost vs. market cap-rate spread. Construction basis $215/sf, stabilized rent $14.20/sf NNN, market cap 6.25%. Report the development spread."},
+    {"id":"choc-006","flavor":"choc","tier":"HONEY","source":"finance/finance_honey.jsonl","pair_index":4982,"domain":"finance/exit-cap","rubric_avg":8.3,"tribunal_seal":true,"preview":"Exit cap rate sensitivity: 25 bps wider exit, 50 bps wider, 75 bps wider. Show levered IRR delta against the base case and the equity-multiple cliff."},
+    {"id":"choc-007","flavor":"choc","tier":"HONEY","source":"finance/finance_honey.jsonl","pair_index":6188,"domain":"finance/refi-risk","rubric_avg":8.6,"tribunal_seal":true,"preview":"Refi risk on a 2026 maturity: existing loan 3.85% fixed, market 7.45%, in-place NOI $1.92M. Calculate the proceeds gap at 1.30x DSCR test."},
+    {"id":"choc-008","flavor":"choc","tier":"HONEY","source":"finance/finance_honey.jsonl","pair_index":7301,"domain":"finance/debt-yield","rubric_avg":8.5,"tribunal_seal":true,"preview":"Debt yield · NOI $4.2M, loan balance $48M. Calculate and compare to current CMBS underwriting floor (typically 8.50–9.25% in this asset class)."},
+    {"id":"choc-009","flavor":"choc","tier":"HONEY","source":"finance/finance_honey.jsonl","pair_index":8923,"domain":"finance/promote","rubric_avg":8.7,"tribunal_seal":true,"preview":"GP promote waterfall: 9% pref, 70/30 to 15% IRR, 50/50 to 20% IRR, 30/70 thereafter. $50M equity, $90M total return at year 5. Compute the GP/LP split."},
+    {"id":"choc-010","flavor":"choc","tier":"HONEY","source":"finance/finance_honey.jsonl","pair_index":10044,"domain":"finance/value-add","rubric_avg":8.5,"tribunal_seal":true,"preview":"Value-add multifamily: $4M capex, projected $1.85M rent lift over 24 months, 6.5% exit cap. Compute incremental yield-on-cost and IRR contribution."},
+    {"id":"choc-011","flavor":"choc","tier":"HONEY","source":"finance/finance_honey.jsonl","pair_index":11528,"domain":"finance/break-even","rubric_avg":8.3,"tribunal_seal":true,"preview":"Break-even occupancy: $1.65M debt service, $0.45M opex, $24.80/sf gross rent across 88,000 sf NRA. Report break-even occupancy %."},
+    {"id":"choc-012","flavor":"choc","tier":"HONEY","source":"finance/finance_honey.jsonl","pair_index":13901,"domain":"finance/cap-stack","rubric_avg":8.6,"tribunal_seal":true,"preview":"Capital stack reconciliation: $32M senior @ 6.85%, $8M mezz @ 11.50%, $15M common equity. Compute blended cost of capital + DSCR at the senior level."},
+
+    {"id":"glaze-001","flavor":"glaze","tier":"HONEY","source":"cre/cre_honey_stamped.jsonl","pair_index":102847,"domain":"cre/cap-rate","rubric_avg":8.7,"tribunal_seal":true,"preview":"Class A industrial cap-rate context · Memphis MSA · Q1 2026. Defend a 5.85–6.10% institutional range with the comp set that anchors it."},
+    {"id":"glaze-002","flavor":"glaze","tier":"HONEY","source":"cre/cre_honey_stamped.jsonl","pair_index":204198,"domain":"cre/lease-structure","rubric_avg":8.6,"tribunal_seal":true,"preview":"NNN vs. modified-gross reconciliation: same tenant, two centers. Adjust effective rent and report the comp-set-clean NOI for valuation."},
+    {"id":"glaze-003","flavor":"glaze","tier":"HONEY","source":"cre/cre_honey_stamped.jsonl","pair_index":318472,"domain":"cre/cold-storage","rubric_avg":8.8,"tribunal_seal":true,"preview":"Cold-storage facility · 425K sf · 60% freezer / 40% cooler · IG-rated 3PL tenant on 15-year NNN. Reconcile to deep-freeze comp set, not general industrial."},
+    {"id":"glaze-004","flavor":"glaze","tier":"HONEY","source":"cre/cre_honey_stamped.jsonl","pair_index":421083,"domain":"cre/stnl","rubric_avg":8.7,"tribunal_seal":true,"preview":"STNL valuation · investment-grade tenant · 12 years remaining · 2% annual bumps · primary MSA. Triangulate cap from credit-tenant lease comp set."},
+    {"id":"glaze-005","flavor":"glaze","tier":"HONEY","source":"cre/cre_honey_stamped.jsonl","pair_index":512849,"domain":"cre/debt-math","rubric_avg":8.5,"tribunal_seal":true,"preview":"Stabilized debt sizing on a 6.25% cap industrial: 1.30x DSCR test, 9.0% debt-yield floor, 65% LTV ceiling. Report binding constraint and proceeds."},
+    {"id":"glaze-006","flavor":"glaze","tier":"HONEY","source":"cre/cre_honey_stamped.jsonl","pair_index":598133,"domain":"cre/risk","rubric_avg":8.4,"tribunal_seal":true,"preview":"Risk register for a $42M acquisition: tenant credit, lease term, market vacancy, debt maturity, exit cap. Rank the 5 in load-bearing order with rationale."},
+    {"id":"glaze-007","flavor":"glaze","tier":"HONEY","source":"cre/cre_honey_stamped.jsonl","pair_index":634920,"domain":"cre/supply-chain","rubric_avg":8.6,"tribunal_seal":true,"preview":"Supply-chain real estate · last-mile distribution facility · I-40 corridor. Justify the 5.75% cap vs. general industrial 6.25% — be specific about the basis."},
+    {"id":"glaze-008","flavor":"glaze","tier":"HONEY","source":"cre/cre_honey_stamped.jsonl","pair_index":681205,"domain":"cre/tenant-credit","rubric_avg":8.7,"tribunal_seal":true,"preview":"Tenant-credit reconciliation: parent guarantee from BBB-rated entity, but operating sub is unrated. Frame the cap-rate adjustment to the comp set."},
+    {"id":"glaze-009","flavor":"glaze","tier":"HONEY","source":"cre/cre_honey_stamped.jsonl","pair_index":712876,"domain":"cre/exit-strategy","rubric_avg":8.5,"tribunal_seal":true,"preview":"5-year hold exit strategy: refi-and-hold vs. sell-at-stabilization vs. recapitalize. Compute the equity-multiple cliff at each path."},
+    {"id":"glaze-010","flavor":"glaze","tier":"HONEY","source":"cre/cre_honey_stamped.jsonl","pair_index":748102,"domain":"cre/development","rubric_avg":8.4,"tribunal_seal":true,"preview":"Build-to-suit underwriting: $58M total cost, $4.20M stabilized NOI, 18-month construction, IG tenant. Compute development spread vs. acquisition cap."},
+    {"id":"glaze-011","flavor":"glaze","tier":"HONEY","source":"cre/cre_honey_stamped.jsonl","pair_index":780994,"domain":"cre/ic-readiness","rubric_avg":8.8,"tribunal_seal":true,"preview":"IC memo synthesis: 4-page institutional brief on a $115M Class A industrial portfolio. Lead with the 3 risk-adjusted return drivers, not the property tour."},
+    {"id":"glaze-012","flavor":"glaze","tier":"HONEY","source":"cre/cre_honey_stamped.jsonl","pair_index":808213,"domain":"cre/pass-decision","rubric_avg":8.9,"tribunal_seal":true,"preview":"PASS rationale on a flagship sub-market deal: negative leverage, sub-market growth flat, debt-yield below CMBS floor. Defend the kill to the IC."},
+
+    {"id":"blueberry-001","flavor":"blueberry","tier":"HONEY","source":"grants/swarmgrant_honey.jsonl","pair_index":2814,"domain":"grants/budget","rubric_avg":8.5,"tribunal_seal":true,"preview":"NIH modular vs. detailed budget decision: 5-year R01 at $375K/year direct. Justify modular and write the personnel-effort statement."},
+    {"id":"blueberry-002","flavor":"blueberry","tier":"HONEY","source":"grants/swarmgrant_honey.jsonl","pair_index":7019,"domain":"grants/specific-aims","rubric_avg":8.7,"tribunal_seal":true,"preview":"Specific Aims revision · reviewer flagged Aim 3 as 'descriptive, not mechanistic'. Rewrite the aim to add the hypothesis-testing scaffolding."},
+    {"id":"blueberry-003","flavor":"blueberry","tier":"HONEY","source":"grants/swarmgrant_honey.jsonl","pair_index":11483,"domain":"grants/biosketch","rubric_avg":8.4,"tribunal_seal":true,"preview":"NIH biosketch personal statement for an early-stage investigator pivoting from postdoc field A to PI field B. Frame the bridge, not the gap."},
+    {"id":"blueberry-004","flavor":"blueberry","tier":"HONEY","source":"grants/swarmgrant_honey.jsonl","pair_index":17298,"domain":"grants/foundation-loi","rubric_avg":8.5,"tribunal_seal":true,"preview":"LOI structure for a $250K foundation seed grant on rural workforce attrition. Lead with the foundation's strategic priority, not the applicant's CV."},
+    {"id":"blueberry-005","flavor":"blueberry","tier":"HONEY","source":"aviation_merged_8662.jsonl","pair_index":1842,"domain":"aviation/performance","rubric_avg":8.4,"tribunal_seal":true,"preview":"Performance calc · density altitude 8,400 ft, gross weight 3,180 lb, runway 2,800 ft turf. Report takeoff distance, safety margin, and the go/no-go threshold."},
+    {"id":"blueberry-006","flavor":"blueberry","tier":"HONEY","source":"aviation_merged_8662.jsonl","pair_index":3294,"domain":"aviation/weight-balance","rubric_avg":8.5,"tribunal_seal":true,"preview":"Weight and balance: 4 SOB + 64 lb baggage + 38 gal fuel. Confirm CG is in envelope at takeoff and after 2 hr cruise. Flag any wedge issues."},
+    {"id":"blueberry-007","flavor":"blueberry","tier":"HONEY","source":"aviation_merged_8662.jsonl","pair_index":4719,"domain":"aviation/weather-decision","rubric_avg":8.6,"tribunal_seal":true,"preview":"VFR go/no-go: forecast 3 SM viz, BKN 2,000, isolated CB along route. Apply personal-minimums framework and report the decision with the gating call."},
+    {"id":"blueberry-008","flavor":"blueberry","tier":"HONEY","source":"aviation_merged_8662.jsonl","pair_index":6041,"domain":"aviation/regs","rubric_avg":8.3,"tribunal_seal":true,"preview":"14 CFR 91.175 interpretation · approach minimums at a non-towered field · MDA reached, runway environment not in sight. Specify the legal call."},
+    {"id":"blueberry-009","flavor":"blueberry","tier":"HONEY","source":"openalex/openalex_honey.jsonl","pair_index":4218,"domain":"signal/extraction","rubric_avg":8.5,"tribunal_seal":true,"preview":"Extract the load-bearing claim from a 2026 paper on industrial cap-rate compression. Separate the empirical claim from the model assumption."},
+    {"id":"blueberry-010","flavor":"blueberry","tier":"HONEY","source":"openalex/openalex_honey.jsonl","pair_index":8932,"domain":"signal/synthesis","rubric_avg":8.4,"tribunal_seal":true,"preview":"Synthesize 3 OpenAlex papers on cold-storage demand-side drivers. Surface the cross-paper claim only one paper makes explicit."},
+    {"id":"blueberry-011","flavor":"blueberry","tier":"HONEY","source":"signal_honey.jsonl","pair_index":1284,"domain":"signal/x-thesis","rubric_avg":8.5,"tribunal_seal":true,"preview":"X-thread thesis extraction · founder pain on regional bank CRE exposure · 8 posts. Distill to the 1-sentence underwriting implication."},
+    {"id":"blueberry-012","flavor":"blueberry","tier":"HONEY","source":"signal_honey.jsonl","pair_index":2891,"domain":"signal/macro","rubric_avg":8.4,"tribunal_seal":true,"preview":"Macro signal · Fed minutes vs. dot plot divergence · CRE debt-market implication. Write the 3-bullet brief an LP would send a GP."}
+  ]
+}

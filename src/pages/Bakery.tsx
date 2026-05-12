@@ -49,8 +49,9 @@ function BakeryHeader() {
           <a href="#rack" className="text-neutral-400 hover:text-neutral-100">bakers rack</a>
           <a href="#menu" className="text-neutral-400 hover:text-neutral-100">the menu</a>
           <a href="#freshness" className="text-neutral-400 hover:text-neutral-100">freshness</a>
+          <a href="/box" className="text-amber-400 font-semibold hover:text-amber-300">build a box →</a>
           <a href={X_URL} target="_blank" rel="noreferrer"
-             className="text-amber-400 font-semibold hover:text-amber-300">x ↗</a>
+             className="text-neutral-500 hover:text-amber-300">x ↗</a>
         </div>
       </div>
     </header>
@@ -82,13 +83,17 @@ function Hero() {
         </p>
         <Stats />
         <div className="mt-10 flex flex-wrap gap-3">
-          <a href="https://bounty.swarmandbee.ai"
+          <a href="/box"
              className="px-6 py-3 rounded-lg bg-amber-500 text-neutral-950 font-bold hover:bg-amber-400 transition-colors">
-            Place an order →
+            Build a Baker&apos;s Dozen · $149 →
           </a>
           <a href="#rack"
              className="px-6 py-3 rounded-lg border-2 border-neutral-700 text-neutral-100 font-semibold hover:border-amber-400 transition-colors">
-            Open the bakers rack ↓
+            Walk the rack ↓
+          </a>
+          <a href="https://bounty.swarmandbee.ai"
+             className="px-6 py-3 rounded-lg border border-neutral-800 text-neutral-300 text-sm font-semibold hover:border-amber-400 transition-colors">
+            500-Pack brief →
           </a>
         </div>
       </div>
@@ -736,65 +741,106 @@ function Menu() {
         <h2 className="text-xs font-semibold tracking-widest text-neutral-500 uppercase mb-3">
           <span className="text-amber-400">▍</span> The menu
         </h2>
-        <p className="text-neutral-400 leading-relaxed mb-8 max-w-3xl">
-          Two SKUs. Both organic, both fresh-baked, both anchored. Pick the one
-          that fits the brief.
+        <p className="text-neutral-400 leading-relaxed mb-3 max-w-3xl">
+          Three SKUs. All organic, all fresh-baked, all Tribunal-sealed and Hedera-anchored.
+          One ladder, three rungs — taste, train, scale.
+        </p>
+        <p className="text-amber-300/90 text-sm font-mono mb-8 max-w-3xl">
+          ▸ 12 pairs is a <em>taste</em>. 500 pairs is the <em>training floor</em>. 25,000 is the <em>hard cap</em>.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {/* By the pound */}
-          <div className="rounded-lg border border-amber-900/40 bg-gradient-to-br from-amber-950/20 to-neutral-900/30 p-7 flex flex-col">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {/* Taste Pack (Baker's Dozen) — evaluation, not training */}
+          <div className="rounded-lg border-2 border-amber-400/50 bg-gradient-to-br from-amber-900/40 to-neutral-900/30 p-7 flex flex-col relative">
+            <div className="absolute -top-3 left-7 px-2 py-1 text-[10px] uppercase tracking-widest bg-amber-400 text-neutral-950 rounded font-bold">walk-in counter</div>
             <div className="flex items-baseline justify-between mb-3">
-              <h3 className="text-2xl font-black text-amber-400">By the pound</h3>
-              <span className="text-[10px] uppercase tracking-widest text-neutral-500 font-mono">wholesale corpora</span>
+              <h3 className="text-2xl font-black text-amber-300">Taste Pack</h3>
+              <span className="text-[10px] uppercase tracking-widest text-neutral-500 font-mono">$149 · 12 pairs</span>
             </div>
-            <p className="text-sm text-neutral-300 leading-relaxed mb-4">
-              Bulk training corpora, graded, deduped, schema-validated,
-              freshness-stamped. Sold per 1,000 Honey Buns. For shops with a
-              base model and a need for breadth.
+            <p className="text-sm text-neutral-300 leading-relaxed mb-3">
+              The Baker&apos;s Dozen. 12 hand-picked pairs from the rack — any mix of Jelly,
+              Chocolate, Glaze, or Blueberry. For evaluation, A/B benchmarking, or seeding
+              your own curation set.
+            </p>
+            <p className="text-xs text-rose-300/90 font-mono leading-relaxed mb-4 px-2 py-1.5 bg-rose-950/20 border border-rose-900/30 rounded">
+              ▸ Not a training set. 12 pairs cannot fine-tune a model. Step up to the 500-Pack for that.
             </p>
             <ul className="text-sm text-neutral-400 space-y-2 mb-6">
-              <li className="flex gap-2"><span className="text-amber-500">•</span>Honey-grade pairs only (Jelly Donuts + Propolis Glaze filtered)</li>
-              <li className="flex gap-2"><span className="text-amber-500">•</span>Provenance chain per pair (signal → batch → anchor)</li>
-              <li className="flex gap-2"><span className="text-amber-500">•</span>SHA256 manifest + optional Hedera anchor</li>
-              <li className="flex gap-2"><span className="text-amber-500">•</span>Re-bake guarantee: 90-day freshness refresh on request</li>
-              <li className="flex gap-2"><span className="text-amber-500">•</span>Domains in stock: CRE, medical, aviation</li>
+              <li className="flex gap-2"><span className="text-amber-400">•</span>Quality-evaluate before committing to wholesale</li>
+              <li className="flex gap-2"><span className="text-amber-400">•</span>A/B benchmark your existing model</li>
+              <li className="flex gap-2"><span className="text-amber-400">•</span>Test your eval pipeline / schema / licensing</li>
+              <li className="flex gap-2"><span className="text-amber-400">•</span>Use as seed templates for your own curation</li>
+              <li className="flex gap-2"><span className="text-amber-400">•</span>sha256 + Tribunal seal + Hedera HCS tx</li>
             </ul>
-            <div className="mt-auto pt-4 border-t border-neutral-800">
-              <div className="text-xs uppercase tracking-widest text-neutral-500 mb-1">price</div>
-              <div className="text-sm text-neutral-300">Quote on volume — typically <code className="text-amber-400">$/1k pairs</code></div>
+            <div className="mt-auto pt-4 border-t border-amber-900/40">
+              <a href="/box"
+                 className="block text-center px-4 py-2.5 rounded-lg bg-amber-500 text-neutral-950 font-bold hover:bg-amber-400 transition-colors">
+                Walk into the bakery →
+              </a>
             </div>
           </div>
 
-          {/* The 500-Pack */}
-          <div className="rounded-lg border-2 border-amber-500/40 bg-gradient-to-br from-amber-900/30 to-neutral-900/30 p-7 flex flex-col relative">
-            <div className="absolute -top-3 left-7 px-2 py-1 text-[10px] uppercase tracking-widest bg-amber-500 text-neutral-950 rounded font-bold">signature blend</div>
+          {/* The 500-Pack — the actual training floor */}
+          <div className="rounded-lg border-2 border-amber-500/60 bg-gradient-to-br from-amber-900/40 to-neutral-900/30 p-7 flex flex-col relative">
+            <div className="absolute -top-3 left-7 px-2 py-1 text-[10px] uppercase tracking-widest bg-amber-500 text-neutral-950 rounded font-bold">training floor</div>
             <div className="flex items-baseline justify-between mb-3">
-              <h3 className="text-2xl font-black text-amber-300">The 500-Pack</h3>
-              <span className="text-[10px] uppercase tracking-widest text-neutral-500 font-mono">targeted micro-corpus</span>
+              <h3 className="text-2xl font-black text-amber-300">500-Pack</h3>
+              <span className="text-[10px] uppercase tracking-widest text-neutral-500 font-mono">$249 · 500 pairs</span>
             </div>
-            <p className="text-sm text-neutral-300 leading-relaxed mb-4">
-              500–1,000 Jelly Donuts hand-built around one failure mode. The
-              bakery&apos;s flagship SKU. This is what Curator-Mistral-3B v2
-              ships against — and what put Atlas Block-2 on the path to recovery.
+            <p className="text-sm text-neutral-300 leading-relaxed mb-3">
+              The minimum viable training-data SKU. 500 Tribunal-sealed pairs scoped to
+              ONE specific failure mode you bring on intake. This is where a LoRA cook
+              actually starts to move the needle.
+            </p>
+            <p className="text-xs text-amber-300/90 font-mono leading-relaxed mb-4 px-2 py-1.5 bg-amber-950/20 border border-amber-900/40 rounded">
+              ▸ Cooks 4-6h on a 4B base · $5-15 of GPU on vast.ai · our own Curator-3B v2 proved the leverage at this size.
             </p>
             <ul className="text-sm text-neutral-400 space-y-2 mb-6">
-              <li className="flex gap-2"><span className="text-amber-400">•</span>Failure mode scoped + acceptance criteria locked before bake</li>
-              <li className="flex gap-2"><span className="text-amber-400">•</span>Each pair carries <code className="text-amber-400">failure_source</code> + <code className="text-amber-400">repair_goal</code> metadata</li>
-              <li className="flex gap-2"><span className="text-amber-400">•</span>Tribunal-sealed before delivery (head baker signs off)</li>
-              <li className="flex gap-2"><span className="text-amber-400">•</span>Optional: we cook the model for you on the corpus</li>
-              <li className="flex gap-2"><span className="text-amber-400">•</span>25-50× the leverage of an equivalent wholesale order</li>
+              <li className="flex gap-2"><span className="text-amber-400">•</span>Scoped to one failure mode · acceptance criteria locked pre-bake</li>
+              <li className="flex gap-2"><span className="text-amber-400">•</span>Each pair carries <code className="text-amber-400">failure_source</code> + <code className="text-amber-400">repair_goal</code></li>
+              <li className="flex gap-2"><span className="text-amber-400">•</span>Optional: we cook the model for you ($249 prep + GPU pass-through)</li>
+              <li className="flex gap-2"><span className="text-amber-400">•</span>25-50× leverage vs equivalent wholesale tonnage</li>
+              <li className="flex gap-2"><span className="text-amber-400">•</span>Domain multipliers apply (finance ×3 · legal ×2.5 · medical ×4)</li>
+            </ul>
+            <div className="mt-auto pt-4 border-t border-amber-900/40">
+              <a href="https://bounty.swarmandbee.ai"
+                 className="block text-center px-4 py-2.5 rounded-lg bg-amber-500 text-neutral-950 font-bold hover:bg-amber-400 transition-colors">
+                Brief the bakers →
+              </a>
+            </div>
+          </div>
+
+          {/* By the pound — wholesale breadth */}
+          <div className="rounded-lg border border-amber-900/40 bg-gradient-to-br from-amber-950/20 to-neutral-900/30 p-7 flex flex-col">
+            <div className="flex items-baseline justify-between mb-3">
+              <h3 className="text-2xl font-black text-amber-400">By the pound</h3>
+              <span className="text-[10px] uppercase tracking-widest text-neutral-500 font-mono">$249/lb floor</span>
+            </div>
+            <p className="text-sm text-neutral-300 leading-relaxed mb-4">
+              Wholesale corpora for shops with a base model and a need for breadth.
+              1 lb = 500 HONEY pairs. Volume breaks step the price down; never below
+              the $99/lb anchor-customer floor.
+            </p>
+            <ul className="text-sm text-neutral-400 space-y-2 mb-6">
+              <li className="flex gap-2"><span className="text-amber-500">•</span>1-9 lb · $249/lb · narrow-skill build (1-4.5K pairs)</li>
+              <li className="flex gap-2"><span className="text-amber-500">•</span>10-99 lb · $199/lb · vertical domain (5-49K pairs)</li>
+              <li className="flex gap-2"><span className="text-amber-500">•</span>100+ lb · $149/lb · domain mastery (50K+ pairs · 25K cap per cook)</li>
+              <li className="flex gap-2"><span className="text-amber-500">•</span>HONEY-grade only · sha256 manifest · Hedera anchor</li>
+              <li className="flex gap-2"><span className="text-amber-500">•</span>90-day freshness refresh on request</li>
             </ul>
             <div className="mt-auto pt-4 border-t border-neutral-800">
-              <div className="text-xs uppercase tracking-widest text-neutral-500 mb-1">price</div>
-              <div className="text-sm text-neutral-300">Fixed-price per pack — scoped on intake</div>
+              <a href="https://bounty.swarmandbee.ai"
+                 className="block text-center px-4 py-2.5 rounded-lg border border-amber-500 text-amber-400 font-bold hover:bg-amber-500 hover:text-neutral-950 transition-colors">
+                Quote on volume →
+              </a>
             </div>
           </div>
         </div>
 
         <p className="mt-8 text-sm text-neutral-500 leading-relaxed max-w-3xl">
-          Wholesale buyers training a generalist? Take a pound (or ten).
-          Engineers with a specific failure mode? A 500-Pack of Jelly Donuts
+          Not sure which rung? Walk into <a href="/box" className="text-amber-400 hover:text-amber-300">the bakery</a> —
+          the rack page has a 30-second calculator that asks four questions and points you to
+          the right SKU. Engineers with a specific failure mode? A 500-Pack of Jelly Donuts
           out-performs a wholesale ton at one-tenth the cost.{" "}
           <strong className="text-neutral-300">Less is better when the cut is targeted.</strong>
         </p>
