@@ -27,8 +27,10 @@ export default function Bakery() {
       <Mapping />
       <LessIsBetter />
       <Freshness />
+      <Compassionate />
       <Menu />
-      <CallToAction />
+      <TryFree />
+      <HowToBuy />
       <BakeryFooter />
     </div>
   );
@@ -49,7 +51,8 @@ function BakeryHeader() {
           <a href="#rack" className="text-neutral-400 hover:text-neutral-100">bakers rack</a>
           <a href="#menu" className="text-neutral-400 hover:text-neutral-100">the menu</a>
           <a href="#freshness" className="text-neutral-400 hover:text-neutral-100">freshness</a>
-          <a href="/box" className="text-amber-400 font-semibold hover:text-amber-300">build a box →</a>
+          <a href="#compassionate" className="text-rose-300/80 hover:text-rose-200">compassionate</a>
+          <a href="#how-to-buy" className="text-amber-400 font-semibold hover:text-amber-300">how to buy ↓</a>
           <a href={X_URL} target="_blank" rel="noreferrer"
              className="text-neutral-500 hover:text-amber-300">x ↗</a>
         </div>
@@ -81,20 +84,28 @@ function Hero() {
         <p className="mt-4 text-lg md:text-xl text-amber-400 max-w-3xl leading-relaxed font-semibold">
           500 fresh Jelly Donuts crush 25,000 ingredients. Less is better.
         </p>
+        <p className="mt-3 text-sm text-rose-300/80 font-mono">
+          ▸ Now baking · <strong className="text-rose-200">24,000 diabetes pairs</strong> for{" "}
+          <code className="text-rose-200">dmack.ai</code> ·{" "}
+          <a href="#compassionate" className="underline-offset-2 hover:underline hover:text-rose-200">
+            the founder&apos;s vertical ↓
+          </a>
+        </p>
         <Stats />
-        <div className="mt-10 flex flex-wrap gap-3">
-          <a href="/box"
-             className="px-6 py-3 rounded-lg bg-amber-500 text-neutral-950 font-bold hover:bg-amber-400 transition-colors">
-            Build a Baker&apos;s Dozen · $149 →
+        <div className="mt-10 flex flex-wrap gap-3 items-center">
+          <a href="#try-free"
+             className="px-6 py-3 rounded-lg bg-rose-500 text-neutral-950 font-bold hover:bg-rose-400 transition-colors">
+            Try 10 free medical datasets →
           </a>
           <a href="#rack"
              className="px-6 py-3 rounded-lg border-2 border-neutral-700 text-neutral-100 font-semibold hover:border-amber-400 transition-colors">
             Walk the rack ↓
           </a>
-          <a href="https://bounty.swarmandbee.ai"
-             className="px-6 py-3 rounded-lg border border-neutral-800 text-neutral-300 text-sm font-semibold hover:border-amber-400 transition-colors">
-            500-Pack brief →
-          </a>
+        </div>
+        <div className="mt-4 inline-flex items-center gap-3 px-4 py-2 rounded-lg bg-neutral-900 border border-neutral-800 font-mono text-sm">
+          <span className="text-neutral-500">$</span>
+          <span className="text-amber-300">pip install swarmbee-bakery</span>
+          <span className="text-neutral-600 text-xs">· v0.1.1 on PyPI</span>
         </div>
       </div>
     </section>
@@ -732,6 +743,95 @@ function Freshness() {
   );
 }
 
+/* ------------------------------ compassionate ------------------------------ */
+// The founder's chair. Two-stream guardrail: sourced medical facts + lived voice.
+// Lived voice is for register, never for medical authority. This is load-bearing.
+
+function Compassionate() {
+  return (
+    <section id="compassionate" className="border-b border-neutral-800 bg-gradient-to-b from-neutral-950 via-rose-950/10 to-neutral-950">
+      <div className="max-w-3xl mx-auto px-6 py-16">
+        <div className="text-xs font-semibold tracking-widest text-neutral-500 uppercase mb-6">
+          <span className="text-rose-300">▍</span> Compassionate intelligence
+        </div>
+
+        <p className="text-neutral-100 text-xl leading-relaxed mb-6 font-semibold">
+          The bakery has a founder&apos;s chair.
+        </p>
+
+        <p className="text-neutral-300 leading-relaxed mb-4">
+          Donovan Mackey is a <strong className="text-rose-300">Type 1 diabetic</strong>.
+          Insulin-dependent. 14 foot surgeries. The lived experience that anchors
+          the diabetes vertical — and the gift that demands we get the data right.
+        </p>
+
+        <p className="text-neutral-300 leading-relaxed mb-8">
+          We&apos;ve minted{" "}
+          <strong className="text-amber-400">24,000 pairs in the diabetes space</strong>{" "}
+          for <code className="text-amber-300 font-mono">dmack.ai</code> — the first
+          focused build in a longer arc toward the <em>diabetic supply shop</em>.
+          Two streams, never confused:
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
+          <div className="rounded-lg border border-amber-900/40 bg-amber-950/10 p-5">
+            <div className="text-[10px] uppercase tracking-widest text-amber-400 font-mono mb-2">
+              Stream 1 · sourced facts
+            </div>
+            <div className="text-sm text-neutral-300 leading-relaxed">
+              Medical authority pulled from documented sources — ADA, Endocrine
+              Society, IWGDF, NIDDK. Citation-locked, source-attributed,
+              Tribunal-graded.
+            </div>
+          </div>
+          <div className="rounded-lg border border-rose-900/40 bg-rose-950/10 p-5">
+            <div className="text-[10px] uppercase tracking-widest text-rose-300 font-mono mb-2">
+              Stream 2 · lived voice
+            </div>
+            <div className="text-sm text-neutral-300 leading-relaxed">
+              The founder&apos;s voice — used for register and human resonance,{" "}
+              <strong className="text-rose-200">never as the medical authority</strong>.
+              The discipline that closed $8B in deals is the same discipline that
+              grades a pair.
+            </div>
+          </div>
+        </div>
+
+        <div className="rounded-lg border border-neutral-800 bg-neutral-900/40 p-5 mb-10">
+          <div className="text-[10px] uppercase tracking-widest text-neutral-500 font-mono mb-4">
+            Where the corpus goes
+          </div>
+          <ul className="grid grid-cols-1 md:grid-cols-2 gap-y-2 gap-x-6 text-sm text-neutral-300">
+            <li className="flex gap-2"><span className="text-rose-300">•</span>earlier detection</li>
+            <li className="flex gap-2"><span className="text-rose-300">•</span>smarter monitoring</li>
+            <li className="flex gap-2"><span className="text-rose-300">•</span>better education</li>
+            <li className="flex gap-2"><span className="text-rose-300">•</span>personalized support</li>
+            <li className="flex gap-2"><span className="text-rose-300">•</span>wound-care intelligence</li>
+            <li className="flex gap-2"><span className="text-rose-300">•</span>nutrition &amp; wellness guidance</li>
+          </ul>
+        </div>
+
+        <p className="text-neutral-300 leading-relaxed mb-4">
+          Technology alone isn&apos;t the answer.{" "}
+          <strong className="text-rose-200">Compassionate intelligence</strong> —
+          real data plus human resilience — is what changes millions of lives.
+        </p>
+
+        <p className="text-neutral-400 leading-relaxed italic mb-8">
+          Diabetes didn&apos;t break the founder. It taught him awareness,
+          discipline, gratitude, and purpose.{" "}
+          <span className="not-italic">🎁</span>
+        </p>
+
+        <p className="text-lg text-amber-300 font-semibold leading-relaxed">
+          The future is brighter than people think.{" "}
+          <span className="ml-1">🍯</span>
+        </p>
+      </div>
+    </section>
+  );
+}
+
 /* ------------------------------ menu ------------------------------ */
 
 function Menu() {
@@ -742,41 +842,41 @@ function Menu() {
           <span className="text-amber-400">▍</span> The menu
         </h2>
         <p className="text-neutral-400 leading-relaxed mb-3 max-w-3xl">
-          Three SKUs. All organic, all fresh-baked, all Tribunal-sealed and Hedera-anchored.
-          One ladder, three rungs — taste, train, scale.
+          One ladder, three rungs — <strong className="text-rose-300">taste free</strong>,{" "}
+          <strong className="text-amber-300">scope a repair</strong>, or{" "}
+          <strong className="text-amber-300">order by the pound</strong>. Every order is
+          invoiced (Stripe) or settled to <code className="text-amber-300">swarmusdc.eth</code>.
+          A human reads every submission.
         </p>
         <p className="text-amber-300/90 text-sm font-mono mb-8 max-w-3xl">
-          ▸ 12 pairs is a <em>taste</em>. 500 pairs is the <em>training floor</em>. 25,000 is the <em>hard cap</em>.
+          ▸ 500 free cells is a <em>taste</em>. 500 paid pairs is the <em>training floor</em>. 25,000 is the <em>hard cap per cook</em>.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {/* Taste Pack (Baker's Dozen) — evaluation, not training */}
-          <div className="rounded-lg border-2 border-amber-400/50 bg-gradient-to-br from-amber-900/40 to-neutral-900/30 p-7 flex flex-col relative">
-            <div className="absolute -top-3 left-7 px-2 py-1 text-[10px] uppercase tracking-widest bg-amber-400 text-neutral-950 rounded font-bold">walk-in counter</div>
+          {/* Free 10-Pack — the new entry point. No money. */}
+          <div className="rounded-lg border-2 border-rose-400/50 bg-gradient-to-br from-rose-900/30 to-neutral-900/30 p-7 flex flex-col relative">
+            <div className="absolute -top-3 left-7 px-2 py-1 text-[10px] uppercase tracking-widest bg-rose-400 text-neutral-950 rounded font-bold">try it first · free</div>
             <div className="flex items-baseline justify-between mb-3">
-              <h3 className="text-2xl font-black text-amber-300">Taste Pack</h3>
-              <span className="text-[10px] uppercase tracking-widest text-neutral-500 font-mono">$149 · 12 pairs</span>
+              <h3 className="text-2xl font-black text-rose-300">10 Free</h3>
+              <span className="text-[10px] uppercase tracking-widest text-neutral-500 font-mono">$0 · 500 cells</span>
             </div>
             <p className="text-sm text-neutral-300 leading-relaxed mb-3">
-              The Baker&apos;s Dozen. 12 hand-picked pairs from the rack — any mix of Jelly,
-              Chocolate, Glaze, or Blueberry. For evaluation, A/B benchmarking, or seeding
-              your own curation set.
+              10 free medical sample packs — 50 cells each, one from every named medical
+              SKU. The actual schema, the actual tier grading, the actual sources. No signup,
+              no card, no friction.
             </p>
             <p className="text-xs text-rose-300/90 font-mono leading-relaxed mb-4 px-2 py-1.5 bg-rose-950/20 border border-rose-900/30 rounded">
-              ▸ Not a training set. 12 pairs cannot fine-tune a model. Step up to the 500-Pack for that.
+              ▸ Eval before you pay. 500 free cells covers Dmack&apos;s Royal Jelly, Endo Eclair, Cinnamon Spiral, Madeleine, Scholar Croissant, Global Crumpet, Federal Glaze, Founder&apos;s Pretzel, Royal Jelly Brioche, Golden Glaze.
             </p>
             <ul className="text-sm text-neutral-400 space-y-2 mb-6">
-              <li className="flex gap-2"><span className="text-amber-400">•</span>Quality-evaluate before committing to wholesale</li>
-              <li className="flex gap-2"><span className="text-amber-400">•</span>A/B benchmark your existing model</li>
-              <li className="flex gap-2"><span className="text-amber-400">•</span>Test your eval pipeline / schema / licensing</li>
-              <li className="flex gap-2"><span className="text-amber-400">•</span>Use as seed templates for your own curation</li>
-              <li className="flex gap-2"><span className="text-amber-400">•</span>sha256 + Tribunal seal + Hedera HCS tx</li>
+              <li className="flex gap-2"><span className="text-rose-300">•</span>50 cells × 10 named SKUs</li>
+              <li className="flex gap-2"><span className="text-rose-300">•</span>Same JSON schema as paid delivery</li>
+              <li className="flex gap-2"><span className="text-rose-300">•</span>Tier + source + citation preserved</li>
+              <li className="flex gap-2"><span className="text-rose-300">•</span>Pull via CLI in 60 seconds</li>
             </ul>
-            <div className="mt-auto pt-4 border-t border-amber-900/40">
-              <a href="/box"
-                 className="block text-center px-4 py-2.5 rounded-lg bg-amber-500 text-neutral-950 font-bold hover:bg-amber-400 transition-colors">
-                Walk into the bakery →
-              </a>
+            <div className="mt-auto pt-4 border-t border-rose-900/40">
+              <pre className="text-[11px] font-mono bg-neutral-950 border border-rose-900/30 rounded px-3 py-2 text-rose-300 overflow-x-auto">{`swarmbee-bakery free --all \\
+  --out-dir ./samples`}</pre>
             </div>
           </div>
 
@@ -800,13 +900,14 @@ function Menu() {
               <li className="flex gap-2"><span className="text-amber-400">•</span>Each pair carries <code className="text-amber-400">failure_source</code> + <code className="text-amber-400">repair_goal</code></li>
               <li className="flex gap-2"><span className="text-amber-400">•</span>Optional: we cook the model for you ($249 prep + GPU pass-through)</li>
               <li className="flex gap-2"><span className="text-amber-400">•</span>25-50× leverage vs equivalent wholesale tonnage</li>
-              <li className="flex gap-2"><span className="text-amber-400">•</span>Domain multipliers apply (finance ×3 · legal ×2.5 · medical ×4)</li>
+              <li className="flex gap-2"><span className="text-amber-400">•</span>Invoice via Stripe or swarmusdc.eth</li>
             </ul>
             <div className="mt-auto pt-4 border-t border-amber-900/40">
-              <a href="https://bounty.swarmandbee.ai"
-                 className="block text-center px-4 py-2.5 rounded-lg bg-amber-500 text-neutral-950 font-bold hover:bg-amber-400 transition-colors">
-                Brief the bakers →
-              </a>
+              <pre className="text-[11px] font-mono bg-neutral-950 border border-amber-900/40 rounded px-3 py-2 text-amber-300 overflow-x-auto">{`swarmbee-bakery order \\
+  --sku 500-pack \\
+  --domain medical \\
+  --failure-mode "..." \\
+  --confirm`}</pre>
             </div>
           </div>
 
@@ -817,69 +918,216 @@ function Menu() {
               <span className="text-[10px] uppercase tracking-widest text-neutral-500 font-mono">$249/lb floor</span>
             </div>
             <p className="text-sm text-neutral-300 leading-relaxed mb-4">
-              Wholesale corpora for shops with a base model and a need for breadth.
-              1 lb = 500 HONEY pairs. Volume breaks step the price down; never below
-              the $99/lb anchor-customer floor.
+              Wholesale corpora by named SKU. 1 lb = 500 HONEY cells. Pick a flavor
+              (Dmack&apos;s Royal Jelly, Madeleine, Scholar Croissant, Royal Jelly Brioche…)
+              and specify quantity in notes.
             </p>
             <ul className="text-sm text-neutral-400 space-y-2 mb-6">
-              <li className="flex gap-2"><span className="text-amber-500">•</span>1-9 lb · $249/lb · narrow-skill build (1-4.5K pairs)</li>
-              <li className="flex gap-2"><span className="text-amber-500">•</span>10-99 lb · $199/lb · vertical domain (5-49K pairs)</li>
-              <li className="flex gap-2"><span className="text-amber-500">•</span>100+ lb · $149/lb · domain mastery (50K+ pairs · 25K cap per cook)</li>
-              <li className="flex gap-2"><span className="text-amber-500">•</span>HONEY-grade only · sha256 manifest · Hedera anchor</li>
-              <li className="flex gap-2"><span className="text-amber-500">•</span>90-day freshness refresh on request</li>
+              <li className="flex gap-2"><span className="text-amber-500">•</span>1-9 lb · $249/lb · narrow-skill build (1-4.5K cells)</li>
+              <li className="flex gap-2"><span className="text-amber-500">•</span>10-99 lb · $199/lb · vertical domain (5-49K cells)</li>
+              <li className="flex gap-2"><span className="text-amber-500">•</span>100+ lb · $149/lb · domain mastery (50K+ cells · 25K cap per cook)</li>
+              <li className="flex gap-2"><span className="text-amber-500">•</span>sha256 manifest + optional Hedera anchor</li>
+              <li className="flex gap-2"><span className="text-amber-500">•</span>Invoice via Stripe or swarmusdc.eth</li>
             </ul>
             <div className="mt-auto pt-4 border-t border-neutral-800">
-              <a href="https://bounty.swarmandbee.ai"
-                 className="block text-center px-4 py-2.5 rounded-lg border border-amber-500 text-amber-400 font-bold hover:bg-amber-500 hover:text-neutral-950 transition-colors">
-                Quote on volume →
-              </a>
+              <pre className="text-[11px] font-mono bg-neutral-950 border border-neutral-800 rounded px-3 py-2 text-amber-400 overflow-x-auto">{`swarmbee-bakery order \\
+  --sku by-the-pound \\
+  --domain medical \\
+  --notes "Dmack RJ · 5 lb" \\
+  --confirm`}</pre>
             </div>
           </div>
         </div>
 
         <p className="mt-8 text-sm text-neutral-500 leading-relaxed max-w-3xl">
-          Not sure which rung? Walk into <a href="/box" className="text-amber-400 hover:text-amber-300">the bakery</a> —
-          the rack page has a 30-second calculator that asks four questions and points you to
-          the right SKU. Engineers with a specific failure mode? A 500-Pack of Jelly Donuts
-          out-performs a wholesale ton at one-tenth the cost.{" "}
-          <strong className="text-neutral-300">Less is better when the cut is targeted.</strong>
+          Not sure where to start? <a href="#try-free" className="text-rose-300 hover:text-rose-200">Pull the 10 free packs ↓</a> —
+          they&apos;re identical in shape to a paid delivery, just smaller. If the schema fits
+          your loader and the quality reads honest, step up to a 500-Pack or order by the
+          pound. <strong className="text-neutral-300">Less is better when the cut is targeted.</strong>
         </p>
       </div>
     </section>
   );
 }
 
-/* ------------------------------ CTA ------------------------------ */
+/* ------------------------------ try free ------------------------------ */
 
-function CallToAction() {
+const FREE_PACKS: { flavor: string; slug: string; tier: string; pairs: number }[] = [
+  { flavor: "Dmack's Royal Jelly",  slug: "dmack-royal-jelly",  tier: "APEX",  pairs: 50 },
+  { flavor: "Endo Eclair",          slug: "endo-eclair",        tier: "APEX",  pairs: 50 },
+  { flavor: "Cinnamon Spiral",      slug: "cinnamon-spiral",    tier: "APEX",  pairs: 50 },
+  { flavor: "Madeleine",            slug: "madeleine",          tier: "HONEY", pairs: 50 },
+  { flavor: "Scholar Croissant",    slug: "scholar-croissant",  tier: "HONEY", pairs: 50 },
+  { flavor: "Global Crumpet",       slug: "global-crumpet",     tier: "HONEY", pairs: 50 },
+  { flavor: "Federal Glaze",        slug: "federal-glaze",      tier: "HONEY", pairs: 50 },
+  { flavor: "Founder's Pretzel",    slug: "founders-pretzel",   tier: "APEX",  pairs: 50 },
+  { flavor: "Royal Jelly Brioche",  slug: "royal-jelly-brioche",tier: "APEX",  pairs: 50 },
+  { flavor: "Golden Glaze",         slug: "golden-glaze",       tier: "HONEY", pairs: 50 },
+];
+
+function TryFree() {
   return (
-    <section className="border-b border-neutral-800">
-      <div className="max-w-3xl mx-auto px-6 py-16 text-center">
-        <h2 className="text-2xl md:text-3xl font-bold mb-4">Want bakery-grade data on your next deliverable?</h2>
-        <p className="text-neutral-400 mb-8">
-          Bring us a failure mode. We&apos;ll bake the 500-1000 Jelly Donuts that
-          target it and ship a corpus or a tuned model — your choice — with
-          sha256 receipts and optional Hedera anchoring.
-        </p>
-        <div className="flex flex-wrap gap-3 justify-center">
-          <a href="https://bounty.swarmandbee.ai"
-             className="px-6 py-3 rounded-lg bg-amber-500 text-neutral-950 font-bold hover:bg-amber-400 transition-colors">
-            Send a brief →
-          </a>
-          <a href="https://identity.swarmandbee.ai"
-             className="px-6 py-3 rounded-lg border-2 border-neutral-700 text-neutral-100 font-semibold hover:border-amber-400 transition-colors">
-            The receipts ↗
-          </a>
-          <a href={`mailto:${EMAIL}`}
-             className="px-6 py-3 rounded-lg border-2 border-neutral-700 text-neutral-100 font-semibold hover:border-amber-400 transition-colors">
-            {EMAIL}
-          </a>
+    <section id="try-free" className="border-b border-neutral-800 bg-gradient-to-b from-neutral-950 via-rose-950/10 to-neutral-950">
+      <div className="max-w-5xl mx-auto px-6 py-16">
+        <div className="text-xs font-semibold tracking-widest text-neutral-500 uppercase mb-3">
+          <span className="text-rose-300">▍</span> Try 10 free medical datasets · no signup, no card
         </div>
-        <p className="text-sm text-neutral-500 mt-10">
-          Need GPUs to train on the corpus you order? We use vast.ai —{" "}
+        <p className="text-neutral-300 text-lg leading-relaxed mb-3 max-w-3xl">
+          <strong className="text-rose-200">500 free medical cells</strong> · 50 cells from each of
+          our 10 named medical SKUs. Real schema, real tier grading, real source citations.
+          Pull all 10 packs in one command, evaluate the shape, then decide if you want the
+          full corpus.
+        </p>
+        <p className="text-neutral-500 text-sm mb-8 max-w-3xl">
+          Same JSON shape as a paid delivery — just smaller. If the loader works on the
+          free pack, it works on the full corpus.
+        </p>
+
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-8">
+          {FREE_PACKS.map((p) => (
+            <a
+              key={p.slug}
+              href={`/samples/free/${p.slug}.jsonl`}
+              className="rounded-lg border border-rose-900/40 bg-neutral-900/40 p-3 hover:border-rose-400/60 hover:bg-rose-950/20 transition-colors group"
+            >
+              <div className="text-[10px] font-mono text-rose-400 mb-1">{p.tier}</div>
+              <div className="text-sm font-semibold text-neutral-100 leading-tight mb-1 group-hover:text-rose-200">{p.flavor}</div>
+              <div className="text-[10px] font-mono text-neutral-500">{p.pairs} cells · .jsonl</div>
+            </a>
+          ))}
+        </div>
+
+        <div className="rounded-lg border border-neutral-800 bg-neutral-950 p-5 mb-4">
+          <div className="text-[10px] uppercase tracking-widest text-neutral-500 font-mono mb-3">
+            Pull all 10 in one shot · 60 seconds
+          </div>
+          <pre className="text-sm font-mono text-amber-300 leading-relaxed overflow-x-auto">{`# install (one-time)
+pipx install swarmbee-bakery        # or: pip install in a venv
+
+# pull all 10 free medical packs
+swarmbee-bakery free --all --out-dir ./swarm-samples/
+
+# inspect one pack
+swarmbee-bakery free dmack-royal-jelly --summary`}</pre>
+        </div>
+        <p className="text-xs text-neutral-500 leading-relaxed max-w-3xl">
+          Or click any pack above to download directly. Index manifest is at{" "}
+          <a href="/samples/free/index.json" className="text-rose-300 hover:text-rose-200 font-mono">/samples/free/index.json</a>.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------ how to buy ------------------------------ */
+
+function HowToBuy() {
+  return (
+    <section id="how-to-buy" className="border-b border-neutral-800">
+      <div className="max-w-4xl mx-auto px-6 py-16">
+        <div className="text-xs font-semibold tracking-widest text-neutral-500 uppercase mb-3">
+          <span className="text-amber-400">▍</span> How to buy · for devs
+        </div>
+        <p className="text-neutral-300 text-lg leading-relaxed mb-3 max-w-3xl">
+          Datasets are available <strong className="text-amber-300">only through the CLI</strong>.
+          No browser checkout, no card-on-file, no instant download.
+        </p>
+        <p className="text-neutral-400 leading-relaxed mb-8 max-w-3xl">
+          A human reads every order within one business day. Settlement is{" "}
+          <strong className="text-amber-300">Stripe invoice</strong> or{" "}
+          <strong className="text-amber-300">USDC</strong> to{" "}
+          <code className="text-amber-300">swarmusdc.eth</code>. The manual touch is the
+          feature, not a gap — every shipment has a name behind it.
+        </p>
+
+        <ol className="space-y-5 mb-10">
+          {[
+            {
+              n: "1",
+              label: "Install",
+              cmd: "pipx install swarmbee-bakery   # or pip in a venv",
+              note: "Python 3.10+, one runtime dep (requests). v0.1.1 live on PyPI.",
+            },
+            {
+              n: "2",
+              label: "Browse the menu",
+              cmd: "swarmbee-bakery menu --domain medical",
+              note: "Shows TIER + TRIBUNAL columns. 11 named medical SKUs with real cell counts.",
+            },
+            {
+              n: "3",
+              label: "Taste a sample (free)",
+              cmd: "swarmbee-bakery free --all --out-dir ./swarm-samples/",
+              note: "10 free packs · 500 cells total · same schema as paid delivery.",
+            },
+            {
+              n: "4",
+              label: "Submit your order",
+              cmd: "swarmbee-bakery order --sku by-the-pound \\\n  --domain medical \\\n  --name 'Your Name' --email 'you@you.dev' \\\n  --notes \"Dmack's Royal Jelly · 5 lb · Stripe invoice\" \\\n  --confirm",
+              note: "Dry-run prints by default. --confirm POSTs to /api/bakery-intake (your sha256 receipt is local + immediate).",
+            },
+          ].map((s) => (
+            <li key={s.n} className="flex gap-5">
+              <div className="text-3xl font-black text-amber-400 font-mono w-10 flex-shrink-0 leading-none pt-1">{s.n}</div>
+              <div className="flex-1 min-w-0">
+                <div className="text-sm font-semibold text-neutral-200 mb-2">{s.label}</div>
+                <pre className="text-xs font-mono bg-neutral-950 border border-neutral-800 rounded px-3 py-2 text-amber-300 overflow-x-auto leading-relaxed">{s.cmd}</pre>
+                <div className="mt-1.5 text-[11px] text-neutral-500 leading-relaxed">{s.note}</div>
+              </div>
+            </li>
+          ))}
+        </ol>
+
+        <div className="rounded-lg border border-amber-900/40 bg-amber-950/10 p-5 mb-10">
+          <div className="text-[10px] uppercase tracking-widest text-amber-400 font-mono mb-3">
+            Then a human takes over — within one business day
+          </div>
+          <ul className="text-sm text-neutral-300 space-y-2">
+            <li><span className="text-amber-400 font-mono mr-2">5 ·</span>We review your order, scope the deliverable, confirm pricing.</li>
+            <li><span className="text-amber-400 font-mono mr-2">6 ·</span>We invoice (Stripe email) <em className="text-neutral-500">or</em> send a settlement address (swarmusdc.eth → 0xBDe2153C…).</li>
+            <li><span className="text-amber-400 font-mono mr-2">7 ·</span>You pay. We assemble the bundle from rails + NAS · sha256 manifest · optional Hedera anchor.</li>
+            <li><span className="text-amber-400 font-mono mr-2">8 ·</span>Signed R2 download URL lands in your inbox.</li>
+          </ul>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
+          <div className="rounded-lg border border-neutral-800 bg-neutral-900/40 p-5">
+            <div className="text-[10px] uppercase tracking-widest text-neutral-500 font-mono mb-2">Stripe invoice</div>
+            <p className="text-sm text-neutral-300 leading-relaxed">
+              Human mints a Stripe invoice and emails the link. No card kept on file.
+              Standard fiat rail, monthly statements, auto-billable to a company.
+            </p>
+          </div>
+          <div className="rounded-lg border border-neutral-800 bg-neutral-900/40 p-5">
+            <div className="text-[10px] uppercase tracking-widest text-neutral-500 font-mono mb-2">swarmusdc.eth</div>
+            <p className="text-sm text-neutral-300 leading-relaxed">
+              USDC on Ethereum L1 by default · ENS{" "}
+              <code className="text-amber-300">swarmusdc.eth</code> resolves to{" "}
+              <code className="text-amber-300">0xBDe2153C…</code> · L2 (Base / Arbitrum)
+              available on request. Sovereign settlement.
+            </p>
+          </div>
+        </div>
+
+        <div className="rounded-lg border border-neutral-800 bg-neutral-950 p-5 mb-8">
+          <div className="text-[10px] uppercase tracking-widest text-neutral-500 font-mono mb-2">Boundaries</div>
+          <ul className="text-xs text-neutral-400 space-y-1 font-mono leading-relaxed">
+            <li>· CLI will never auto-submit without <span className="text-amber-300">--confirm</span></li>
+            <li>· CLI never charges a card · never creates an account on your behalf</li>
+            <li>· No browser checkout · no card-on-file · no instant download · no upsell flow</li>
+            <li>· Every order is read by a human at Swarm &amp; Bee within one business day</li>
+          </ul>
+        </div>
+
+        <div className="text-sm text-neutral-500 leading-relaxed">
+          Questions before ordering? Email{" "}
+          <a href={`mailto:${EMAIL}`} className="text-amber-400 hover:text-amber-300">{EMAIL}</a>{" "}
+          or jump to{" "}
+          <a href="https://discord.gg/buUjYgzP5m" className="text-amber-400 hover:text-amber-300" target="_blank" rel="noreferrer">Discord</a>.
+          GPUs for training? We use vast.ai —{" "}
           <a href="/gpu" className="text-amber-400 hover:text-amber-300">swarmandbee.ai/gpu</a>{" "}
           <span className="text-neutral-600">(referral)</span>.
-        </p>
+        </div>
       </div>
     </section>
   );

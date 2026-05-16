@@ -1,0 +1,111 @@
+{
+  "$comment": "Free medical sample packs \u2014 50 random cells per SKU, sampled with seed=42 for reproducible variety. Same JSON schema as paid delivery.",
+  "title": "10 free medical sample packs",
+  "doctrine": "Try it first. No signup, no card, no friction. If you like the shape, order the full pack via the CLI.",
+  "sample_size_per_pack": 50,
+  "sampling_method": "random.sample with seed=42 (deterministic, reproducible, diverse)",
+  "total_free_cells": 500,
+  "generated_at": "2026-05-16T23:21:14Z",
+  "packs": [
+    {
+      "flavor": "Dmack's Royal Jelly",
+      "sku_id": "sb-dmack-royal-jelly",
+      "slug": "dmack-royal-jelly",
+      "tier_grade": "APEX",
+      "domain": "medical/diabetes",
+      "pairs": 50,
+      "url": "/samples/free/dmack-royal-jelly.jsonl",
+      "note": "Sample from the dmack.ai v1 flagship master \u2014 50 random cells across all 10 source streams (endo / CGM / PMC / OpenAlex / intl / gov / patterns / refusal)."
+    },
+    {
+      "flavor": "Endo Eclair",
+      "sku_id": "sb-endo-eclair",
+      "slug": "endo-eclair",
+      "tier_grade": "APEX",
+      "domain": "medical/endocrinology",
+      "pairs": 50,
+      "url": "/samples/free/endo-eclair.jsonl",
+      "note": "Sample from the endocrinology specialty pull \u2014 diabetes, hyperglycemia, CGM, management."
+    },
+    {
+      "flavor": "Cinnamon Spiral",
+      "sku_id": "sb-cinnamon-spiral",
+      "slug": "cinnamon-spiral",
+      "tier_grade": "APEX",
+      "domain": "medical/cgm",
+      "pairs": 50,
+      "url": "/samples/free/cinnamon-spiral.jsonl",
+      "note": "Sample from the CGMacros real-world CGM + meal-macros corpus (PhysioNet)."
+    },
+    {
+      "flavor": "Madeleine",
+      "sku_id": "sb-madeleine-pmc",
+      "slug": "madeleine",
+      "tier_grade": "HONEY",
+      "domain": "medical/literature",
+      "pairs": 50,
+      "url": "/samples/free/madeleine.jsonl",
+      "note": "Sample from PubMed Central full-text Q/A \u2014 diabetes complications, citation-anchored."
+    },
+    {
+      "flavor": "Scholar Croissant",
+      "sku_id": "sb-scholar-croissant",
+      "slug": "scholar-croissant",
+      "tier_grade": "HONEY",
+      "domain": "medical/scholarly",
+      "pairs": 50,
+      "url": "/samples/free/scholar-croissant.jsonl",
+      "note": "Sample from OpenAlex round 1 (cardiometabolic). Full SKU spans 5 rounds, 51,822 cells."
+    },
+    {
+      "flavor": "Global Crumpet",
+      "sku_id": "sb-global-crumpet",
+      "slug": "global-crumpet",
+      "tier_grade": "HONEY",
+      "domain": "medical/guidelines",
+      "pairs": 50,
+      "url": "/samples/free/global-crumpet.jsonl",
+      "note": "Sample from NHS / IDF / WHO / DiabetesUK / NICE international clinical guidelines."
+    },
+    {
+      "flavor": "Federal Glaze",
+      "sku_id": "sb-federal-glaze",
+      "slug": "federal-glaze",
+      "tier_grade": "HONEY",
+      "domain": "medical/guidelines",
+      "pairs": 50,
+      "url": "/samples/free/federal-glaze.jsonl",
+      "note": "Sample from CDC / NIH / NIDDK / MedlinePlus US federal health-agency sources."
+    },
+    {
+      "flavor": "Founder's Pretzel",
+      "sku_id": "sb-founders-pretzel",
+      "slug": "founders-pretzel",
+      "tier_grade": "APEX",
+      "domain": "medical/patterns",
+      "pairs": 50,
+      "url": "/samples/free/founders-pretzel.jsonl",
+      "note": "Sample from the founder's hand-curated CGM patterns (Big IDEAs Lab PhysioNet). Lived-experience register \u2014 never used as medical authority."
+    },
+    {
+      "flavor": "Royal Jelly Brioche",
+      "sku_id": "sb-imaging-platinum",
+      "slug": "royal-jelly-brioche",
+      "tier_grade": "APEX",
+      "domain": "medical/imaging",
+      "pairs": 50,
+      "url": "/samples/free/royal-jelly-brioche.jsonl",
+      "note": "Sample from MASTER_PLATINUM clinical imaging Q/A (MSK, neuro, spine)."
+    },
+    {
+      "flavor": "Golden Glaze",
+      "sku_id": "sb-imaging-gold",
+      "slug": "golden-glaze",
+      "tier_grade": "HONEY",
+      "domain": "medical/imaging",
+      "pairs": 50,
+      "url": "/samples/free/golden-glaze.jsonl",
+      "note": "Sample from MASTER_GOLD spine + neuro imaging Q/A."
+    }
+  ]
+}
