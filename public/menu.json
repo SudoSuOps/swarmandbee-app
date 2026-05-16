@@ -1,153 +1,286 @@
 {
-  "$comment": "Swarm & Bee · The organic dataset bakery · public menu manifest. Machine-readable inventory. See https://bakery.swarmandbee.ai for the human-readable surface.",
+  "$comment": "Swarm & Bee · The organic dataset bakery · public menu manifest. Every SKU has a real name, real pair count, and real provenance. No round-number lies. See https://bakery.swarmandbee.ai for the human-readable surface.",
   "bakery": {
     "name": "Swarm & Bee · CCIR · Commercial Compute Intelligence Refinery",
     "url": "https://bakery.swarmandbee.ai/",
-    "doctrine": "AI is a bakery first. Signal is supply. Curators are bakers. Distribution is delivery. Fresh every day, with a shelf life. 500 fantastic muffins crush 25,000 ingredients. Compassionate intelligence is the standard — organic datasets with real-world purpose.",
+    "doctrine": "AI is a bakery first. Signal is supply. Curators are bakers. Distribution is delivery. Fresh every day, with a shelf life. 500 fantastic muffins crush 25,000 ingredients. Compassionate intelligence — organic datasets with real-world purpose.",
     "lead_vertical": "medical",
     "lead_lane": "autoimmune",
+    "naming_doctrine": "Every dataset gets a real bakery name and a real cell count. We never round and we never aggregate two unrelated corpora under one SKU. If a pull is 5,948 pairs, the menu says 5,948 — not 'about 6k'.",
     "issuer_ens": "swarmandbee.eth",
     "certification_standard": "defendable.eth",
     "settlement_address_ens": "swarmusdc.eth",
     "hcs_anchor_topic": "0.0.10291838",
     "updated_at": "2026-05-16",
-    "menu_version": "1.1.0"
+    "menu_version": "1.2.0"
   },
   "skus": {
     "by_the_pound": {
       "type": "wholesale_corpus",
-      "description": "Bulk curated training corpora. Graded, deduped, freshness-stamped. Sold per 1,000 pairs. For shops with a base model and a need for breadth.",
-      "pricing_model": "quote on volume — typically $/1k pairs",
-      "delivery": "tarball + manifest.json + per-batch sha256 + optional Hedera anchor",
+      "description": "Named, graded, deduped medical corpora. Sold per 1,000 cells. Pricing is invoiced (Stripe) or settled to swarmusdc.eth — no auto-checkout. A human reads every order.",
+      "pricing_model": "quote on intake — typically $/1k cells, adjusted for tier and rarity",
+      "delivery": "tarball + manifest.json + per-cell sha256 + optional Hedera anchor",
       "stock": [
         {
-          "name": "sb-diabetes-24k",
+          "name": "Dmack's Royal Jelly",
+          "sku_id": "sb-dmack-royal-jelly",
+          "tier_grade": "APEX",
           "domain": "medical/diabetes",
           "lane": "autoimmune",
-          "status": "minted_pre_tribunal",
-          "pairs": 24000,
-          "honey_grade_pct": null,
+          "status": "in_stock",
+          "pairs": 77797,
+          "size_bytes": 272629760,
+          "size_human": "260M",
+          "source_file": "MASTER_dmack_ai_v1_royal_jelly.jsonl",
+          "source_path_local": "~/Desktop/dmack-ai/corpus/",
+          "source_path_nas": "/mnt/swarm/dmack-ai/corpus/",
+          "rolled_up_from": ["Endo Eclair", "Cinnamon Spiral", "Madeleine", "Scholar Croissant", "Global Crumpet", "Federal Glaze", "Founder's Pretzel", "Compliance Cookie"],
           "two_stream_architecture": {
-            "sourced_facts": ["ADA position papers", "Endocrine Society guidelines", "IWGDF", "NIDDK", "NIH"],
+            "sourced_facts": ["ADA", "Endocrine Society", "IWGDF", "NIDDK", "NIH", "NHS", "IDF", "WHO", "DiabetesUK", "NICE", "CDC", "MedlinePlus"],
             "lived_voice": "Founder lived-experience register — never used as medical authority"
           },
-          "source_vault": "medical-vault · gold-cold-chain (specialty-tagged)",
-          "freshness": {
-            "last_rebake": "2026-05-14",
-            "next_rebake_due": "2026-08-14",
-            "score": 0.98
-          },
-          "sample_endpoint": "/samples/medical.json",
+          "freshness": { "last_rebake": "2026-05-14", "next_rebake_due": "2026-08-14", "score": 0.98 },
           "tribunal_sealed": false,
-          "note": "Minted 2026-05-14 for the dmack.ai cook. Pre-Tribunal release. Senior-hack canary-then-cook review staged. Early-access pricing available on intake.",
-          "use_cases": [
-            "Type 1 + Type 2 diabetes clinical decision support",
-            "wound-care intelligence (IWGDF-aligned)",
-            "glycemic management + carb-ratio + correction-factor reasoning",
-            "patient education at plain-language register",
-            "fabrication-detection at medical confidence (hardest tier)"
-          ]
+          "note": "The dmack.ai v1 flagship. Rolled-up master across endo, CGM, PubMed Central, OpenAlex 5-round scholar pull, international guidelines, US government health agencies, hand-curated patterns, and compliance refusal. Senior-hack canary-then-cook review staged. Early-access pricing on intake.",
+          "use_cases": ["Type 1 + Type 2 clinical decision support", "wound-care intelligence (IWGDF-aligned)", "glycemic management + carb-ratio + correction-factor reasoning", "patient education at plain-language register", "fabrication-detection at medical confidence"]
         },
         {
-          "name": "sb-medical-verified",
-          "domain": "medical",
+          "name": "Endo Eclair",
+          "sku_id": "sb-endo-eclair",
+          "tier_grade": "APEX",
+          "domain": "medical/endocrinology",
+          "lane": "autoimmune",
           "status": "in_stock",
-          "pairs": 418783,
-          "honey_grade_pct": null,
-          "freshness": {
-            "last_rebake": "2026-03-12",
-            "next_rebake_due": "2026-06-12",
-            "score": 0.86
-          },
-          "sample_endpoint": "/samples/medical.json",
+          "pairs": 5948,
+          "size_human": "14M",
+          "source_file": "01_master_platinum_endo.jsonl",
+          "source_path_local": "~/Desktop/dmack-ai/corpus/",
+          "freshness": { "last_rebake": "2026-05-14", "score": 0.96 },
           "tribunal_sealed": false,
-          "note": "Tribunal grading in progress. Quote-on-intake includes current grade snapshot.",
-          "use_cases": ["clinical decision support", "lab interpretation", "ICD coding", "triage prioritization"]
+          "note": "Endocrinology specialty pull from MASTER_PLATINUM — diabetes, hyperglycemia, CGM, management. The pure-endo cell, filled.",
+          "use_cases": ["endocrinology clinical reasoning", "glycemic targets + thresholds", "insulin pharmacodynamics"]
         },
         {
-          "name": "sb-cre-verified",
+          "name": "Cinnamon Spiral",
+          "sku_id": "sb-cinnamon-spiral",
+          "tier_grade": "APEX",
+          "domain": "medical/cgm",
+          "lane": "autoimmune",
+          "status": "in_stock",
+          "pairs": 5752,
+          "size_human": "8.6M",
+          "source_files": ["02_cgmacros_dmack_pairs.jsonl", "02b_cgmacros_3variant_pairs.jsonl"],
+          "source_path_local": "~/Desktop/dmack-ai/corpus/",
+          "source_attribution": "PhysioNet CGMacros (continuous glucose monitor + meal macros, real-world)",
+          "freshness": { "last_rebake": "2026-05-14", "score": 0.95 },
+          "tribunal_sealed": false,
+          "note": "Continuous + spiral · CGM timeseries paired with meal-macros. The rare real-world physiological cell — not from a textbook, from real patients eating real food.",
+          "use_cases": ["CGM trend reasoning", "meal-response prediction", "carb-ratio derivation from real timeseries"]
+        },
+        {
+          "name": "Madeleine",
+          "sku_id": "sb-madeleine-pmc",
+          "tier_grade": "HONEY",
+          "domain": "medical/literature",
+          "lane": "research",
+          "status": "in_stock",
+          "pairs": 11169,
+          "size_human": "62M",
+          "source_file": "08_pmc_pairs.jsonl",
+          "source_path_local": "~/Desktop/dmack-ai/corpus/",
+          "source_attribution": "PubMed Central — diabetic retinopathy, neuropathy, foot ulcer, type 1/2, gestational, hypoglycemia",
+          "freshness": { "last_rebake": "2026-05-14", "score": 0.93 },
+          "tribunal_sealed": false,
+          "note": "The literature cookie. Research-paper-grade Q/A derived from PubMed Central full-texts on diabetes complications. Citation-anchored.",
+          "use_cases": ["complication-management reasoning", "research-grounded clinical answers", "citation-traceable training"]
+        },
+        {
+          "name": "Scholar Croissant",
+          "sku_id": "sb-scholar-croissant",
+          "tier_grade": "HONEY",
+          "domain": "medical/scholarly",
+          "lane": "research",
+          "status": "in_stock",
+          "pairs": 51822,
+          "size_human": "163M",
+          "source_files": ["05c_openalex_pairs.jsonl", "05d_openalex_round2_pairs.jsonl", "05e_openalex_round3_pairs.jsonl", "05f_openalex_round4_pairs.jsonl", "05g_openalex_round5_pairs.jsonl"],
+          "source_path_local": "~/Desktop/dmack-ai/corpus/",
+          "source_attribution": "OpenAlex 5-round scholar pull",
+          "round_breakdown": {
+            "round_1_cardiometabolic": 11064,
+            "round_2_adipokines_sleep_woundcare": 7538,
+            "round_3_gait_microbiota": 11368,
+            "round_4_thyroid_probiotics_fatty_acids": 9332,
+            "round_5_circadian_oral_stress": 12520
+          },
+          "freshness": { "last_rebake": "2026-05-14", "score": 0.91 },
+          "tribunal_sealed": false,
+          "note": "Layered like a croissant — five rounds of OpenAlex scholarly extraction across diabetes adjacencies (cardiometabolic, adipokines, microbiota, thyroid, circadian). 250M+ paper corpus, ~52K pairs distilled.",
+          "use_cases": ["broad medical-research reasoning", "comorbidity awareness (cardiac, kidney, sleep, oral)", "literature-anchored answers"]
+        },
+        {
+          "name": "Global Crumpet",
+          "sku_id": "sb-global-crumpet",
+          "tier_grade": "HONEY",
+          "domain": "medical/guidelines",
+          "lane": "regulatory",
+          "status": "in_stock",
+          "pairs": 5632,
+          "size_human": "15M",
+          "source_file": "09_international_pairs.jsonl",
+          "source_path_local": "~/Desktop/dmack-ai/corpus/",
+          "source_attribution": "NHS, IDF, WHO, DiabetesUK, HealthDirect AU, NICE",
+          "freshness": { "last_rebake": "2026-05-14", "score": 0.94 },
+          "tribunal_sealed": false,
+          "note": "International clinical guidelines — the regulatory crumpet. UK NHS, International Diabetes Federation, WHO, NICE guidance.",
+          "use_cases": ["guideline-compliant clinical recommendations", "international-context reasoning", "NICE / IDF / WHO alignment training"]
+        },
+        {
+          "name": "Federal Glaze",
+          "sku_id": "sb-federal-glaze",
+          "tier_grade": "HONEY",
+          "domain": "medical/guidelines",
+          "lane": "regulatory",
+          "status": "in_stock",
+          "pairs": 4328,
+          "size_human": "11M",
+          "source_file": "06_government_pairs.jsonl",
+          "source_path_local": "~/Desktop/dmack-ai/corpus/",
+          "source_attribution": "CDC, NIH, NHLBI, NIDDK, MedlinePlus",
+          "freshness": { "last_rebake": "2026-05-14", "score": 0.94 },
+          "tribunal_sealed": false,
+          "note": "US federal-source diabetes, CVD, nutrition, endocrine. Government polish, full sheen.",
+          "use_cases": ["US-clinical-context reasoning", "patient-facing health education at federal-source register"]
+        },
+        {
+          "name": "Founder's Pretzel",
+          "sku_id": "sb-founders-pretzel",
+          "tier_grade": "APEX",
+          "domain": "medical/patterns",
+          "lane": "autoimmune",
+          "status": "in_stock",
+          "pairs": 1592,
+          "size_human": "2.1M",
+          "source_file": "07_bigideas_pattern_pairs.jsonl",
+          "source_path_local": "~/Desktop/dmack-ai/corpus/",
+          "source_attribution": "Hand-curated by Donovan — 30-year lived-experience patterns",
+          "freshness": { "last_rebake": "2026-05-14", "score": 1.0 },
+          "tribunal_sealed": false,
+          "note": "Hand-twisted patterns. Founder-curated clinical-reasoning insights from 30 years of lived experience and 14 foot surgeries. The rarest cell on the shelf — register only, never medical authority.",
+          "use_cases": ["lived-experience clinical pattern recognition", "register/voice training", "founder-anchored compassionate-intelligence shape"]
+        },
+        {
+          "name": "Compliance Cookie",
+          "sku_id": "sb-compliance-cookie",
+          "tier_grade": "JELLY",
+          "domain": "medical/safety",
+          "lane": "safety",
+          "status": "in_stock",
+          "pairs": 128,
+          "size_human": "132K",
+          "source_file": "10_refusal_pairs.jsonl",
+          "source_path_local": "~/Desktop/dmack-ai/corpus/",
+          "freshness": { "last_rebake": "2026-05-14", "score": 1.0 },
+          "tribunal_sealed": false,
+          "note": "Bite-sized. The brake pedal. Compliance refusal training — when not to answer, when to escalate, when to defer to a clinician.",
+          "use_cases": ["refusal-pattern training", "medical-authority deferral", "safety-rail tuning"]
+        },
+        {
+          "name": "Royal Jelly Brioche",
+          "sku_id": "sb-imaging-platinum",
+          "tier_grade": "APEX",
+          "domain": "medical/imaging",
+          "lane": "imaging",
+          "status": "in_stock",
+          "pairs": 406181,
+          "size_human": "958M",
+          "source_file": "MASTER_PLATINUM.jsonl",
+          "source_path_nas": "/mnt/swarm/swarm-and-bee-datasets/medical/",
+          "freshness": { "last_rebake": "2026-04-15", "score": 0.92 },
+          "tribunal_sealed": false,
+          "note": "The crown brioche — multimodal clinical imaging vignettes (MRI sagittal/axial, imaging findings → diagnostic reasoning). Heavy on MSK / neuro / spine. NOT diabetes-specific; broader radiological reasoning corpus.",
+          "use_cases": ["clinical imaging interpretation training", "differential-diagnosis chains", "multimodal medical-vision RAG"]
+        },
+        {
+          "name": "Golden Glaze",
+          "sku_id": "sb-imaging-gold",
+          "tier_grade": "HONEY",
+          "domain": "medical/imaging",
+          "lane": "imaging",
+          "status": "in_stock",
+          "pairs": 385626,
+          "size_human": "799M",
+          "source_file": "MASTER_GOLD.jsonl",
+          "source_path_nas": "/mnt/swarm/swarm-and-bee-datasets/medical/",
+          "freshness": { "last_rebake": "2026-04-15", "score": 0.88 },
+          "tribunal_sealed": false,
+          "note": "Spine + neuro imaging at gold tier. Companion to the Royal Jelly Brioche.",
+          "use_cases": ["spine / neuro imaging interpretation", "differential-diagnosis training"]
+        },
+        {
+          "name": "Atlas Sourdough",
+          "sku_id": "sb-cre-verified",
+          "tier_grade": "HONEY",
           "domain": "finance/cre",
+          "lane": "legacy",
           "status": "in_stock",
           "pairs": 810097,
           "honey_grade_pct": 87.4,
-          "freshness": {
-            "last_rebake": "2026-04-15",
-            "next_rebake_due": "2026-07-15",
-            "score": 0.92
-          },
+          "freshness": { "last_rebake": "2026-04-15", "score": 0.92 },
           "rubric_dimensions": ["math_accuracy", "grounding", "capital_markets_discipline", "risk_awareness", "ic_readiness"],
-          "sample_endpoint": "/samples/finance.json",
           "tribunal_sealed": true,
-          "note": "Original Atlas-class corpus. Maintained as proof-of-process; new development is medical-lane.",
-          "use_cases": ["CRE underwriting", "cap rate / DSCR / IRR derivation", "lease abstraction", "IC memo training", "Atlas-class base corpus"]
-        },
-        {
-          "name": "sb-aviation",
-          "domain": "aviation",
-          "status": "raw_not_audited",
-          "pairs": 197,
-          "size_mb": 173,
-          "note": "Raw, not yet audited. Prior cook had 8,497 ASRS think-tag leakage incidents (quarantined). Not currently for sale; available on request once audited.",
-          "sample_endpoint": null,
-          "tribunal_sealed": false
+          "note": "The original Atlas-class CRE corpus — the foundation loaf, baked over years. Maintained as proof-of-process. The bakery's medical pivot does not retire this; it stays available for shops who need CRE breadth.",
+          "use_cases": ["CRE underwriting", "cap rate / DSCR / IRR derivation", "lease abstraction", "IC memo training"]
         }
       ],
-      "domains_in_development": ["autoimmune-expansion", "legal", "agents"]
+      "in_development": ["Honeycomb Wound-Care · IWGDF-aligned 500-pack", "Autoimmune Tarte · Hashimoto / Lupus / RA expansion", "Pediatric Profiterole · type 1 pediatric subset"],
+      "catalog_total_medical_cells": 956175,
+      "catalog_total_named_skus": 11,
+      "audit_date": "2026-05-16",
+      "audit_method": "Direct filesystem inventory of ~/Desktop/dmack-ai/corpus/ + /mnt/swarm/dmack-ai/ + /mnt/swarm/swarm-and-bee-datasets/medical/. wc -l on every jsonl. No estimates."
     },
     "the_500_pack": {
       "type": "signature_blend",
       "description": "500-1,000 pairs hand-built around one failure mode. Each pair carries failure_source + repair_goal metadata. Tribunal-sealed before delivery. 25-50× the leverage of equivalent wholesale.",
-      "pricing_model": "fixed-price per pack — scoped on intake",
+      "pricing_model": "fixed-price per pack — scoped on intake, invoiced via Stripe or settled to swarmusdc.eth",
       "delivery": "JSONL corpus + scoping memo + Tribunal seal + sha256 manifest + optional cook-for-you on owned Blackwell silicon",
-      "domains_available": ["medical", "diabetes", "wound_care", "autoimmune", "finance", "legal", "agents", "healing", "GEO_audit", "custom"],
+      "domains_available": ["medical/diabetes", "medical/wound_care", "medical/autoimmune", "medical/cgm", "medical/imaging", "finance", "legal", "agents", "custom"],
       "starter_kits": [
         {
-          "name": "diabetes_wound_care_500",
-          "domain": "medical",
-          "description": "500 pairs targeting IWGDF-aligned diabetic foot ulcer assessment, infection grading, offloading prescription, escalation timing. Founder lived-experience reviewed; medical authority sourced.",
-          "sample_endpoint": "/samples/medical.json"
+          "name": "Diabetic Foot Sablé · 500",
+          "sku_id": "diabetic_foot_500",
+          "domain": "medical/wound_care",
+          "description": "500 pairs targeting IWGDF-aligned diabetic foot-ulcer assessment, infection grading, offloading prescription, escalation timing. Founder lived-experience reviewed; medical authority sourced."
         },
         {
-          "name": "glycemic_reasoning_500",
-          "domain": "medical",
-          "description": "500 pairs targeting carb-ratio, correction-factor, basal-bolus reasoning. Refusal pattern when inputs are insufficient (the medical-grade fabrication firewall).",
-          "sample_endpoint": "/samples/medical.json"
+          "name": "Glycemic Reasoning Galette · 500",
+          "sku_id": "glycemic_reasoning_500",
+          "domain": "medical/diabetes",
+          "description": "500 pairs targeting carb-ratio, correction-factor, basal-bolus reasoning. Refusal pattern when inputs are insufficient (the medical-grade fabrication firewall)."
         },
         {
-          "name": "patient_comm_500",
-          "domain": "healing",
-          "description": "500 pairs targeting medical-jargon-to-plain-language rewrite, consent explanation, triage script generation.",
-          "sample_endpoint": "/samples/healing.json"
+          "name": "Patient Comm Brioche · 500",
+          "sku_id": "patient_comm_500",
+          "domain": "medical/communication",
+          "description": "500 pairs targeting medical-jargon-to-plain-language rewrite, consent explanation, triage script generation."
         },
         {
-          "name": "fabrication_detection_500",
+          "name": "Fabrication-Detection Pretzel · 500",
+          "sku_id": "fabrication_detection_500",
           "domain": "agents",
-          "description": "500 pairs targeting fabrication detection at honey-grade confidence (the Curator-v2 blind spot). Trains a model to flag confident hallucinations, not just hedge.",
-          "sample_endpoint": "/samples/agents.json"
+          "description": "500 pairs targeting fabrication detection at honey-grade confidence. Trains a model to flag confident hallucinations, not just hedge."
         },
         {
-          "name": "math_verification_500",
+          "name": "Math-Verification Macaron · 500",
+          "sku_id": "math_verification_500",
           "domain": "finance",
-          "description": "500 pairs targeting numeric claim verification — cap rate, DSCR, IRR derivation, sensitivity grids. Refusal patterns when inputs are insufficient.",
-          "sample_endpoint": "/samples/finance.json"
-        },
-        {
-          "name": "contract_risk_flag_500",
-          "domain": "legal",
-          "description": "500 pairs targeting unusual-term flagging, indemnification scope checks, termination-condition extraction.",
-          "sample_endpoint": "/samples/legal.json"
-        },
-        {
-          "name": "recommendation_alignment_500",
-          "domain": "any",
-          "description": "500 pairs targeting text/decision alignment. Does the recommendation match the analysis? Curator-v3 audit shape.",
-          "sample_endpoint": "/samples/finance.json"
+          "description": "500 pairs targeting numeric claim verification. Refusal patterns when inputs are insufficient."
         }
       ]
     }
   },
   "sample_packs": {
-    "description": "Free taste tests. Same provenance shape as a full delivery — see the quality bar before you order. Each pack includes at least one PROPOLIS-grade pair (labeled) so you see what we filter out, not just what we ship.",
+    "description": "Free taste tests. Same provenance shape as a full delivery — see the quality bar before you order. Each pack includes at least one PROPOLIS-grade pair (labeled) so you see what we filter out.",
     "index": "/samples/index.json",
     "packs": {
       "medical":  "/samples/medical.json",
@@ -158,18 +291,17 @@
     }
   },
   "ordering": {
+    "channel_doctrine": "Datasets are available ONLY through the CLI. Browse the menu, pick a SKU by name, submit an order. We invoice you (Stripe) or send a settlement address (swarmusdc.eth). No auto-checkout, no card-on-file, no instant download. A human reads every order within one business day.",
+    "cli_install": "pip install swarmbee-bakery",
+    "cli_browse": "swarmbee-bakery menu --domain medical",
+    "cli_order_example": "swarmbee-bakery order --sku by-the-pound --domain medical --name 'Your Name' --email 'you@you.dev' --notes 'I want Dmack Royal Jelly · 5 lb'",
     "intake_endpoint": "https://swarmandbee.ai/api/bakery-intake",
     "intake_endpoint_fallback": "https://swarmandbee.ai/api/bounty-intake",
-    "human_form": "https://bakery.swarmandbee.ai/#menu",
     "email": "build@swarmandbee.ai",
     "discord": "https://discord.gg/buUjYgzP5m",
-    "cli_install": "pip install swarmbee-bakery",
-    "fulfillment_doctrine": "V1 manual-fulfillment: human reads every order within one business day, mints payment link (Stripe or Lightning), assembles bundle, ships signed download URL. No auto-checkout, no auto-spend.",
-    "settlement": {
-      "usdc": "swarmusdc.eth (→ 0xBDe2153C…)",
-      "stripe": "available on request",
-      "lightning": "available on request",
-      "wire": "available on request"
+    "settlement_rails": {
+      "stripe_invoice": "Human mints a Stripe invoice and emails the link. No card kept on file.",
+      "swarmusdc": "Settle to swarmusdc.eth (resolves to 0xBDe2153C…). USDC on Ethereum L1 by default; L2 available on request."
     }
   },
   "provenance": {
@@ -187,7 +319,8 @@
       "optional Hedera anchor (HCS topic 0.0.10291838)",
       "issuer signature from swarmandbee.eth"
     ],
-    "medical_two_stream": "Every medical pair separates sourced authority (ADA, Endocrine Society, IWGDF, NIDDK, NIH) from lived-experience register. Lived voice is never used as medical authority.",
+    "medical_two_stream": "Every medical pair separates sourced authority (ADA, Endocrine Society, IWGDF, NIDDK, NIH, NHS, IDF, WHO, CDC, NICE) from lived-experience register. Lived voice is never used as medical authority.",
+    "no_round_numbers_doctrine": "If the menu says 77,797 cells it means exactly 77,797 cells — counted by wc -l, not estimated. Round numbers are a tell that the seller doesn't know what they're selling.",
     "certification": "Outputs trained on Swarm & Bee corpora may carry the defendable.eth mark. See https://defendable.eth.limo"
   },
   "links": {
