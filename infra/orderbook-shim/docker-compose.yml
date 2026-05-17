@@ -28,9 +28,11 @@ services:
       # Host port 18489 — adjacent to dl-tunnel's 18488. Change if collision.
       - "18489:8000"
     environment:
-      # API key MUST match the one set in CF Pages env var ORDERBOOK_API_KEY.
-      # Set via .env (which is gitignored) — do NOT commit the real key here.
+      # Service-to-service API key (CF Pages Functions use this same value).
       - ORDERBOOK_API_KEY=${ORDERBOOK_API_KEY}
+      # Admin dashboard credentials (HTTP Basic Auth at orderbook.swarmandbee.ai/)
+      - ORDERBOOK_ADMIN_USER=${ORDERBOOK_ADMIN_USER:-dmack}
+      - ORDERBOOK_ADMIN_PASSWORD=${ORDERBOOK_ADMIN_PASSWORD}
       - ORDERBOOK_DB_PATH=/data/orders.db
       - ORDERBOOK_MIGRATIONS_DIR=/app/migrations
     volumes:

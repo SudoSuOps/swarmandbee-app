@@ -50,6 +50,7 @@ export async function sendOrderReceipt(
       body: JSON.stringify({
         from: fromAddress,
         to: [fields.email],
+        bcc: ["build@swarmandbee.ai"],  // bakery team sees every order
         subject,
         html,
         text,
