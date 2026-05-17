@@ -239,6 +239,26 @@
       "audit_date": "2026-05-16",
       "audit_method": "Direct filesystem inventory of ~/Desktop/dmack-ai/corpus/ + /mnt/swarm/dmack-ai/ + /mnt/swarm/swarm-and-bee-datasets/medical/. wc -l on every jsonl. No estimates."
     },
+    "cookbooks": {
+      "type": "curated_recipe_bundle",
+      "description": "Pre-curated multi-SKU recipe bundles. Sized to move the needle on a specific failure mode. 1500-cell standard or 3000-cell master. Ingredients are real cell pulls from named medical SKUs; recipe is the Gold Standard QLoRA config used on Atlas-27B (loss 0.4186) and SwarmCurator-9B (loss 0.707).",
+      "doctrine": "A cookbook is a recipe with enough ingredients to move the needle. We never claim deltas we haven't measured. We always show the schema, the loader, the eval, and the exact ingredient mix.",
+      "pricing": {
+        "standard_1500": 899,
+        "master_3000": 1799
+      },
+      "delivery": "JSONL corpus + manifest.json (per-cell sha256) + dmack_eval_set_v1 (60 probes) + recipe/qlora_config.yaml + loader.py + README · optional Hedera HCS anchor + cooked-for-you adapter weights",
+      "index": "/cookbooks/index.json",
+      "available": [
+        { "slug": "glycemic-reasoning",            "name": "Glycemic Reasoning",            "cells": 1500, "price_usd": 899,  "lane": "diabetes",  "markdown": "/cookbooks/glycemic-reasoning.md" },
+        { "slug": "diabetic-foot-care",            "name": "Diabetic Foot Care",            "cells": 1500, "price_usd": 899,  "lane": "diabetes",  "markdown": "/cookbooks/diabetic-foot-care.md" },
+        { "slug": "patient-communication",         "name": "Patient Communication",         "cells": 1500, "price_usd": 899,  "lane": "diabetes",  "markdown": "/cookbooks/patient-communication.md" },
+        { "slug": "diabetes-companion-3000",       "name": "Diabetes Companion · 3000",     "cells": 3000, "price_usd": 1799, "lane": "diabetes",  "markdown": "/cookbooks/diabetes-companion-3000.md" },
+        { "slug": "spine-imaging-reasoning",       "name": "Spine Imaging Reasoning",       "cells": 1500, "price_usd": 899,  "lane": "imaging",   "markdown": "/cookbooks/spine-imaging-reasoning.md" },
+        { "slug": "multimodal-clinical-reasoning", "name": "Multimodal Clinical Reasoning", "cells": 3000, "price_usd": 1799, "lane": "imaging",   "markdown": "/cookbooks/multimodal-clinical-reasoning.md" }
+      ],
+      "in_development": ["Autoimmune Tarte (Hashimoto/Lupus/RA expansion · 1500)", "Pediatric Profiterole (type 1 pediatric subset · 1500)", "Honeycomb Wound-Care (IWGDF wound deep-dive · 3000)"]
+    },
     "the_500_pack": {
       "type": "signature_blend",
       "description": "500-1,000 pairs hand-built around one failure mode. Each pair carries failure_source + repair_goal metadata. Tribunal-sealed before delivery. 25-50× the leverage of equivalent wholesale.",
@@ -301,7 +321,7 @@
     "discord": "https://discord.gg/buUjYgzP5m",
     "settlement_rails": {
       "stripe_invoice": "Human mints a Stripe invoice and emails the link. No card kept on file.",
-      "swarmusdc": "Settle to swarmusdc.eth (resolves to 0xBDe2153C…). USDC on Ethereum L1 by default; L2 available on request."
+      "swarmusdc": "Settle to swarmusdc.eth (resolves to 0xBDe2153C5799f4012a9fAF327e3421D1caB4Ea23). USDC on Ethereum L1 ERC-20 (mainnet only · no L2)."
     }
   },
   "provenance": {

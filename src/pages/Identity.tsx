@@ -155,7 +155,7 @@ const ADDRESSES: Addr[] = [
     chain: "ENS",
     role: "Settlement rail — receipts and invoices resolve to a stable USD address.",
     link: "https://swarmusdc.eth.limo",
-    detail: "→ 0xBDe2153C…",
+    detail: "→ 0xBDe2153C5799f4012a9fAF327e3421D1caB4Ea23",
   },
   {
     name: "swarm.hbar",

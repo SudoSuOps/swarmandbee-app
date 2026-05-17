@@ -29,6 +29,7 @@ export default function Bakery() {
       <Freshness />
       <Compassionate />
       <Menu />
+      <Cookbooks />
       <TryFree />
       <HowToBuy />
       <BakeryFooter />
@@ -50,6 +51,7 @@ function BakeryHeader() {
           <a href="#oven" className="text-neutral-400 hover:text-neutral-100">the oven</a>
           <a href="#rack" className="text-neutral-400 hover:text-neutral-100">bakers rack</a>
           <a href="#menu" className="text-neutral-400 hover:text-neutral-100">the menu</a>
+          <a href="#cookbooks" className="text-neutral-400 hover:text-neutral-100">cookbooks</a>
           <a href="#freshness" className="text-neutral-400 hover:text-neutral-100">freshness</a>
           <a href="#compassionate" className="text-rose-300/80 hover:text-rose-200">compassionate</a>
           <a href="#how-to-buy" className="text-amber-400 font-semibold hover:text-amber-300">how to buy ↓</a>
@@ -950,6 +952,138 @@ function Menu() {
   );
 }
 
+/* ------------------------------ cookbooks ------------------------------ */
+
+const COOKBOOKS: { slug: string; name: string; cells: number; price: number; lane: string; pitch: string; receipt: string }[] = [
+  {
+    slug: "glycemic-reasoning",
+    name: "Glycemic Reasoning",
+    cells: 1500, price: 899, lane: "diabetes",
+    pitch: "Insulin dosing reasoning with refusal on insufficient inputs. The model that won't fabricate a dose.",
+    receipt: "Architecture proven: Curator v2's 501-pack repaired Atlas v1's fabrication-detection blind spot — same shape, scaled to glycemic.",
+  },
+  {
+    slug: "diabetic-foot-care",
+    name: "Diabetic Foot Care",
+    cells: 1500, price: 899, lane: "diabetes",
+    pitch: "IWGDF-aligned wound assessment + escalation timing. The model that knows when not to wait.",
+    receipt: "Founder is the receipt: 14 foot surgeries, lived register, hyper-vigilance patterns hand-curated.",
+  },
+  {
+    slug: "patient-communication",
+    name: "Patient Communication",
+    cells: 1500, price: 899, lane: "diabetes",
+    pitch: "Medical-jargon-to-plain-language. Maintains accuracy at patient register.",
+    receipt: "NHS + MedlinePlus source pages average Flesch 60+ at MHRA-reviewed accuracy. The corpus is already cooked-for-register.",
+  },
+  {
+    slug: "diabetes-companion-3000",
+    name: "Diabetes Companion · 3000",
+    cells: 3000, price: 1799, lane: "diabetes",
+    pitch: "The full-stack flagship — clinical + research + patient + lived, two-stream architecture intact. The dmack.ai recipe itself.",
+    receipt: "Pending. This IS the staged dmack.ai cook. Order if you're prepared to be the first external receipt — fee waived if you share your eval delta back.",
+  },
+  {
+    slug: "spine-imaging-reasoning",
+    name: "Spine Imaging Reasoning",
+    cells: 1500, price: 899, lane: "imaging",
+    pitch: "Spine MRI + CT differential diagnosis at radiology-fellow register. Text-only training that graduates to multimodal.",
+    receipt: "Source: pre-Tribunal MASTER_PLATINUM (406K imaging vignettes). Cook receipt: first customer.",
+  },
+  {
+    slug: "multimodal-clinical-reasoning",
+    name: "Multimodal Clinical Reasoning · 3000",
+    cells: 3000, price: 1799, lane: "imaging",
+    pitch: "Broad clinical assistant: imaging + literature + guidelines. For shops building generalists that don't collapse on either side.",
+    receipt: "Pending. Cross-domain mix not yet cooked — first-customer-publishes-delta discount available.",
+  },
+];
+
+function Cookbooks() {
+  return (
+    <section id="cookbooks" className="border-b border-neutral-800 bg-gradient-to-b from-neutral-950 via-amber-950/5 to-neutral-950">
+      <div className="max-w-6xl mx-auto px-6 py-16">
+        <div className="text-xs font-semibold tracking-widest text-neutral-500 uppercase mb-3">
+          <span className="text-amber-400">▍</span> Cookbooks · pre-curated recipes that move the needle
+        </div>
+        <p className="text-neutral-300 text-lg leading-relaxed mb-3 max-w-3xl">
+          A cookbook is a <strong className="text-amber-300">recipe with enough ingredients to move the needle</strong> on
+          one specific failure mode — 1500 cells standard, 3000 cells master. Named ingredient mix from the medical
+          SKU shelf. Gold Standard QLoRA recipe (the one we used on{" "}
+          <strong className="text-amber-300">Atlas-27B</strong> · final loss 0.4186, and{" "}
+          <strong className="text-amber-300">Curator-9B</strong> · 0.707). 60-probe eval set ships in every bundle.
+        </p>
+        <p className="text-rose-300/90 text-sm font-mono mb-8 max-w-3xl px-3 py-2 bg-rose-950/20 border border-rose-900/30 rounded">
+          ▸ Headline receipt: <strong className="text-rose-200">501 targeted Jelly Donuts directly repaired Atlas v1&apos;s
+          fabrication-detection blind spot.</strong> 1500-cell cookbooks scale that pattern to wider failure modes; 3000-cell
+          masters cover stable cross-domain improvement.
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+          {COOKBOOKS.map((c) => {
+            const isMaster = c.cells === 3000;
+            return (
+              <a
+                key={c.slug}
+                href={`/cookbooks/${c.slug}.md`}
+                className={`block rounded-lg border-2 ${
+                  isMaster
+                    ? "border-amber-400/60 bg-gradient-to-br from-amber-900/30 to-neutral-900/30"
+                    : "border-amber-900/40 bg-neutral-900/40"
+                } p-6 hover:border-amber-400/80 transition-colors group`}
+              >
+                <div className="flex items-baseline justify-between mb-2 flex-wrap gap-2">
+                  <h3 className="text-xl font-black text-amber-300 leading-tight">{c.name}</h3>
+                  <div className="text-right">
+                    <div className="text-xl font-bold text-amber-300 font-mono">${c.price}</div>
+                    <div className="text-[10px] text-neutral-500 font-mono">{c.cells.toLocaleString()} cells</div>
+                  </div>
+                </div>
+                <div className="text-[10px] font-mono uppercase tracking-widest text-neutral-500 mb-3">
+                  lane: {c.lane}  ·  {isMaster ? "master · 3000" : "standard · 1500"}
+                </div>
+                <p className="text-sm text-neutral-300 leading-relaxed mb-3">{c.pitch}</p>
+                <div className="text-xs text-amber-300/80 font-mono leading-relaxed mb-4 px-2 py-1.5 bg-amber-950/20 border border-amber-900/30 rounded">
+                  ▸ {c.receipt}
+                </div>
+                <pre className="text-[11px] font-mono bg-neutral-950 border border-neutral-800 rounded px-3 py-2 text-amber-300 overflow-x-auto">{`swarmbee-bakery order \\
+  --sku cookbook \\
+  --cookbook ${c.slug} \\
+  --domain medical --confirm`}</pre>
+                <div className="mt-3 text-[11px] text-neutral-500 font-mono group-hover:text-amber-400 transition-colors">
+                  read full recipe + ingredients + receipt →
+                </div>
+              </a>
+            );
+          })}
+        </div>
+
+        <div className="rounded-lg border border-neutral-800 bg-neutral-900/40 p-5">
+          <div className="text-[10px] uppercase tracking-widest text-neutral-500 font-mono mb-3">
+            What ships in every cookbook bundle
+          </div>
+          <ul className="grid grid-cols-1 md:grid-cols-2 gap-y-2 gap-x-6 text-sm text-neutral-300">
+            <li className="flex gap-2"><span className="text-amber-400">•</span><code className="text-amber-300">JSONL corpus</code> · 1500 or 3000 cells</li>
+            <li className="flex gap-2"><span className="text-amber-400">•</span><code className="text-amber-300">manifest.json</code> · per-cell sha256 + ingredient breakdown</li>
+            <li className="flex gap-2"><span className="text-amber-400">•</span><code className="text-amber-300">dmack_eval_set_v1.jsonl</code> · 60 real probes</li>
+            <li className="flex gap-2"><span className="text-amber-400">•</span><code className="text-amber-300">eval_runner.py</code> · pre/post grading harness</li>
+            <li className="flex gap-2"><span className="text-amber-400">•</span><code className="text-amber-300">qlora_config.yaml</code> · Gold Standard recipe pinned</li>
+            <li className="flex gap-2"><span className="text-amber-400">•</span><code className="text-amber-300">loader.py</code> · TRL/Unsloth/Axolotl-compatible</li>
+            <li className="flex gap-2"><span className="text-amber-400">•</span>Optional · Hedera HCS anchor of bundle root hash</li>
+            <li className="flex gap-2"><span className="text-amber-400">•</span>Optional · cooked-for-you adapter weights · pass-through GPU fee</li>
+          </ul>
+        </div>
+
+        <p className="mt-6 text-sm text-neutral-500 leading-relaxed max-w-3xl">
+          See the full recipe + ingredients + eval focus for each cookbook by clicking through.
+          Also via CLI: <code className="text-amber-300">swarmbee-bakery cookbook</code> lists all,
+          <code className="text-amber-300"> swarmbee-bakery cookbook glycemic-reasoning</code> prints the full recipe.
+        </p>
+      </div>
+    </section>
+  );
+}
+
 /* ------------------------------ try free ------------------------------ */
 
 const FREE_PACKS: { flavor: string; slug: string; tier: string; pairs: number }[] = [
@@ -1084,7 +1218,7 @@ function HowToBuy() {
           </div>
           <ul className="text-sm text-neutral-300 space-y-2">
             <li><span className="text-amber-400 font-mono mr-2">5 ·</span>We review your order, scope the deliverable, confirm pricing.</li>
-            <li><span className="text-amber-400 font-mono mr-2">6 ·</span>We invoice (Stripe email) <em className="text-neutral-500">or</em> send a settlement address (swarmusdc.eth → 0xBDe2153C…).</li>
+            <li><span className="text-amber-400 font-mono mr-2">6 ·</span>We invoice (Stripe email) <em className="text-neutral-500">or</em> send a settlement address (swarmusdc.eth → 0xBDe2153C5799f4012a9fAF327e3421D1caB4Ea23).</li>
             <li><span className="text-amber-400 font-mono mr-2">7 ·</span>You pay. We assemble the bundle from rails + NAS · sha256 manifest · optional Hedera anchor.</li>
             <li><span className="text-amber-400 font-mono mr-2">8 ·</span>Signed R2 download URL lands in your inbox.</li>
           </ul>
@@ -1101,10 +1235,10 @@ function HowToBuy() {
           <div className="rounded-lg border border-neutral-800 bg-neutral-900/40 p-5">
             <div className="text-[10px] uppercase tracking-widest text-neutral-500 font-mono mb-2">swarmusdc.eth</div>
             <p className="text-sm text-neutral-300 leading-relaxed">
-              USDC on Ethereum L1 by default · ENS{" "}
+              USDC on <strong className="text-amber-300">Ethereum L1 ERC-20</strong> (mainnet only — no L2, no Base, we are root) · ENS{" "}
               <code className="text-amber-300">swarmusdc.eth</code> resolves to{" "}
-              <code className="text-amber-300">0xBDe2153C…</code> · L2 (Base / Arbitrum)
-              available on request. Sovereign settlement.
+              <code className="text-amber-300">0xBDe2153C5799f4012a9fAF327e3421D1caB4Ea23</code>.
+              Sovereign settlement.
             </p>
           </div>
         </div>

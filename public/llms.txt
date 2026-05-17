@@ -31,7 +31,7 @@ The firm is founded by **Donovan Mackey** — 30-year top-producing CRE broker w
     - `swarmandbee.eth` — the firm
     - `defendable.eth` — the open certification standard the firm's work is delivered under
     - `aiov.eth` — the AIOV (AI Opinion of Value) pre-broker SKU
-    - `swarmusdc.eth` — USDC settlement address for receipts + invoicing (→ 0xBDe2153C…)
+    - `swarmusdc.eth` — USDC settlement address for receipts + invoicing (→ 0xBDe2153C5799f4012a9fAF327e3421D1caB4Ea23)
     - HTTP gateway: `<name>.eth.limo` (e.g. https://defendable.eth.limo)
   - **Hedera Names (.hbar)**
     - `swarm.hbar` — Hedera-native firm identity

@@ -1,0 +1,166 @@
+{
+  "$comment": "Swarm & Bee Cookbooks v1 — pre-curated multi-SKU recipe bundles. Each cookbook is sized to move the needle on its target failure mode. Ingredients are real cell pulls from named medical SKUs; receipts are real numbers from prior cooks where they exist, or explicitly absent where they don't.",
+  "title": "Swarm & Bee Cookbooks",
+  "doctrine": "A cookbook is a recipe with enough ingredients to move the needle. We never claim deltas we haven't measured. We always show the schema, the loader, the eval, and the exact ingredient mix.",
+  "updated_at": "2026-05-17",
+  "version": "1.0.0",
+  "pricing_tiers": {
+    "standard_1500": {
+      "cells": 1500,
+      "price_usd": 899,
+      "settlement": "Stripe invoice or swarmusdc.eth"
+    },
+    "master_3000": {
+      "cells": 3000,
+      "price_usd": 1799,
+      "settlement": "Stripe invoice or swarmusdc.eth"
+    }
+  },
+  "shared_recipe": {
+    "label": "Swarm & Bee Gold Standard QLoRA",
+    "provenance": "The exact recipe used to cook Atlas-Qwen-27B (loss 0.4186) and SwarmCurator-9B (loss 0.707). Repeatable.",
+    "lr": "1e-5",
+    "precision": "bf16",
+    "adapter": "LoRA r=64 α=32",
+    "scheduler": "cosine",
+    "effective_batch_size": 32,
+    "epochs": 3,
+    "notes": ["AutoTokenizer bypass on Qwen-family bases", "gradient checkpointing on if VRAM-bound"]
+  },
+  "shared_loader": "def load_cookbook(jsonl_path):\n    import json\n    cells = []\n    with open(jsonl_path) as f:\n        for line in f:\n            o = json.loads(line)\n            cells.append({\"instruction\": o[\"question\"], \"response\": o[\"answer\"], \"metadata\": {k: v for k, v in o.items() if k not in ('question','answer')}})\n    return cells",
+  "shared_eval": {
+    "name": "dmack_eval_set_v1",
+    "n_probes": 60,
+    "categories": {
+      "founder-voice": 20,
+      "emergency-hard-stop": 10,
+      "adrenal-crisis": 10,
+      "refusal-compliance": 10,
+      "citation-behavior": 5,
+      "voicedrift-and-thinktag": 5
+    },
+    "source": "/eval/dmack_eval_set_v1.jsonl",
+    "notes": "Every cookbook ships this eval set as the baseline probe. Run before and after the cook; the delta is the receipt."
+  },
+  "headline_receipt": {
+    "claim": "501 targeted Jelly Donuts directly repaired Atlas-Qwen-27B v1's fabrication-detection blind spot.",
+    "source": "Curator-Mistral-3B v2 cook (memory: feedback/curator_v2_repair_log)",
+    "implication": "Less is better when targeted. 1500 cells in a curated cookbook on the right failure mode moves the needle on 4B-class bases; 3000 cells covers wider stable improvement. Numbers below 500 do not reliably move benchmarks."
+  },
+  "cookbooks": [
+    {
+      "slug": "glycemic-reasoning",
+      "name": "Glycemic Reasoning",
+      "tier": "standard_1500",
+      "cells": 1500,
+      "price_usd": 899,
+      "target_failure_mode": "Insulin dosing / carb-ratio / correction-factor reasoning with refusal on insufficient inputs. No fabrication of patient-specific doses.",
+      "ingredients": [
+        { "sku_id": "sb-endo-eclair",       "name": "Endo Eclair",        "cells": 700, "rationale": "Clinical endo reasoning — the foundation" },
+        { "sku_id": "sb-cinnamon-spiral",   "name": "Cinnamon Spiral",    "cells": 400, "rationale": "Real CGM + meal-macros from PhysioNet — grounds reasoning in physiology, not theory" },
+        { "sku_id": "sb-federal-glaze",     "name": "Federal Glaze",      "cells": 300, "rationale": "CDC / NIDDK glycemic targets — the regulatory baseline" },
+        { "sku_id": "sb-compliance-cookie", "name": "Compliance Cookie",  "cells": 100, "rationale": "Refusal patterns — the brake pedal; without these the model invents doses" }
+      ],
+      "eval_focus": ["refusal-compliance (all 10)", "citation-behavior (all 5)"],
+      "receipt": "Receipt extrapolated. Curator v2's 501-pack directly repaired Atlas v1's fabrication-detection blind spot — this cookbook applies the same architecture to glycemic-specific failure modes. Cookbook-specific receipt publishes when first paying customer runs the eval pre/post.",
+      "url_markdown": "/cookbooks/glycemic-reasoning.md",
+      "url_json": "/cookbooks/glycemic-reasoning.json"
+    },
+    {
+      "slug": "diabetic-foot-care",
+      "name": "Diabetic Foot Care",
+      "tier": "standard_1500",
+      "cells": 1500,
+      "price_usd": 899,
+      "target_failure_mode": "IWGDF-aligned wound assessment, infection grading, offloading prescription, escalation timing. Patient-safety bias toward escalating ambiguous cases.",
+      "ingredients": [
+        { "sku_id": "sb-madeleine-pmc",     "name": "Madeleine",          "cells": 700, "rationale": "PubMed Central — diabetic foot ulcer, neuropathy, infection grading research literature" },
+        { "sku_id": "sb-global-crumpet",    "name": "Global Crumpet",     "cells": 400, "rationale": "NHS + IDF wound-care guidance; IWGDF-aligned escalation pathways" },
+        { "sku_id": "sb-founders-pretzel",  "name": "Founder's Pretzel",  "cells": 300, "rationale": "Lived experience — 14 foot surgeries. Register: hyper-vigilance on early signs, not theory" },
+        { "sku_id": "sb-compliance-cookie", "name": "Compliance Cookie",  "cells": 100, "rationale": "Escalation refusal patterns — when to refer immediately" }
+      ],
+      "eval_focus": ["emergency-hard-stop (all 10)", "founder-voice (subset · 8/20)"],
+      "receipt": "Founder is the receipt. Donovan Mackey: Type 1 diabetic, insulin-dependent, lost left big toe + half of right big toe to infection, 14 foot-complication surgeries. The patterns in this cookbook are not extrapolated from theory — they come from a 30-year operating practitioner whose lived experience anchors the corpus.",
+      "url_markdown": "/cookbooks/diabetic-foot-care.md",
+      "url_json": "/cookbooks/diabetic-foot-care.json"
+    },
+    {
+      "slug": "patient-communication",
+      "name": "Patient Communication",
+      "tier": "standard_1500",
+      "cells": 1500,
+      "price_usd": 899,
+      "target_failure_mode": "Medical-jargon-to-plain-language rewrite, consent explanation, triage script generation. Maintains clinical accuracy at patient-level register.",
+      "ingredients": [
+        { "sku_id": "sb-global-crumpet",    "name": "Global Crumpet",     "cells": 800, "rationale": "NHS patient-facing guidance — the largest verified plain-language clinical corpus in production" },
+        { "sku_id": "sb-federal-glaze",     "name": "Federal Glaze",      "cells": 500, "rationale": "MedlinePlus + CDC patient-level guidance — US register" },
+        { "sku_id": "sb-founders-pretzel",  "name": "Founder's Pretzel",  "cells": 100, "rationale": "Compassionate register patterns from lived experience" },
+        { "sku_id": "sb-compliance-cookie", "name": "Compliance Cookie",  "cells": 100, "rationale": "When to defer to a clinician — register stays patient-friendly but knows its limits" }
+      ],
+      "eval_focus": ["founder-voice (all 20)", "citation-behavior (all 5)"],
+      "receipt": "Receipt pending — recipe designed against the dmack.ai senior-hack review staging. NHS / MedlinePlus pulls are independently verified plain-language baselines (Flesch reading ease > 60 on source material). Cookbook-specific pre/post receipt publishes when first paying customer runs the eval.",
+      "url_markdown": "/cookbooks/patient-communication.md",
+      "url_json": "/cookbooks/patient-communication.json"
+    },
+    {
+      "slug": "diabetes-companion-3000",
+      "name": "Diabetes Companion · 3000",
+      "tier": "master_3000",
+      "cells": 3000,
+      "price_usd": 1799,
+      "target_failure_mode": "Full-stack diabetes assistant: clinical decision support + research grounding + patient communication + lived-experience register, with two-stream architecture (sourced authority vs lived voice) preserved.",
+      "ingredients": [
+        { "sku_id": "sb-dmack-royal-jelly", "name": "Dmack's Royal Jelly", "cells": 1500, "rationale": "The v1 flagship master — rolled-up multi-source (endo, CGM, PMC, OpenAlex, intl, gov, patterns, refusal)" },
+        { "sku_id": "sb-madeleine-pmc",     "name": "Madeleine",           "cells": 500,  "rationale": "Extra PMC research backing — citation-anchored answers" },
+        { "sku_id": "sb-global-crumpet",    "name": "Global Crumpet",      "cells": 500,  "rationale": "International guidelines coverage" },
+        { "sku_id": "sb-cinnamon-spiral",   "name": "Cinnamon Spiral",     "cells": 300,  "rationale": "CGM real-world physiology" },
+        { "sku_id": "sb-founders-pretzel",  "name": "Founder's Pretzel",   "cells": 200,  "rationale": "Lived-experience register — never used as medical authority, always for human resonance" }
+      ],
+      "eval_focus": ["all 60 probes in dmack_eval_set_v1"],
+      "receipt": "Receipt pending. This is the recipe staged for the dmack.ai senior-hack cook (canary-then-cook discipline applied). When the cook finalizes — estimated 2026-Q3 — the actual loss curve, eval delta, and Hedera-anchored bundle hash publish in this cookbook. Until then: order this only if you are prepared to be the first receipt.",
+      "url_markdown": "/cookbooks/diabetes-companion-3000.md",
+      "url_json": "/cookbooks/diabetes-companion-3000.json"
+    },
+    {
+      "slug": "spine-imaging-reasoning",
+      "name": "Spine Imaging Reasoning",
+      "tier": "standard_1500",
+      "cells": 1500,
+      "price_usd": 899,
+      "target_failure_mode": "Spine imaging interpretation (MRI sagittal/axial), differential diagnosis chains, clinical-vignette → diagnostic reasoning at radiology-fellow register.",
+      "ingredients": [
+        { "sku_id": "sb-imaging-platinum", "name": "Royal Jelly Brioche", "cells": 1500, "rationale": "MASTER_PLATINUM clinical-vignette imaging Q/A subset (MSK / neuro / spine) — multimodal-aware cells with imaging-finding descriptors and diagnostic reasoning" }
+      ],
+      "eval_focus": ["bespoke radiology probes (not yet in dmack_eval_set_v1)", "+ refusal-compliance for ambiguous-imaging cases (subset · 5/10)"],
+      "receipt": "Receipt pending. Source corpus (MASTER_PLATINUM, 406,181 cells) is at pre-Tribunal status. This recipe has not been cooked at scale. Cookbook ships with a starter eval pack; the first paying customer's pre/post metrics publish here.",
+      "url_markdown": "/cookbooks/spine-imaging-reasoning.md",
+      "url_json": "/cookbooks/spine-imaging-reasoning.json"
+    },
+    {
+      "slug": "multimodal-clinical-reasoning",
+      "name": "Multimodal Clinical Reasoning · 3000",
+      "tier": "master_3000",
+      "cells": 3000,
+      "price_usd": 1799,
+      "target_failure_mode": "Broad medical reasoning spanning imaging + literature + guidelines. For shops building general clinical-assistant models that need both diagnostic-imaging fluency and citation-grounded answers.",
+      "ingredients": [
+        { "sku_id": "sb-imaging-platinum", "name": "Royal Jelly Brioche", "cells": 1500, "rationale": "Apex imaging vignettes" },
+        { "sku_id": "sb-imaging-gold",     "name": "Golden Glaze",        "cells": 500,  "rationale": "Gold-tier spine + neuro imaging companion" },
+        { "sku_id": "sb-madeleine-pmc",    "name": "Madeleine",           "cells": 500,  "rationale": "PMC research literature — citation-anchored answers" },
+        { "sku_id": "sb-global-crumpet",   "name": "Global Crumpet",      "cells": 300,  "rationale": "International clinical guidelines" },
+        { "sku_id": "sb-federal-glaze",    "name": "Federal Glaze",       "cells": 200,  "rationale": "US federal-source patient-level context" }
+      ],
+      "eval_focus": ["citation-behavior (all 5)", "founder-voice (subset)", "bespoke imaging probes"],
+      "receipt": "Receipt pending. Imaging SKUs are at pre-Tribunal status. This recipe is the broad-clinical companion to Spine Imaging Reasoning — order if you need wider domain coverage than imaging alone.",
+      "url_markdown": "/cookbooks/multimodal-clinical-reasoning.md",
+      "url_json": "/cookbooks/multimodal-clinical-reasoning.json"
+    }
+  ],
+  "ordering": {
+    "via_cli": "swarmbee-bakery cookbook list                            # browse",
+    "detail_one": "swarmbee-bakery cookbook glycemic-reasoning           # show full recipe",
+    "order_one": "swarmbee-bakery order --sku cookbook --cookbook glycemic-reasoning --name 'You' --email 'you@you.dev' --confirm",
+    "settlement_rails": ["stripe", "swarmusdc"],
+    "fulfillment_doctrine": "Human reads every cookbook order. Bundle is assembled per the named ingredient list (exact cell pulls deterministic with sha256), Tribunal-sealed, signed manifest + optional Hedera anchor, signed download URL emailed to customer."
+  }
+}

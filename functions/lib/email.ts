@@ -85,7 +85,7 @@ function renderOrderReceiptHTML(f: OrderEmailFields): string {
     f.settlement_rail === "stripe"
       ? "We'll email you a Stripe invoice link within one business day."
       : f.settlement_rail === "swarmusdc"
-      ? "We'll email you the USDC settlement address (swarmusdc.eth → 0xBDe2153C…) within one business day."
+      ? "We'll email you the USDC settlement address (swarmusdc.eth → 0xBDe2153C5799f4012a9fAF327e3421D1caB4Ea23) within one business day."
       : "We'll email you the invoice link (Stripe) or settlement address (swarmusdc.eth) within one business day — whichever rail you prefer.";
 
   return `<!DOCTYPE html>
