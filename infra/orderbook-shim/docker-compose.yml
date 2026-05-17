@@ -1,0 +1,43 @@
+# orderbook.swarmandbee.ai · NAS-native order book
+#
+# Sovereign storage for the Swarm & Bee order ledger. SQLite on owned disks.
+# Customer-facing CF Pages Functions call this shim over the existing
+# Cloudflare Tunnel that already runs on this NAS.
+#
+# Path: customer's CLI / browser
+#       → CF Pages Function (e.g. /api/bakery-intake)
+#       → fetch(https://orderbook.swarmandbee.ai/orders, X-Orderbook-Key)
+#       → CF edge → existing cloudflared tunnel on this NAS
+#       → orderbook-shim FastAPI on host port 18489
+#       → /volume1/swarm/orderbook/orders.db
+#
+# Runs on Synology DS1525+ (minechain-nas @ 192.168.0.102) via Container Manager.
+# Drop this dir at /volume1/docker/orderbook-shim/ (or run from /volume1/swarm/orderbook-shim-deploy/).
+#
+# IMPORTANT: assumes the cloudflared tunnel on this NAS is already running
+# (the same one used for dl.swarmandbee.ai). You add `orderbook` as a new
+# Public Hostname pointing at http://192.168.0.102:18489. See README.
+
+services:
+  orderbook-shim:
+    build: .
+    image: sb-orderbook-shim:0.1.0
+    container_name: sb-orderbook-shim
+    restart: unless-stopped
+    ports:
+      # Host port 18489 — adjacent to dl-tunnel's 18488. Change if collision.
+      - "18489:8000"
+    environment:
+      # API key MUST match the one set in CF Pages env var ORDERBOOK_API_KEY.
+      # Set via .env (which is gitignored) — do NOT commit the real key here.
+      - ORDERBOOK_API_KEY=${ORDERBOOK_API_KEY}
+      - ORDERBOOK_DB_PATH=/data/orders.db
+      - ORDERBOOK_MIGRATIONS_DIR=/app/migrations
+    volumes:
+      # Persistent SQLite database on the NAS volume.
+      - /volume1/swarm/orderbook:/data
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://localhost:8000/healthz', timeout=3).status==200 else 1)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3

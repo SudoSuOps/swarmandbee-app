@@ -1,41 +1,58 @@
-// POST /api/box-checkout
-//
-// The register. A customer's Build-a-Box submission lands here. We:
-//   1. validate the box shape (12 picks · email present · bundle hash present)
-//   2. mint a short, human-friendly order id (BAK-YYYYMMDD-XXXX)
-//   3. POST the order to the Discord webhook so Donovan + Claude see it instantly
-//   4. return { ok, order_id } to the client so the receipt screen can render
-//
-// What we DON'T do here (V1 manual-fulfillment doctrine):
-//   - touch a Stripe API directly (the human relays a checkout link or LN invoice)
-//   - sign the Hedera HCS anchor (we anchor post-payment, not pre-payment)
-//   - write to D1 (we keep state in Discord for now · D1 wire-up is V2)
-//
-// Cloudflare Pages Functions runtime. Bindings:
-//   DISCORD_BOUNTY_WEBHOOK_URL — env var (same webhook the bounty intake uses)
+// /api/box-checkout — CF Pages Function · 12-pack browser orders.
+// Writes through to the sovereign NAS shim + sends email + pings Discord.
 
-interface Env {
+import { OrderBookClient, sha256Hex, type OrderBookEnv } from "../lib/orderbook";
+import { sendOrderReceipt } from "../lib/email";
+
+interface Env extends OrderBookEnv {
+  DISCORD_BAKERY_WEBHOOK_URL?: string;
   DISCORD_BOUNTY_WEBHOOK_URL?: string;
+  DISCORD_WEBHOOK_URL?: string;
 }
 
 interface BoxOrder {
   picks: string[];
   bundle_hash: string;
   email: string;
+  name?: string;
   org_name?: string;
   intended_use?: string;
-  pay_rail: "stripe" | "lightning";
+  settlement_rail?: "stripe" | "swarmusdc" | "either";
+  pay_rail?: "stripe" | "lightning"; // legacy
 }
 
-export const onRequestPost: PagesFunction<Env> = async (ctx) => {
+function json(body: unknown, status = 200): Response {
+  return new Response(JSON.stringify(body), {
+    status,
+    headers: { "Content-Type": "application/json" },
+  });
+}
+
+function truncate(s: string, n: number): string {
+  return s.length <= n ? s : s.slice(0, n - 1) + "…";
+}
+
+function resolveDiscordWebhook(env: Env): string {
+  for (const cand of [
+    env.DISCORD_BAKERY_WEBHOOK_URL,
+    env.DISCORD_BOUNTY_WEBHOOK_URL,
+    env.DISCORD_WEBHOOK_URL,
+  ]) {
+    if (typeof cand === "string" && cand.trim().length > 0) {
+      return cand.replace(/\s+/g, "");
+    }
+  }
+  return "";
+}
+
+export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
   let body: BoxOrder;
   try {
-    body = await ctx.request.json();
+    body = await request.json();
   } catch {
     return json({ ok: false, error: "invalid json" }, 400);
   }
 
-  // validate
   if (!Array.isArray(body.picks) || body.picks.length !== 12) {
     return json({ ok: false, error: "box must contain exactly 12 picks" }, 400);
   }
@@ -45,66 +62,129 @@ export const onRequestPost: PagesFunction<Env> = async (ctx) => {
   if (!body.email || !body.email.includes("@") || body.email.length < 5 || body.email.length > 200) {
     return json({ ok: false, error: "email required" }, 400);
   }
-  if (body.pay_rail !== "stripe" && body.pay_rail !== "lightning") {
-    return json({ ok: false, error: "pay_rail must be stripe or lightning" }, 400);
+  const email = body.email.trim().toLowerCase();
+  const name = (body.name || body.org_name || "Customer").trim().slice(0, 200);
+
+  let settlement_rail: "stripe" | "swarmusdc" | "either" = "either";
+  if (body.settlement_rail === "stripe" || body.settlement_rail === "swarmusdc") {
+    settlement_rail = body.settlement_rail;
+  } else if (body.pay_rail === "stripe") {
+    settlement_rail = "stripe";
   }
 
-  const orderId = mintOrderId();
+  const intakePayload = {
+    channel: "web-box",
+    picks: [...body.picks].sort(),
+    bundle_hash: body.bundle_hash,
+    email, name,
+    org_name: body.org_name ?? "",
+    intended_use: body.intended_use ?? "",
+    settlement_rail,
+  };
+  const payload_sha256 = await sha256Hex(intakePayload);
 
-  // ship to discord (fire-and-forget · we don't fail the order if discord 503s)
-  const webhook = ctx.env.DISCORD_BOUNTY_WEBHOOK_URL;
+  let ob: OrderBookClient;
+  try {
+    ob = OrderBookClient.fromEnv(env);
+  } catch (e) {
+    return json({ ok: false, error: (e as Error).message }, 503);
+  }
+
+  let order_id: string;
+  try {
+    order_id = await ob.createOrder({
+      channel: "web-box",
+      email, name,
+      company: body.org_name,
+      sku: "12-pack",
+      domain: "mixed",
+      pairs_requested: 12,
+      notes: body.intended_use,
+      settlement_rail,
+      picks_json: JSON.stringify(body.picks),
+      bundle_hash: body.bundle_hash,
+      payload_sha256,
+      user_agent: request.headers.get("User-Agent") ?? "",
+    });
+  } catch (shimErr) {
+    return json(
+      { ok: false, error: "order book unreachable", detail: (shimErr as Error).message?.slice(0, 500) },
+      502,
+    );
+  }
+
+  // email receipt
+  let receipt_email: { sent: boolean; error?: string } = { sent: false };
+  if (env.RESEND_API_KEY) {
+    const fromAddress = env.ORDER_RECEIPT_FROM || "Swarm & Bee <orders@swarmandbee.ai>";
+    try {
+      const sent = await sendOrderReceipt(env.RESEND_API_KEY, fromAddress, {
+        order_id, name, email, channel: "web-box",
+        sku: "12-pack", sku_id: null, domain: "mixed",
+        pairs_requested: 12, failure_mode: null,
+        notes: body.intended_use, settlement_rail,
+        payload_sha256, bundle_hash: body.bundle_hash,
+      });
+      receipt_email = { sent: sent.ok, error: sent.error };
+      try {
+        await ob.recordReceipt(order_id, {
+          receipt_type: "order_created",
+          email_to: email,
+          email_subject: `Order ${order_id} received · Swarm & Bee`,
+          email_provider: "resend",
+          email_provider_id: sent.message_id,
+          delivered: sent.ok,
+          error: sent.error,
+        });
+        await ob.logEvent(order_id, {
+          event_type: "email_sent",
+          actor: "system",
+          detail: sent.ok ? `resend ${sent.message_id}` : `resend FAILED: ${sent.error}`,
+        });
+      } catch {
+        /* swallow */
+      }
+    } catch (emailErr) {
+      receipt_email = { sent: false, error: (emailErr as Error).message };
+    }
+  } else {
+    receipt_email = { sent: false, error: "RESEND_API_KEY not configured" };
+  }
+
+  // Discord notify
+  const webhook = resolveDiscordWebhook(env);
   if (webhook) {
     const lines = [
-      `**📦 BAKERY ORDER · ${orderId}** · $149 · ${body.pay_rail}`,
-      `\`email\` ${body.email}` + (body.org_name ? `  ·  \`org\` ${body.org_name}` : ""),
+      `**📦 BOX ORDER · ${order_id}** · 12-pack · ${settlement_rail}`,
+      `\`email\` ${email}` + (body.org_name ? `  ·  \`org\` ${body.org_name}` : ""),
       body.intended_use ? `> ${truncate(body.intended_use, 400)}` : "",
       `\`bundle.sha256\` \`${body.bundle_hash}\``,
+      `\`payload.sha256\` \`${payload_sha256}\``,
+      `\`email receipt\` ${receipt_email.sent ? "✓ sent" : "✗ failed: " + (receipt_email.error || "?")}`,
       ``,
       `**picks (${body.picks.length}):**`,
       "```",
       body.picks.join("\n"),
       "```",
-      `_action_: mint payment link (${body.pay_rail}), reply to email, assemble bundle from rails, anchor Hedera HCS post-pay.`,
+      `_action_: mint Stripe invoice or send USDC address (swarmusdc.eth), assemble bundle, anchor Hedera HCS post-pay.`,
     ].filter(Boolean);
-
     try {
       await fetch(webhook, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          content: lines.join("\n"),
-          allowed_mentions: { parse: [] },
-        }),
+        body: JSON.stringify({ content: lines.join("\n"), allowed_mentions: { parse: [] } }),
       });
     } catch {
-      /* swallow · the order id is the customer's receipt of record */
+      /* swallow */
     }
   }
 
-  return json({ ok: true, order_id: orderId });
-};
-
-function mintOrderId(): string {
-  const d = new Date();
-  const stamp =
-    d.getUTCFullYear().toString() +
-    pad(d.getUTCMonth() + 1) +
-    pad(d.getUTCDate());
-  const rnd = Math.random().toString(36).slice(2, 6).toUpperCase();
-  return `BAK-${stamp}-${rnd}`;
-}
-
-function pad(n: number): string {
-  return n < 10 ? "0" + n : String(n);
-}
-
-function truncate(s: string, max: number): string {
-  return s.length <= max ? s : s.slice(0, max - 1) + "…";
-}
-
-function json(payload: unknown, status = 200): Response {
-  return new Response(JSON.stringify(payload), {
-    status,
-    headers: { "Content-Type": "application/json" },
+  return json({
+    ok: true,
+    order_id,
+    payload_sha256,
+    status: "pending",
+    receipt_email,
+    check_status: `swarmbee-bakery account --order ${order_id} --email ${email}`,
   });
-}
+};

@@ -1,34 +1,36 @@
-// /api/bakery-intake — Cloudflare Pages Function · Discord webhook
+// /api/bakery-intake — CF Pages Function
 //
-// CLI-side counterpart of /api/bounty-intake. The swarmbee-bakery Python CLI
-// posts here first (with /api/bounty-intake as documented fallback). Same
-// validation contract as bounty-intake; distinct Discord embed framing so the
-// channel can distinguish browser bounty submissions from CLI bakery orders.
+// Write-through to the sovereign NAS shim:
+//   1. Validate input
+//   2. Compute payload sha256
+//   3. POST to orderbook.swarmandbee.ai/orders  (PRIMARY — fails request if shim down)
+//   4. Fire Resend email receipt (best-effort, logged via /receipts on shim)
+//   5. Ping Discord (best-effort)
+//   6. Return { ok, order_id, payload_sha256, receipt_email }
 //
-// Required env var (CF Pages Production):
-//   DISCORD_BAKERY_WEBHOOK_URL  — bakery channel webhook (plaintext or secret)
-//
-// Optional fallback chain (in order):
-//   DISCORD_BAKERY_WEBHOOK_URL  →  DISCORD_BOUNTY_WEBHOOK_URL  →  DISCORD_WEBHOOK_URL
-// So submissions are never silently lost during initial env setup. Production
-// should set the dedicated DISCORD_BAKERY_WEBHOOK_URL.
+// Required env: ORDERBOOK_API_KEY, ORDERBOOK_BASE_URL (default https://orderbook.swarmandbee.ai)
+// Required env: RESEND_API_KEY, ORDER_RECEIPT_FROM
+// Optional env: DISCORD_BAKERY_WEBHOOK_URL, DISCORD_BOUNTY_WEBHOOK_URL, DISCORD_WEBHOOK_URL
 
-interface Env {
+import { OrderBookClient, sha256Hex, type OrderBookEnv, type OrderInput } from "../lib/orderbook";
+import { sendOrderReceipt, type OrderEmailFields } from "../lib/email";
+
+interface Env extends OrderBookEnv {
   DISCORD_BAKERY_WEBHOOK_URL?: string;
   DISCORD_BOUNTY_WEBHOOK_URL?: string;
   DISCORD_WEBHOOK_URL?: string;
 }
 
-const CORS_HEADERS = {
+const CORS = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "POST, OPTIONS",
   "Access-Control-Allow-Headers": "Content-Type",
 };
 
-function jsonResponse(body: unknown, status = 200): Response {
+function json(body: unknown, status = 200): Response {
   return new Response(JSON.stringify(body), {
     status,
-    headers: { ...CORS_HEADERS, "Content-Type": "application/json" },
+    headers: { ...CORS, "Content-Type": "application/json" },
   });
 }
 
@@ -36,173 +38,195 @@ function truncate(s: string, n: number): string {
   return s.length <= n ? s : s.slice(0, n - 3) + "...";
 }
 
-function resolveWebhook(env: Env): { url: string; used_var: string } {
-  const ordered: Array<[string, string | undefined]> = [
-    ["DISCORD_BAKERY_WEBHOOK_URL", env.DISCORD_BAKERY_WEBHOOK_URL],
-    ["DISCORD_BOUNTY_WEBHOOK_URL", env.DISCORD_BOUNTY_WEBHOOK_URL],
-    ["DISCORD_WEBHOOK_URL", env.DISCORD_WEBHOOK_URL],
-  ];
-  for (const [name, val] of ordered) {
-    if (typeof val === "string" && val.trim().length > 0) {
-      return { url: val.replace(/\s+/g, ""), used_var: name };
+function resolveDiscordWebhook(env: Env): string {
+  for (const cand of [
+    env.DISCORD_BAKERY_WEBHOOK_URL,
+    env.DISCORD_BOUNTY_WEBHOOK_URL,
+    env.DISCORD_WEBHOOK_URL,
+  ]) {
+    if (typeof cand === "string" && cand.trim().length > 0) {
+      return cand.replace(/\s+/g, "");
     }
   }
-  // Tolerate stray whitespace in env var NAMES (CF dashboard paste quirks)
-  try {
-    const envObj = env as unknown as Record<string, unknown>;
-    for (const k of Object.keys(envObj)) {
-      const trimmedKey = k.trim();
-      if (
-        trimmedKey === "DISCORD_BAKERY_WEBHOOK_URL" ||
-        trimmedKey === "DISCORD_BOUNTY_WEBHOOK_URL" ||
-        trimmedKey === "DISCORD_WEBHOOK_URL"
-      ) {
-        const v = envObj[k];
-        if (typeof v === "string" && v.length > 0) {
-          return { url: v.replace(/\s+/g, ""), used_var: trimmedKey };
-        }
-      }
-    }
-  } catch {
-    /* noop */
-  }
-  return { url: "", used_var: "(none)" };
+  return "";
 }
 
-export const onRequestOptions: PagesFunction<Env> = async () => {
-  return new Response(null, { headers: CORS_HEADERS });
-};
+function extractFromDescription(description: string, label: string): string | undefined {
+  const m = new RegExp(`^${label}:\\s*(.+)$`, "m").exec(description);
+  return m ? m[1].trim() : undefined;
+}
+
+export const onRequestOptions: PagesFunction<Env> = async () =>
+  new Response(null, { headers: CORS });
 
 export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
+  // 1. parse + validate
+  let body: any = {};
   try {
-    let body: any = {};
+    body = await request.json();
+  } catch {
+    return json({ ok: false, error: "Invalid JSON" }, 400);
+  }
+  // honeypot
+  if (body && typeof body.company_website === "string" && body.company_website.length > 0) {
+    return json({ ok: true });
+  }
+
+  const name = typeof body.name === "string" ? body.name.trim().slice(0, 200) : "";
+  const email = typeof body.email === "string" ? body.email.trim().toLowerCase().slice(0, 200) : "";
+  const work_type = typeof body.work_type === "string" ? body.work_type.trim().slice(0, 60) : "";
+  const description = typeof body.description === "string" ? body.description.trim().slice(0, 6000) : "";
+
+  if (!name || !email || !work_type || !description) {
+    return json({ ok: false, error: "Missing required field" }, 400);
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return json({ ok: false, error: "Invalid email" }, 400);
+  }
+  if (description.length < 20) {
+    return json({ ok: false, error: "Description too short" }, 400);
+  }
+
+  const company = typeof body.company === "string" ? body.company.trim().slice(0, 200) : "";
+  const budget = typeof body.budget === "string" ? body.budget.trim().slice(0, 120) : "";
+  const deadline = typeof body.deadline === "string" ? body.deadline.trim().slice(0, 120) : "";
+  const sku = typeof body.sku === "string" ? body.sku.trim().slice(0, 40) : extractFromDescription(description, "SKU");
+  const sku_id = typeof body.sku_id === "string" ? body.sku_id.trim().slice(0, 80) : undefined;
+  const domain = typeof body.domain === "string" ? body.domain.trim().slice(0, 80) : extractFromDescription(description, "Domain");
+  const failure_mode = typeof body.failure_mode === "string" ? body.failure_mode.trim().slice(0, 500) : extractFromDescription(description, "Failure mode");
+  const settlement_rail: "stripe" | "swarmusdc" | "either" =
+    body.settlement_rail === "stripe" || body.settlement_rail === "swarmusdc"
+      ? body.settlement_rail
+      : "either";
+  const channel: "cli" | "web-box" | "web-bounty" =
+    body.channel === "web-box" ? "web-box" : body.channel === "web-bounty" ? "web-bounty" : "cli";
+
+  const userAgent = request.headers.get("User-Agent") ?? "";
+
+  // 2. payload sha256
+  const intakePayload = {
+    name, email, work_type, description, company, budget, deadline,
+    sku, sku_id, domain, failure_mode, settlement_rail, channel,
+  };
+  const payload_sha256 = await sha256Hex(intakePayload);
+
+  // 3. POST to NAS shim (required — order book is source of truth)
+  let ob: OrderBookClient;
+  try {
+    ob = OrderBookClient.fromEnv(env);
+  } catch (e) {
+    return json({ ok: false, error: (e as Error).message }, 503);
+  }
+
+  const orderInput: OrderInput = {
+    channel, email, name, company,
+    sku, sku_id, domain,
+    failure_mode, notes: description, budget, deadline, settlement_rail,
+    payload_sha256, user_agent: userAgent,
+  };
+
+  let order_id: string;
+  try {
+    order_id = await ob.createOrder(orderInput);
+  } catch (shimErr) {
+    return json(
+      { ok: false, error: "order book unreachable", detail: (shimErr as Error).message?.slice(0, 500) },
+      502,
+    );
+  }
+
+  // 4. Resend receipt (best-effort)
+  let receipt_email: { sent: boolean; error?: string } = { sent: false };
+  if (env.RESEND_API_KEY) {
+    const fromAddress = env.ORDER_RECEIPT_FROM || "Swarm & Bee <orders@swarmandbee.ai>";
+    const fields: OrderEmailFields = {
+      order_id, name, email, channel,
+      sku: sku ?? null,
+      sku_id: sku_id ?? null,
+      domain: domain ?? null,
+      failure_mode: failure_mode ?? null,
+      notes: description,
+      settlement_rail,
+      payload_sha256,
+    };
     try {
-      body = await request.json();
-    } catch {
-      return jsonResponse({ ok: false, error: "Invalid JSON" }, 400);
-    }
-
-    // Honeypot — real CLI users don't fill this field
-    if (body && typeof body.company_website === "string" && body.company_website.length > 0) {
-      return jsonResponse({ ok: true }); // pretend success, drop silently
-    }
-
-    const name = typeof body.name === "string" ? body.name.trim().slice(0, 200) : "";
-    const email = typeof body.email === "string" ? body.email.trim().slice(0, 200) : "";
-    const work_type = typeof body.work_type === "string" ? body.work_type.trim().slice(0, 60) : "";
-    const description =
-      typeof body.description === "string" ? body.description.trim().slice(0, 6000) : "";
-
-    if (!name || !email || !work_type || !description) {
-      return jsonResponse({ ok: false, error: "Missing required field" }, 400);
-    }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      return jsonResponse({ ok: false, error: "Invalid email" }, 400);
-    }
-    if (description.length < 20) {
-      return jsonResponse({ ok: false, error: "Description too short" }, 400);
-    }
-
-    const company = typeof body.company === "string" ? body.company.trim().slice(0, 200) : "";
-    const budget = typeof body.budget === "string" ? body.budget.trim().slice(0, 120) : "";
-    const deadline = typeof body.deadline === "string" ? body.deadline.trim().slice(0, 120) : "";
-
-    const { url: webhookUrl, used_var } = resolveWebhook(env);
-
-    // Debug shortcut — verify env wiring without leaking the token
-    if (body && body.debug === true) {
-      const safe = webhookUrl ? webhookUrl.slice(0, 50) + "…(len=" + webhookUrl.length + ")" : "(empty)";
-      return jsonResponse({
-        ok: true,
-        debug: true,
-        endpoint: "/api/bakery-intake",
-        webhook_prefix: safe,
-        webhook_starts_with_https: webhookUrl.startsWith("https://"),
-        webhook_contains_discord: webhookUrl.includes("discord.com/api/webhooks/"),
-        webhook_has_whitespace: /\s/.test(webhookUrl),
-        used_var,
-      });
-    }
-
-    if (!webhookUrl) {
-      let envKeys: string[] = [];
+      const sent = await sendOrderReceipt(env.RESEND_API_KEY, fromAddress, fields);
+      receipt_email = { sent: sent.ok, error: sent.error };
+      // Best-effort log to shim; swallow shim errors here
       try {
-        envKeys = Object.keys(env as unknown as Record<string, unknown>).sort();
+        await ob.recordReceipt(order_id, {
+          receipt_type: "order_created",
+          email_to: email,
+          email_subject: `Order ${order_id} received · Swarm & Bee`,
+          email_provider: "resend",
+          email_provider_id: sent.message_id,
+          delivered: sent.ok,
+          error: sent.error,
+        });
+        await ob.logEvent(order_id, {
+          event_type: "email_sent",
+          actor: "system",
+          detail: sent.ok ? `resend ${sent.message_id}` : `resend FAILED: ${sent.error}`,
+        });
       } catch {
-        /* noop */
+        /* swallow — order is already persisted */
       }
-      return jsonResponse(
-        {
-          ok: false,
-          error: "Discord webhook not configured",
-          diagnostic: { env_keys: envKeys, env_keys_count: envKeys.length },
-        },
-        500,
-      );
+    } catch (emailErr) {
+      receipt_email = { sent: false, error: (emailErr as Error).message };
     }
+  } else {
+    receipt_email = { sent: false, error: "RESEND_API_KEY not configured" };
+  }
 
+  // 5. Discord notify (best-effort)
+  const webhook = resolveDiscordWebhook(env);
+  if (webhook) {
     const discordPayload = {
       embeds: [
         {
-          title: truncate("Bakery CLI order · " + work_type, 256),
-          color: 0xfbbf24, // amber-400 to match bakery brand
+          title: truncate(`📦 BAKERY ORDER · ${order_id}`, 256),
+          color: 0xfbbf24,
           fields: [
-            { name: "Work type", value: truncate(work_type, 1024), inline: true },
-            { name: "Budget", value: truncate(budget || "—", 1024), inline: true },
-            { name: "Deadline", value: truncate(deadline || "—", 1024), inline: true },
+            { name: "Channel", value: channel, inline: true },
+            { name: "SKU", value: sku || "—", inline: true },
+            { name: "Settlement", value: settlement_rail, inline: true },
+            { name: "Domain", value: domain || "—", inline: true },
+            { name: "Pairs", value: String(body.pairs_requested ?? "—"), inline: true },
+            { name: "Email receipt", value: receipt_email.sent ? "✓ sent" : "✗ failed", inline: true },
             { name: "Brief", value: truncate(description, 1024), inline: false },
-            { name: "Name", value: truncate(name, 1024), inline: true },
-            { name: "Email", value: truncate(email, 1024), inline: true },
-            { name: "Company", value: truncate(company || "—", 1024), inline: true },
+            { name: "Name", value: truncate(name, 256), inline: true },
+            { name: "Email", value: truncate(email, 256), inline: true },
+            { name: "Company", value: truncate(company || "—", 256), inline: true },
+            { name: "payload.sha256", value: `\`${payload_sha256}\``, inline: false },
           ],
-          footer: { text: "bakery.swarmandbee.ai · swarmbee-bakery CLI" },
+          footer: { text: "swarmandbee.ai · /api/bakery-intake · orderbook.swarmandbee.ai (NAS)" },
           timestamp: new Date().toISOString(),
         },
       ],
     };
-
-    let status = 0;
-    let bodyText = "";
     try {
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 10000);
-      const resp = await fetch(webhookUrl, {
+      const t = setTimeout(() => controller.abort(), 10000);
+      await fetch(webhook, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(discordPayload),
         signal: controller.signal,
       });
-      clearTimeout(timeoutId);
-      status = resp.status;
-      try {
-        bodyText = (await resp.text()).slice(0, 500);
-      } catch {
-        bodyText = "(body-read failed)";
-      }
-    } catch (fetchErr) {
-      const msg = fetchErr instanceof Error ? fetchErr.message : String(fetchErr);
-      return jsonResponse(
-        { ok: false, error: "Discord fetch failed", detail: msg.slice(0, 500) },
-        502,
-      );
+      clearTimeout(t);
+    } catch {
+      /* swallow */
     }
-
-    if (status < 200 || status >= 300) {
-      return jsonResponse(
-        { ok: false, error: "Discord rejected", discord_status: status, discord_body: bodyText },
-        502,
-      );
-    }
-
-    return jsonResponse({
-      ok: true,
-      channel: "discord",
-      endpoint: "/api/bakery-intake",
-      discord_status: status,
-      used_var,
-    });
-  } catch (err) {
-    const msg = err instanceof Error ? err.message : String(err);
-    return jsonResponse({ ok: false, error: "Function exception", detail: msg.slice(0, 500) }, 500);
   }
+
+  // 6. respond
+  return json({
+    ok: true,
+    order_id,
+    payload_sha256,
+    status: "pending",
+    receipt_email,
+    next_step: "A human reads your order within one business day. You will receive a Stripe invoice or USDC settlement address by email.",
+    check_status: `swarmbee-bakery account --order ${order_id} --email ${email}`,
+  });
 };
