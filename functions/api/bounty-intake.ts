@@ -102,39 +102,32 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
 
     const webhookUrl = resolveWebhook(env);
 
-    // Debug shortcut — verify env wiring without leaking the token
+    // Debug shortcut — gated behind a shared-secret header so it can't be probed
+    // by unauthenticated callers. Set X-Debug-Token header to the value of
+    // env.DEBUG_TOKEN (a CF Pages secret you set manually) to use.
     if (body && body.debug === true) {
+      const debugToken = (env as unknown as Record<string, string | undefined>).DEBUG_TOKEN;
+      const provided = request.headers.get("X-Debug-Token");
+      if (!debugToken || !provided || provided !== debugToken) {
+        return jsonResponse({ ok: false, error: "debug requires X-Debug-Token header matching env DEBUG_TOKEN" }, 401);
+      }
       const safe = webhookUrl
-        ? webhookUrl.slice(0, 50) + "…(len=" + webhookUrl.length + ")"
+        ? webhookUrl.slice(0, 30) + "…(len=" + webhookUrl.length + ")"
         : "(empty)";
       return jsonResponse({
         ok: true,
         debug: true,
-        webhook_prefix: safe,
         webhook_starts_with_https: webhookUrl.startsWith("https://"),
         webhook_contains_discord: webhookUrl.includes("discord.com/api/webhooks/"),
-        webhook_has_whitespace: /\s/.test(webhookUrl),
-        used_var: env.DISCORD_BOUNTY_WEBHOOK_URL
-          ? "DISCORD_BOUNTY_WEBHOOK_URL"
-          : env.DISCORD_WEBHOOK_URL
-            ? "DISCORD_WEBHOOK_URL (fallback)"
-            : "(none)",
+        webhook_prefix: safe,
       });
     }
 
     if (!webhookUrl) {
-      let envKeys: string[] = [];
-      try {
-        envKeys = Object.keys(env as unknown as Record<string, unknown>).sort();
-      } catch { /* noop */ }
-      return jsonResponse(
-        {
-          ok: false,
-          error: "Discord webhook not configured",
-          diagnostic: { env_keys: envKeys, env_keys_count: envKeys.length },
-        },
-        500
-      );
+      // Generic error to unauthenticated callers — no env_keys leak.
+      // Server logs the diagnostic for the operator.
+      console.error("[bounty-intake] webhook not configured; env keys =", Object.keys(env as unknown as Record<string, unknown>).sort());
+      return jsonResponse({ ok: false, error: "service misconfigured" }, 500);
     }
 
     const discordPayload = {

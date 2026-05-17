@@ -133,3 +133,4 @@ swarmbee-bakery order \
 - Tribunal seal: **pre-seal.** Grade may shift post-review. Honored.
 - Bespoke radiology eval probes are hand-curated — they are not a peer-reviewed benchmark. Use as one signal among several.
 - This recipe has not been cooked at scale. Receipt: **pending.** First paying customer's pre/post publishes here.
+- **Not medical advice.** Cookbooks ship training data and recipes for ML engineers building clinical-support models. Outputs of a cooked model are not a substitute for a licensed clinician. The two-stream architecture (sourced authority vs. lived register) is enforced at curation; downstream model deployment is the engineer's responsibility.

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="index,follow" />
+  <title>Cookies · Swarm & Bee</title>
+  <meta name="description" content="Cookie policy for Swarm & Bee. No third-party cookies. No analytics. No ad tracking." />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="canonical" href="https://swarmandbee.ai/cookies.html" />
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --card: #171717;
+      --border: #262626;
+      --text: #e5e5e5;
+      --muted: #737373;
+      --amber: #fbbf24;
+      --amber-dim: #d97706;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; line-height: 1.6; }
+    a { color: var(--amber); text-decoration: none; }
+    a:hover { color: var(--amber-dim); text-decoration: underline; }
+    .nav { border-bottom: 1px solid var(--border); padding: 16px 24px; }
+    .nav a.back { color: var(--muted); font-size: 14px; }
+    .nav a.back:hover { color: var(--amber); text-decoration: none; }
+    main { max-width: 760px; margin: 0 auto; padding: 48px 24px 64px; }
+    h1 { font-size: 36px; margin: 0 0 8px; color: var(--amber); letter-spacing: -0.02em; }
+    .updated { color: var(--muted); font-size: 13px; margin-bottom: 32px; }
+    h2 { font-size: 20px; margin-top: 36px; margin-bottom: 10px; color: var(--text); border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+    p { color: var(--text); }
+    code { background: var(--card); border: 1px solid var(--border); padding: 2px 6px; border-radius: 4px; font-size: 13px; color: var(--amber); }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 16px 20px; margin: 16px 0; }
+    footer { border-top: 1px solid var(--border); padding: 24px; text-align: center; color: var(--muted); font-size: 13px; margin-top: 48px; }
+  </style>
+</head>
+<body>
+  <nav class="nav"><a class="back" href="/">&larr; Swarm &amp; Bee</a></nav>
+  <main>
+    <h1>Cookies</h1>
+    <div class="updated">Last updated: 2026-05-17</div>
+
+    <h2>The short version</h2>
+    <div class="card">
+      <p>We use <strong>no third-party cookies</strong>. We run <strong>no analytics</strong>. We run <strong>no ad tracking</strong>. There is no GDPR-style consent banner because there is nothing to consent to.</p>
+    </div>
+
+    <h2>What about first-party state?</h2>
+    <p>The only state our site sets is a session cookie if you log into the admin dashboard at <code>orderbook.swarmandbee.ai</code> &mdash; that page is protected by HTTP Basic Auth, and the browser maintains a session cookie for that auth context. That cookie is scoped to <code>orderbook.swarmandbee.ai</code>, contains no tracking identifier, and exists only to keep you logged into the admin tool while you use it.</p>
+
+    <h2>That's it</h2>
+    <p>The main <code>swarmandbee.ai</code> site, the bakery surface at <code>bakery.swarmandbee.ai</code>, the bounty intake at <code>bounty.swarmandbee.ai</code>, and the identity page at <code>identity.swarmandbee.ai</code> &mdash; none of them set cookies. They are static surfaces served behind a Cloudflare edge. Cloudflare may set its own infrastructure cookies (e.g. <code>__cf_bm</code>) as part of bot-management; those are Cloudflare's, not ours.</p>
+
+    <h2>Why this matters</h2>
+    <p>The same discipline that produces a defendable training corpus &mdash; no round-number lies, every claim has a receipt &mdash; applies to how the site itself is built. We sell sovereign data infrastructure. It would be a tell if our own surface leaked behavior to ad networks.</p>
+
+    <h2>Contact</h2>
+    <p>Questions: <a href="mailto:build@swarmandbee.ai">build@swarmandbee.ai</a>.</p>
+  </main>
+  <footer>
+    <a href="mailto:build@swarmandbee.ai">build@swarmandbee.ai</a> &middot; &copy; Swarm and Bee LLC
+  </footer>
+</body>
+</html>

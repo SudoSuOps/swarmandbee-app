@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="index,follow" />
+  <title>Privacy · Swarm & Bee</title>
+  <meta name="description" content="Privacy policy for Swarm & Bee LLC. Sovereign data on owned Synology NAS. No third-party trackers. No ad networks." />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="canonical" href="https://swarmandbee.ai/privacy.html" />
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --card: #171717;
+      --border: #262626;
+      --text: #e5e5e5;
+      --muted: #737373;
+      --amber: #fbbf24;
+      --amber-dim: #d97706;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; line-height: 1.6; }
+    a { color: var(--amber); text-decoration: none; }
+    a:hover { color: var(--amber-dim); text-decoration: underline; }
+    .nav { border-bottom: 1px solid var(--border); padding: 16px 24px; }
+    .nav a.back { color: var(--muted); font-size: 14px; }
+    .nav a.back:hover { color: var(--amber); text-decoration: none; }
+    main { max-width: 760px; margin: 0 auto; padding: 48px 24px 64px; }
+    h1 { font-size: 36px; margin: 0 0 8px; color: var(--amber); letter-spacing: -0.02em; }
+    .updated { color: var(--muted); font-size: 13px; margin-bottom: 32px; }
+    h2 { font-size: 20px; margin-top: 36px; margin-bottom: 10px; color: var(--text); border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+    p, ul { color: var(--text); }
+    ul { padding-left: 20px; }
+    li { margin-bottom: 6px; }
+    code { background: var(--card); border: 1px solid var(--border); padding: 2px 6px; border-radius: 4px; font-size: 13px; color: var(--amber); }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 16px 20px; margin: 16px 0; }
+    footer { border-top: 1px solid var(--border); padding: 24px; text-align: center; color: var(--muted); font-size: 13px; margin-top: 48px; }
+  </style>
+</head>
+<body>
+  <nav class="nav"><a class="back" href="/">&larr; Swarm &amp; Bee</a></nav>
+  <main>
+    <h1>Privacy</h1>
+    <div class="updated">Last updated: 2026-05-17</div>
+
+    <h2>What we collect</h2>
+    <p>When you place a dataset order through the CLI or email <code>build@swarmandbee.ai</code>, we collect the order-intake fields you provide:</p>
+    <ul>
+      <li>Name</li>
+      <li>Email address</li>
+      <li>Company (optional)</li>
+      <li>Order details (SKU, cookbook slug, quantity, notes)</li>
+    </ul>
+    <p>That is the entire intake surface. No fingerprinting, no behavioral profiling, no implicit collection.</p>
+
+    <h2>What we store, and where</h2>
+    <div class="card">
+      <p>Order intake is stored in our sovereign D1-equivalent SQLite database, hosted on a <strong>Synology NAS we physically own</strong> &mdash; not in a third-party cloud database, not on a hyperscaler. This is a load-bearing differentiator: your order details do not leave infrastructure we control.</p>
+    </div>
+    <p>Order records are kept for the duration required for fulfillment, audit, receipts, and applicable tax/accounting retention windows.</p>
+
+    <h2>What we share</h2>
+    <p><strong>Nothing.</strong> We do not run analytics trackers. We do not embed third-party JavaScript. We do not sell or share order data with ad networks. There is no "advertising partner" list because there is no advertising.</p>
+
+    <h2>Third-party services we use (operationally)</h2>
+    <ul>
+      <li><strong>Resend</strong> &mdash; transactional email delivery only (order confirmations, invoices, download links). Email addresses pass through Resend in order to be delivered to you.</li>
+      <li><strong>Cloudflare</strong> &mdash; CDN and edge for swarmandbee.ai. Standard edge log retention applies (request metadata, IP, user agent &mdash; held by Cloudflare per their policy).</li>
+      <li><strong>Discord</strong> &mdash; internal order notification channel. We send a webhook ping when an order arrives; <strong>no message content is stored by us</strong> beyond what Discord retains for the notification channel itself.</li>
+      <li><strong>Stripe</strong> &mdash; invoice rail when the customer elects Stripe settlement. No card is kept on file by us; Stripe handles the payment instrument.</li>
+    </ul>
+
+    <h2>Email retention</h2>
+    <p>Order-related emails (intake, invoice, delivery confirmation, sha256 manifests) are retained for audit and receipt continuity.</p>
+
+    <h2>Your rights</h2>
+    <p>You can request deletion of your order record at any time by emailing <a href="mailto:build@swarmandbee.ai">build@swarmandbee.ai</a>. We will remove the record from our SQLite store within a reasonable processing window, retaining only what is required for legal/accounting compliance (e.g. invoice records).</p>
+
+    <h2>Children</h2>
+    <p>Swarm &amp; Bee is a business-to-business dataset provider. Our offerings are not directed to children and we do not knowingly collect data from anyone under 18.</p>
+
+    <h2>Changes to this policy</h2>
+    <p>Material changes will be reflected here with an updated date. The current version is always at <a href="https://swarmandbee.ai/privacy.html">https://swarmandbee.ai/privacy.html</a>.</p>
+
+    <h2>Contact</h2>
+    <p>Privacy questions, deletion requests, or anything else: <a href="mailto:build@swarmandbee.ai">build@swarmandbee.ai</a>.</p>
+  </main>
+  <footer>
+    <a href="mailto:build@swarmandbee.ai">build@swarmandbee.ai</a> &middot; &copy; Swarm and Bee LLC
+  </footer>
+</body>
+</html>

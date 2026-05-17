@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="index,follow" />
+  <title>Terms · Swarm & Bee</title>
+  <meta name="description" content="Terms of service for Swarm & Bee LLC. Datasets are training and decision-support tools, not medical advice. Florida law." />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="canonical" href="https://swarmandbee.ai/terms.html" />
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --card: #171717;
+      --border: #262626;
+      --text: #e5e5e5;
+      --muted: #737373;
+      --amber: #fbbf24;
+      --amber-dim: #d97706;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; line-height: 1.6; }
+    a { color: var(--amber); text-decoration: none; }
+    a:hover { color: var(--amber-dim); text-decoration: underline; }
+    .nav { border-bottom: 1px solid var(--border); padding: 16px 24px; }
+    .nav a.back { color: var(--muted); font-size: 14px; }
+    .nav a.back:hover { color: var(--amber); text-decoration: none; }
+    main { max-width: 760px; margin: 0 auto; padding: 48px 24px 64px; }
+    h1 { font-size: 36px; margin: 0 0 8px; color: var(--amber); letter-spacing: -0.02em; }
+    .updated { color: var(--muted); font-size: 13px; margin-bottom: 32px; }
+    h2 { font-size: 20px; margin-top: 36px; margin-bottom: 10px; color: var(--text); border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+    p, ul { color: var(--text); }
+    ul { padding-left: 20px; }
+    li { margin-bottom: 6px; }
+    code { background: var(--card); border: 1px solid var(--border); padding: 2px 6px; border-radius: 4px; font-size: 13px; color: var(--amber); }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 16px 20px; margin: 16px 0; }
+    .warn { border-left: 3px solid var(--amber); }
+    footer { border-top: 1px solid var(--border); padding: 24px; text-align: center; color: var(--muted); font-size: 13px; margin-top: 48px; }
+  </style>
+</head>
+<body>
+  <nav class="nav"><a class="back" href="/">&larr; Swarm &amp; Bee</a></nav>
+  <main>
+    <h1>Terms of Service</h1>
+    <div class="updated">Last updated: 2026-05-17</div>
+
+    <h2>What you are buying</h2>
+    <p>Swarm &amp; Bee LLC (the "Bakery") sells AI training datasets and decision-support corpora. Every SKU has a real name, a real cell count, a tier grade, source attribution, and a sha256 manifest. See <code>/menu.json</code> for the live inventory.</p>
+
+    <h2>Not medical advice</h2>
+    <div class="card warn">
+      <p>The medical datasets we sell are <strong>training and decision-support tools</strong>. They are <strong>not medical advice</strong>, not a substitute for professional clinical judgment, and not a substitute for the doctor-patient relationship. Customers building healthcare-facing tools on top of our datasets are responsible for their own clinical validation, regulatory clearance (FDA / CE / equivalent where applicable), and downstream user-facing disclaimers.</p>
+    </div>
+
+    <h2>Bespoke quotes; no auto-checkout</h2>
+    <p>All sales are bespoke. The CLI submits an intake; a human reads it; we either invoice via Stripe or provide a settlement address (<code>swarmusdc.eth</code> for USDC on Ethereum L1). No card is kept on file.</p>
+
+    <h2>Returns and refunds</h2>
+    <ul>
+      <li><strong>No returns</strong> on delivered bundles &mdash; once you have the JSONL + manifest, the goods are received.</li>
+      <li><strong>Full refund</strong> if the delivered bundle sha256 does not match the issued <code>manifest.json</code>. The manifest is the truth; if it doesn't reconcile, the order doesn't ship.</li>
+      <li><strong>Cooked-for-you adapter weights</strong> are delivered as-is. The training recipe is reproducible (see <code>cookbook.defendable.eth</code>). Loss-curve and eval-delta receipts are published with the bundle.</li>
+    </ul>
+
+    <h2>Customer responsibility</h2>
+    <p>You are responsible for the deployment, evaluation, and use of any model you cook on a Swarm &amp; Bee corpus. You are responsible for end-user disclaimers, age-gating where applicable, jurisdictional compliance, and any regulatory clearances your downstream product requires.</p>
+
+    <h2>Indemnity</h2>
+    <p>You agree to indemnify, defend, and hold harmless Swarm and Bee LLC, its officers, designated brokers, and affiliates against any claims, damages, or liabilities arising from your deployment or use of any model trained on a corpus or cookbook delivered by us, including but not limited to claims by your end users, regulatory bodies, or third parties.</p>
+
+    <h2>Intellectual property</h2>
+    <p>Delivered datasets are licensed for your internal training and evaluation use. Redistribution of the raw corpus is prohibited; redistribution of derivative model weights is permitted with attribution to <code>defendable.eth</code> standard. Source attribution within the corpus (ADA, IWGDF, NIH, PMC, etc.) remains with original rights-holders.</p>
+
+    <h2>Limitation of liability</h2>
+    <p>To the maximum extent permitted by law, Swarm and Bee LLC's aggregate liability arising from or related to any order is limited to the amount you paid for the specific bundle giving rise to the claim. No party shall be liable for indirect, incidental, consequential, special, or punitive damages.</p>
+
+    <h2>Governing law</h2>
+    <p>These terms are governed by the laws of the State of Florida, USA, without regard to conflict-of-law principles. Exclusive venue for any dispute is the state or federal courts located in Florida.</p>
+
+    <h2>Entity and contact</h2>
+    <ul>
+      <li><strong>Entity</strong>: Swarm and Bee LLC (Florida LLC)</li>
+      <li><strong>D-U-N-S</strong>: 138652395</li>
+      <li><strong>Contact</strong>: <a href="mailto:build@swarmandbee.ai">build@swarmandbee.ai</a></li>
+      <li><strong>Defendable standard</strong>: <a href="https://defendable.eth.limo">defendable.eth.limo</a></li>
+    </ul>
+  </main>
+  <footer>
+    <a href="mailto:build@swarmandbee.ai">build@swarmandbee.ai</a> &middot; &copy; Swarm and Bee LLC
+  </footer>
+</body>
+</html>

@@ -84,13 +84,23 @@ def now_iso() -> str:
 def require_key(x_orderbook_key: Optional[str]) -> None:
     if not API_KEY:
         raise HTTPException(status_code=500, detail="ORDERBOOK_API_KEY not configured on shim")
-    if not x_orderbook_key or x_orderbook_key != API_KEY:
+    if not x_orderbook_key or not _secrets.compare_digest(x_orderbook_key, API_KEY):
         raise HTTPException(status_code=401, detail="invalid X-Orderbook-Key")
 
 
 # ─── admin basic auth (dashboard) ──────────────────────────────────────────
 
 _security = HTTPBasic(realm="Swarm & Bee Orderbook · admin")
+
+# CSRF defense: any POST/PUT/DELETE to /admin/* must originate from one of these.
+# Browser Basic Auth credentials get auto-replayed on cross-origin requests;
+# without an Origin/Referer check, a malicious site could trigger admin state changes.
+_ALLOWED_ADMIN_ORIGINS = {
+    "https://orderbook.swarmandbee.ai",
+    "http://localhost:18489",        # LAN dev
+    "http://127.0.0.1:18489",
+    "http://192.168.0.102:18489",    # NAS LAN direct
+}
 
 
 def require_admin(credentials: HTTPBasicCredentials = Depends(_security)) -> str:
@@ -106,6 +116,23 @@ def require_admin(credentials: HTTPBasicCredentials = Depends(_security)) -> str
             headers={"WWW-Authenticate": 'Basic realm="Swarm & Bee Orderbook · admin"'},
         )
     return credentials.username
+
+
+def require_admin_origin(request: Request) -> None:
+    """CSRF defense for mutating admin endpoints. Reject if Origin/Referer
+    doesn't match an allowed origin. GET endpoints are exempt (no state change)."""
+    origin = request.headers.get("Origin") or ""
+    referer = request.headers.get("Referer") or ""
+    # Allow if Origin matches OR Referer starts with an allowed origin
+    if origin in _ALLOWED_ADMIN_ORIGINS:
+        return
+    for allowed in _ALLOWED_ADMIN_ORIGINS:
+        if referer.startswith(allowed + "/") or referer == allowed:
+            return
+    raise HTTPException(
+        status_code=403,
+        detail=f"admin mutation requires Origin/Referer from {sorted(_ALLOWED_ADMIN_ORIGINS)}",
+    )
 
 
 def row_to_dict(row: sqlite3.Row) -> dict[str, Any]:
@@ -190,14 +217,20 @@ def _startup() -> None:
 
 @app.get("/healthz")
 def healthz() -> dict[str, Any]:
-    """Public — no auth. Quick liveness + DB reachability check."""
+    """Public — no auth. Quick liveness + DB reachability check.
+    Does NOT leak exception details to unauthenticated callers (paths, SQLite errors, etc).
+    Operator: tail container logs for the real error if /healthz returns 503.
+    """
     try:
         with db() as conn:
             row = conn.execute("SELECT COUNT(*) AS n FROM orders").fetchone()
             n_orders = row["n"]
-        return {"ok": True, "version": VERSION, "db_path": str(DB_PATH), "n_orders": n_orders, "ts": now_iso()}
+        return {"ok": True, "version": VERSION, "n_orders": n_orders, "ts": now_iso()}
     except Exception as e:
-        return JSONResponse({"ok": False, "error": str(e)[:200]}, status_code=503)
+        # Log server-side; return generic error to caller.
+        import sys
+        print(f"[healthz] db error: {e}", file=sys.stderr, flush=True)
+        return JSONResponse({"ok": False, "error": "db_unavailable"}, status_code=503)
 
 
 @app.post("/orders")
@@ -357,6 +390,8 @@ def admin_list_all(
         where.append("status = ?")
         params.append(status)
     if q:
+        # Cap search length to prevent DoS via huge wildcard scans on growing tables
+        q = q[:100]
         where.append("(order_id LIKE ? OR email LIKE ? OR name LIKE ? OR sku_id LIKE ?)")
         like = f"%{q}%"
         params += [like, like, like, like]
@@ -414,9 +449,13 @@ def admin_get_one(order_id: str, _admin: str = Depends(require_admin)) -> dict[s
 def admin_flip_status(
     order_id: str,
     req: StatusUpdate,
+    request: Request,
     _admin: str = Depends(require_admin),
 ) -> dict[str, Any]:
-    """Admin status flip from the dashboard. Same logic as /orders/status."""
+    """Admin status flip from the dashboard. Same logic as /orders/status.
+    Requires Origin/Referer match (CSRF defense) so a malicious cross-origin page
+    can't replay the admin's browser-cached Basic Auth to trigger state changes."""
+    require_admin_origin(request)
     req.order_id = order_id.upper()
     return update_status(req, x_orderbook_key=API_KEY)  # bypass key check via internal call
 

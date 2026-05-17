@@ -11,6 +11,14 @@
 /compute   https://cloud.vast.ai/?ref_id=468981   302
 /vast      https://cloud.vast.ai/?ref_id=468981   302
 
+# Legal pages live at /privacy/index.html, /terms/index.html, /cookies/index.html
+# CF Pages serves them directly at the clean URLs — no rewrite needed.
+
+# /api/* — Pages Functions handle the real routes. Anything not matched by a
+# function should return a clean JSON 404 instead of the SPA fallback (which
+# would have served an HTML 200 — confusing for scripted clients).
+# This is enforced by functions/api/_404.ts middleware below the static rules.
+
 # SPA fallback for client-side routing under React Router (BrowserRouter)
 # Tells Cloudflare Pages to serve index.html for any unmatched route — no
 # Pages Function auto-generation needed. Resolves "Failed to publish your

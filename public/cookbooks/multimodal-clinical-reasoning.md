@@ -156,3 +156,4 @@ swarmbee-bakery order \
 - Text SKUs (Madeleine, Crumpet, Federal Glaze) carry per-cell citations / source URLs — verifiable, not hallucinated.
 - The cross-domain mix has not been cooked at scale on a known baseline. **Receipt: pending.** Customers willing to publish pre/post on the combined eval set get the cooked-for-you fee waived.
 - If your cooked model collapses on one domain after this training, that is a cookbook bug — likely a curation imbalance — tell us, we adjust proportions and re-ship.
+- **Not medical advice.** Cookbooks ship training data and recipes for ML engineers building clinical-support models. Outputs of a cooked model are not a substitute for a licensed clinician. The two-stream architecture (sourced authority vs. lived register) is enforced at curation; downstream model deployment is the engineer's responsibility.

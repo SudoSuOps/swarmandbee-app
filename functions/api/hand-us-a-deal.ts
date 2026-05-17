@@ -81,33 +81,27 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
       } catch {}
     }
 
-    // Debug shortcut: GET-style probe via body.debug=true returns sanitized
-    // info about the webhook URL without leaking the token. Use this to
-    // verify the env var is wired correctly post-deploy.
+    // Debug shortcut — gated behind X-Debug-Token shared secret to prevent probing.
     if (body && body.debug === true) {
+      const debugToken = (env as unknown as Record<string, string | undefined>).DEBUG_TOKEN;
+      const provided = request.headers.get("X-Debug-Token");
+      if (!debugToken || !provided || provided !== debugToken) {
+        return jsonResponse({ ok: false, error: "debug requires X-Debug-Token header matching env DEBUG_TOKEN" }, 401);
+      }
       const safe = webhookUrl
-        ? webhookUrl.slice(0, 50) + "…(len=" + webhookUrl.length + ")"
+        ? webhookUrl.slice(0, 30) + "…(len=" + webhookUrl.length + ")"
         : "(empty)";
       return jsonResponse({
         ok: true,
         debug: true,
-        webhook_prefix: safe,
         webhook_starts_with_https: webhookUrl.startsWith("https://"),
         webhook_contains_discord: webhookUrl.includes("discord.com/api/webhooks/"),
-        webhook_has_whitespace: /\s/.test(webhookUrl),
+        webhook_prefix: safe,
       });
     }
     if (!webhookUrl) {
-      // Diagnostic: list env keys so we can see if var is missing or misnamed
-      let envKeys: string[] = [];
-      try {
-        envKeys = Object.keys(env as unknown as Record<string, unknown>).sort();
-      } catch {}
-      return jsonResponse({
-        ok: false,
-        error: "Discord webhook not configured",
-        diagnostic: { env_keys: envKeys, env_keys_count: envKeys.length },
-      }, 500);
+      console.error("[hand-us-a-deal] webhook not configured; env keys =", Object.keys(env as unknown as Record<string, unknown>).sort());
+      return jsonResponse({ ok: false, error: "service misconfigured" }, 500);
     }
 
     const discordPayload = {

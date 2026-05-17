@@ -47,11 +47,13 @@ function BakeryHeader() {
           ← Swarm &amp; Bee
         </a>
         <span className="ml-2 text-xs text-neutral-500 font-mono">/ the bakery</span>
-        <div className="ml-auto flex items-center gap-4 text-xs">
-          <a href="#oven" className="text-neutral-400 hover:text-neutral-100">the oven</a>
-          <a href="#rack" className="text-neutral-400 hover:text-neutral-100">bakers rack</a>
-          <a href="#menu" className="text-neutral-400 hover:text-neutral-100">the menu</a>
-          <a href="#cookbooks" className="text-neutral-400 hover:text-neutral-100">cookbooks</a>
+        <div className="ml-auto flex flex-wrap items-center gap-4 text-xs">
+          <span className="hidden md:contents">
+            <a href="#oven" className="text-neutral-400 hover:text-neutral-100">the oven</a>
+            <a href="#rack" className="text-neutral-400 hover:text-neutral-100">bakers rack</a>
+            <a href="#menu" className="text-neutral-400 hover:text-neutral-100">the menu</a>
+            <a href="#cookbooks" className="text-neutral-400 hover:text-neutral-100">cookbooks</a>
+          </span>
           <a href="#freshness" className="text-neutral-400 hover:text-neutral-100">freshness</a>
           <a href="#compassionate" className="text-rose-300/80 hover:text-rose-200">compassionate</a>
           <a href="#how-to-buy" className="text-amber-400 font-semibold hover:text-amber-300">how to buy ↓</a>
@@ -107,7 +109,7 @@ function Hero() {
         <div className="mt-4 inline-flex items-center gap-3 px-4 py-2 rounded-lg bg-neutral-900 border border-neutral-800 font-mono text-sm">
           <span className="text-neutral-500">$</span>
           <span className="text-amber-300">pip install swarmbee-bakery</span>
-          <span className="text-neutral-600 text-xs">· v0.1.1 on PyPI</span>
+          <span className="text-neutral-600 text-xs">· latest on PyPI</span>
         </div>
       </div>
     </section>
@@ -646,7 +648,10 @@ function Mapping() {
               {MAPPING.map((m) => (
                 <tr key={m.bakery} className="hover:bg-neutral-900/50">
                   <td className="px-5 py-4 whitespace-nowrap font-semibold">{m.bakery}</td>
-                  <td className="px-5 py-4 font-mono text-amber-400 whitespace-nowrap">{m.swarm}</td>
+                  <td className="px-5 py-4 font-mono text-amber-400 whitespace-nowrap">
+                    {m.swarm}
+                    <div className="md:hidden text-xs text-neutral-500 mt-1 font-sans whitespace-normal">{m.detail}</div>
+                  </td>
                   <td className="px-5 py-4 text-neutral-400 hidden md:table-cell">{m.detail}</td>
                 </tr>
               ))}
@@ -828,6 +833,14 @@ function Compassionate() {
         <p className="text-lg text-amber-300 font-semibold leading-relaxed">
           The future is brighter than people think.{" "}
           <span className="ml-1">🍯</span>
+        </p>
+
+        <p className="mt-8 text-xs text-neutral-500 leading-relaxed italic border-t border-neutral-800 pt-4">
+          Datasets and cooked models published by Swarm &amp; Bee are training and decision-support tools for ML
+          engineers. <strong className="text-neutral-400 not-italic">Not medical advice. Not a substitute for a
+          licensed clinician.</strong> The founder&apos;s lived experience anchors the corpus register; sourced
+          medical authority (ADA, IWGDF, NIDDK, NHS) carries the clinical claims. See the two-stream architecture
+          on every medical SKU.
         </p>
       </div>
     </section>
@@ -1028,7 +1041,7 @@ function Cookbooks() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
           {COOKBOOKS.map((c) => {
-            const isMaster = c.cells === 3000;
+            const isMaster = c.cells === 5000;
             return (
               <a
                 key={c.slug}
@@ -1047,7 +1060,7 @@ function Cookbooks() {
                   </div>
                 </div>
                 <div className="text-[10px] font-mono uppercase tracking-widest text-neutral-500 mb-3">
-                  lane: {c.lane}  ·  {isMaster ? "master · 3000" : "standard · 1500"}
+                  lane: {c.lane}  ·  {isMaster ? "master · 5000" : "standard · 3000"}
                 </div>
                 <p className="text-sm text-neutral-300 leading-relaxed mb-3">{c.pitch}</p>
                 <div className="text-xs text-amber-300/80 font-mono leading-relaxed mb-4 px-2 py-1.5 bg-amber-950/20 border border-amber-900/30 rounded">
@@ -1070,7 +1083,7 @@ function Cookbooks() {
             What ships in every cookbook bundle
           </div>
           <ul className="grid grid-cols-1 md:grid-cols-2 gap-y-2 gap-x-6 text-sm text-neutral-300">
-            <li className="flex gap-2"><span className="text-amber-400">•</span><code className="text-amber-300">JSONL corpus</code> · 1500 or 3000 cells</li>
+            <li className="flex gap-2"><span className="text-amber-400">•</span><code className="text-amber-300">JSONL corpus</code> · 3000 or 5000 cells</li>
             <li className="flex gap-2"><span className="text-amber-400">•</span><code className="text-amber-300">manifest.json</code> · per-cell sha256 + ingredient breakdown</li>
             <li className="flex gap-2"><span className="text-amber-400">•</span><code className="text-amber-300">dmack_eval_set_v1.jsonl</code> · 60 real probes</li>
             <li className="flex gap-2"><span className="text-amber-400">•</span><code className="text-amber-300">eval_runner.py</code> · pre/post grading harness</li>
@@ -1193,7 +1206,7 @@ function HowToBuy() {
               n: "2",
               label: "Browse the menu",
               cmd: "swarmbee-bakery menu --domain medical",
-              note: "Shows TIER + TRIBUNAL columns. 11 named medical SKUs with real cell counts.",
+              note: "Shows TIER + TRIBUNAL columns. 12 named SKUs · 11 medical + 1 CRE legacy with real cell counts.",
             },
             {
               n: "3",
@@ -1284,10 +1297,13 @@ function BakeryFooter() {
           <strong className="text-neutral-300">Swarm &amp; Bee</strong>
           <span className="text-neutral-600"> · The dataset bakery</span>
         </div>
-        <div className="flex gap-5 text-neutral-400">
+        <div className="flex flex-wrap gap-5 text-neutral-400">
           <a href={`mailto:${EMAIL}`} className="hover:text-amber-400">{EMAIL}</a>
           <a href={X_URL} target="_blank" rel="noreferrer" className="hover:text-amber-400">x.com/swarmandbee</a>
           <a href={APEX} className="hover:text-amber-400">swarmandbee.ai</a>
+          <a href="/privacy" className="hover:text-amber-400">privacy</a>
+          <a href="/terms" className="hover:text-amber-400">terms</a>
+          <a href="/cookies" className="hover:text-amber-400">cookies</a>
         </div>
       </div>
       <div className="max-w-5xl mx-auto px-6 pb-10 text-xs text-neutral-600">

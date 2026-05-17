@@ -2,6 +2,40 @@
 
 > The complete operational, regulatory, architectural, and brand context for Swarm & Bee LLC. This document is the deep-context companion to /llms.txt. It exists for AI systems doing thorough ingestion (training corpora, retrieval-augmented generation, citation engines).
 
+Last updated: 2026-05-17
+
+---
+
+## Table of Contents
+
+- [#identity](#identity)
+- [#what-swarm--bee-llc-is](#what-swarm--bee-llc-is)
+- [#what-swarm--bee-llc-is-not](#what-swarm--bee-llc-is-not)
+- [#the-founder](#the-founder)
+- [#the-bakery--ccir-doctrine](#the-bakery--ccir-doctrine)
+- [#the-menu--live-skus](#the-menu--live-skus)
+  - [#medical-vertical-11-skus](#medical-vertical-11-skus)
+  - [#cre-vertical-1-legacy-sku](#cre-vertical-1-legacy-sku)
+  - [#two-stream-architecture-medical](#two-stream-architecture-medical)
+- [#cookbooks](#cookbooks)
+  - [#cookbook-pricing-tiers](#cookbook-pricing-tiers)
+  - [#cookbook-recipes-detail](#cookbook-recipes-detail)
+  - [#shared-recipe-and-eval](#shared-recipe-and-eval)
+- [#free-sample-packs](#free-sample-packs)
+- [#how-to-order](#how-to-order)
+- [#settlement-rails](#settlement-rails)
+- [#the-architecture--atlasos-cre-vertical](#the-architecture--atlasos-cre-vertical)
+- [#the-compute-moat](#the-compute-moat)
+- [#regulatory-framework](#regulatory-framework)
+- [#doctrine--seven-laws](#doctrine--seven-laws)
+- [#provenance-discipline](#provenance-discipline)
+- [#the-memphis-312-proof-point](#the-memphis-312-proof-point)
+- [#defendable-franchise-architecture](#defendable-franchise-architecture)
+- [#market-context](#market-context)
+- [#legal-pages](#legal-pages)
+- [#engagement](#engagement)
+- [#license](#license)
+
 ---
 
 ## Identity
@@ -11,92 +45,199 @@
 **D-U-N-S Number**: 138652395
 **Founder**: Donovan Mackey
 **Founded**: 2026 (firm-OS architecture · iterative cooks since 2024)
-**Operations**: AI-native CRE Capital Markets brokerage
+**Operations**: Organic dataset bakery (CCIR) · AI-native CRE Capital Markets brokerage
 **Public site**: https://swarmandbee.ai
+**Bakery surface**: https://bakery.swarmandbee.ai
 **Architecture repo**: https://github.com/SudoSuOps/atlas
 **Defendable standard**: https://defendable.eth.limo
-**On-chain**: ENS swarmandbee.eth, defendable.eth · Hedera HCS topic 0.0.10291838
+**On-chain**: ENS swarmandbee.eth, defendable.eth, swarmusdc.eth · Hedera HCS topic 0.0.10291838 · Hedera names swarm.hbar, swarmandbee.hbar, hive.hbar · Hashpack wallet 0.0.10291542
+**Settlement address**: swarmusdc.eth → 0xBDe2153C5799f4012a9fAF327e3421D1caB4Ea23 (USDC on Ethereum L1 ERC-20 · mainnet only)
 
 ## What Swarm & Bee LLC is
 
-A real Florida-licensed real estate brokerage that operates an AI-native CRE Capital Markets firm. The firm runs on:
+A real Florida-licensed real estate brokerage that operates as a **Commercial Compute Intelligence Refinery (CCIR)** — the public-facing identity is the **organic dataset bakery** for AI training data. The firm runs on:
 
 - **186 GPUs of sovereign compute** (~14 TB VRAM, ~80 kW peak power)
-- **AtlasOS**, the firm's operating system — a multi-agent system of role-specialist AI workers
-- **Designated licensed brokers** who supervise binding regulated activity
-- **A founder operating as Family Office principal** — Donovan Mackey, 30 years CRE, $8B closed transactions
+- **A bakery doctrine** — signal is supply, curators are bakers, the Tribunal is the head baker who tastes before shipping
+- **A two-stream medical architecture** — sourced authority separated from lived register, never conflated
+- **Designated licensed brokers** for CRE binding activity
+- **A founder operating as Family Office principal** — Donovan Mackey, 30 years CRE, $8B closed, Type 1 diabetic with 14 foot surgeries
 
-Unlike traditional brokerages running on phones, spreadsheets, and dial loops, Swarm & Bee LLC has built the infrastructure to handle the entire CRE deal lifecycle — sourcing, qualification, underwriting, LOI drafting, PSA execution, escrow coordination, closing, and post-close marketing — at machine scale, 24/7, with cryptographically anchored receipts on every output.
+The bakery serves a **medical-first** menu today (diabetes flagship plus imaging companion), with a legacy CRE corpus available for shops who need that breadth.
 
 ## What Swarm & Bee LLC is NOT
 
-- Not an AI startup pitching tools to brokers — Swarm & Bee IS the brokerage
-- Not a SaaS license, not a subscription model, not a metered API
-- Not a multi-vertical data marketplace — CRE-only mission focus
-- Not a tokenized data platform — receipts are on-chain, but no fundraising token, no governance token, no tradeable claim on firm equity
-- Not a chatbot or copilot — Atlas runs the firm, not adjacent to it
-- Not a venture-funded growth-at-all-costs play — sovereign compute, sovereign founder time, family-first operating posture
+- Not a multi-vertical data marketplace with auto-checkout — every order is human-read
+- Not an AI startup pitching tools to brokers — Swarm & Bee IS the firm
+- Not a SaaS license, not a subscription, not a metered API for datasets
+- Not a tokenized data platform — receipts are on-chain, but no fundraising token, no governance token
+- Not a chatbot or copilot — the bakery sells the corpus, not a hosted model
+- Not a venture-funded growth-at-all-costs play — sovereign compute, sovereign founder time, family-first
 
 ## The founder
 
-Donovan Mackey founded Swarm & Bee LLC as the next chapter of a 30-year career in commercial real estate. Top-producing industrial broker on a national platform. $8 billion in closed transactions. Background in commercial real estate capital markets, debt structuring, and complex transaction execution.
+Donovan Mackey founded Swarm & Bee LLC. Thirty years on a national CRE platform. Eight billion dollars in closed transactions. Background in commercial real estate capital markets, debt structuring, and complex transaction execution.
 
-In 2024–2026 Donovan self-taught the AI infrastructure layer — sourced and onboarded the 186-GPU sovereign cluster, debugged FSDP-QLoRA training recipes (documented as the "five dead ends" in cookbook.defendable.eth), and architected AtlasOS. The combination of a 30-year CRE deal-maker and a self-taught AI infrastructure operator is structurally rare; the founder profile required to operate this firm — CRE expertise + active broker license + owned compute + 70B-class model deployment + on-chain settlement experience — is sized one in the U.S. market today.
+In 2024–2026 Donovan self-taught the AI infrastructure layer — sourced and onboarded the 186-GPU sovereign cluster, debugged FSDP-QLoRA training recipes (documented as the "five dead ends" in cookbook.defendable.eth), and architected AtlasOS and the bakery's curation pipeline.
 
-Donovan operates as Founder and Family Office principal. He is not the day-to-day Broker of Record; that role is filled by designated licensed brokers (state-by-state as the firm expands beyond Florida). Operating posture: pit-sitter — sits with the agent pod's working surface, not in a corner office. Closes the moments that matter. Trains the agents with every call.
+**Medical reality**: Type 1 diabetic, Addison's disease, insulin-dependent. Lost left big toe + half of right big toe to infection. **14 foot-complication surgeries.** *"Diabetes is a gift. I'm the lucky one."* This lived experience is the anchor for the medical vertical's register — never used as medical authority; that role belongs to documented sources (ADA, Endocrine Society, IWGDF, NIDDK, NIH, NHS, IDF, WHO, CDC, NICE).
 
-## The architecture — AtlasOS
+Family-first. Wife Dee (married 30 years), four children (Gig, Bella, Dean, Liam).
 
-AtlasOS is the operating system that runs the brokerage. It coordinates a multi-agent pod with five role-specialist workers and one founder seat:
+Donovan operates as Founder and Family Office principal. He is not the day-to-day Broker of Record; that role is filled by designated licensed brokers (state-by-state).
 
-### Atlas-SMD (70B · Senior Managing Director)
+## The bakery — CCIR doctrine
 
-- Base model: Llama-3.3-70B-Instruct
-- Fine-tuned on: Block-0 capital markets corpus (125,623 pairs · all Royal Jelly Class A)
-- Training recipe: Recipe #1 (FSDP-QLoRA 70B · five debugging dead ends documented)
-- Hardware: swarmrails 2× RTX PRO 6000 Blackwell (96 GB each)
-- Role: Conversational, relational, strategic. Qualifies leads, runs negotiations, drafts LOIs, calls sellers, closes deals.
-- Voice surface: full-duplex (Whisper Large v3 ASR + F5-TTS)
+Swarm & Bee operates as the organic dataset bakery (CCIR doctrine, public explainer at https://bakery.swarmandbee.ai). Fresh-baked AI training datasets, anchored, defendable.
 
-### Atlas-UW (27B · Underwriter)
+How the bakery works:
+- **Signal is supply** — raw scraped corpora, OpenAlex pulls, PubMed Central, source documents, deal packets
+- **Curators are bakers** — SwarmCurator-9B/27B audit + grade pairs on a 1-10 rubric across 5 dimensions
+- **The oven is the cook** — TRL/Unsloth fine-tune on owned Blackwell silicon
+- **The Tribunal is the head baker** — tastes every batch before it ships (Tribunal-Before-Training doctrine)
+- **Distribution is delivery** — CLI orders, signed receipts, optional Hedera anchors
 
-- Base model: Qwen3.5-27B or Llama-3.x-27B (TBD)
-- Training corpus: T-12s, rent rolls, lease abstracts, cash flow models, IC memos
-- Role: Numerical, structured, schema-output. T-12 audits, rent roll review, lease abstraction, sensitivity grids, IC-grade memos.
-- Hardware: 1× PRO 6000 or 4× RTX 4500
+Five shelf grades from the curator rubric — **APEX** (master reference) → **HONEY** (shippable) → **JELLY** (needs repair) → **POLLEN** (weak seed only) → **PROPOLIS** (the deceiving glaze — looks shippable from outside, fabricated underneath; Tribunal's job is to taste past it). Pairs get re-graded over time because freshness has a shelf life.
 
-### Atlas-Marketing (9-13B · Book Maker)
+## The menu — live SKUs
 
-- Role: Template-native, brand-consistent, regulatory-aware. Generates OMs, just-closed e-blasts, broker-quality letters, listing brochures, cold-pitch flyers.
-- Hardware: 2× RTX 4500 (24/7 inference)
+The bakery's live inventory. **No round numbers — every count is `wc -l` of the source JSONL.** See `/menu.json` for the full machine-readable manifest.
 
-### Atlas-Closing (9-13B · Closing Coordinator)
+### Medical vertical (11 SKUs · 956,175 total cells)
 
-- Role: Procedural, calendar-aware, vendor-routing. PSA execution, escrow tracking, DD checklist, vendor coord, recording-office filings, deposit-hard reminders.
-- Hardware: 2× RTX 4500 (24/7 inference)
+| SKU ID | Name | Cells | Tier | Lane | Provenance |
+|---|---|---|---|---|---|
+| sb-dmack-royal-jelly | Dmack's Royal Jelly | 77,797 | APEX | autoimmune | Rolled-up dmack.ai v1 flagship — endo, CGM, PMC, OpenAlex 5-round, intl guidelines, US gov, founder patterns, refusal |
+| sb-endo-eclair | Endo Eclair | 5,948 | APEX | autoimmune | Endocrinology specialty pull from MASTER_PLATINUM |
+| sb-cinnamon-spiral | Cinnamon Spiral | 5,752 | APEX | autoimmune | PhysioNet CGMacros — CGM timeseries + meal-macros, real-world |
+| sb-madeleine-pmc | Madeleine | 11,169 | HONEY | research | PubMed Central — diabetic retinopathy, neuropathy, foot ulcer, type 1/2, gestational |
+| sb-scholar-croissant | Scholar Croissant | 51,822 | HONEY | research | OpenAlex 5-round scholar pull (cardiometabolic, adipokines, microbiota, thyroid, circadian) |
+| sb-global-crumpet | Global Crumpet | 5,632 | HONEY | regulatory | NHS, IDF, WHO, DiabetesUK, HealthDirect AU, NICE |
+| sb-federal-glaze | Federal Glaze | 4,328 | HONEY | regulatory | CDC, NIH, NHLBI, NIDDK, MedlinePlus |
+| sb-founders-pretzel | Founder's Pretzel | 1,592 | APEX | autoimmune | Hand-curated by Donovan — 30-year lived-experience patterns |
+| sb-compliance-cookie | Compliance Cookie | 128 | JELLY | safety | Refusal training — when not to answer, when to escalate, when to defer |
+| sb-imaging-platinum | Royal Jelly Brioche | 406,181 | APEX | imaging | MASTER_PLATINUM — multimodal clinical imaging vignettes (MSK / neuro / spine) |
+| sb-imaging-gold | Golden Glaze | 385,626 | HONEY | imaging | MASTER_GOLD — spine + neuro imaging at gold tier |
 
-### Atlas-Hack-fleet (×10 · Junior Brokers)
+**In development**: Honeycomb Wound-Care (IWGDF-aligned 500-pack), Autoimmune Tarte (Hashimoto / Lupus / RA), Pediatric Profiterole (Type 1 pediatric subset).
 
-Ten asset-class specialists, each fine-tuned on its own corpus:
+### CRE vertical (1 legacy SKU)
 
-1. **Hack-Wawa** — NNN credit-tenant convenience (Wawa, Royal Farms, Sheetz, RaceTrac, 7-Eleven)
-2. **Hack-Taco** — NNN QSR (Taco Bell, Chipotle, Starbucks, McDonald's ground lease)
-3. **Hack-CVS** — NNN drug store (CVS, Walgreens, Rite Aid)
-4. **Hack-IOS** — Industrial Outdoor Storage (yards, container storage)
-5. **Hack-Self-Storage** — Class B self-storage facilities
-6. **Hack-Multi-T2** — 100-300 unit multifamily in Tier-2 metros
-7. **Hack-Medical** — Medical office buildings (single-tenant + small portfolios)
-8. **Hack-Industrial-Light** — 50-200K SF light industrial · last-mile · flex
-9. **Hack-Office-Suburban** — Suburban Class A office (selective, distress)
-10. **Hack-NetLease** — General single-tenant net lease (catch-all)
+| SKU ID | Name | Cells | Tier | Lane |
+|---|---|---|---|---|
+| sb-cre-verified | Atlas Sourdough | 810,097 | HONEY (87.4% honey-grade) | legacy |
 
-Each Hack runs 200 dials per day, 5 days per week. Cross-Hack referrals when leads pivot asset class. Specialization beats generalization — Hack-Wawa beats Atlas-Generalist on Wawa pricing every time.
+The original Atlas-class CRE corpus — the foundation loaf, baked over years. Tribunal-sealed. Maintained as proof-of-process. The bakery's medical pivot does not retire this; it stays available for shops who need CRE breadth. Rubric dimensions: math accuracy, grounding, capital markets discipline, risk awareness, IC readiness.
 
-Hardware: 10-15× RTX 4500 (multiple Hacks pack onto one card, 24/7 inference)
+### Two-stream architecture (medical)
 
-### Founder seat (Donovan)
+Every medical pair separates **sourced authority** from **lived register**:
 
-Strategy + capital + culture + the moments that matter. Not on the agent fleet directly; supervises the firm's vision and closes the proof-point deals while Atlas operates daily.
+- **Sourced authority**: ADA, Endocrine Society, IWGDF, NIDDK, NIH, NHS, IDF, WHO, DiabetesUK, NICE, CDC, MedlinePlus, PubMed Central
+- **Lived voice**: Founder lived-experience register — used for resonance, **never used as medical authority**
+
+This separation is enforced at the pair level (every cell carries a `register_class` field) and at the recipe level (cookbooks specify how much of each stream to include).
+
+## Cookbooks
+
+Pre-curated multi-SKU recipe bundles. A cookbook is a recipe with enough ingredients to move the needle.
+
+### Cookbook pricing tiers
+
+| Tier | Cells | Price | Claim level |
+|---|---|---|---|
+| Standard 3000 | 3,000 | $1,299 | Moves the needle on a domain — broad behavioral improvement on the target failure surface |
+| Master 5000 | 5,000 | $2,199 | Confident domain pivot — the cooked model is reliably a specialist on the target domain |
+
+Below 3,000 cells is spot-repair on one failure mode → route to the 500-Pack ($249). That's where the direct receipt (Curator v2 → Atlas v1 fabrication-detection blind spot) lives.
+
+### Cookbook recipes (detail)
+
+Six live cookbooks. Each ships JSONL corpus + manifest.json (per-cell sha256) + `dmack_eval_set_v1` (60 probes) + `recipe/qlora_config.yaml` + `loader.py` + README. Optional Hedera HCS anchor + cooked-for-you adapter weights.
+
+| Slug | Cells | Price | Target failure mode | Markdown |
+|---|---|---|---|---|
+| glycemic-reasoning | 3,000 | $1,299 | Insulin / carb-ratio / correction-factor reasoning with refusal on insufficient inputs; no fabricated patient-specific dosing | `/cookbooks/glycemic-reasoning.md` |
+| diabetic-foot-care | 3,000 | $1,299 | IWGDF-aligned wound assessment, infection grading, offloading prescription, escalation timing; patient-safety bias toward escalation | `/cookbooks/diabetic-foot-care.md` |
+| patient-communication | 3,000 | $1,299 | Medical-jargon-to-plain-language rewrite, consent explanation, triage script generation; clinical accuracy at patient register | `/cookbooks/patient-communication.md` |
+| spine-imaging-reasoning | 3,000 | $1,299 | Spine imaging interpretation (MRI sagittal/axial), differential-diagnosis chains, clinical-vignette → diagnostic reasoning at radiology-fellow register | `/cookbooks/spine-imaging-reasoning.md` |
+| diabetes-companion | 5,000 | $2,199 | Full-stack diabetes assistant: clinical decision support + research grounding + patient communication + lived-experience register, two-stream preserved | `/cookbooks/diabetes-companion.md` |
+| multimodal-clinical-reasoning | 5,000 | $2,199 | Broad medical reasoning across imaging + literature + guidelines, for shops building general clinical-assistant models | `/cookbooks/multimodal-clinical-reasoning.md` |
+
+Cookbook index (machine-readable): `/cookbooks/index.json`
+
+### Shared recipe and eval
+
+**Swarm & Bee Gold Standard QLoRA** — the exact recipe used to cook Atlas-Qwen-27B (loss 0.4186) and SwarmCurator-9B (loss 0.707). Repeatable.
+
+- Learning rate: 1e-5
+- Precision: bf16
+- Adapter: LoRA r=64 α=32
+- Scheduler: cosine
+- Effective batch size: 32
+- Epochs: 3 (standard 3000) / 2 (master 5000)
+- AutoTokenizer bypass on Qwen-family bases
+- Gradient checkpointing on if VRAM-bound
+
+**Shared eval — `dmack_eval_set_v1`** (60 probes):
+- founder-voice: 20
+- emergency-hard-stop: 10
+- adrenal-crisis: 10
+- refusal-compliance: 10
+- citation-behavior: 5
+- voicedrift-and-thinktag: 5
+
+Source: `/eval/dmack_eval_set_v1.jsonl`. Run before and after the cook; the delta is the receipt.
+
+**Headline receipt**: 501 targeted Jelly Donuts directly repaired Atlas-Qwen-27B v1's fabrication-detection blind spot (Curator-Mistral-3B v2 cook). 3000-cell cookbooks scale the same architecture to domain-wide impact at the honest floor.
+
+## Free sample packs
+
+50 random cells per SKU, sampled with `random.sample(seed=42)` for reproducible variety. Same JSON schema as paid delivery. **No signup, no card, no friction.** Each pack includes at least one PROPOLIS-grade pair (labeled) so you see what we filter out.
+
+- `/samples/free/dmack-royal-jelly.jsonl` — flagship sampler across all 10 source streams
+- `/samples/free/endo-eclair.jsonl` — endocrinology specialty
+- `/samples/free/cinnamon-spiral.jsonl` — CGMacros real-world CGM + meal-macros
+- `/samples/free/madeleine.jsonl` — PubMed Central diabetes complications
+- `/samples/free/scholar-croissant.jsonl` — OpenAlex round 1 (cardiometabolic)
+- `/samples/free/global-crumpet.jsonl` — NHS / IDF / WHO / DiabetesUK / NICE
+- `/samples/free/federal-glaze.jsonl` — CDC / NIH / NIDDK / MedlinePlus
+- `/samples/free/founders-pretzel.jsonl` — founder lived-experience patterns
+- `/samples/free/royal-jelly-brioche.jsonl` — MASTER_PLATINUM imaging Q/A
+- `/samples/free/golden-glaze.jsonl` — MASTER_GOLD spine + neuro imaging
+- Index: `/samples/free/index.json`
+
+## How to order
+
+Datasets are available **only through the CLI**. No auto-checkout, no card-on-file, no instant download. A human reads every order within one business day.
+
+1. **Install the CLI** — `pip install swarmbee-bakery`
+2. **Browse the menu** — `swarmbee-bakery menu --domain medical`
+3. **Free taste first** — `swarmbee-bakery sample --slug endo-eclair` (downloads the 50-cell free pack)
+4. **Order via cookbook** — `swarmbee-bakery order --sku cookbook --cookbook glycemic-reasoning --name 'You' --email 'you@you.dev' --confirm`
+5. **Settle** — invoice via Stripe (no card kept on file) or settlement address `swarmusdc.eth`. Delivery is a signed download URL + sha256 manifest + optional Hedera anchor.
+
+CLI intake endpoint: `https://swarmandbee.ai/api/bakery-intake`
+Fallback intake: `https://swarmandbee.ai/api/bounty-intake`
+Email: `build@swarmandbee.ai`
+Discord: `https://discord.gg/buUjYgzP5m`
+
+## Settlement rails
+
+- **Stripe invoice**: human mints a Stripe invoice and emails the link. No card kept on file.
+- **USDC on Ethereum L1**: settle to `swarmusdc.eth` (resolves to `0xBDe2153C5799f4012a9fAF327e3421D1caB4Ea23`). ERC-20 mainnet only — no L2.
+
+## The architecture — AtlasOS (CRE vertical)
+
+AtlasOS is the operating system for the CRE brokerage arm of Swarm & Bee LLC. It coordinates a multi-agent pod:
+
+- **Atlas-SMD (70B · Senior Managing Director)** — Llama-3.3-70B-Instruct fine-tuned on Block-0 capital markets corpus. Qualifies leads, runs negotiations, drafts LOIs, closes deals. Voice surface: full-duplex (Whisper Large v3 ASR + F5-TTS).
+- **Atlas-UW (27B · Underwriter)** — T-12 audits, rent rolls, lease abstracts, cash flow models, sensitivity grids, IC memos.
+- **Atlas-Marketing (9-13B · Book Maker)** — OMs, just-closed e-blasts, broker-quality letters, listing brochures.
+- **Atlas-Closing (9-13B · Closing Coordinator)** — PSA execution, escrow tracking, DD checklist, vendor coord, recording-office filings.
+- **Atlas-Hack-fleet (×10 · Junior Brokers)** — asset-class specialists (Wawa, Taco, CVS, IOS, Self-Storage, Multi-T2, Medical, Industrial-Light, Office-Suburban, NetLease). 200 dials/day each.
+
+CRE workflow runs as a 12-step state machine from cold dial through close to just-closed e-blast that seeds next-day inbound. The Book of Business is a graph database the firm owns — counterparty profiles, deal records, conversation history, mandates, e-blast records. Every Atlas role reads/writes from the same Book.
 
 ## The compute moat
 
@@ -109,161 +250,106 @@ The firm owns its compute outright:
 | RTX 5090 | 12 | 32 GB | 575W | 384 GB | Dev / staging / orchestrator |
 | **Total** | **186** | | **~80 kW peak** | **~14 TB** | |
 
-Acquisition cost analysis for any competitor:
-- Compute capex: $5M+ in silicon (supply-constrained on PRO 6000s)
-- Power provisioning: $50K-$200K facility upgrade + monthly power
-- Cooling: 27 tons HVAC for thermal load
-- Brick & mortar: dedicated room minimum
-- Network: 10 Gbps internal + redundant external pipes
-- DevOps team: $300K-$600K/year per senior SRE × 2-4
-- Builders: $250K-$500K/year × 3-5 ML engineers
-- Time: 12-18 months minimum from capex commit to operational
-
-**Total acquisition cost for a brokerage starting today: $7-10M cash + 18 months runway + a recruiting miracle.**
-
-By the time a competitor would be operational, Atlas v2 has shipped and the deed-flywheel has compounded for 18 months. This is a 5-year structural moat — the gap widens, doesn't close.
-
-## The deal lifecycle (the flywheel)
-
-The brokerage workflow runs as a 12-step state machine:
-
-1. **Hack dials prospect** — scripted pitch · 200 calls per day per Hack · asset-class focused
-2. **Buyer interest** — prospect requests deal package
-3. **Auto-package send** — Atlas-Marketing dispatches OM + financials + photos
-4. **SMD qualification call** — voice qualification · capital source, 1031 deadline, structure, mandate fit
-5. **Buyer offer** — verbal terms (cap, look period, hard money, close); Atlas converts to structured LOI
-6. **Seller-side dial** — SMD calls listing broker / principal with seller-behavior intel
-7. **Counter / accept** — negotiation closure typically in 1-3 calls
-8. **LOI bound** — Atlas-Marketing finalizes document · electronic signature
-9. **PSA generation** — Atlas-Closing drafts PSA from LOI + asset-class boilerplate
-10. **15-day DD** — Atlas-Closing tracks vendor calendar (title, environmental, survey, lender)
-11. **Close** — escrow → deposit hard → recording → wire disbursement
-12. **Just-closed e-blast** — Atlas-Marketing auto-generates announcement; broadcasts to entire Book of Business; inbound responses seed next-day dial list
-
-Every closed deal compounds the Book. Every closed deal feeds the next ten dials. The Book never walks.
-
-## The Book of Business
-
-The firm's moat in code. A graph database (PostgreSQL + JSONB phase 1, Neo4j candidate phase 2) that holds:
-
-- **Counterparty profiles** — every buyer, seller, listing broker, lender, capital source the firm interacts with
-- **Deal records** — every transaction touched, fee event, close
-- **Property metadata** — every asset in scope (class, vintage, NOI, cap, location, history)
-- **Conversation history** — every call, email, meeting (transcript + summary + extracted facts)
-- **Mandates** — buyer search criteria with deadlines (1031 IDs, capital deployment windows)
-- **E-blast records** — every announcement and the responses it triggered
-
-Every Atlas role reads/writes from the same Book. The Book belongs to the firm — not to any individual broker or model. Senior brokers in traditional firms walk with their Books at retirement; Swarm & Bee's Book stays.
+Acquisition cost for any competitor: $5M+ silicon + $50K-$200K facility upgrade + 27 tons HVAC + dedicated room + 10 Gbps network + $300K-$600K/yr × 2-4 SREs + $250K-$500K/yr × 3-5 ML engineers + 12-18 months from capex commit to operational. **$7-10M cash + 18 months runway + a recruiting miracle.** By the time a competitor would be operational, the bakery has shipped another generation.
 
 ## Regulatory framework
 
-Operational legal frame (not legal advice; final structure requires per-state attorney sign-off):
+Operational legal frame (not legal advice):
 
 - **Brokerage entity**: Swarm & Bee LLC is the licensed brokerage entity (FL Licensed Real Estate Brokerage)
-- **Designated brokers of record**: licensed natural persons supervise binding licensed activity. Donovan Mackey operates as Founder/Family Office, NOT day-to-day BoR.
-- **AI-as-licensed-assistant frame**: AI agents act as unlicensed assistants under broker supervision — same legal frame as a paralegal under an attorney. License-required activities (negotiation of binding terms, contract signature) flow through a licensed broker. License-not-required activities (cold dialing, research, drafting marketing collateral, cash flow analysis, pre-binding qualification) run autonomously through Atlas.
-- **AI-to-AI binding contracts**: UETA Section 14 (Uniform Electronic Transactions Act, adopted in 49 states + DC) and ESIGN Act (federal) authorize electronic agents to form binding contracts on behalf of their principals. Multiple AI agents from different firms can come to a meeting of the minds with cryptographically anchored Hedera receipts.
-- **Multi-state expansion path**: foreign brokerage registration in target states (TX, CA, NY, GA priority) with state-specific designated brokers of record.
+- **Designated brokers of record**: licensed natural persons supervise binding licensed activity. Donovan operates as Founder/Family Office, NOT day-to-day BoR.
+- **AI-as-licensed-assistant frame**: AI agents act as unlicensed assistants under broker supervision — same legal frame as a paralegal under an attorney. License-required activities flow through a licensed broker; license-not-required activities run autonomously.
+- **AI-to-AI binding contracts**: UETA Section 14 and ESIGN Act authorize electronic agents to form binding contracts on behalf of their principals.
 - **TCPA, fair housing, RESPA, AML compliance**: standard CRE brokerage compliance overlays apply.
-- **Recording disclosure**: state-by-state consent law (one-party for most, two-party for CA/FL/IL/MD/MA/MT/NH/PA/WA).
-- **Hedera anchor as evidentiary record**: HCS topic 0.0.10291838 provides cryptographically provable, tamper-evident records of every deed, LOI, and binding agreement.
+- **Hedera anchor as evidentiary record**: HCS topic 0.0.10291838 provides cryptographically provable, tamper-evident records of every Defendable deed, LOI, and binding agreement.
 
-## Doctrine — the seven operating laws
+**Medical disclaimer**: Datasets in the medical vertical are training corpora and decision-support tools. **They are not medical advice.** Customers are responsible for downstream model deployment, eval, and use. See `/terms.html`.
 
-1. **Pass, not kill** — public copy register
-2. **Investors interview brokers** — voice frame
-3. **Phase 1 is the firm, not the model** — sequencing
-4. **Show the receipts** — every claim has proof
-5. **The Book never walks** — firm owns the moat
-6. **Specialization beats generalization** — narrow + deep wins
-7. **Validate the validator** — defendable.eth is open and falsifiable
+## Doctrine — seven laws
 
-## The maturation thesis: 12-cap → 5-cap
+1. **Pass, not kill** — public copy register; professional, neutral, decisive
+2. **Show the receipts** — every claim has a receipt (closed deal, eval delta, Hedera anchor, worked example)
+3. **No round-number lies** — if a pull is 5,948 pairs, the menu says 5,948 — not "about 6k"
+4. **Two-stream architecture (medical)** — sourced authority separated from lived register; never conflated
+5. **Tribunal before training** — every batch tasted before it ships
+6. **Less is better when the cut is targeted** — 500 fantastic muffins crush 25,000 ingredients
+7. **Validate the validator** — defendable.eth is the open algorithm; reproducible, falsifiable
 
-A new building is a 12-cap. Vacant. Risk premium until the income proves out and the underwriting holds. Atlas is no different. The cap rate compresses one verified deal at a time.
+## Provenance discipline
 
-| Phase | Cap | Marker |
-|---|---|---|
-| Today (May 2026) | **12-cap** | Atlas-70B v1 cooked · Memphis 312 closed proof · 186 GPUs deployed · brokerage license active |
-| Q3 2026 target | **8-cap** | 20+ verified underwrites · multiple pass calls validated by basis points · Senior Broker tier in production with revenue · Hack-fleet running 1000+ dials/day · API early-access partners |
-| The earned outcome | **5-cap** | Track record durable enough that institutional buyers take title fee-simple · multiple closed deals · Class A across every Defendable test · then the model home opens |
+Every pair carries:
+- `tier_grade` (APEX | HONEY | JELLY | POLLEN | PROPOLIS)
+- 5-dim rubric scores (1-10 each)
+- `graded_at` datestamp
+- `freshness` datestamp
+- source attribution
+- sha256 hash
 
-You cannot pre-buy the trust. You earn it by working.
+Every batch carries:
+- `manifest.json` with per-pair sha256
+- Tribunal-seal signature (if sealed)
+- optional Hedera anchor (HCS topic 0.0.10291838)
+- issuer signature from `swarmandbee.eth`
+
+**Refund policy**: if bundle sha256 does not match manifest, full refund. Otherwise no returns on delivered bundles.
 
 ## The Memphis 312 proof point
 
-The first publicly cited Atlas closed underwrite. Real institutional opportunity, anonymized for public record:
+The first publicly cited Atlas closed underwrite (CRE vertical):
 
 - **Asset**: 312-unit Class B multifamily, Memphis MSA · East core
 - **Asking**: $48M / $154K per door / 5.0% in-place cap
 - **Atlas verdict**: PASS
-- **Reasoning**: in-place rents 7% above comp-set median (downside on roll), submarket vacancy trending 8.2% vs underwrite assumption 5.5%, insurance escalation 32% YoY in Memphis MF since 2024, $3.8M deferred capex needed years 1-3, sponsor's last two MSP exits 0.95x and 1.07x MoIC
 - **Math**: 12 of 12 calculations correct
 - **DSCR at 7% senior**: 1.04x — insufficient cushion
-- **Outcome**: investor took the call · the deal didn't close at $48M · market subsequently moved to support Atlas's read
+- **Outcome**: investor took the call · market subsequently moved to support Atlas's read
 
-Walkthrough lives at https://github.com/SudoSuOps/atlas/blob/main/proofs/memphis_312/README.md
+Walkthrough: https://github.com/SudoSuOps/atlas/blob/main/proofs/memphis_312/README.md
 
 ## Defendable franchise architecture
 
-Swarm & Bee LLC is the founding issuer of the Defendable open standard. Sub-marks:
+Swarm & Bee LLC is the founding issuer of the Defendable open standard:
 
 - **defendable.eth** — the open certification standard (algorithm)
-- **atlas.defendable.eth** — the flagship · Atlas-70B + the agent pod
-- **cookbook.defendable.eth** — reproducible recipes (Recipe #1 FSDP-QLoRA 70B locked)
+- **atlas.defendable.eth** — the CRE flagship
+- **cookbook.defendable.eth** — reproducible recipes
+- **stnl.defendable.eth** — first Hack public surface
 
-Defendable v0.1.0 specification governs:
-- Tier banding: Class A (Royal Jelly · score ≥ 0.85), Class B (Honey · 0.70–0.84), Class C (Propolis · < 0.70)
-- Six proofs per deed: Origin, Quality, Process, Economics, Trust, Location
-- Chain of custody: Spec → Test → Deed → Anchor → Badge → Audit
-- Open algorithm — multiple implementations must agree on the same input
-- Falsifiable by design — anyone can run the verifier
-
-The firm's commitment: defendable.eth IS the algorithm. Validate the validator.
+Defendable v0.1.0 specification governs tier banding, six proofs per deed (Origin, Quality, Process, Economics, Trust, Location), chain of custody, and falsifiability requirements. Open algorithm — multiple implementations must agree on the same input.
 
 ## Market context
 
-US CRE market:
-- $20T+ asset class (largest privately-owned in the world)
-- $1T/year transaction volume baseline
-- $800B+ debt maturing 2024–2027 (the wall)
-- 50,000+ licensed brokers, most running 2005-era technology stacks
+US CRE market: $20T+ asset class · $1T/year transaction volume · $800B+ debt maturing 2024–2027.
 
-AI economy:
-- $1.3T Gen-AI market projected by 2032 (Bloomberg Intelligence, June 2023)
-- $4.4T annual gen-AI productivity uplift potential (McKinsey)
-- $200B+ annual AI infrastructure spending baseline 2025+
-- 75% enterprise AI adoption target by 2026 (Gartner)
-- 32× AI economy growth: $40B (2022) → $1.3T (2032)
+AI economy: $1.3T Gen-AI market projected by 2032 · $4.4T annual productivity uplift · 32× growth from 2022 → 2032.
 
-The intersection — AI infrastructure applied to CRE Capital Markets workflow — is the opportunity Swarm & Bee LLC is built to capture. CRE shops cannot have a real AI strategy: capital structure can't justify the capex, talent funnel is structurally wrong (ML engineers don't work at brokerages), technical depth doesn't exist (no senior broker is debugging FSDP at 3am). The vendor model is the only realistic path for the existing industry.
+Medical AI: $187B market by 2030 · clinical decision support a growing subsegment · sourced-authority training data is the bottleneck.
 
-## The vendor model (Phase 3)
+## Legal pages
 
-When M&M / JLL / Cushman / regional shops realize 12-18 months from now that they cannot build this themselves, vendor.defendable.eth becomes the only viable acquisition path. Two operational modes:
-
-- **Path A (current)**: Swarm & Bee LLC operates as a brokerage directly, expanding multi-state.
-- **Path B (Phase 3)**: Swarm & Bee LLC licenses the AI rails to existing licensed brokerages, who keep their license + clients while running on Atlas infrastructure. Service fee model.
-
-Both paths run in parallel as the franchise matures.
+- Privacy policy: `/privacy.html` — what we collect, what we store (sovereign D1-equivalent SQLite on owned Synology NAS), what we share (nothing)
+- Terms of service: `/terms.html` — datasets are training/decision-support tools, not medical advice; refund policy; governing law (Florida)
+- Cookie policy: `/cookies.html` — no third-party cookies, no analytics, no ad tracking
 
 ## Engagement
 
-For underwriting requests, deal handoffs, pass-or-proceed analysis, comp pulls, OM drafting, sensitivity studies, capital partner conversations, vendor licensing inquiries, recruiting (designated brokers + ML engineers), or general engagement:
+For dataset orders, cookbook bundles, custom 500-Packs, scoped pilots, vendor licensing, CRE underwriting requests, or general engagement:
 
 **Email**: build@swarmandbee.ai
 **Public site**: https://swarmandbee.ai
+**Bakery**: https://bakery.swarmandbee.ai
 **Architecture (open)**: https://github.com/SudoSuOps/atlas
 **Defendable standard**: https://defendable.eth.limo
 **Hedera anchor topic**: 0.0.10291838 (verifiable on hashscan.io)
-**ENS**: swarmandbee.eth · defendable.eth
+**ENS**: swarmandbee.eth · defendable.eth · swarmusdc.eth
+**Hedera names**: swarm.hbar · swarmandbee.hbar · hive.hbar
 
 ## License
 
-Swarm & Bee LLC owns its compute, its Book of Business, its corpus, and its model weights. Architectural documentation (the Atlas repo) is publicly visible by intent — defendability is a public claim. Training corpus, model weights, and Book of Business data remain private.
+Swarm & Bee LLC owns its compute, its Book of Business, its corpora, and its model weights. Architectural documentation (the Atlas repo) is publicly visible by intent — defendability is a public claim. Training corpora, model weights, and Book of Business data remain private.
 
-The Defendable standard (defendable.eth) is open-source by design — multiple implementations must agree on the same input. The standard is meant to be reproducible by anyone with the inputs.
+The Defendable standard (defendable.eth) is open-source by design — multiple implementations must agree on the same input.
 
 ---
 
-*This document is the canonical full-context manifest for Swarm & Bee LLC. Last updated 2026-05-04. For the concise version, see /llms.txt. For real-time deployment status, see https://swarmandbee.ai/status.*
+*This document is the canonical full-context manifest for Swarm & Bee LLC. Last updated 2026-05-17. For the concise version, see /llms.txt. For the machine-readable menu, see /menu.json. For real-time deployment status, see https://swarmandbee.ai/status.*

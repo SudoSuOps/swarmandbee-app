@@ -199,5 +199,6 @@ USDC on **Ethereum L1 ERC-20** (mainnet only — no L2, no Base, we are root). N
 - Cell counts are exact (`wc -l` on source files, not estimated). Selection is deterministic (per-cookbook seed, sha256-pinned).
 - The 60 eval probes are real — `~/Desktop/dmack-ai/eval/dmack_eval_set_v1.jsonl` is checked into the dmack.ai repo and ships as the grading harness.
 - If you want spot-repair on one narrow failure mode and 3000 cells feels heavy, route to the **500-Pack ($249)** SKU instead — same evidence-backed Curator-v2 pattern, smaller scope, lower price.
+- **Not medical advice.** Cookbooks ship training data and recipes for ML engineers building clinical-support models. Outputs of a cooked model are not a substitute for a licensed clinician. The two-stream architecture (sourced authority vs. lived register) is enforced at curation; downstream model deployment is the engineer's responsibility.
 
 If we don't have a number, we say so. If we do, we name it.

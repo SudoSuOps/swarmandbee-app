@@ -46,11 +46,16 @@ function resolveDiscordWebhook(env: Env): string {
 }
 
 export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
-  let body: BoxOrder;
+  let body: any;
   try {
     body = await request.json();
   } catch {
     return json({ ok: false, error: "invalid json" }, 400);
+  }
+
+  // Honeypot: real users don't fill this field. Mirror of bakery-intake pattern.
+  if (typeof body.company_website === "string" && body.company_website.length > 0) {
+    return json({ ok: true });  // pretend success, drop silently
   }
 
   if (!Array.isArray(body.picks) || body.picks.length !== 12) {
@@ -59,8 +64,9 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
   if (!body.bundle_hash || !/^[0-9a-f]{64}$/i.test(body.bundle_hash)) {
     return json({ ok: false, error: "bundle_hash must be a 64-char hex sha256" }, 400);
   }
-  if (!body.email || !body.email.includes("@") || body.email.length < 5 || body.email.length > 200) {
-    return json({ ok: false, error: "email required" }, 400);
+  // Tight email regex (was just .includes("@") — would accept "a@" or "@b")
+  if (!body.email || typeof body.email !== "string" || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(body.email) || body.email.length > 200) {
+    return json({ ok: false, error: "valid email required" }, 400);
   }
   const email = body.email.trim().toLowerCase();
   const name = (body.name || body.org_name || "Customer").trim().slice(0, 200);

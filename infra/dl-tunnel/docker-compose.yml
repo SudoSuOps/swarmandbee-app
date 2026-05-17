@@ -1,0 +1,35 @@
+# dl.swarmandbee.ai · NAS-native distribution for bakery orders
+#
+# Customer download URL: https://dl.swarmandbee.ai/orders/BAK-YYYYMMDD-XXXX/bundle.zip
+#
+# Path: customer browser → CF edge → existing CF Tunnel on this NAS
+#                                  → nginx (this stack) on host port 18488
+#                                  → /volume1/swarm/bakery-orders/ (NAS volume, read-only)
+#
+# Runs on Synology DS1525+ (minechain-nas @ 192.168.0.102) via Container Manager.
+# Drop this file at /volume1/docker/bakery-distribution/docker-compose.yml.
+#
+# IMPORTANT: this assumes a cloudflared tunnel is ALREADY running on this NAS.
+# We only deploy nginx here. The tunnel is configured to add dl.swarmandbee.ai
+# as a new public hostname pointing at http://192.168.0.102:18488 — see README.
+
+services:
+  nginx:
+    image: nginx:alpine
+    container_name: sb-nginx-bakery
+    restart: unless-stopped
+    ports:
+      # Published on host port 18488 — the existing cloudflared tunnel reaches us here.
+      # Change this port if it collides with something else on your NAS.
+      - "18488:80"
+    volumes:
+      # Read-only mount of bakery orders directory — nginx serves, never writes.
+      # Fulfillment script (build_bakery_bundle.py) writes here from the rig side.
+      - /volume1/swarm/bakery-orders:/usr/share/nginx/html/orders:ro
+      # Our hardened nginx config (no directory listing, .zip force-download, etc.)
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--spider", "http://localhost/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3

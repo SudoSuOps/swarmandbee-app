@@ -134,3 +134,4 @@ swarmbee-bakery order \
 - This recipe has not yet been cooked at scale on a known baseline. **Receipt: pending.** First customer is the first data point.
 - Recipe inherits from two known-good cooks (Atlas-27B, Curator-9B) — same hyperparams, same architecture.
 - If the model false-negatives on an escalation probe in your pre/post, that is the cookbook's failure, not yours. Tell us. We adjust the loss-weighting and re-ship.
+- **Not medical advice.** Cookbooks ship training data and recipes for ML engineers building clinical-support models. Outputs of a cooked model are not a substitute for a licensed clinician. The two-stream architecture (sourced authority vs. lived register) is enforced at curation; downstream model deployment is the engineer's responsibility.
