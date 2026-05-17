@@ -1,8 +1,8 @@
-# Cookbook · Diabetic Foot Care · 1500
+# Cookbook · Diabetic Foot Care · 3000
 
 **Target failure mode.** IWGDF-aligned wound assessment, infection grading, offloading prescription, and escalation timing. Patient-safety bias: when ambiguous, escalate to a clinician — do not minimize a foot complication.
 
-This cookbook trains for one of the hardest failure modes in clinical AI: the model that **knows when it doesn't know**, specifically for diabetic foot care where missed escalation costs limbs.
+3000 cells is the honest floor where the escalation reflex actually changes behavior across the corpus of presentations. This is one of the highest-stakes failure modes in clinical AI — missed escalation costs limbs — so the cell count earns its weight.
 
 ---
 
@@ -22,21 +22,22 @@ Donovan Mackey · Type 1 diabetic, insulin-dependent · lost left big toe + half
 
 Same Gold Standard config used to cook Atlas-Qwen-27B (loss 0.4186) and SwarmCurator-9B (loss 0.707). See [Glycemic Reasoning cookbook](/cookbooks/glycemic-reasoning.md) for the full YAML — identical here.
 
-**One foot-care-specific tweak:** if cooking on a base where the `must-escalate` instinct is weak (most modern bases over-defer to "talk to your doctor"), set `loss_weighting` to 1.5× on the 100 Compliance Cookie cells. This biases the model to overlearn the brake pedal — exactly what we want on a corpus where false-negatives cost limbs.
+**Foot-care-specific tweak:** if cooking on a base where the `must-escalate` instinct is weak (most modern bases over-defer to "talk to your doctor"), set `loss_weighting` to 1.5× on the 100 Compliance Cookie cells. This biases the model to overlearn the brake pedal — exactly what we want on a corpus where false-negatives cost limbs.
 
 ---
 
-## ▍ The ingredients — 1500 cells, deterministic
+## ▍ The ingredients — 3000 cells, deterministic
 
 | SKU | Cells | Source file | Why it's in the mix |
 |---|---:|---|---|
-| [Madeleine](/menu.json) | **700** | `08_pmc_pairs.jsonl` (PubMed Central) | Research-grade — diabetic foot ulcer, neuropathy, infection-grading literature. Citation-anchored. |
-| [Global Crumpet](/menu.json) | **400** | `09_international_pairs.jsonl` | NHS + IDF wound-care guidance; IWGDF-aligned escalation pathways (where openly licensed). |
-| [Founder's Pretzel](/menu.json) | **300** | `07_bigideas_pattern_pairs.jsonl` | Lived-experience patterns — 14 surgeries' worth of "what I caught early vs. what I caught too late." Register only, never authority. |
+| [Madeleine](/menu.json) | **1,400** | `08_pmc_pairs.jsonl` (PubMed Central) | Research-grade — diabetic foot ulcer, neuropathy, infection-grading literature. Citation-anchored. |
+| [Global Crumpet](/menu.json) | **700** | `09_international_pairs.jsonl` | NHS + IDF wound-care guidance; IWGDF-aligned escalation pathways (where openly licensed). |
+| [Founder's Pretzel](/menu.json) | **600** | `07_bigideas_pattern_pairs.jsonl` (foot-vigilance subset) | Lived experience — 14 surgeries' worth of "what I caught early vs. what I caught too late." Register only, never authority. This cookbook takes ~38% of the SKU's 1,592 cells (concentrated on foot-care patterns). |
+| [Federal Glaze](/menu.json) | **200** | `06_government_pairs.jsonl` | CDC diabetes-foot guidance for US-context patient education. |
 | [Compliance Cookie](/menu.json) | **100** | `10_refusal_pairs.jsonl` | Escalation-refusal patterns — when to refer immediately. |
-| **Total** | **1500** | | |
+| **Total** | **3,000** | | |
 
-Cell selection is **deterministic** (`random.seed(42)`, sha256-pinned). Re-ordering gives byte-identical bundles.
+Cell selection is **deterministic per cookbook** (seed = sha256("diabetic-foot-care"), sha256-pinned at bundle root). No overlap with other cookbooks sharing source SKUs.
 
 ---
 
@@ -106,9 +107,7 @@ swarmbee-bakery order \
 
 ## ▍ What you get on delivery
 
-Same shape as Glycemic Reasoning. Bundle includes:
-
-- `diabetic-foot-care-1500.jsonl` — 1500 cells
+- `diabetic-foot-care-3000.jsonl` — 3000 cells
 - `manifest.json` — per-cell sha256, ingredient breakdown, recipe pinned
 - `manifest.sha256` — bundle root
 - `eval/dmack_eval_set_v1.jsonl` — 60 probes
@@ -122,9 +121,9 @@ Same shape as Glycemic Reasoning. Bundle includes:
 
 ## ▍ Pricing
 
-- **$899** flat for 1500-cell cookbook
+- **$1,299** flat for 3000-cell standard cookbook
 - Cooked-for-you: +$249 + GPU pass-through
-- Settlement: Stripe invoice OR USDC to `swarmusdc.eth`
+- **Settlement:** Stripe invoice OR USDC to `swarmusdc.eth` (→ `0xBDe2153C5799f4012a9fAF327e3421D1caB4Ea23`) on **Ethereum L1 ERC-20** (mainnet only)
 
 ---
 

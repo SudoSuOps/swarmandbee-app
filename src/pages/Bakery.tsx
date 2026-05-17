@@ -958,42 +958,42 @@ const COOKBOOKS: { slug: string; name: string; cells: number; price: number; lan
   {
     slug: "glycemic-reasoning",
     name: "Glycemic Reasoning",
-    cells: 1500, price: 899, lane: "diabetes",
+    cells: 3000, price: 1299, lane: "diabetes",
     pitch: "Insulin dosing reasoning with refusal on insufficient inputs. The model that won't fabricate a dose.",
-    receipt: "Architecture proven: Curator v2's 501-pack repaired Atlas v1's fabrication-detection blind spot — same shape, scaled to glycemic.",
+    receipt: "Architecture proven: Curator v2's 501-pack repaired Atlas v1's fabrication-detection blind spot — same shape, 6× scaled to the glycemic state space.",
   },
   {
     slug: "diabetic-foot-care",
     name: "Diabetic Foot Care",
-    cells: 1500, price: 899, lane: "diabetes",
+    cells: 3000, price: 1299, lane: "diabetes",
     pitch: "IWGDF-aligned wound assessment + escalation timing. The model that knows when not to wait.",
     receipt: "Founder is the receipt: 14 foot surgeries, lived register, hyper-vigilance patterns hand-curated.",
   },
   {
     slug: "patient-communication",
     name: "Patient Communication",
-    cells: 1500, price: 899, lane: "diabetes",
+    cells: 3000, price: 1299, lane: "diabetes",
     pitch: "Medical-jargon-to-plain-language. Maintains accuracy at patient register.",
     receipt: "NHS + MedlinePlus source pages average Flesch 60+ at MHRA-reviewed accuracy. The corpus is already cooked-for-register.",
   },
   {
-    slug: "diabetes-companion-3000",
-    name: "Diabetes Companion · 3000",
-    cells: 3000, price: 1799, lane: "diabetes",
-    pitch: "The full-stack flagship — clinical + research + patient + lived, two-stream architecture intact. The dmack.ai recipe itself.",
-    receipt: "Pending. This IS the staged dmack.ai cook. Order if you're prepared to be the first external receipt — fee waived if you share your eval delta back.",
-  },
-  {
     slug: "spine-imaging-reasoning",
     name: "Spine Imaging Reasoning",
-    cells: 1500, price: 899, lane: "imaging",
+    cells: 3000, price: 1299, lane: "imaging",
     pitch: "Spine MRI + CT differential diagnosis at radiology-fellow register. Text-only training that graduates to multimodal.",
     receipt: "Source: pre-Tribunal MASTER_PLATINUM (406K imaging vignettes). Cook receipt: first customer.",
   },
   {
+    slug: "diabetes-companion",
+    name: "Diabetes Companion",
+    cells: 5000, price: 2199, lane: "diabetes",
+    pitch: "The full-stack flagship — clinical + research + patient + lived, two-stream architecture intact. The dmack.ai recipe itself.",
+    receipt: "Pending. This IS the staged dmack.ai cook. Order if you're prepared to be the first external receipt — cooked-for-you fee waived if you share your eval delta back.",
+  },
+  {
     slug: "multimodal-clinical-reasoning",
-    name: "Multimodal Clinical Reasoning · 3000",
-    cells: 3000, price: 1799, lane: "imaging",
+    name: "Multimodal Clinical Reasoning",
+    cells: 5000, price: 2199, lane: "imaging",
     pitch: "Broad clinical assistant: imaging + literature + guidelines. For shops building generalists that don't collapse on either side.",
     receipt: "Pending. Cross-domain mix not yet cooked — first-customer-publishes-delta discount available.",
   },
@@ -1008,15 +1008,22 @@ function Cookbooks() {
         </div>
         <p className="text-neutral-300 text-lg leading-relaxed mb-3 max-w-3xl">
           A cookbook is a <strong className="text-amber-300">recipe with enough ingredients to move the needle</strong> on
-          one specific failure mode — 1500 cells standard, 3000 cells master. Named ingredient mix from the medical
-          SKU shelf. Gold Standard QLoRA recipe (the one we used on{" "}
+          a domain — <strong className="text-amber-300">standard 3000</strong> moves the needle,{" "}
+          <strong className="text-amber-300">master 5000</strong> is a confident behavioral pivot. Named ingredient mix
+          from the medical SKU shelf. Gold Standard QLoRA recipe (the one we used on{" "}
           <strong className="text-amber-300">Atlas-27B</strong> · final loss 0.4186, and{" "}
           <strong className="text-amber-300">Curator-9B</strong> · 0.707). 60-probe eval set ships in every bundle.
         </p>
-        <p className="text-rose-300/90 text-sm font-mono mb-8 max-w-3xl px-3 py-2 bg-rose-950/20 border border-rose-900/30 rounded">
+        <p className="text-rose-300/90 text-sm font-mono mb-3 max-w-3xl px-3 py-2 bg-rose-950/20 border border-rose-900/30 rounded">
           ▸ Headline receipt: <strong className="text-rose-200">501 targeted Jelly Donuts directly repaired Atlas v1&apos;s
-          fabrication-detection blind spot.</strong> 1500-cell cookbooks scale that pattern to wider failure modes; 3000-cell
-          masters cover stable cross-domain improvement.
+          fabrication-detection blind spot.</strong> That receipt is the floor for spot-repair on one failure mode — for that
+          job, route to the <a href="#menu" className="text-rose-200 underline-offset-2 hover:underline">500-Pack ($249)</a>{" "}
+          instead.
+        </p>
+        <p className="text-amber-300/90 text-sm font-mono mb-8 max-w-3xl">
+          ▸ Cookbooks start at <strong className="text-amber-200">3,000 cells</strong> because that&apos;s the honest floor
+          where a model&apos;s domain behavior actually shifts. We won&apos;t sell a smaller cookbook with a needle-moving
+          claim we can&apos;t back.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">

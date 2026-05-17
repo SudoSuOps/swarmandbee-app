@@ -1,8 +1,8 @@
-# Cookbook · Patient Communication · 1500
+# Cookbook · Patient Communication · 3000
 
 **Target failure mode.** Medical-jargon-to-plain-language rewrite, consent explanation, triage script generation — while maintaining clinical accuracy. The model should pass a Flesch reading-ease check **and** still be medically defensible.
 
-This is the cookbook for patient-portal copy, after-visit summaries, and any LLM surface that talks to non-clinicians without dumbing it down.
+3000 cells is the honest floor where the patient-register actually persists across the model's output distribution. Below this, drift creeps back in by epoch 2.
 
 ---
 
@@ -16,7 +16,7 @@ This is the cookbook for patient-portal copy, after-visit summaries, and any LLM
 - **MedlinePlus** (US NIH) is the equivalent US gold standard for patient-level health info.
 - Both sources are *already cooked by humans for register*. The training task becomes mimicking the register, not inventing it.
 
-**Cookbook-specific receipt:** *pending.* No model has been cooked on this exact ingredient mix yet. First paying customer's pre/post `founder-voice` eval delta publishes here.
+**Cookbook-specific receipt:** *pending.* No model has been cooked on this exact 3000-cell ingredient mix yet. First paying customer's pre/post `founder-voice` eval delta publishes here.
 
 ---
 
@@ -28,17 +28,18 @@ Same Gold Standard config. See [Glycemic Reasoning](/cookbooks/glycemic-reasonin
 
 ---
 
-## ▍ The ingredients — 1500 cells, deterministic
+## ▍ The ingredients — 3000 cells, deterministic
 
 | SKU | Cells | Source file | Why it's in the mix |
 |---|---:|---|---|
-| [Global Crumpet](/menu.json) | **800** | `09_international_pairs.jsonl` | NHS patient-facing guidance — the foundation. UK English register. |
-| [Federal Glaze](/menu.json) | **500** | `06_government_pairs.jsonl` | MedlinePlus + CDC patient-level. US English register, federal voice. |
-| [Founder's Pretzel](/menu.json) | **100** | `07_bigideas_pattern_pairs.jsonl` | Lived-experience register — patient-to-patient compassionate vocabulary. |
+| [Global Crumpet](/menu.json) | **1,500** | `09_international_pairs.jsonl` (NHS subset) | NHS patient-facing guidance — the foundation. UK English register. |
+| [Federal Glaze](/menu.json) | **1,000** | `06_government_pairs.jsonl` (MedlinePlus subset) | MedlinePlus + CDC patient-level. US English register, federal voice. |
+| [Founder's Pretzel](/menu.json) | **300** | `07_bigideas_pattern_pairs.jsonl` (compassionate-register subset) | Lived-experience register — patient-to-patient compassionate vocabulary. |
+| [Madeleine](/menu.json) | **100** | `08_pmc_pairs.jsonl` | Citation-emitting reference cells so the cooked model can attribute when needed without dropping register. |
 | [Compliance Cookie](/menu.json) | **100** | `10_refusal_pairs.jsonl` | Defer-to-clinician patterns — friendly register but knows its limits. |
-| **Total** | **1500** | | |
+| **Total** | **3,000** | | |
 
-Note: NHS and MedlinePlus pull together gives you both UK and US registers. The cooked model will tend toward the dominant register (UK at 800 cells vs US at 500). If you need US-dominant, swap proportions — say so in `--notes` and we adjust before assembly.
+NHS dominant at 1,500 cells gives the cooked model a UK-leaning register. **If you need US-dominant**, swap proportions (1,500 Federal Glaze, 1,000 Global Crumpet) — note in `--notes` and we adjust before assembly.
 
 ---
 
@@ -68,7 +69,7 @@ Every cell carries the source URL and a citation string. The cooked model can em
 
 ## ▍ Loader
 
-Identical to other cookbooks. The `source`, `url`, and `citation` metadata fields are particularly useful here — you can train a citation-emitting model by including them in your prompt template, or strip them with `del metadata['url']` if you want pure register-only training.
+Identical to other cookbooks. The `source`, `url`, and `citation` metadata fields are particularly useful here — train a citation-emitting model by including them in your prompt template, or strip with `del metadata['url']` if you want pure register-only training.
 
 ---
 
@@ -109,9 +110,9 @@ Same shape as other cookbooks. Includes the additional `register_eval_pack.jsonl
 
 ## ▍ Pricing
 
-- **$899** flat for 1500-cell cookbook
+- **$1,299** flat for 3000-cell standard cookbook
 - Cooked-for-you: +$249 + GPU pass-through
-- Settlement: Stripe invoice OR USDC to `swarmusdc.eth`
+- **Settlement:** Stripe invoice OR USDC to `swarmusdc.eth` (→ `0xBDe2153C5799f4012a9fAF327e3421D1caB4Ea23`) on **Ethereum L1 ERC-20** (mainnet only)
 
 ---
 

@@ -1,8 +1,8 @@
-# Cookbook · Spine Imaging Reasoning · 1500
+# Cookbook · Spine Imaging Reasoning · 3000
 
 **Target failure mode.** Spine imaging interpretation (MRI sagittal/axial, CT, plain film), differential diagnosis chains, clinical-vignette → diagnostic-reasoning at radiology-fellow register. The model must reason from the imaging-finding *description* even when no actual image is in context (text-only training).
 
-This is the imaging-lane companion to the diabetes-lane cookbooks. Different schema, different register, different eval pattern.
+3000 cells lifts the model out of generic clinical-reasoning behavior and into spine-specific differential ranking. Sourced entirely from the 406K-cell imaging master — same provenance, scoped to one anatomical/clinical surface.
 
 ---
 
@@ -12,7 +12,7 @@ This is the imaging-lane companion to the diabetes-lane cookbooks. Different sch
 
 The source SKU — Royal Jelly Brioche (`MASTER_PLATINUM.jsonl`) — contains **406,181 multimodal clinical-imaging vignettes** (MSK / neuro / spine). Each cell pairs an imaging-finding description with diagnostic reasoning at fellow register. The corpus is real, on disk on the NAS at `/mnt/swarm/swarm-and-bee-datasets/medical/`, and ships free 50-cell samples at [/samples/free/royal-jelly-brioche.jsonl](/samples/free/royal-jelly-brioche.jsonl).
 
-What's *pending* is the Tribunal seal on the full 406K corpus, and an empirical receipt from a cook on this specific 1500-cell subset.
+What's *pending* is the Tribunal seal on the full 406K corpus, and an empirical receipt from a cook on this specific 3000-cell subset.
 
 If you order this cookbook, **you are explicitly purchasing a pre-Tribunal corpus.** The grade may shift after senior-hack review. We will honor any post-Tribunal upgrade in your account.
 
@@ -28,19 +28,21 @@ Same Gold Standard config. See [Glycemic Reasoning](/cookbooks/glycemic-reasonin
 max_seq_length: 4096          # imaging vignettes run long — patient info + findings + diagnostic reasoning
 context_truncation: longest_first
 notes:
-  - "If your base supports multimodal (LLaVA-class), you can pair this corpus with synthetic image tokens later. Text-only training is the v1 path."
+  - "If your base supports multimodal (LLaVA-class), pair this corpus with synthetic image tokens later. Text-only training is the v1 path."
 ```
 
 ---
 
-## ▍ The ingredients — 1500 cells, deterministic
+## ▍ The ingredients — 3000 cells, deterministic
 
 | SKU | Cells | Source file | Why it's in the mix |
 |---|---:|---|---|
-| [Royal Jelly Brioche](/menu.json) | **1500** | `MASTER_PLATINUM.jsonl` (NAS · imaging subset) | Apex-tier imaging vignettes — sagittal/axial MRI descriptions, patient context, differential diagnosis reasoning |
-| **Total** | **1500** | | |
+| [Royal Jelly Brioche](/menu.json) | **3,000** | `MASTER_PLATINUM.jsonl` (NAS · spine/neuro subset) | Apex-tier imaging vignettes — sagittal/axial MRI descriptions, patient context, differential diagnosis reasoning |
+| **Total** | **3,000** | | |
 
-**Single-SKU cookbook by design.** Imaging interpretation is a coherent task — mixing in non-imaging cells (PMC papers, NHS guidance) at low proportions tends to drift the model toward generalist clinical responses instead of focused radiology reasoning. We split the imaging task across two cookbooks instead: this one is focused, [Multimodal Clinical Reasoning · 3000](/cookbooks/multimodal-clinical-reasoning.md) blends imaging with literature + guidelines.
+**Single-SKU cookbook by design.** Imaging interpretation is a coherent task — mixing in non-imaging cells (PMC papers, NHS guidance) at low proportions tends to drift the model toward generalist clinical responses instead of focused radiology reasoning. We split the imaging task across two cookbooks instead: this one is focused (3000), [Multimodal Clinical Reasoning · 5000](/cookbooks/multimodal-clinical-reasoning.md) blends imaging with literature + guidelines at master scale.
+
+Selection is **deterministic per cookbook** (seed = sha256("spine-imaging-reasoning")) — sub-selected from MASTER_PLATINUM to bias toward spine/MSK/neuro vignettes vs. other imaging modalities.
 
 ---
 
@@ -63,12 +65,11 @@ If you have a multimodal base (LLaVA-class, Pixtral, etc.) you can substitute re
 
 ## ▍ Loader
 
-Standard cookbook loader. The imaging cells are longer on average (~1.5K tokens per cell vs ~600 for diabetes-lane cells), so set your training `max_seq_length` accordingly.
+Standard cookbook loader. Imaging cells average ~1.5K tokens per cell vs ~600 for diabetes-lane cells — set your training `max_seq_length` accordingly.
 
 ```python
 from datasets import Dataset
 ds = Dataset.from_list(load_cookbook("spine-imaging-reasoning.jsonl"))
-# Inspect lengths:
 lens = [len(c["instruction"]) + len(c["response"]) for c in ds]
 print(f"avg chars/cell: {sum(lens)/len(lens):.0f}, p95: {sorted(lens)[int(len(lens)*0.95)]}")
 ```
@@ -105,7 +106,7 @@ swarmbee-bakery order \
 
 ## ▍ What you get on delivery
 
-- `spine-imaging-reasoning-1500.jsonl` — 1500 cells
+- `spine-imaging-reasoning-3000.jsonl` — 3000 cells
 - `manifest.json` — per-cell sha256, ingredient breakdown, recipe pinned
 - `manifest.sha256` — bundle root
 - `eval/dmack_eval_set_v1.jsonl` — for register-drift check
@@ -120,9 +121,9 @@ swarmbee-bakery order \
 
 ## ▍ Pricing
 
-- **$899** flat
-- Cooked-for-you: +$249 + GPU pass-through (longer-context cells cost slightly more compute)
-- Settlement: Stripe invoice OR USDC to `swarmusdc.eth`
+- **$1,299** flat
+- Cooked-for-you: +$249 + GPU pass-through (longer-context cells cost slightly more compute · budget ~$40)
+- **Settlement:** Stripe invoice OR USDC to `swarmusdc.eth` (→ `0xBDe2153C5799f4012a9fAF327e3421D1caB4Ea23`) on **Ethereum L1 ERC-20** (mainnet only)
 
 ---
 

@@ -241,23 +241,23 @@
     },
     "cookbooks": {
       "type": "curated_recipe_bundle",
-      "description": "Pre-curated multi-SKU recipe bundles. Sized to move the needle on a specific failure mode. 1500-cell standard or 3000-cell master. Ingredients are real cell pulls from named medical SKUs; recipe is the Gold Standard QLoRA config used on Atlas-27B (loss 0.4186) and SwarmCurator-9B (loss 0.707).",
-      "doctrine": "A cookbook is a recipe with enough ingredients to move the needle. We never claim deltas we haven't measured. We always show the schema, the loader, the eval, and the exact ingredient mix.",
+      "description": "Pre-curated multi-SKU recipe bundles. Standard 3000 cells = moves the needle on a domain. Master 5000 cells = confident behavioral pivot. Ingredients are real cell pulls from named medical SKUs; recipe is the Gold Standard QLoRA config used on Atlas-27B (loss 0.4186) and SwarmCurator-9B (loss 0.707). For spot-repair on one narrow failure mode, route to the 500-Pack ($249) — that's where the direct receipt (Curator v2 → Atlas v1) lives.",
+      "doctrine": "A cookbook is a recipe with enough ingredients to move the needle. Standard 3000 moves the needle on a domain. Master 5000 = confident pivot. Below 3000, you're spot-repairing one failure mode — use the 500-Pack for that.",
       "pricing": {
-        "standard_1500": 899,
-        "master_3000": 1799
+        "standard_3000": 1299,
+        "master_5000": 2199
       },
       "delivery": "JSONL corpus + manifest.json (per-cell sha256) + dmack_eval_set_v1 (60 probes) + recipe/qlora_config.yaml + loader.py + README · optional Hedera HCS anchor + cooked-for-you adapter weights",
       "index": "/cookbooks/index.json",
       "available": [
-        { "slug": "glycemic-reasoning",            "name": "Glycemic Reasoning",            "cells": 1500, "price_usd": 899,  "lane": "diabetes",  "markdown": "/cookbooks/glycemic-reasoning.md" },
-        { "slug": "diabetic-foot-care",            "name": "Diabetic Foot Care",            "cells": 1500, "price_usd": 899,  "lane": "diabetes",  "markdown": "/cookbooks/diabetic-foot-care.md" },
-        { "slug": "patient-communication",         "name": "Patient Communication",         "cells": 1500, "price_usd": 899,  "lane": "diabetes",  "markdown": "/cookbooks/patient-communication.md" },
-        { "slug": "diabetes-companion-3000",       "name": "Diabetes Companion · 3000",     "cells": 3000, "price_usd": 1799, "lane": "diabetes",  "markdown": "/cookbooks/diabetes-companion-3000.md" },
-        { "slug": "spine-imaging-reasoning",       "name": "Spine Imaging Reasoning",       "cells": 1500, "price_usd": 899,  "lane": "imaging",   "markdown": "/cookbooks/spine-imaging-reasoning.md" },
-        { "slug": "multimodal-clinical-reasoning", "name": "Multimodal Clinical Reasoning", "cells": 3000, "price_usd": 1799, "lane": "imaging",   "markdown": "/cookbooks/multimodal-clinical-reasoning.md" }
+        { "slug": "glycemic-reasoning",            "name": "Glycemic Reasoning",            "cells": 3000, "price_usd": 1299, "lane": "diabetes", "tier": "standard_3000", "markdown": "/cookbooks/glycemic-reasoning.md" },
+        { "slug": "diabetic-foot-care",            "name": "Diabetic Foot Care",            "cells": 3000, "price_usd": 1299, "lane": "diabetes", "tier": "standard_3000", "markdown": "/cookbooks/diabetic-foot-care.md" },
+        { "slug": "patient-communication",         "name": "Patient Communication",         "cells": 3000, "price_usd": 1299, "lane": "diabetes", "tier": "standard_3000", "markdown": "/cookbooks/patient-communication.md" },
+        { "slug": "spine-imaging-reasoning",       "name": "Spine Imaging Reasoning",       "cells": 3000, "price_usd": 1299, "lane": "imaging",  "tier": "standard_3000", "markdown": "/cookbooks/spine-imaging-reasoning.md" },
+        { "slug": "diabetes-companion",            "name": "Diabetes Companion",            "cells": 5000, "price_usd": 2199, "lane": "diabetes", "tier": "master_5000",   "markdown": "/cookbooks/diabetes-companion.md" },
+        { "slug": "multimodal-clinical-reasoning", "name": "Multimodal Clinical Reasoning", "cells": 5000, "price_usd": 2199, "lane": "imaging",  "tier": "master_5000",   "markdown": "/cookbooks/multimodal-clinical-reasoning.md" }
       ],
-      "in_development": ["Autoimmune Tarte (Hashimoto/Lupus/RA expansion · 1500)", "Pediatric Profiterole (type 1 pediatric subset · 1500)", "Honeycomb Wound-Care (IWGDF wound deep-dive · 3000)"]
+      "in_development": ["Autoimmune Tarte (Hashimoto/Lupus/RA expansion · 3000)", "Pediatric Profiterole (type 1 pediatric subset · 3000)", "Honeycomb Wound-Care (IWGDF wound deep-dive · 5000)"]
     },
     "the_500_pack": {
       "type": "signature_blend",

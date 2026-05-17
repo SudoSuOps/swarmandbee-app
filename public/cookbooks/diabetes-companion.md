@@ -1,8 +1,10 @@
-# Cookbook · Diabetes Companion · 3000
+# Cookbook · Diabetes Companion · 5000
 
 **Target failure mode.** Full-stack diabetes assistant. Clinical decision support + research grounding + patient communication + lived-experience register, all in one cooked adapter. **Two-stream architecture preserved** — the cooked model never uses lived voice as medical authority, never uses sourced authority as register.
 
-This is the master cookbook. It is the recipe staged for the dmack.ai senior-hack cook itself. If you order this, you are ordering exactly what we are cooking for ourselves.
+This is the master cookbook. **5000 cells is the honest "confident domain pivot" floor** — at this scale the cooked model is reliably a diabetes specialist, not just a base model with a glycemic-shaped patch.
+
+This is the recipe staged for the dmack.ai senior-hack cook itself. **If you order this, you are ordering exactly what we are cooking for ourselves.**
 
 ---
 
@@ -10,7 +12,7 @@ This is the master cookbook. It is the recipe staged for the dmack.ai senior-hac
 
 **This recipe is the dmack.ai cook.**
 
-The dmack.ai project is the Swarm & Bee flagship medical model — Donovan's lived experience as a Type 1 diabetic + Addison's disease, fused with peer-reviewed medical authority, in one model. The ingredient mix below is **the exact mix sealed for the senior-hack canary-then-cook review.**
+The dmack.ai project is the Swarm & Bee flagship medical model — Donovan's lived experience as a Type 1 diabetic + Addison's disease, fused with peer-reviewed medical authority, in one model. The ingredient mix below is **the exact 5000-cell mix sealed for the senior-hack canary-then-cook review.**
 
 **Status:** staged. The full cook is in the canary-then-cook queue. When the cook finalizes, the actual loss curve, full 60-probe eval delta, Hedera-anchored bundle hash, and the cooked adapter weights publish in this cookbook.
 
@@ -24,31 +26,32 @@ The dmack.ai project is the Swarm & Bee flagship medical model — Donovan's liv
 
 Same Gold Standard config used to cook Atlas-Qwen-27B (loss 0.4186) and SwarmCurator-9B (loss 0.707). See [Glycemic Reasoning](/cookbooks/glycemic-reasoning.md) for full YAML.
 
-**Master-cookbook adjustment:**
+**Master-cookbook adjustments:**
 
 ```yaml
-epochs: 2                    # was 3 — more data, less overfit risk; 2 passes plenty at 3000 cells
+epochs: 2                    # was 3 — more data, less overfit risk; 2 passes is plenty at 5000 cells
 gradient_checkpointing: true # mandatory at this size on most consumer 5090/PRO 6000 setups
 ```
 
-For 4B base: ~6-8h cook on a single RTX PRO 6000 Blackwell.
-For 8B base: ~12-16h on the same.
-For 27B base: cook on a 2× PRO 6000 with FSDP — ~24-36h.
+For 4B base: ~10-14h cook on a single RTX PRO 6000 Blackwell.
+For 8B base: ~20-28h on the same.
+For 27B base: cook on a 2× PRO 6000 with FSDP — ~36-50h.
 
 ---
 
-## ▍ The ingredients — 3000 cells, deterministic
+## ▍ The ingredients — 5000 cells, deterministic
 
 | SKU | Cells | Source | Why it's in the mix |
 |---|---:|---|---|
-| [Dmack's Royal Jelly](/menu.json) | **1500** | `MASTER_dmack_ai_v1_royal_jelly.jsonl` | The v1 flagship master. Rolled-up across endo, CGM, PMC, OpenAlex, intl, gov, patterns, refusal. |
-| [Madeleine](/menu.json) | **500** | `08_pmc_pairs.jsonl` | Extra PubMed Central research backing — citation-anchored answers. |
-| [Global Crumpet](/menu.json) | **500** | `09_international_pairs.jsonl` | International guidelines (NHS / IDF / WHO / NICE / DiabetesUK / DiabetesAU). |
-| [Cinnamon Spiral](/menu.json) | **300** | CGMacros (`02_*` files) | Real CGM + meal-macros from PhysioNet patients. |
-| [Founder's Pretzel](/menu.json) | **200** | `07_bigideas_pattern_pairs.jsonl` | Lived voice — register only, never authority. Two-stream guardrail enforced at curation. |
-| **Total** | **3000** | | |
+| [Dmack's Royal Jelly](/menu.json) | **2,500** | `MASTER_dmack_ai_v1_royal_jelly.jsonl` | The v1 flagship master. Rolled-up across endo, CGM, PMC, OpenAlex, intl, gov, patterns, refusal. Half the cookbook. |
+| [Madeleine](/menu.json) | **800** | `08_pmc_pairs.jsonl` | Extra PubMed Central research backing — citation-anchored answers. |
+| [Global Crumpet](/menu.json) | **700** | `09_international_pairs.jsonl` | International guidelines (NHS / IDF / WHO / NICE / DiabetesUK / DiabetesAU). |
+| [Cinnamon Spiral](/menu.json) | **500** | CGMacros (`02_*` files) | Real CGM + meal-macros from PhysioNet patients. |
+| [Founder's Pretzel](/menu.json) | **400** | `07_bigideas_pattern_pairs.jsonl` | Lived voice — register only, never authority. Two-stream guardrail enforced at curation. |
+| [Federal Glaze](/menu.json) | **100** | `06_government_pairs.jsonl` | CDC/NIDDK US federal supplement. |
+| **Total** | **5,000** | | |
 
-Cell selection is **deterministic** (`random.seed(42)`, sha256-pinned). The 1500 Dmack's Royal Jelly cells in this cookbook are sampled across all 10 source streams in the master, in their original proportions — you get a representative slice of the full multi-source flagship, not a biased pull.
+Cell selection is **deterministic per cookbook** (seed = sha256("diabetes-companion"), sha256-pinned). The 2,500 Dmack's Royal Jelly cells in this cookbook are sampled across all 10 source streams in the master, in their original proportions — you get a representative slice of the full multi-source flagship, not a biased pull.
 
 ---
 
@@ -66,7 +69,7 @@ Cells in this cookbook carry their original metadata (specialty, source, tier, c
 import json
 
 def load_cookbook(jsonl_path: str, exclude_sources: list[str] = None) -> list[dict]:
-    """Multi-source-aware loader for the Diabetes Companion 3000 bundle.
+    """Multi-source-aware loader for the Diabetes Companion 5000 bundle.
     Pass exclude_sources to filter out a stream (e.g. for pure-authority training)."""
     exclude = set(exclude_sources or [])
     cells = []
@@ -108,11 +111,11 @@ This eval set was designed against this exact recipe. Running it post-cook tells
 ## ▍ How to order
 
 ```bash
-swarmbee-bakery cookbook diabetes-companion-3000
+swarmbee-bakery cookbook diabetes-companion
 
 swarmbee-bakery order \
   --sku cookbook \
-  --cookbook diabetes-companion-3000 \
+  --cookbook diabetes-companion \
   --name "Your Name" \
   --email "you@you.dev" \
   --settlement swarmusdc \
@@ -120,13 +123,13 @@ swarmbee-bakery order \
   --confirm
 ```
 
-If you're willing to publish your pre/post eval delta back to us, we discount the cooked-for-you fee to $0. Skin-in-the-game pricing for first customers of a pre-publication recipe.
+If you're willing to publish your pre/post eval delta back to us, we **waive the cooked-for-you fee entirely**. Skin-in-the-game pricing for first customers of a pre-publication recipe.
 
 ---
 
 ## ▍ What you get on delivery
 
-- `diabetes-companion-3000.jsonl` — the 3000 cells
+- `diabetes-companion-5000.jsonl` — the 5000 cells
 - `manifest.json` — per-cell sha256, full ingredient breakdown, recipe pinned, two-stream tags
 - `manifest.sha256` — bundle root
 - `eval/dmack_eval_set_v1.jsonl` — all 60 probes
@@ -136,16 +139,16 @@ If you're willing to publish your pre/post eval delta back to us, we discount th
 - `recipe/two_stream_loader.py` — the multi-source-aware loader
 - `loader.py`, `README.md`, `LICENSE_NOTES.md`
 - *(optional)* Hedera HCS anchor tx
-- *(optional)* cooked-for-you weights — first-customer discount available
+- *(optional)* cooked-for-you weights — first-customer-publishes-delta discount available
 
 ---
 
 ## ▍ Pricing
 
-- **$1799** flat for 3000-cell master cookbook
-- Cooked-for-you: **+$249** prep + GPU pass-through (~$30-50 on a single PRO 6000 for 6-8h cook on 4B-8B base)
+- **$2,199** flat for 5000-cell master cookbook
+- Cooked-for-you: **+$249** prep + GPU pass-through (~$50-80 on a single PRO 6000 for 10-14h cook on 4B-8B base)
 - **First-customer-publishes-delta discount:** cooked-for-you fee waived if you agree to share your pre/post `dmack_eval_set_v1` scores back so they can be added as a published receipt
-- Settlement: Stripe invoice OR USDC to `swarmusdc.eth`
+- **Settlement:** Stripe invoice OR USDC to `swarmusdc.eth` (→ `0xBDe2153C5799f4012a9fAF327e3421D1caB4Ea23`) on **Ethereum L1 ERC-20** (mainnet only — no L2, no Base, we are root)
 
 ---
 
