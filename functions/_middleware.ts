@@ -1,19 +1,21 @@
-// Per-host HTML meta-tag rewriter for CF Pages.
+// Per-host meta rewriter + per-path SSR-lite body/JSON-LD injector for CF Pages.
 //
-// All subdomains serve the same compiled SPA (single index.html with apex
-// OG/Twitter meta). When a crawler (Twitterbot, Discord, LinkedIn, etc.)
-// fetches a brand-surface subdomain, we want them to see the appropriate
-// OG card — not the apex card.
+// PART A · per-host meta rewriting:
+//   All subdomains serve the same compiled SPA (single index.html with apex
+//   OG/Twitter meta). When a crawler fetches a brand-surface subdomain we
+//   rewrite the og/twitter/title meta tags to the subdomain-specific shape.
+//   Add new subdomains via HOST_META below (drop og-<name>.png in public/).
 //
-// This middleware intercepts HTML responses, inspects the Host header,
-// rewrites the og:/twitter:/title meta tags that already exist in
-// index.html (og:url, og:title, og:description, canonical), AND injects
-// og:image + twitter:image into <head> (these don't exist in index.html
-// yet — we don't want to add a broken-link reference at the apex).
+// PART B · per-path SSR-lite (added 2026-05-17):
+//   The React SPA serves an empty <div id="root"></div> to non-JS crawlers
+//   (Perplexity, ChatGPT search via Bing, Google AIO frequently). For known
+//   apex routes we generate static HTML body content + per-route JSON-LD
+//   (Product / SoftwareApplication / HowTo / TechArticle / BreadcrumbList)
+//   from the canonical menu.json + cookbooks/index.json and inject INTO
+//   <div id="root"> via HTMLRewriter. React's createRoot() replaces the
+//   content on hydration so users see the React app once JS loads.
 //
-// Adding a new subdomain card:
-//   1. Drop the image at public/og-<name>.png (1200x630)
-//   2. Add an entry to HOST_META below
+//   Content generators live in functions/_lib/seo-content.ts.
 
 interface HostMeta {
   title: string;
@@ -488,6 +490,8 @@ const HOST_META: Record<string, HostMeta> = {
   // Future subdomains can be added here without touching this code path.
 };
 
+import { getRouteContent } from "./_lib/seo-content";
+
 class AttrRewriter {
   constructor(private attr: string, private value: string) {}
   element(el: Element) {
@@ -509,6 +513,16 @@ class HeadInjector {
   }
 }
 
+// PART B helper · injects crawler-visible HTML INTO <div id="root">.
+// React's createRoot().render() replaces #root's children on hydration —
+// so this content is invisible to users with JS, visible to non-JS crawlers.
+class RootInjector {
+  constructor(private html: string) {}
+  element(el: Element) {
+    el.setInnerContent(this.html, { html: true });
+  }
+}
+
 function escapeAttr(s: string): string {
   return s
     .replace(/&/g, "&amp;")
@@ -527,41 +541,79 @@ export const onRequest: PagesFunction = async (ctx) => {
 
   const url = new URL(ctx.request.url);
   const host = url.hostname.toLowerCase();
+  const path = url.pathname;
   const meta = HOST_META[host];
-  if (!meta) {
+
+  // PART B · per-path SSR-lite content (apex + bakery subdomain `/` for now)
+  // Resolved before we build the rewriter so we know whether to inject root content.
+  let pathContent: Awaited<ReturnType<typeof getRouteContent>> = null;
+  try {
+    pathContent = await getRouteContent(ctx.request.url, host, path);
+  } catch (err) {
+    // Don't break the page if SEO-content generation fails — log + serve baseline.
+    console.error("[middleware] getRouteContent failed:", err);
+  }
+
+  // If neither host-meta nor path-content applies, pass response through unchanged.
+  if (!meta && !pathContent) {
     return response;
   }
 
-  // Tags we'll inject (don't exist in apex index.html — adding them would
-  // create broken-link previews everywhere they're not rewritten).
-  const injected: string[] = [
-    `<meta property="og:image" content="${escapeAttr(meta.image)}" />`,
-    `<meta property="og:image:width" content="1200" />`,
-    `<meta property="og:image:height" content="630" />`,
-    `<meta name="twitter:image" content="${escapeAttr(meta.image)}" />`,
-  ];
+  let rewriter = new HTMLRewriter();
+  const headInjections: string[] = [];
 
-  if (meta.jsonLd) {
-    const blocks = Array.isArray(meta.jsonLd) ? meta.jsonLd : [meta.jsonLd];
-    for (const block of blocks) {
-      injected.push(
-        `<script type="application/ld+json">${JSON.stringify(block)}</script>`
-      );
+  // PART A · host-meta rewriting (existing behavior)
+  if (meta) {
+    headInjections.push(
+      `<meta property="og:image" content="${escapeAttr(meta.image)}" />`,
+      `<meta property="og:image:width" content="1200" />`,
+      `<meta property="og:image:height" content="630" />`,
+      `<meta name="twitter:image" content="${escapeAttr(meta.image)}" />`,
+    );
+    if (meta.jsonLd) {
+      const blocks = Array.isArray(meta.jsonLd) ? meta.jsonLd : [meta.jsonLd];
+      for (const block of blocks) {
+        headInjections.push(
+          `<script type="application/ld+json">${JSON.stringify(block)}</script>`,
+        );
+      }
+    }
+
+    rewriter = rewriter
+      .on("title", new TitleRewriter(meta.title))
+      .on('meta[name="description"]',         new AttrRewriter("content", meta.description))
+      .on('meta[property="og:title"]',        new AttrRewriter("content", meta.title))
+      .on('meta[property="og:description"]',  new AttrRewriter("content", meta.description))
+      .on('meta[property="og:url"]',          new AttrRewriter("content", meta.url))
+      .on('link[rel="canonical"]',            new AttrRewriter("href",   meta.url));
+
+    if (meta.keywords) {
+      rewriter = rewriter.on('meta[name="keywords"]', new AttrRewriter("content", meta.keywords));
     }
   }
 
-  const rewriter = new HTMLRewriter()
-    .on("title", new TitleRewriter(meta.title))
-    .on('meta[name="description"]',         new AttrRewriter("content", meta.description))
-    .on('meta[property="og:title"]',        new AttrRewriter("content", meta.title))
-    .on('meta[property="og:description"]',  new AttrRewriter("content", meta.description))
-    .on('meta[property="og:url"]',          new AttrRewriter("content", meta.url))
-    .on('link[rel="canonical"]',            new AttrRewriter("href",   meta.url))
-    .on("head", new HeadInjector(injected.join("\n")));
+  // PART B · path-content injection (SSR-lite)
+  if (pathContent) {
+    // Inject body content into <div id="root">
+    rewriter = rewriter.on('div#root', new RootInjector(pathContent.bodyHtml));
+    // Inject per-route JSON-LD into <head>
+    for (const block of pathContent.jsonLdBlocks) {
+      headInjections.push(
+        `<script type="application/ld+json">${JSON.stringify(block)}</script>`,
+      );
+    }
+    // Per-path title + description overrides (only if host-meta hasn't already overridden)
+    if (!meta && pathContent.title) {
+      rewriter = rewriter.on("title", new TitleRewriter(pathContent.title));
+    }
+    if (!meta && pathContent.description) {
+      rewriter = rewriter.on('meta[name="description"]', new AttrRewriter("content", pathContent.description));
+      rewriter = rewriter.on('meta[property="og:description"]', new AttrRewriter("content", pathContent.description));
+    }
+  }
 
-  // Optional: keywords meta exists in apex index.html — rewrite for bounty
-  if (meta.keywords) {
-    rewriter.on('meta[name="keywords"]', new AttrRewriter("content", meta.keywords));
+  if (headInjections.length > 0) {
+    rewriter = rewriter.on("head", new HeadInjector(headInjections.join("\n")));
   }
 
   return rewriter.transform(response);
