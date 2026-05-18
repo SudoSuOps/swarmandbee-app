@@ -1,0 +1,20 @@
+{
+  "name": "canary-watchdog",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Swarm & Bee uptime canary — probes bakery cash register every 60s, alerts via Resend on 2 consecutive failures and on recovery. Also runs a daily order-count anomaly check.",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail",
+    "kv:create": "wrangler kv namespace create CANARY_KV",
+    "secret:resend": "wrangler secret put RESEND_API_KEY",
+    "secret:trigger": "wrangler secret put TRIGGER_KEY"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260101.0",
+    "typescript": "^5.4.0",
+    "wrangler": "^4.73.0"
+  }
+}

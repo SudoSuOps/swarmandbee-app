@@ -1,0 +1,31 @@
+# canary-watchdog · Swarm & Bee uptime probe for bakery cash register
+#
+# Deploys to a Cloudflare Worker, not Pages. Same CF account as
+# swarmandbee.ai. Cron triggers run on Workers (Pages doesn't support cron).
+
+name = "canary-watchdog"
+main = "src/index.ts"
+compatibility_date = "2026-05-01"
+workers_dev = true   # gives us a fallback URL for /status + manual triggers
+
+# Two crons:
+#   1-min canary probe (the 60-second outage detector)
+#   daily count check at 00:05 UTC
+[triggers]
+crons = ["* * * * *", "5 0 * * *"]
+
+# KV — created via:
+#   wrangler kv namespace create CANARY_KV
+# Paste the returned id below.
+[[kv_namespaces]]
+binding = "CANARY_KV"
+id = "REPLACE_WITH_KV_ID_FROM_WRANGLER_CREATE"
+
+# Public, non-secret config. Secrets (RESEND_API_KEY, TRIGGER_KEY) set with
+# `wrangler secret put NAME` — they do NOT belong in this file.
+[vars]
+CANARY_URL = "https://bakery.swarmandbee.ai/api/canary"
+HEALTHZ_URL = "https://bakery.swarmandbee.ai/healthz"
+ALERT_TO = "build@swarmandbee.ai"
+ALERT_FROM = "Swarm Watchdog <watchdog@swarmandbee.ai>"
+ALERT_DEBOUNCE_MIN = "15"
