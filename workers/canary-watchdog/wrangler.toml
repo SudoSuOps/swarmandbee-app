@@ -1,31 +1,36 @@
-# canary-watchdog · Swarm & Bee uptime probe for bakery cash register
+# canary-watchdog · Swarm & Bee uptime probe + Tailscale webhook receiver
 #
-# Deploys to a Cloudflare Worker, not Pages. Same CF account as
-# swarmandbee.ai. Cron triggers run on Workers (Pages doesn't support cron).
+# Deploys to a Cloudflare Worker. Same CF account as swarmandbee.ai.
+# Cron triggers run on Workers (Pages doesn't support cron).
+#
+# Probes BOTH ingress legs (CF Tunnel + Tailscale Funnel) every minute.
+# Receives Tailscale admin webhooks at /webhooks/tailscale (HMAC-verified).
 
 name = "canary-watchdog"
 main = "src/index.ts"
 compatibility_date = "2026-05-01"
-workers_dev = true   # gives us a fallback URL for /status + manual triggers
+workers_dev = true
 
-# Two crons:
-#   1-min canary probe (the 60-second outage detector)
-#   daily count check at 00:05 UTC
 [triggers]
 crons = ["* * * * *", "5 0 * * *"]
 
-# KV — created via:
-#   wrangler kv namespace create CANARY_KV
-# Paste the returned id below.
 [[kv_namespaces]]
 binding = "CANARY_KV"
 id = "REPLACE_WITH_KV_ID_FROM_WRANGLER_CREATE"
 
-# Public, non-secret config. Secrets (RESEND_API_KEY, TRIGGER_KEY) set with
-# `wrangler secret put NAME` — they do NOT belong in this file.
+# Public, non-secret config. Secrets set with `wrangler secret put NAME`.
 [vars]
-CANARY_URL = "https://bakery.swarmandbee.ai/api/canary"
-HEALTHZ_URL = "https://bakery.swarmandbee.ai/healthz"
-ALERT_TO = "build@swarmandbee.ai"
+# Two independent ingress URLs — probe both, alert independently.
+CANARY_URL_CF  = "https://bakery.swarmandbee.ai/api/canary"
+CANARY_URL_TS  = "https://minechain-nas-1.tail80f341.ts.net/canary"
+HEALTHZ_URL_CF = "https://bakery.swarmandbee.ai/healthz"
+HEALTHZ_URL_TS = "https://minechain-nas-1.tail80f341.ts.net/healthz"
+
+ALERT_TO   = "build@swarmandbee.ai"
 ALERT_FROM = "Swarm Watchdog <watchdog@swarmandbee.ai>"
 ALERT_DEBOUNCE_MIN = "15"
+
+# Secrets to set after deploy:
+#   wrangler secret put RESEND_API_KEY      (Resend API key for alert emails)
+#   wrangler secret put TRIGGER_KEY         (optional, locks /run-* manual triggers)
+#   wrangler secret put TS_WEBHOOK_SECRET   (HMAC shared secret with Tailscale admin webhook)

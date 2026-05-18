@@ -126,13 +126,36 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
   };
 
   let order_id: string;
+  let ingress_via: "primary" | "fallback" = "primary";
+  let primary_error: string | undefined;
   try {
-    order_id = await ob.createOrder(orderInput);
+    const r = await ob.createOrder(orderInput);
+    order_id = r.order_id;
+    ingress_via = r.via;
+    primary_error = r.primary_error;
   } catch (shimErr) {
     return json(
-      { ok: false, error: "order book unreachable", detail: (shimErr as Error).message?.slice(0, 500) },
+      {
+        ok: false,
+        error: "order book unreachable on both primary and fallback ingress",
+        detail: (shimErr as Error).message?.slice(0, 500),
+      },
       502,
     );
+  }
+
+  // If we served the order via fallback, leave a breadcrumb in the order's
+  // event log so post-hoc audits can see which ingress carried which order.
+  if (ingress_via === "fallback") {
+    try {
+      await ob.logEvent(order_id, {
+        event_type: "ingress_fallback",
+        actor: "system",
+        detail: `served via Tailscale Funnel after primary CF Tunnel failed: ${primary_error || "unknown"}`,
+      });
+    } catch {
+      /* swallow — order is already persisted */
+    }
   }
 
   // 4. Resend receipt (best-effort)
@@ -184,8 +207,12 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
     const discordPayload = {
       embeds: [
         {
-          title: truncate(`📦 BAKERY ORDER · ${order_id}`, 256),
-          color: 0xfbbf24,
+          title: truncate(
+            `${ingress_via === "fallback" ? "⚠️ " : "📦 "}BAKERY ORDER · ${order_id}`,
+            256,
+          ),
+          // Yellow normally, orange on fallback so the row stands out
+          color: ingress_via === "fallback" ? 0xf97316 : 0xfbbf24,
           fields: [
             { name: "Channel", value: channel, inline: true },
             { name: "SKU", value: sku || "—", inline: true },
@@ -193,13 +220,21 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
             { name: "Domain", value: domain || "—", inline: true },
             { name: "Pairs", value: String(body.pairs_requested ?? "—"), inline: true },
             { name: "Email receipt", value: receipt_email.sent ? "✓ sent" : "✗ failed", inline: true },
+            {
+              name: "Ingress",
+              value:
+                ingress_via === "primary"
+                  ? "CF Tunnel (primary)"
+                  : `Tailscale Funnel (FAILOVER · primary said: ${truncate(primary_error || "unknown", 80)})`,
+              inline: false,
+            },
             { name: "Brief", value: truncate(description, 1024), inline: false },
             { name: "Name", value: truncate(name, 256), inline: true },
             { name: "Email", value: truncate(email, 256), inline: true },
             { name: "Company", value: truncate(company || "—", 256), inline: true },
             { name: "payload.sha256", value: `\`${payload_sha256}\``, inline: false },
           ],
-          footer: { text: "swarmandbee.ai · /api/bakery-intake · orderbook.swarmandbee.ai (NAS)" },
+          footer: { text: "swarmandbee.ai · /api/bakery-intake · CF Tunnel + Tailscale Funnel (NAS)" },
           timestamp: new Date().toISOString(),
         },
       ],
@@ -225,6 +260,7 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
     order_id,
     payload_sha256,
     status: "pending",
+    ingress_via,
     receipt_email,
     next_step: "A human reads your order within one business day. You will receive a Stripe invoice or USDC settlement address by email.",
     check_status: `swarmbee-bakery account --order ${order_id} --email ${email}`,

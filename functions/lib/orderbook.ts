@@ -1,13 +1,21 @@
 // Order book client — talks to the sovereign FastAPI shim on the Synology NAS.
 //
-// Shim URL: https://orderbook.swarmandbee.ai (CF Tunnel → 192.168.0.102:18489)
-// Auth:     X-Orderbook-Key header (must match shim env ORDERBOOK_API_KEY)
+// Two independent public paths to the same shim:
+//   Primary:   ORDERBOOK_BASE_URL          (default: https://orderbook.swarmandbee.ai · CF Tunnel)
+//   Fallback:  ORDERBOOK_FALLBACK_BASE_URL (default: https://minechain-nas-1.tail80f341.ts.net · Tailscale Funnel)
 //
-// CF Pages Functions get the URL + key from env. The shim owns the database;
-// this module is just a typed HTTPS client.
+// Both terminate at the same FastAPI shim at 192.168.0.102:18489. If the
+// primary returns 5xx or times out on a mutating call, the client retries
+// once against the fallback. Read paths (lookup/list/healthz/canary) do NOT
+// fail over — the watchdog Worker probes both paths and tells us which leg
+// is sick.
+//
+// Auth: X-Orderbook-Key header (same key works against both legs because
+// it's the same shim).
 
 export interface OrderBookEnv {
   ORDERBOOK_BASE_URL?: string;
+  ORDERBOOK_FALLBACK_BASE_URL?: string;
   ORDERBOOK_API_KEY?: string;
   RESEND_API_KEY?: string;
   ORDER_RECEIPT_FROM?: string;
@@ -66,46 +74,116 @@ export interface OrderRow {
 }
 
 const DEFAULT_BASE = "https://orderbook.swarmandbee.ai";
+const DEFAULT_FALLBACK_BASE = "https://minechain-nas-1.tail80f341.ts.net";
+
+// Routes that may failover from CF Tunnel → Tailscale Funnel.
+// Failover ONLY on mutating order-flow paths so a read-side outage doesn't
+// silently mask itself.
+const FAILOVER_PATHS = new Set(["/orders"]);
+
+export interface PostResult<T> {
+  status: number;
+  body: T;
+  via: "primary" | "fallback";
+  primary_status?: number;
+  primary_error?: string;
+}
 
 export class OrderBookClient {
-  constructor(private baseUrl: string, private apiKey: string) {}
+  constructor(
+    private baseUrl: string,
+    private fallbackBaseUrl: string,
+    private apiKey: string,
+  ) {}
 
   static fromEnv(env: OrderBookEnv): OrderBookClient {
     const base = (env.ORDERBOOK_BASE_URL || DEFAULT_BASE).replace(/\/+$/, "");
+    const fallback = (env.ORDERBOOK_FALLBACK_BASE_URL || DEFAULT_FALLBACK_BASE).replace(/\/+$/, "");
     const key = env.ORDERBOOK_API_KEY;
     if (!key) {
       throw new Error("ORDERBOOK_API_KEY env var not set on CF Pages — shim auth will fail.");
     }
-    return new OrderBookClient(base, key);
+    return new OrderBookClient(base, fallback, key);
   }
 
-  private async _post<T>(path: string, body: unknown): Promise<{ status: number; body: T }> {
-    const r = await fetch(`${this.baseUrl}${path}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-Orderbook-Key": this.apiKey,
-      },
-      body: JSON.stringify(body),
-    });
+  private async _fetchOne(baseUrl: string, path: string, body: unknown, timeoutMs = 12_000): Promise<Response> {
+    const controller = new AbortController();
+    const t = setTimeout(() => controller.abort(), timeoutMs);
+    try {
+      return await fetch(`${baseUrl}${path}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Orderbook-Key": this.apiKey,
+        },
+        body: JSON.stringify(body),
+        signal: controller.signal,
+      });
+    } finally {
+      clearTimeout(t);
+    }
+  }
+
+  private async _post<T>(path: string, body: unknown): Promise<PostResult<T>> {
+    const allowFailover = FAILOVER_PATHS.has(path);
+
+    let primary_status: number | undefined;
+    let primary_error: string | undefined;
+
+    try {
+      const r = await this._fetchOne(this.baseUrl, path, body);
+      primary_status = r.status;
+      // Failover only on 5xx (server-side). 4xx is a client mistake; same
+      // mistake will hit fallback identically, so don't retry.
+      if (r.status < 500) {
+        let parsed: T;
+        try {
+          parsed = (await r.json()) as T;
+        } catch {
+          throw new Error(`shim ${path} returned non-JSON (status ${r.status})`);
+        }
+        return { status: r.status, body: parsed, via: "primary" };
+      }
+      primary_error = `HTTP ${r.status}`;
+    } catch (e) {
+      primary_error = (e as Error).message;
+    }
+
+    if (!allowFailover || !this.fallbackBaseUrl || this.fallbackBaseUrl === this.baseUrl) {
+      throw new Error(
+        `shim ${path} primary failed (${primary_status ?? "fetch-error"}: ${primary_error}); no failover for this path`,
+      );
+    }
+
+    const r2 = await this._fetchOne(this.fallbackBaseUrl, path, body);
     let parsed: T;
     try {
-      parsed = (await r.json()) as T;
+      parsed = (await r2.json()) as T;
     } catch {
-      throw new Error(`shim ${path} returned non-JSON (status ${r.status})`);
+      throw new Error(`shim ${path} fallback returned non-JSON (status ${r2.status})`);
     }
-    return { status: r.status, body: parsed };
+    return {
+      status: r2.status,
+      body: parsed,
+      via: "fallback",
+      primary_status,
+      primary_error,
+    };
   }
 
-  async createOrder(input: OrderInput): Promise<string> {
-    const { status, body } = await this._post<{ ok: boolean; order_id?: string; detail?: string }>(
-      "/orders",
-      input,
-    );
-    if (status >= 200 && status < 300 && body.ok && body.order_id) {
-      return body.order_id;
+  async createOrder(
+    input: OrderInput,
+  ): Promise<{ order_id: string; via: "primary" | "fallback"; primary_status?: number; primary_error?: string }> {
+    const r = await this._post<{ ok: boolean; order_id?: string; detail?: string }>("/orders", input);
+    if (r.status >= 200 && r.status < 300 && r.body.ok && r.body.order_id) {
+      return {
+        order_id: r.body.order_id,
+        via: r.via,
+        primary_status: r.primary_status,
+        primary_error: r.primary_error,
+      };
     }
-    throw new Error(`shim createOrder failed (${status}): ${body.detail || JSON.stringify(body)}`);
+    throw new Error(`shim createOrder failed (${r.status}): ${r.body.detail || JSON.stringify(r.body)}`);
   }
 
   async lookupOrder(
